@@ -1,0 +1,171 @@
+textarea {
+	border: 1px solid black;
+}
+
+#markdown-editor {
+	text-align: center;
+}
+
+#markdown-editor > form {
+	text-align: left;
+	display: inline-block;
+	width: 800px;
+	margin: 10px;
+/* 	position: relative; */
+}
+
+#title {
+	width: 100%;
+	margin: 10px 0px;
+	font-family: 'Merriweather', serif;
+	font-size: 30px;
+	font-weight: 400;
+	text-align: center;
+	border: none;
+	padding: 5px 10px;
+
+}
+
+#title:focus {
+	outline: none;
+}
+
+#markdown-editor > form > label {
+	padding: 10px;
+	margin: 0px;
+
+
+	-webkit-user-select: none; /* Chrome, Opera, Safari */
+	-moz-user-select: none; /* Firefox 2+ */
+	-ms-user-select: none; /* IE 10+ */
+	user-select: none; /* Standard syntax */
+}
+
+input[type=radio] {
+	margin: 0px 10px 0px 0px;
+}
+
+#submit {
+	position: absolute;
+	right: 0px;
+}
+
+/* Place Holder CSS */
+::-webkit-input-placeholder {
+	color: #000;
+	opacity: 0.5;
+	-webkit-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+:-moz-placeholder {
+	color: #000;
+	opacity: 0.5;
+	-moz-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+::-moz-placeholder {
+	color: #000;
+	opacity: 0.5;
+	-moz-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+:-ms-input-placeholder {  
+	color: #000;
+	opacity: 0.5;
+	-ms-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+/* Place Holder CSS for Focus */
+:hover::-webkit-input-placeholder {
+	opacity: 0.75;
+	-webkit-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+:hover:-moz-placeholder {
+	opacity: 0.75;
+	-moz-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+:hover::-moz-placeholder {
+	opacity: 0.75;
+	-moz-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+:hover:-ms-input-placeholder {  
+	opacity: 0.75;
+	-ms-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+/* Place Holder CSS for Focus */
+:focus::-webkit-input-placeholder {
+	opacity: 0;
+	-webkit-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+:focus:-moz-placeholder {
+	opacity: 0;
+	-moz-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+:focus::-moz-placeholder {
+	opacity: 0;
+	-moz-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+:focus:-ms-input-placeholder {  
+	opacity: 0;
+	-ms-transition: opacity 0.35s ease-in-out;
+	transition: opacity 0.35s ease-in-out;
+}
+
+.notif {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	height: 50px;
+	width: 260px;
+	background-color: #222;
+	color: #eee;
+	z-index: 1;
+	border-radius: 5px;
+	padding: 10px 20px 10px 10px;
+}
+
+.notif > * {
+	display: inline-block;
+}
+
+.notif-img {
+	height: 100%;
+	width: 20%;
+}
+
+.notif-img > img {
+	position: relative;
+	top: 50%;
+	left: 50%;
+
+	height: 40px;
+	width: auto;
+
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.notif-content {
+	width: 80%;
+	height: 100%;
+	display: inline;
+}

@@ -1,0 +1,1 @@
+1. For mentainability purposes, data associated with the function is stored in local variables. This allows one-time editing instead of searching every occurance of the data to change.

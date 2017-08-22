@@ -1,0 +1,4 @@
+   REQUEST CODE   |       REQUEST DESCRIPTION       |     PAGE SOURCE     |    FILE
+------------------|---------------------------------|---------------------|-------------
+       A-0        | Insert article to database      | editor.php          | editor.js
+       B-0        | Retrieve stories in HTML format | admin.php           | admin.js
