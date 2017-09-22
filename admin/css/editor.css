@@ -1,0 +1,47 @@
+textarea {
+	border: 1px solid black;
+	width: 100%;
+}
+
+#editor-form {
+/* 	background-color: yellow; */
+	position: absolute;
+	right: 0px;
+	left: 0px;
+	margin: 20px;
+}
+
+#content-type {
+	margin: 10px 0px;
+}
+
+#content-type .col-sm-4 {
+	text-align: center;
+}
+
+input[type=radio] {
+	margin: 10px;
+}
+
+#title {
+	font-size: 30px;
+	text-align: center;
+	font-family: 'Merriweather', serif;
+	display: block;
+	width: 100%;
+	border: none;
+}
+
+#submit {
+	width: 200px;
+}
+
+@media only screen and (max-width: 767px) {
+	#editor-form {
+		position: static;
+		margin: 0px;
+	}
+	#submit {
+		width: auto;
+	}
+}

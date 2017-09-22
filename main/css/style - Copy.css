@@ -1,0 +1,177 @@
+html,body,h1,h2,h3,h4,h5 {
+	font-family: "RobotoDraft","Roboto",sans-serif;
+}
+
+body{
+	min-width: 400px;
+}
+
+.memorabilia{
+	font-family: '3Dumb';
+	font-size: 70px;
+	display: inline-block;
+	text-transform: uppercase;
+}
+
+.w3-sidenav a {
+    padding:16px;
+    font-weight:bold
+}
+
+#sidebar{
+	z-index:5;
+	width:250px;
+}
+
+nav #top-sidebar{
+	background-color: #001e42;
+	border-bottom: 5px solid rgb(255, 152, 0);
+}
+
+nav #top-sidebar:hover{
+	opacity: 0.9;
+	transition: 1s;
+}
+
+nav img{
+	width:80%;
+}
+
+.side:active{
+	background-color: #001e42;
+}
+
+#aro_logo{
+	margin-top: 20px;
+	margin-right: 20px;
+	width: 100px;
+	float: left;
+}
+
+#topbar{
+	box-shadow: 0px 3px 3px rgba(64,64,64,0.3);
+	background-color: #001e42;
+	position: fixed;
+	width: 100%;
+	height: 0px;
+	transition: 0.5s;
+}
+
+#topbar1{
+	color: white;
+	opacity: 0;
+	margin-left: 65px;
+	transition: 0.8s;
+}
+
+#topbar2{
+	box-shadow: 0px 3px 3px rgba(64,64,64,0.3);
+	background-color: #001e42;
+	position: fixed;
+	width: 100%;
+	height: 0px;
+	transition: 0.5s;
+}
+
+#topbar3{
+	margin-top: 25px;
+	color: white;
+	opacity: 0;
+	margin-left: 65px;
+	transition: 0.8s;
+}
+
+#topbar4{
+	box-shadow: 0px 3px 3px rgba(64,64,64,0.3);
+	background-color: #001e42;
+	position: fixed;
+	width: 100%;
+	height: 0px;
+	transition: 0.5s;
+}
+
+#topbar5{
+	margin-top: 25px;
+	color: white;
+	opacity: 0;
+	margin-left: 65px;
+	transition: 0.8s;
+}
+
+#myIntro{
+	margin-top: 10px;
+}
+
+#toggle{
+	color: white;
+	margin-top: -50px;
+	margin-right: 20px;
+	padding: 10px;
+	border-radius: 2px;
+	float: right;
+	text-decoration: none;
+	border: 1px solid white;
+}
+
+#close{
+	cursor:pointer
+}
+
+.w3-main{
+	margin-left:250px;
+}
+
+.title {
+	color: rgb(255, 152, 0);
+}
+
+.highlight{
+	color: rgb(255, 152, 0);
+	font-size: 60px;
+}
+
+.image{
+	border-radius: 50%;
+	margin-top: 10px;
+	float: right;
+	width: 180px;
+	height: 170px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.read{
+	font-size: 15px;
+	float: right;
+}
+
+.w3-third {
+	width: 100%;
+}
+
+#bot{
+	margin-top: 50px;
+}
+
+#bot a:hover{
+	color: black;
+	background-color: white;
+	transition: 0.8s;
+}
+
+footer{
+	background-color: #001e42;
+	height: 100px;
+	color: white;
+	border-top: 5px solid rgb(255, 152, 0);
+}
+
+.foot{
+	font-size: 15px;
+	text-align: center;
+}
+
+@media only screen and (max-width: 600px;){
+	body .w3-main{
+		min-width: 300px !important;
+	} 	
+}

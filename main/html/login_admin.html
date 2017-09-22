@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../css/w3.css">
+	<link rel="stylesheet" type="text/css" href="../css/admin_style.css">
+</head>
+<body class="w3-light-grey">
+
+	<div id="topbar">
+		<img src="../img/logo.gif" id="logo">
+		<button onclick="document.getElementById('id01').style.display='block'" id="login1">Login</button>
+	</div>
+
+	<h1>Bicol University <br/> Alumni Relations Office</h1>
+
+	<div id="id01" class="w3-modal">
+		<div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+			<div class="w3-container">
+				<div class="w3-section">
+					<label><b>Username</b></label>
+					<input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username">
+					<label><b>Password</b></label>
+					<input class="w3-input w3-border" type="text" placeholder="Enter Password">
+				
+					<a href="admin.html"><button class="w3-btn w3-btn-block w3-green w3-section">Login</button></a> 
+					<input class="w3-check" type="checkbox" checked="checked"> Remember me
+				</div>
+			</div>
+
+			<div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+				<button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red">Cancel</button>
+				<span class="w3-right w3-padding w3-hide-small">Forgot <a href="#">password?</a></span>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

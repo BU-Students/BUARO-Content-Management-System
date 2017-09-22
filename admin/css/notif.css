@@ -1,0 +1,94 @@
+.notif-img img {
+	height: 40px;
+}
+
+.notif-img {
+	margin: 5px;
+}
+
+.notif-content {
+	margin: 10px 10px 10px 0px;
+	padding: 10px;
+	color: #eee;
+	max-width: 300px;
+}
+
+.notif {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	background-color: #222;
+	border-radius: 3px;
+	position: fixed;
+	right: 0px;
+	bottom: 10px;
+	z-index: 1;
+	visibility: hidden;
+	opacity: 0;
+
+ 	-webkit-transition: 0.3s ease-in-out;
+	-moz-transition: 0.3s ease-in-out;
+	-ms-transition: 0.3s ease-in-out;
+	-o-transition: 0.3s ease-in-out;
+	transition: 0.3s ease-in-out;
+}
+
+.show-notif {
+	-webkit-animation: 5s show-notif;
+	-moz-animation: 5s show-notif;
+	animation: 5s show-notif;
+}
+
+@-webkit-keyframes show-notif {
+	0% {
+		opacity: 0;
+		right: 0px;
+		visibility: hidden;
+	}
+	10%, 95% {
+		opacity: 1;
+		right: 10px;
+		visibility: visible;
+	}
+	100% {
+		opacity: 0;
+		right: 0px;
+		visibility: hidden;
+	}
+}
+
+@-moz-keyframes show-notif {
+	0% {
+		opacity: 0;
+		right: 0px;
+		visibility: hidden;
+	}
+	5%, 95% {
+		opacity: 1;
+		right: 10px;
+		visibility: visible;
+	}
+	100% {
+		opacity: 0;
+		right: 0px;
+		visibility: hidden;
+	}
+}
+
+@keyframes show-notif {
+	0% {
+		opacity: 0;
+		right: 0px;
+		visibility: hidden;
+	}
+	10%, 95% {
+		opacity: 1;
+		right: 10px;
+		visibility: visible;
+	}
+	100% {
+		opacity: 0;
+		right: 0px;
+		visibility: hidden;
+	}
+}

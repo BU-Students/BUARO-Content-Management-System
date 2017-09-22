@@ -1,0 +1,21 @@
+.carousel {
+   width:70%;
+   height:100%;
+}
+
+.img-responsive {
+  border: 3px solid #dff0d8;
+  border-radius:5px;
+}
+
+.omoe_wa_mou_shindeiru:hover {
+  	cursor: pointer;
+}
+
+@media only screen and (max-width: 767px) {
+  .carousel {
+     width: 100%;
+     height:auto;
+     background-color: yellow;
+  }
+}

@@ -1,0 +1,210 @@
+#left-side, #right-side {
+	float: left;
+	overflow-y: auto;
+	height: 100%;
+}
+
+#left-side {
+	height: 100%;
+	width: 400px;
+	padding: 10px;
+	border-right: 1px solid #eee;
+}
+
+#profile-img {
+	display: block;
+	margin: 10px auto 0px auto;
+	width: 150px;
+	height: 150px;
+}
+
+#name {
+	text-align: center;
+	font-family: "Quicksand", sans-serif;
+	font-size: 25px;
+}
+
+#college {
+	display: block;
+	text-align: center;
+	font-size: 16px;
+}
+
+#basic-stat {
+	width: 100%;
+	margin-top: 30px;
+	text-align: center;
+}
+
+#basic-stat > div {
+	display: inline-block;
+	width: 49%;
+}
+
+.stat-label {
+	font-size: 15px;
+}
+
+#story-count, #view-count {
+	font-size: 35px;
+}
+
+#right-side {
+	width: -webkit-calc(100% - 400px);
+	width: -moz-calc(100% - 400px);
+	width: calc(100% - 400px);
+}
+
+
+.profile-info {
+	padding: 20px;
+	width: 100%;
+	display: inline-block;
+	font-size: 15px;
+	margin: 0p auto;
+}
+
+.profile-info tr {
+	height: 30px;
+}
+
+.profile-info th {
+	width: 200px;
+}
+
+table tr td input {
+	text-indent: 10px; 
+	border:0;
+	background-color: #f1f1f1;
+	border-radius: 3px;
+}
+
+button[class=btn] {
+	display: block;
+	margin: 0px auto;
+	border-radius: 20px;
+	padding: 5px 25px;
+	border: 2px solid #72db72;
+	color: #5cb85c;
+	background-color: transparent;
+
+	-webkit-transition: 0.1s linear;
+	-moz-transition: 0.1s linear;
+	-o-transition: 0.1s linear;
+	transition: 0.1s linear;
+}
+
+button[class=btn]:hover {
+	background-color: #5cb85c;
+	border: 2px solid white;
+	color: white;
+}
+
+.fade-up {
+	opacity: 1;
+	animation: fade-up 2s cubic-bezier(0.03, 0.86, 0.31, 0.96);
+}
+
+@-webkit-keyframes fade-up {
+	0% {
+		padding-top: 50px;
+		opacity: 0;
+	}
+	100% {
+		margin-top: 0px;
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fade-up {
+	0% {
+		padding-top: 50px;
+		opacity: 0;
+	}
+	100% {
+		margin-top: 0px;
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fade-up {
+	0% {
+		padding-top: 50px;
+		opacity: 0;
+	}
+	100% {
+		margin-top: 0px;
+		opacity: 1;
+	}
+}
+
+@keyframes fade-up {
+	0% {
+		padding-top: 50px;
+		opacity: 0;
+	}
+	100% {
+		margin-top: 0px;
+		opacity: 1;
+	}
+}
+
+.fade-down {
+	opacity: 1;
+	animation: fade-down 2s cubic-bezier(0.03, 0.86, 0.31, 0.96);
+}
+
+@-webkit-keyframes fade-down {
+	0% {
+		margin-top: -50px;
+		opacity: 0;
+	}
+	100% {
+		margin-top: 0px;
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fade-down {
+	0% {
+		margin-top: -50px;
+		opacity: 0;
+	}
+	100% {
+		margin-top: 0px;
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fade-down {
+	0% {
+		margin-top: -50px;
+		opacity: 0;
+	}
+	100% {
+		margin-top: 0px;
+		opacity: 1;
+	}
+}
+
+@keyframes fade-down {
+	0% {
+		margin-top: -50px;
+		opacity: 0;
+	}
+	100% {
+		margin-top: 0px;
+		opacity: 1;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	#left-side, #right-side {
+		display: inline;
+		width: 100%;
+		float: none;
+	}
+	#profile-banner {
+		float: left;
+	}
+}

@@ -1,0 +1,16 @@
+   REQUEST CODE   |       REQUEST DESCRIPTION                          |     PAGE SOURCE     |    FILE
+------------------|----------------------------------------------------|---------------------|-------------
+       A-0        | Insert/update article to database                  | editor.php          | editor.js
+       A-1        | Load a post to the editor                          | editor.php          | editor.js
+       B-0        | Retrieve stories in HTML format                    | admin.php           | admin.js
+       B-1        | Delete story                                       | admin.php           | admin.js
+       C-0        | Fetch either user info to profile.php              | profile.php         | profile.js
+       c-1        | Update porfile info                                | profile.php         | profile.js
+       D-0        | Get post data                                      | post_stat.php       | post_stat.js
+       D-1        | Get all post data for comparison to post subject   | post_stat.php       | post_stat.js
+       E-0        | Fetch basic admin info                             | account.php         | account.js
+       E-1        | Change username or password                        | account.php         | account.js
+       F-0        | Get all admin information                          | administrators.php  | administrators.js
+       G-0        | Get About article content                          | about.php           | about.js
+       H-* -> Tanungin ang team 1
+       I-0        | Get colleges' course information                   | unit_college.php    | unit_college.js

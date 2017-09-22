@@ -1,0 +1,154 @@
+.section-wrapper {
+	width: 60%;
+	display: block;
+	margin: 20px auto;
+	border: 1px solid #ccc;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+th, td {
+	border: none !important;
+	padding: 10px !important;
+}
+
+th, th label {
+	color: #555;
+	margin: 0px;
+}
+
+.required::before {
+	content: "* ";
+	color: red;
+}
+
+input {
+	border: none;
+	border-bottom: 1px solid #ccc;
+}
+
+input:focus {
+	outline: none;
+	border-bottom: 1px solid #2196F3;
+}
+
+input[type=date] {
+	position: relative;
+	left: 10px;
+	width: max-content;
+	display: inline;
+	text-align: center;
+}
+
+input[type='number'] {
+	-moz-appearance:textfield;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+.overlap-helper {
+	display: inline-block;
+	height: 34px;
+	position: relative;
+	top: 30px;
+	left: 10px;
+}
+
+.overlap-helper > * {
+	display: inline-block;
+	width: 137px;
+	height: 34px;
+}
+
+.overlap-helper > input[type=file] {
+	position: relative;
+	bottom: 34px;
+	opacity: 0;
+}
+
+#sex {
+	margin-left: 10px;
+	width: max-content !important;
+	display: inline !important;
+}
+
+select option { padding: 10px 0px; }
+
+button[type=submit] {
+	display: block;
+	margin: 30px auto;
+	border: 2px solid #72db72;
+	color: #5cb85c;
+	border-radius:30px;
+	padding: 10px 25px;
+	background-color: transparent;
+	-webkit-transition: 0.1s linear;
+	-moz-transition: 0.1s linear;
+	-o-transition: 0.1s linear;
+	transition: 0.1s linear;
+}
+
+button[type=submit]:hover, button[type=submit]:focus {
+	background-color: #5cb85c;
+	border: 2px solid white;
+	color: white;
+}
+
+button[type=submit]:active, button[type=submit]:focus {
+	outline: none !important;
+}
+
+#upload-section { overflow: auto; }
+
+#profile, #cover {
+	display: inline-block;
+	width: 50%;
+}
+
+#profile { float: left; }
+
+#cover { float: right; }
+
+#profile img, #cover img {
+	width: 100%;
+	height: auto;
+}
+
+.cancel-btn { display: none; }
+
+.click-effect {
+	-webkit-animation: click 0.5s;
+	-moz-animation: click 0.5s;
+	animation: click 0.5s;
+}
+
+@-webkit-keyframes click {
+	20% { background-color: #eee; }
+}
+
+@-moz-keyframes click {
+	20% { background-color: #eee; }
+}
+
+@-o-keyframes click {
+	20% { background-color: #eee; }
+}
+
+@keyframes click {
+	20% { background-color: #eee; }
+}
+
+@media only screen and (max-width: 590px) {
+	th, td {
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.section-wrapper {
+		width: 90%;
+	}
+}
