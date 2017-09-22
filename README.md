@@ -13,7 +13,7 @@
 - In the process of re-organizing the file structure, where there any path errors encountered with regards to the module you're developing? If so, please prioritize fixing it.
 - Make sure the databse structure on your local machine is updated. (The current database's `.sql` file is provided.)
 
-*NOTE: The `/vendor` directory should supossedly contain the following sub-directories:*
+*NOTE: On the same directory level as `/admin`, `/data`, and `/main`, there's another directory named `/vendor` and should supossedly contain the following sub-directories:*
 - `Highcharts-5.0.14/`
 - `parsedown-master/`
 - `sparksuite-simplemde-markdown-editor-6abda7a/`
