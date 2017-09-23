@@ -11,17 +11,17 @@ function encode($string) {
 
 	$imgbanner = $_FILES['img-banner']['tmp_name'];
 	$imgbannername = rand(903,34847);
-	$imgbannerpath = "../img/imgfolders/".$imgbannername;
+	$imgbannerpath = "../../data/events-stories/".$imgbannername;
 	if(empty($_FILES['img-banner']['tmp_name'])){
 		$imgbannerpath = "none";
 	}
 	else{
-		move_uploaded_file($imgbanner,'../../img/imgfolders/'.$imgbannername);
+		move_uploaded_file($imgbanner,'../../../data/events-stories/'.$imgbannername);
 	}
 	
 	//Algo for multi-image upload
 	$foldername = rand(10000,90987)."".date("y-m-d");
-	$path = "../img/imgfolders/".$foldername."/";
+	$path = "../../data/events-stories/".$foldername."/";
 	$fullpath = "";
 	mkdir("../".$path); //Creates a folder in the imgfolders
 	foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){

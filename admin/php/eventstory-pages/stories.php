@@ -6,7 +6,7 @@
 
 include '../backend/connection.php';
 include '../backend/input_handler.php';
-require_once "../../../parsedown-master/Parsedown.php";
+require_once "../../../vendor/parsedown-master/Parsedown.php";
 	$sql = "SELECT * FROM POST WHERE post_type=1";
 	$sql .= " ORDER BY timestamp DESC";
 	$result = $conn->query($sql);
@@ -16,6 +16,9 @@ require_once "../../../parsedown-master/Parsedown.php";
 	$pagenum = 0;
 
 	while($row = $result->fetch_assoc()) {
+		if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
+			$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
+		}
 		if($row['status']=="shown")
 			$status = "btn btn-default btn-s";
 		else
@@ -28,6 +31,7 @@ require_once "../../../parsedown-master/Parsedown.php";
 			<div class="col-md-6">
 				<div class="story">
 				<div class="story-header">
+					<img src="'.$row['imgbanner'].'" height="50" width="auto">
 					<div class="story-options-container">
 						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-story-'.$row['post_id'].'"><span class="glyphicon glyphicon-pencil"></span></button>
 						<button type="button" class="'.$status.'" id="status-story-'.$row['post_id'].'" onclick="changeStatus('.$row['post_id'].',\''.$row['status'].'\')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
@@ -112,6 +116,7 @@ require_once "../../../parsedown-master/Parsedown.php";
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title" id="expanded-story-title">'.$row['title'].'</h4>
+						<h5>Number of views: '.$row['view_count'].'</h5>
 						<h6 id="expanded-story-date">'.$row['timestamp'].'</h6>
 					</div>
 					<div class="modal-body">
