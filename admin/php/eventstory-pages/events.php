@@ -5,7 +5,7 @@
 <?php
 include '../backend/connection.php';
 include '../backend/input_handler.php';
-require_once "../../../parsedown-master/Parsedown.php";
+require_once "../../../vendor/parsedown-master/Parsedown.php";
 	$sql = "SELECT * FROM post WHERE post_type=2";
 	$sql .= " ORDER BY eventdate DESC";
 	$result = $conn->query($sql);
@@ -16,6 +16,9 @@ require_once "../../../parsedown-master/Parsedown.php";
 	$today = date("Y-m-d");
 
 	while($row = $result->fetch_assoc()) {
+		if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
+			$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
+		}
 		if($row['status']=="shown")
 			$status = "btn btn-default btn-s";
 		else
@@ -34,10 +37,11 @@ require_once "../../../parsedown-master/Parsedown.php";
 			<div class="col-md-6">
 				<div class="event">
 				<div class="event-header">
+					<img src="'.$row['imgbanner'].'" height="50" width="auto">
 					<div class="event-options-container">
 						<label><i>'.$event_type.'</i></label>
 						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-event-'.$row['post_id'].'"><span class="glyphicon glyphicon-pencil"></span></button>
-						<button type="button" class="'.$status.'" id="status-event-'.$row['post_id'].'" onclick="changeStatus('.$row['post_id'].','.$status.')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
+						<button type="button" class="'.$status.'" id="status-event-'.$row['post_id'].'" onclick="changeStatus_events('.$row['post_id'].',\''.$row['status'].'\')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
 					</div>
 					<div class="event-title">'.$row['title'].'</div>
 					<div class="event-date">Date Posted: '.date('F d, Y | g:i A', strtotime(str_replace('-', '/', $row['timestamp']))).'</div>
@@ -119,6 +123,7 @@ require_once "../../../parsedown-master/Parsedown.php";
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title" id="expanded-event-title">'.$row['title'].'</h4>
+						<h5>Number of views: '.$row['view_count'].'</h5>
 						<h6 id="expanded-event-date">'.$row['timestamp'].'</h6>
 						<b><h6>Event due: '.$row['eventdate'].'</h6></b>
 					</div>
