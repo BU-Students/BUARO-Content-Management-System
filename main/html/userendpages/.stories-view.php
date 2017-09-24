@@ -1,6 +1,6 @@
  <?php
 	include '../connection.php';
-	include '../../../parsedown-master/Parsedown.php';
+	include '../../../vendor/parsedown-master/Parsedown.php';
 
 	$id = $_GET['id'];
 	$query = "SELECT * FROM post WHERE post_id='$id'";
@@ -27,7 +27,7 @@
 				</ul>
 
 				<?php
-						if($fetch['imglinks']!="none"){
+						if($fetch['imglinks']!=""){
 							echo '
 								<div class="container">
 								<div id="myCarousel-'.$fetch['post_id'].'" class="carousel slide" data-ride="carousel">
@@ -53,7 +53,7 @@
 									if($q==1){
 										echo '
 											<div class="item active">
-												<img class="img-rounded" src="../admin/img/'.$links.'" alt="img-'.$links.'">
+												<img class="img-rounded" src="'.$links.'" alt="img-'.$links.'">
 											</div>
 										';
 										$q++;
@@ -61,7 +61,7 @@
 									else{
 										echo '
 											<div class="item">
-											  <img class="img-rounded" src="../admin/img/'.$links.'" alt="img-'.$links.'">
+											  <img class="img-rounded" src="'.$links.'" alt="img-'.$links.'">
 											</div>
 										';
 									}
@@ -95,7 +95,7 @@
 									  <!-- Wrapper for slides -->
 									  <div class="carousel-inner">
 										<div class="item active">
-										  <center><img src="../admin/img/../img/imgfolders/noslider.jpg" alt="no images"></center>
+										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images"></center>
 										</div>
 									  </div>
 

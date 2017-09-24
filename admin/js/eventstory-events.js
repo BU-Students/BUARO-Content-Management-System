@@ -17,7 +17,7 @@ function changeevents(intval){
 
 //Function to change the status of the events
 function changeStatus_events(val,cur_stat){
-	var current = cur_stat;
+	var current = document.getElementById("status-event-"+val).value;
 	var id = val;
 	var xhttp2 = new XMLHttpRequest();
 	var params = "id=" + id + "&cur-stat="+current;
@@ -30,9 +30,11 @@ function changeStatus_events(val,cur_stat){
 			document.getElementById("status-event-"+id).className = xhttp2.responseText;
 			if(xhttp2.responseText == "btn btn-warning btn-s") {
 				document.getElementById("status-event-"+id).innerHTML = "hidden";
+				document.getElementById("status-event-"+id).value = "hidden";
 			}
 			else {
 				document.getElementById("status-event-"+id).innerHTML = "shown";
+				document.getElementById("status-event-"+id).value = "shown";
 				//handle error here
 				console.log("SERVER ERROR RESPONSE: " + xhttp2.responseText);
 			}

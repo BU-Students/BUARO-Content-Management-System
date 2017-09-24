@@ -1,13 +1,10 @@
 <?php
 	include 'connection.php';
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="userendpages/loadjs/loadContent.js"></script>
-<script type="text/javascript" src="userendpages/loadjs/loadEvent.js"></script>
-<script type="text/javascript" src="userendpages/loadjs/loadStory.js"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>BU | Alumni Relations Office</title>
@@ -17,8 +14,14 @@
 	<link rel="stylesheet" type="text/css" href="../css/e-shop_style.css">
 	<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/story.css">
+	<link rel="stylesheet" type="text/css" href="../css/story.css">
 	<link rel="stylesheet" type="text/css" href="../css/eventstory-carousel.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="userendpages/loadjs/loadContent.js"></script>
+	<script type="text/javascript" src="userendpages/loadjs/loadEvent.js"></script>
+	<script type="text/javascript" src="userendpages/loadjs/loadStory.js"></script>
 </head>
 <body>
 	<nav class="w3-sidenav w3-collapse w3-white w3-animate-left w3-card-8" id="sidebar"> 	<!-- S I D E B A R -->
@@ -94,7 +97,7 @@
 <script src="js/js_3.js"></script>
 <script src="js/js_4.js"></script>
 <script>
-	function loadRecent() {
+function loadRecent() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -115,10 +118,13 @@ function viewEvent(str) {
   xhttp.open("GET", "userendpages/.event-recent-view.php?id="+str, true);
   xhttp.send();
 }
-function myFunc(id) {																//Used in College/Units & BUARO Events toggling
+
+//Used in College/Units & BUARO Events toggling
+function myFunc(id) {
     document.getElementById(id).classList.toggle("w3-show");
     document.getElementById(id).previousElementSibling.classList.toggle("w3-theme");
 }
 </script>
+
 </body>
 </html>
