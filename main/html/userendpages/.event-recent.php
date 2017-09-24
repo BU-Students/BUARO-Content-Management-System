@@ -1,7 +1,7 @@
 <?php
 	include '../connection.php';
-	include '../../parsedown-master/Parsedown.php';
-	require_once '../../admin/php/backend/input_handler.php';
+	include '../../../vendor/parsedown-master/Parsedown.php';
+	require_once '../../../admin/php/backend/input_handler.php';
 ?>
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
 <script type="text/javascript" src="userendpages/loadjs/viewS.js"></script>
