@@ -57,6 +57,6 @@
 					<button type="submit" class="btn btn-primary">Publish</button>
 				</div>
 			</form>
-		2</div>
+		</div>
 	</div>
 </div>

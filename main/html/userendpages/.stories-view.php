@@ -53,7 +53,7 @@
 									if($q==1){
 										echo '
 											<div class="item active">
-												<img class="img-rounded" src="../admin/img/'.$links.'" alt="img-'.$links.'">
+												<img class="img-rounded" src="'.$links.'" alt="img-'.$links.'">
 											</div>
 										';
 										$q++;
@@ -61,7 +61,7 @@
 									else{
 										echo '
 											<div class="item">
-											  <img class="img-rounded" src="../admin/img/'.$links.'" alt="img-'.$links.'">
+											  <img class="img-rounded" src="'.$links.'" alt="img-'.$links.'">
 											</div>
 										';
 									}
