@@ -16,8 +16,8 @@ function change(intval){
 }
 
 //Function to change the status of the post
-function changeStatus(val,cur_stat){
-	var current = cur_stat;
+function changeStatus(val){
+	var current = document.getElementById("status-story-"+val).value;
 	var id = val;
 	var xhttp2 = new XMLHttpRequest();
 	var params = "id=" + id + "&cur-stat="+current;
@@ -30,9 +30,11 @@ function changeStatus(val,cur_stat){
 			document.getElementById("status-story-"+id).className = xhttp2.responseText;
 			if(xhttp2.responseText == "btn btn-warning btn-s") {
 				document.getElementById("status-story-"+id).innerHTML = "hidden";
+				document.getElementById("status-story-"+id).value = "hidden";
 			}
 			else {
 				document.getElementById("status-story-"+id).innerHTML = "shown";
+				document.getElementById("status-story-"+id).value = "shown";
 				//handle error here
 				console.log("SERVER ERROR RESPONSE: " + xhttp2.responseText);
 			}
@@ -42,13 +44,6 @@ function changeStatus(val,cur_stat){
 	xhttp2.send(params);
 }
 
-//Function to load the editor in edit stories does not work
-$('#textarea2-100').each(function() {
-    var simplemde = new SimpleMDE({
-        element: this,
-    });
-    simplemde.render(); 
-});
     
 function escapeHtml(text) {
   var map = {

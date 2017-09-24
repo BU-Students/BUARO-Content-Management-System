@@ -34,7 +34,7 @@ require_once "../../../vendor/parsedown-master/Parsedown.php";
 					<img src="'.$row['imgbanner'].'" height="50" width="auto">
 					<div class="story-options-container">
 						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-story-'.$row['post_id'].'"><span class="glyphicon glyphicon-pencil"></span></button>
-						<button type="button" class="'.$status.'" id="status-story-'.$row['post_id'].'" onclick="changeStatus('.$row['post_id'].',\''.$row['status'].'\')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
+						<button type="button" class="'.$status.'" id="status-story-'.$row['post_id'].'" value="'.$row['status'].'" onclick="changeStatus('.$row['post_id'].')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
 					</div>
 					<div class="story-title">'.$row['title'].'</div>
 					<div class="story-date">Date Posted: '.date('F d, Y | g:i A', strtotime(str_replace('-', '/', $row['timestamp']))).'</div>

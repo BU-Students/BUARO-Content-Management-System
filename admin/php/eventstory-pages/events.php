@@ -41,7 +41,7 @@ require_once "../../../vendor/parsedown-master/Parsedown.php";
 					<div class="event-options-container">
 						<label><i>'.$event_type.'</i></label>
 						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-event-'.$row['post_id'].'"><span class="glyphicon glyphicon-pencil"></span></button>
-						<button type="button" class="'.$status.'" id="status-event-'.$row['post_id'].'" onclick="changeStatus_events('.$row['post_id'].',\''.$row['status'].'\')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
+						<button type="button" class="'.$status.'" id="status-event-'.$row['post_id'].'" value="'.$row['status'].'" onclick="changeStatus_events('.$row['post_id'].',\''.$row['status'].'\')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
 					</div>
 					<div class="event-title">'.$row['title'].'</div>
 					<div class="event-date">Date Posted: '.date('F d, Y | g:i A', strtotime(str_replace('-', '/', $row['timestamp']))).'</div>
