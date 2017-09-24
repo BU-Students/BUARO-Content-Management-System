@@ -18,7 +18,7 @@
 - `parsedown-master/`
 - `sparksuite-simplemde-markdown-editor-6abda7a/`
 
-*However, I'm not sure if I'm allowed to upload the source codes of the said 3rd-party frameworks to this repository, so instead I'll just be uploading a zip file containing those files in [our facebook group](https://www.facebook.com/groups/1398253680265313). Alternatively, you can download the source codes from their website (links provided below). Just keep in mind that the folder structure and its folder names should be the same.*
+*However, I'm not sure if I'm allowed to upload the source codes of the said 3rd-party frameworks to this repository, ~~so instead I'll just be uploading a zip file containing those files in [our facebook group](https://www.facebook.com/groups/1398253680265313)~~. Alternatively, you can download the source codes from their website (links provided below). Just keep in mind that the folder structure and its folder names should be the same.*
 
 ---
 
