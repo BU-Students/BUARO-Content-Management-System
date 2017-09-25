@@ -8,6 +8,7 @@
 		$exec = mysqli_query($con, $insert);
 
 	}
-	header("Location:comment.php?id=".$id);
+	echo "You are being automatically redirected. Click <a href='e-shop.php'>here</a> to manually redirect.";
+	header("Location:e-shop.php");
 
 ?>

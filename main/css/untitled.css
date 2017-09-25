@@ -29,9 +29,7 @@ a{
 /*TOPBAR*/
 
 #topbar{
-	box-shadow: 0px 3px 3px rgba(64,64,64,0.3);
-	background-color: #001e42;
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	height: 40px;
 	transition: 0.5s;
@@ -39,13 +37,11 @@ a{
 }
 
 #topbar ul{
-	word-spacing: 2px;
 	text-align: center;
 }
 
 #topbar ul li{
 	color: white;
-	word-spacing: 0px;
 	list-style-type: none;
 	display: inline-block;
 }
@@ -76,13 +72,23 @@ a{
 .topic header{ 
 	min-height: 350px;
 	box-shadow: 0px 0px 20px 15px rgba(64,64,64,0.3);
-	border-bottom: 5px solid rgb(255, 152, 0);
 }
 
 .topic header h1{
 	margin-top: 50px;
 	margin-left: 100px;
 	color: white;
+}
+
+.topic #search-logo{
+	width: 29px;
+	background-color: white;
+}
+
+.topic #search-btn, #search-logo{
+	float: right;
+	margin-top: 120px;
+	border-radius: 5px;
 }
 
 #aro_logo{
@@ -98,8 +104,6 @@ a{
 /*MIDDLE*/
 
 .main{
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
 	margin-left: 5%;
 	margin-right: 5%;
 	background-color: #f8f8f8;
@@ -128,20 +132,20 @@ a{
 	position: relative;
 	width: 100%;
 	overflow: hidden;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
+	background-color: #003471;
 }
 
 #middle h1{
+	font-size: 25px;
 	color: white;
-	border-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 	padding: 10px;
-	margin-top: 34%;
+	margin-top: 30%;
 	background-color: #003471;
 	opacity: 0.9;
 	text-align: center;
 	position: absolute;
-	margin-left: 50%;
 }
 /*#middle hr{
 	margin-top: -5px;
@@ -155,9 +159,17 @@ a{
 	float: left;
 }
 
+#middle .slides p{
+	font-size: 30px;
+	float: right;
+	color: white;
+	margin-right: 5%;
+	max-width: 250px;
+}
+
 #middle figure img{
-	width: 100%;
-	height: 500px;
+	width: 70%;
+	max-height: 500px;
 }
 
 #middle figure{
@@ -174,31 +186,41 @@ a{
 
 /*END*/
 
-/*SHOP*/
+/*ABOUT*/
 
-.shop{
-	margin-top: 50px;
+#abt-img1{
+	width: 45%;
+	margin-left: 7%;
+	margin-top: -20px;
+	opacity: 0.7;
+    -webkit-clip-path: polygon(0 0, 100% 11%, 100% 44%, 0 62%);
+	clip-path: polygon(0 0, 100% 11%, 100% 44%, 0 62%);
 }
 
-.shop h1{
-	padding: 100px;
-	float: left;
-	background-color: #f8f8f8;
+#abt-img2{
+	width: 45%;
+	margin-left: 7%;
+	margin-top: -300px;
+	opacity: 0.7;
+    -webkit-clip-path: polygon(0 25%, 100% 0%, 100% 86%, 0 78%);
+	clip-path: polygon(0 25%, 100% 0%, 100% 86%, 0 78%);
 }
 
-.shop img{
-	width: 100%;
-	border-radius: 10%;
-	box-shadow: 0px 0px 20px 10px rgba(65,65,65,0.3);
+#about img:hover{
+	box-shadow: 0px 0px 20px 10px rgba(65,65,65,0.99);
+	transition: 1s;
+	opacity: 1;
 }
 
-#shop_img{
+.abt_content{
+	margin-bottom: 100px;
+	min-height: 200px;
+	width: 45%;
 	float: right;
-	margin-bottom: 50px;
-	max-width: 500px;
-	max-height: 500px;
-	position:relative;
-	margin-right: 6%;
+	margin-top: -600px;
+	margin-right: 5%;
+	padding: 50px;
+	box-shadow: -5px 5px 10px 0px rgba(65,65,65,0.99);
 }
 
 /*END*/
@@ -230,79 +252,67 @@ button{
 
 /*END*/
 
-/*UNIT/COLLEGES*/
+/*SHOP*/
 
-#torch_img{
-	margin-bottom: -1150px;
+.shop{
+	
 }
 
-#torch_img img{
-	width: 100%;
-	height: 1100px;
-}
-
-.unit{
-	margin-left: 20%;
-	width: 60%;
-	height: 75px;
+.shop h1{
+	padding: 100px;
 	background-color: #f8f8f8;
-	background-repeat: no-repeat;
-	border-radius: 20px;
-	opacity: 0.7;
+	width: 60%;
 }
 
-.unit h4{
-	font-size: 20px;
+.shop img{
+	width: 100%;
+	border-radius: 10%;
+	box-shadow: 0px 0px 20px 10px rgba(65,65,65,0.3);
 }
 
-.unit:hover{
-	opacity: 1;
-	transition: .8s;
-	box-shadow: 0px 0px 20px 10px rgba(65,65,65,0.60);
-	height: 80px;
+#shop_img{
+	margin-left: 5%;
+	float: left;
+	width: 600px;
+	max-width: 500px;
+	max-height: 500px;
+	position:relative;
 }
 
 /*END*/
 
-/*ABOUT*/
+/*UNIT/COLLEGES*/
 
-#abt-img1{
-	width: 45%;
-	margin-left: 7%;
-	margin-top: -20px;
-	opacity: 0.7;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-    -webkit-clip-path: polygon(0 0, 100% 11%, 100% 44%, 0 62%);
-	clip-path: polygon(0 0, 100% 11%, 100% 44%, 0 62%);
-}
-
-#abt-img2{
-	width: 45%;
-	margin-left: 7%;
-	margin-top: -350px;
-	opacity: 0.7;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-    -webkit-clip-path: polygon(0 25%, 100% 0%, 100% 86%, 0 78%);
-	clip-path: polygon(0 25%, 100% 0%, 100% 86%, 0 78%);
-}
-
-#about img:hover{
-	box-shadow: 0px 0px 20px 10px rgba(65,65,65,0.99);
-	transition: 1s;
-	opacity: 1;
-}
-
-.abt_content{
-	margin-bottom: 100px;
-	min-height: 200px;
-	width: 45%;
+#college{
 	float: right;
-	margin-top: -600px;
+	margin-top: -700px;
 	margin-right: 5%;
-	padding: 50px;
-	box-shadow: -5px 5px 20px 0px rgba(65,65,65,0.99);
+
+}
+
+.unit{
+	margin-top: -15px;
+	margin-bottom: -15px;
+	margin-left: 20%;
+	width: 100%;
+	height: 60px;
+	background-color: #f8f8f8;
+	background-repeat: no-repeat;
+}
+
+.unit h4{
+	font-size: 15px;
+	text-align: left;
+}
+
+.unit:hover{
+	transition: .7s;
+	box-shadow: 0px 0px 10px 0px rgba(65,65,65,0.60);
+	color: rgb(255, 152, 0);
+}
+
+.college-div{
+	margin-left: 100px;
 }
 
 /*END*/
@@ -310,15 +320,21 @@ button{
 /*FOOTER*/
 
 footer{
-	margin-top: 17px;
+	margin-top: 200px;
 	background-color: #001e42;
-	height: 80px;
+	height: 75px;
 	color: white;
 	border-top: 5px solid rgb(255, 152, 0);
 }
 
 #bot{
 	margin-top: 30px;
+}
+
+#bot a{
+	margin-top: -50px;
+	float: right;
+	margin-right: 5%;
 }
 
 #bot a:hover{
@@ -340,7 +356,7 @@ footer{
 		display: none;
 	}
 	.topic header h1{
-		margin-top: 100px;
+		margin-top: 200px;
 		margin-left: 0px;
 		margin-bottom: 100px;
 	}
@@ -355,9 +371,11 @@ footer{
 		margin-left: 20px;
 	}
 	.shop h1{
-		margin-top: -100px;
 		margin-left: -80px;
 		text-align: center;
+	}
+	#shop_img{
+		width: 250px;
 	}
 	#big{
 		font-size: 12px;
@@ -378,20 +396,29 @@ footer{
 		width: 250px;
 		margin: 0;
 		margin-bottom: -150px;
-		margin-left: 30px;
 	}
 	#abt-img2{
 		height: 300px;
 		width: 250px;
 		margin: 0;
-		margin-left: 30px;
+		
+	}
+	#college{
+		margin-top: 50px;
+	}
+	.college-div{
+		margin-left: 0px;
 	}
 	.unit{
+		margin-top: -20px;
 		width:90%;
 		margin-left: 10%;
 	}
 	#stories{
-		margin-bottom: 80px;
+		margin-bottom: 100px;
+	}
+	footer{
+		margin-top:900px;
 	}
 }
-/*END*/
+/*END */

@@ -61,49 +61,45 @@ function type_of_event($inp) {
 				<div id="middle">
 					<figure>
 						<?php
-							$upcoming_sql = "SELECT imgbanner FROM post WHERE imgbanner IS NOT NULL ORDER BY eventdate DESC LIMIT 5";
+							$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND imgbanner IS NOT NULL AND imgbanner!='none' ORDER BY eventdate DESC LIMIT 5";
 							$exec_upcoming = $con->query($upcoming_sql);
 
 							while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
 								$get = $img_upcoming['imgbanner'];
+								$title = $img_upcoming['title'];
+								$date = $img_upcoming['eventdate']; 
 								echo "
 									<div class='slides'>
+										<center><p style='text-transform:uppercase;'>".$title."<br><br><br>Event Date:<br>".$date."</p></center>
 										<img src='".$get."'>
 									</div>
 								";
 							}
 						?>
 					</figure>
-					<h1><span class="highlight"> U </span>P C O M I N G &nbsp;&nbsp;&nbsp;  <span class="highlight"> E </span>V E N T S</h1>
+					<h1> U P C O M I N G &nbsp;&nbsp;&nbsp; E V E N T S</h1>
 				</div>
 			</div>
 																							<!--  T  H  E     C  O  N  T  E  N  T  -->
 			<div class="w3-container w3-padding-jumbo" style="height: 100%;">
 																							<!--  I  N  T  R  O  D  U  C  T  I  O  N  -->
 				<?php 
-					$sql = "SELECT title,content,post_type, timestamp, imgbanner FROM post ORDER BY timestamp DESC LIMIT 1";
+					$sql = "SELECT title,content,post_type,timestamp FROM post ORDER BY timestamp DESC LIMIT 1";
 					$exec = $con->query($sql);
 					$fetch = $exec->fetch_assoc();
-					$databanner = $fetch['imgbanner'];
 
 					$post_type = type_of_event($fetch['post_type']);
 
-					if (is_null($databanner)) {
-						$temp = '';
-					} else {
-						$temp = '<div class="w3-center" style="padding:0;margin:0;height:300px;background-image:url('.'\''.$fetch["imgbanner"].'\''.'); background-size: cover; background-position:center;">
-									</div>';
-					}
-
 					echo "<h1 class='title'>".$fetch['title']."</h1>";
-					echo $temp;
+					echo "<hr>";
 					echo '<h5 style="margin: 0;padding: 0; font-size: 11px;"><i>Published: '.$fetch['timestamp'].'</i></h5>';
+					echo "<h5>".$post_type."</h5>";
 					echo "
 						<ol type='a' class='w3-leftbar w3-theme-border' style='list-style-type:none;'>
-							<li>".$post_type."</li>
+							<li>".decode($fetch['content'])."</li>
 						</ol>
 					";
-					echo "<h5>".decode($fetch['content'])."</h5>";
+					
 
 				?>
 			</div>
@@ -133,12 +129,12 @@ function type_of_event($inp) {
 
 		<br/><br/>
 
-		<div class="w3-row-padding w3-padding-32" style="background-color: #003471; border-top: 5px solid rgb(255, 152, 0);border-bottom: 5px solid rgb(255, 152, 0);">
+		<div class="w3-row-padding w3-padding-32" style="background-color: #003471;">
 			<div id="stories"></div>
 			<br/><br/>
 			<h2 style="color: white;" class="w3-quarter w3-leftbar w3-theme-border" id="stories">RECENT ALUMNI STORIES AND EVENTS</h2>			<!--  A  L  U  M  N  I  -->
 			<br/><br/>
-			<div class="w3-row-padding"><br>
+			<div class="w3-row-padding">
 			<!-- This is for the stories section-->
 
 			<?php
@@ -171,7 +167,7 @@ function type_of_event($inp) {
 					}
 
 					if (empty($content)) {
-						$title = '[EMPTY]';
+						$title = '[EMPTY CONTENT]';
 					} else {
 						//Do nothing
 					}
@@ -179,7 +175,7 @@ function type_of_event($inp) {
 					if (is_null($banner) || $banner=="none") {
 						$databanner = '';
 					} else {
-						$databanner = '<div class="w3-center" style="padding:0;margin:0;height:300px;background-image:url('.'\'../../data/events-stories/'.$banner.'\''.'); background-size: cover; background-position:center;">
+						$databanner = '<div class="w3-center" style="padding:0;margin:0;height:300px;background-image:url('.'\'../admin/img/'.$banner.'\''.'); background-size: cover; background-position:center;">
 					  									</div>';
 					}
 
@@ -198,9 +194,9 @@ function type_of_event($inp) {
 					  									'.$databanner.'
 
 													    <hr/>
-													    <h3>'.$title.'</h3>
+													    <center><h3>'.$title.'</h3></center>
 													    <center><i style="font-size: 11px;">Published: '.$time.'</i></center>
-													    <h5 style="color:#ff9800;">'.$type_post.'</h5>
+													    <center><h5 style="color:#ff9800;">'.$type_post.'</h5></center>
 														<hr/>
 					  									<p class="w3-animate-opacity">'.$content.'</p>
 					      								<button onclick="document.getElementById('.'\'more'.$count.'\''.').style.display='.'\'none\''.'" type="button" class="w3-btn">Close</button>
@@ -227,9 +223,8 @@ function type_of_event($inp) {
 				</div>
 			</div>
 		</div>
-
+		<br>
 		<div id="shop"></div>
-		<br/><br/>
 		<div class="shop w3-row-padding">
 			<a href="e-shop.php"><h1><span class="highlight">S</span>ouvenirs and <span class="highlight">M</span>emorabilia</h1></a> 
 			<div class="w3-content" id="shop_img">
@@ -243,7 +238,7 @@ function type_of_event($inp) {
 						if (empty($path)) {
 							//Do nothing
 						} else {
-							echo "<img class='mySlides w3-animate-opacity' src='../../data/events-stories/noimage.jpg'>";
+							echo "<img class='mySlides w3-animate-opacity' src='../img/img35.jpg'>";
 						}
 					}
 
@@ -255,111 +250,104 @@ function type_of_event($inp) {
 			</div>
 		</div>
 
-		<br><br>
-
-		<div id="torch_img">
-			<img src="../img/Torch.jpg">
-		</div>
-		<br/><br/><br/>
-		<div class="w3-container w3-padding-jumbo">
+		<div class="w3-container w3-padding-jumbo w3-half" id="college">	
 			<div style="width: 100%;"> 
 				<div style="width: 100%;">
 					<div class="w3-row-padding w3-center w3-margin-top " id="boxes">
 						<div class="">
 							<div class="w3-padding unit" style="background-image: url();">
-								<a href=".ce.html"><h4 class="title">College of Education</h4><br></a> 
+								<a href=".ce.html"><h4 id="big">College of Education</h4><br></a>
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
 					</div>
-
+					<hr class="college-div">
 					<div class="w3-row-padding w3-center w3-margin-top" id="boxes1">
 						<div class="">
 							<div class="w3-padding unit" style="">
-								<a href=".cit.html"><h4 class="title" id="big">College of Industrial Technology</h4><br></a> 
+								<a href=".cit.html"><h4 id="big">College of Industrial Technology</h4><br></a> 
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
 					</div>
-
+					<hr class="college-div">
 					<div class="w3-row-padding w3-center w3-margin-top" id="boxes2">
 						<div class="">
 							<div class="w3-padding unit" style="background-image: url();">
-								<a href=".cs.html"><h4 class="title">College of Science</h4><br></a> 
+								<a href=".cs.html"><h4 id="big">College of Science</h4><br></a> 
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
 					</div>
-
+					<hr class="college-div">
 					<div class="w3-row-padding w3-center w3-margin-top" id="boxes3">
 						<div class="">
 							<div class="w3-padding unit" style="">
-								<a href=".ia.html"><h4 class="title">Institute of Architecture</h4><br></a> 
+								<a href=".ia.html"><h4 id="big">Institute of Architecture</h4><br></a> 
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
 					</div>
-					
+					<hr class="college-div">
 					<div class="w3-row-padding w3-center w3-margin-top" id="boxes4">
 						<div class="">
 							<div class="w3-padding unit" style="background-image: url();">
-								<a href=".cbem.html"><h4 class="title" id="big">College of Business and Economic Management</h4><br></a> 
+								<a href=".cbem.html"><h4 id="big">College of Business and Economic Management</h4><br></a> 
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
 					</div>
-
-					
-
+					<hr class="college-div">
 					<div class="w3-row-padding w3-center w3-margin-top" id="boxes5">
 						<div class="">
 							<div class="w3-padding unit" style="">
-								<a href=".ipesr.html"><h4 class="title" id="big">Institute of Physical Education & Sports Recreation</h4><br></a> 
+								<a href=".ipesr.html"><h4 id="big">Institute of Physical Education & Sports Recreation</h4><br></a> 
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
 					</div>
-					
+					<br>
+					<hr class="college-div">
 					<div class="w3-row-padding w3-center w3-margin-top" id="boxes6">
 						<div class="">
 							<div class="w3-padding unit" style="">
-								<a href=".ceng.html"><h4 class="title">College of Engineering</h4><br></a> 
+								<a href=".ceng.html"><h4 id="big">College of Engineering</h4><br></a> 
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
 					</div>
-					
+					<hr class="college-div">
 					<div class="w3-row-padding w3-center w3-margin-top" id="boxes7">
 						<div class="">
 							<div class="w3-padding unit" style="">
-								<a href=".cn.html"><h4 class="title">College of Nursing</h4><br></a> 
+								<a href=".cn.html"><h4 id="big">College of Nursing</h4><br></a> 
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
 					</div>
-
+					<hr class="college-div">
 					<div class="w3-row-padding w3-center w3-margin-top" id="boxes8">
 						<div class="">
 							<div class="w3-padding unit" style="">
-								<a href=".cal.html"><h4 class="title">College of Arts & Letters</h4><br></a> 
+								<a href=".cal.html"><h4 id="big">College of Arts & Letters</h4><br></a> 
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
 					</div>
-
+					<hr class="college-div">
 					<div class="w3-row-padding w3-center w3-margin-top" id="boxes9">
 						<div class="">
 							<div class="w3-padding unit" style="">
-								<a href=".cm.html"><h4 class="title">College of Medicine</h4><br></a> 
+								<a href=".cm.html"><h4 id="big">College of Medicine</h4><br></a> 
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
 					</div>
-
+					<hr class="college-div">
 					<div class="w3-row-padding w3-center w3-margin-top" id="boxes10">
 						<div class="">
 							<div class="w3-padding unit" style="">
-								<a href=".cssp.html"><h4 class="title" id="big">College of Social Sciences and Philosophy</h4><br></a> 
+								<a href=".cssp.html"><h4 id="big">College of Social Sciences and Philosophy</h4><br></a> 
 								<i class="fa fa-desktop w3-text-theme"></i>
 							</div>
 						</div>
@@ -367,9 +355,11 @@ function type_of_event($inp) {
 				</div>
 			</div>
 		</div>
+		
 		<footer>											<!--  F  O  O  T  E  R  -->
 			<div id="bot">
 				<h5 class="foot w3-section">Copyright &copy;2017.  All Rights Reserved</h5>
+				<a href="#" class="w3-btn-floating">&uparrow;</a>
 			</div>
 		</footer>
 	</div>
