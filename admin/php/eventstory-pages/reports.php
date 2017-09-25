@@ -1,5 +1,10 @@
-<div class="container-fluid">
-<table class="table table-bordered">
+<div class="page-header">
+  <h1>Reports on Event / Story</h1>
+  <h4>As of: <?php echo date("D-M-Y")?></h4>
+  <input type="button" class="btn btn-default btn-s" onclick="printDiv('printarea')" value="Print this Report" />
+</div>
+<div class="table-responsive" id="printarea">
+<table class="table table-hover" id="reportsTable">
   <tr>
   	<th>No.</th>
   	<th>Title</th>
@@ -20,7 +25,6 @@
         $sql .= " ORDER BY timestamp DESC";
         $result = $conn->query($sql);
         $num = 0;
-
         while($row = $result->fetch_assoc()) {
           $num++;
           echo '<tr>';
@@ -34,7 +38,7 @@
                 echo "<td>Event</td>";
             else
                 echo "<td>Unknown</td>";
-            if($row['eventdate']=="0000-00-00")
+            if($row['post_type']=="1")
                 echo "<td>N/A</td>";
             else
               echo '<td>'.$row['eventdate'].'</td>';
@@ -59,3 +63,15 @@
   ?>
 </table>
 </div>
+<script>
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script>

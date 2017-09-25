@@ -13,7 +13,7 @@ function encode($string) {
 	$imgbannername = rand(903,34847);
 	$imgbannerpath = "../../data/events-stories/".$imgbannername;
 	if(empty($_FILES['img-banner']['tmp_name'])){
-		$imgbannerpath = "none";
+		$imgbannerpath = "";
 	}
 	else{
 		move_uploaded_file($imgbanner,'../../../data/events-stories/'.$imgbannername);
@@ -43,7 +43,7 @@ function encode($string) {
 
 	$fullpath = substr($fullpath, 1); //Remove the extra ;
 	if($fullpath==""){
-		$fullpath="none";
+		$fullpath="";
 	}
 	if($_POST['content-type']==2){
 		$sql = "INSERT INTO post (admin_id, post_type, title, content, imgbanner, eventdate, imglinks) VALUES (".$_SESSION['id'].", ".$_POST['content-type'].", '".$_POST['post-title']."', '".$_POST['content']."', '".$imgbannerpath."', '".$_POST['event-date']."', '".$fullpath."');";

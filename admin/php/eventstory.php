@@ -1,5 +1,4 @@
 <?php
-
 if(session_status() == PHP_SESSION_NONE)
 	session_start();
 
@@ -11,10 +10,9 @@ if(!isset($_SESSION['id'])) {
 }
 
 include 'backend/connection.php';
-require_once "../../vendor/parsedown-master/Parsedown.php";
+require_once "../../vendor/Parsedown/Parsedown.php";
 
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,20 +20,18 @@ require_once "../../vendor/parsedown-master/Parsedown.php";
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../vendor/sparksuite-simplemde-markdown-editor-6abda7a/dist/simplemde.min.css">
-
 		<link rel="stylesheet" href="../css/topbar.css" />
-		<!--<link rel="stylesheet" href="../css/sidebar.css" />-->
-		<link rel="stylesheet" href="../css/dashboard.css" />
+		<link rel="stylesheet" href="../css/eventstory-sidebar.css" />
+		<link rel="stylesheet" href="../css/eventstory-carousel.css" />
 		<link rel="stylesheet" href="../css/eventstory-stories.css" />
 		<link rel="stylesheet" href="../css/eventstory-events.css" />
-		<link rel="stylesheet" href="../css/eventstory-carousel.css" />
 		<style type="text/css">
 			.modal {
 				
 			}
 			@media screen and (min-width: 992px) {
 				.modal-lg {
-					width: 100%; /* New width for large modal */
+					width: 95%; /* New width for large modal */
 				}
 			}
 		</style>
@@ -44,9 +40,8 @@ require_once "../../vendor/parsedown-master/Parsedown.php";
 	<body>
 		<?php
 			require_once "topbar.php";
-			//require_once "sidebar.php";
+			require_once "sidebar.php";
 		?>
-
 		<div id="content-wrapper" class="container-fluid">
 			<?php require_once 'eventstory-pages/editor.php'; ?>
 			<div class="panel panel-default" style="margin-top: 70px;">
@@ -73,10 +68,11 @@ require_once "../../vendor/parsedown-master/Parsedown.php";
 				</div>
 			</div>
 		</div>
+		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="../../vendor/sparksuite-simplemde-markdown-editor-6abda7a/dist/simplemde.min.js"></script>
+		<script src="../../vendor/SimpleMDE/dist/simplemde.min.js"></script>
 		<script src="../js/sidebar.js"></script>
 		<script src="../js/eventstory-editor.js"></script>
 		<script src="../js/eventstory-stories.js"></script>

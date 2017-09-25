@@ -1,6 +1,6 @@
 <?php
 	include '../connection.php';
-	include '../../../vendor/parsedown-master/Parsedown.php';
+	include '../../../vendor/Parsedown/Parsedown.php';
 ?>
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
 <script type="text/javascript" src="userendpages/loadjs/viewS.js"></script>
