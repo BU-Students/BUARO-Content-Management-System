@@ -1,6 +1,6 @@
  <?php
 	include '../connection.php';
-	include '../../../vendor/parsedown-master/Parsedown.php';
+	include '../../../vendor/Parsedown/Parsedown.php';
 
 	$id = $_GET['id'];
 	$query = "SELECT * FROM post WHERE post_id='$id'";

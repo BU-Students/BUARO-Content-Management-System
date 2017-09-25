@@ -1,0 +1,101 @@
+html {
+	height: 100%;
+	width: 100%;
+}
+
+#content-wrapper {
+	position: absolute;
+	top: 50px;
+	bottom: 0px;
+	left: 45px;
+	right: 0px;
+	overflow: auto;
+	margin: 0px;
+	padding: 0px;
+}
+
+#sidebar {
+	position: fixed;
+	top: 50px;
+	bottom: 0px;
+	width: 45px;
+	background-color: #eee;
+	overflow: hidden;
+	z-index: 0;
+}
+
+#sidebar, #content-wrapper {
+	-webkit-transition: 0.5s cubic-bezier(0.17, 0.67, 0.18, 0.99);
+	-moz-transition: 0.5s cubic-bezier(0.17, 0.67, 0.18, 0.99);
+	-o-transition: 0.5s cubic-bezier(0.17, 0.67, 0.18, 0.99);
+	transition: 0.5s cubic-bezier(0.17, 0.67, 0.18, 0.99);
+}
+
+#sidebar:hover {
+	width: 200px;
+}
+
+#sidebar li {
+	width: 200px;
+}
+
+#sidebar .active a {
+	background-color: #2196F3;
+	-webkit-pointer-events: none;
+	pointer-events: none;
+	cursor: default;
+	color: white;
+}
+
+#sidebar a {
+	color: #333;
+	height: 50px;
+	line-height: 30px;
+
+	-webkit-transition: 0.1s linear;
+	-moz-transition: 0.1s linear;
+	-o-transition: 0.1s linear;
+	transition: 0.1s linear;
+}
+
+#sidebar a:hover {
+	background-color: #ccc;
+}
+
+#sidebar a:focus {
+	color: #444;
+}
+
+#sidebar a .glyphicon {
+	margin-right: 20px;
+}
+
+#sidebar hr {
+	margin: 0px;
+	border-color: #444;
+}
+
+@media only screen and (max-width: 767px) {
+/* 	#sidebar {
+		position: static;
+		width: 100%;
+		-webkit-pointer-events: none;
+		pointer-events: none;
+	}
+	#content-wrapper {
+		position: relative;
+		left: 0px;
+	}
+	#sidebar li {
+		width: 100%;
+	} */
+		#sidebar {
+			display: none;
+		}
+		#content-wrapper {
+			position: static;
+		}
+}
+@page {
+  size: landscape;
+}

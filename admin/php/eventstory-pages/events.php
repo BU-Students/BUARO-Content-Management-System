@@ -5,7 +5,7 @@
 <?php
 include '../backend/connection.php';
 include '../backend/input_handler.php';
-require_once "../../../vendor/parsedown-master/Parsedown.php";
+require_once "../../../vendor/Parsedown/Parsedown.php";
 	$sql = "SELECT * FROM post WHERE post_type=2";
 	$sql .= " ORDER BY eventdate DESC";
 	$result = $conn->query($sql);
@@ -133,13 +133,13 @@ require_once "../../../vendor/parsedown-master/Parsedown.php";
 						<div class="col-md-5">
 							<div id="expanded-event-body">
 								<center><img class="img-responsive" src="'.$row['imgbanner'].'"></center><br><br>
-								<div class="panel panel-default" data-toggle="collapse" data-target="#collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="collapse-'.$row['post_id'].'">
+								<div class="panel panel-default">
 							 		<div class="panel-body">
 							 		'.$stringnow.'
 							 			<div class="collapse" id="collapse-'.$row['post_id'].'">
 											'.$stringdis.'
 										</div>
-										<b>'.$read.'</b>
+										<b class="omoe_wa_mou_shindeiru" data-toggle="collapse" data-target="#collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="collapse-'.$row['post_id'].'">'.$read.'</b>
 							  		</div>
 								</div>
 							</div>
@@ -284,7 +284,7 @@ require_once "../../../vendor/parsedown-master/Parsedown.php";
 						    <ul class="dropdown-menu dropdown-menu-select">
 						    <li><label class="dropdown-radio1">
 						        <input type="radio" value="1" name="content-type" onclick="chng3_event('.$row['post_id'].')">
-						        <i>event</i>
+						        <i>Story</i>
 						        </label>
 						    </li>
 						    <li><label class="dropdown-radio1">

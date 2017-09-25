@@ -1,6 +1,6 @@
 <?php
 	include '../connection.php';
-	include '../../vendor/parsedown-master/Parsedown.php';
+	include '../../vendor/Parsedown/Parsedown.php';
 	require_once '../../../admin/php/backend/input_handler.php';
 
 	$id = $_GET['id'];

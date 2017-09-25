@@ -6,7 +6,7 @@
 
 include '../backend/connection.php';
 include '../backend/input_handler.php';
-require_once "../../../vendor/parsedown-master/Parsedown.php";
+require_once "../../../vendor/Parsedown/Parsedown.php";
 	$sql = "SELECT * FROM POST WHERE post_type=1";
 	$sql .= " ORDER BY timestamp DESC";
 	$result = $conn->query($sql);
@@ -61,13 +61,15 @@ require_once "../../../vendor/parsedown-master/Parsedown.php";
 <center>
 <nav aria-label="Page navigation">
 	<ul class="pagination">
-		<li>
-			<a href="#" aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span>
-			</a>
-		</li>
 		<?php
-				$count = 1;
+			$count = 1;
+			echo '
+				<li>
+					<a href="#" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+			';
 				
 					while($count <= $pagenum){
 					echo '
@@ -75,12 +77,14 @@ require_once "../../../vendor/parsedown-master/Parsedown.php";
 					';
 					$count++;
 				}
+			echo '
+				<li>
+					<a href="#" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			';
 		?>
-		<li>
-			<a href="#" aria-label="Next">
-				<span aria-hidden="true">&raquo;</span>
-			</a>
-		</li>
 	</ul>
 </nav>
 </center>
@@ -105,7 +109,7 @@ require_once "../../../vendor/parsedown-master/Parsedown.php";
 		}
 		else{
 			$stringstrt = 0;
-			$stringnow = substr($parser->text(decode($row['content'])),0);
+			$stringnow = substr($parser->text(decode($row['content'])),0);;
 			$stringdis="";
 			$read="";
 		}
@@ -125,13 +129,13 @@ require_once "../../../vendor/parsedown-master/Parsedown.php";
 						<div class="col-md-5">
 							<div id="expanded-story-body">
 								<center><img class="img-responsive" src="'.$row['imgbanner'].'"></center><br><br>
-								<div class="panel panel-default" data-toggle="collapse" data-target="#story-collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="story-collapse-'.$row['post_id'].'">
+								<div class="panel panel-default">
 							 		<div class="panel-body">
 							 		'.$stringnow.'
 							 			<div class="collapse" id="story-collapse-'.$row['post_id'].'">
 											'.$stringdis.'
 										</div>
-										<b>'.$read.'</b>
+										<b class="omoe_wa_mou_shindeiru" data-toggle="collapse" data-target="#story-collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="story-collapse-'.$row['post_id'].'">'.$read.'</b>
 							  		</div>
 								</div>
 							</div>

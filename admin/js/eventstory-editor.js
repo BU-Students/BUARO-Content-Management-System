@@ -1,3 +1,4 @@
+document.getElementById("story-event-tab").classList.add("active");
 $('textarea').each(function() {
     var simplemde = new SimpleMDE({
         element: this,
