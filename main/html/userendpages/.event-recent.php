@@ -22,10 +22,15 @@
 					while($row = mysqli_fetch_array($run)){
 						$newstring = decode(substr($parsedown->text($row['content']),0,250));
 						if($row['eventdate'] < $today){
+						if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
+							$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
+						}
 						echo '
-						<div>					
-							<h3 class="title">'.$row['title'].'</h3>		
-  							<p>'.$newstring.'</p>
+						<div >
+							<h4><b>Event Date: '.date("M d, Y",strtotime($row['eventdate'])).'</b></h4>						
+							<h3 class="title">'.$row['title'].'</h3>	
+							<img src="'.$row['imgbanner'].'" style ="width:150px; height:150px; border-radius:50%" alt = "Avatar">		
+  							<p>'.decode($newstring).'</p>
 							<a href="#" onclick="viewEvent('.$row['post_id'].')" class="w3-btn w3-large w3-theme w3-margin-bottom"> <h5 class="read">Read More</h5></a>
 						</div>
 						<hr>
