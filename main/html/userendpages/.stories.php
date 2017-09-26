@@ -37,27 +37,4 @@
 						$id++;
 					}
 				?>
-				<!--<?php
-					$parsedown = new Parsedown();
-					$getquery = "SELECT * FROM post WHERE post_type = 1";
-					$run = mysqli_query($conn,$getquery);
-					$id = 0;
-					while($row = mysqli_fetch_array($run)){
-						echo '
-						<div>					
-							<h3 class="title">'.$row['title'].'</h1>
-							<button onclick="myFunc('.$id.')" class="w3-btn w3-large w3-theme w3-margin-bottom"> <h5 class="read">Read More</h5></button>
-							<div id="'.$id.'" class="w3-accordion-content">
-							<div class="w3-container w3-padding-jumbo">				
-  								<p class = "gallerytext">'.$parsedown->text($row['content']).'</p>		
-								<br/>
-								<br/>
-							</div>
-							</div>
-						</div>
-						<hr>
-							';
-						$id++;
-					}
-				?>-->	
 			</div>

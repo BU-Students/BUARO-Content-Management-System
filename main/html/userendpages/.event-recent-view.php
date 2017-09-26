@@ -57,7 +57,7 @@
 									if($q==1){
 										echo '
 											<div class="item active">
-												<center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'" style = "width:1000px; height:400px;"></center>
+												<center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'" style = "width:950px; height:300px;"></center>
 											</div>
 										';
 										$q++;
@@ -65,7 +65,7 @@
 									else{
 										echo '
 											<div class="item">
-											 <center> <img class="img-rounded" src="'.$links.'" alt="img-'.$links.'" style = "width:1000px; height:400px;">></center>
+											 <center> <img class="img-rounded" src="'.$links.'" alt="img-'.$links.'" style = "width:950px; height:300px;"></center>
 											</div>
 										';
 									}
@@ -99,7 +99,7 @@
 									  <!-- Wrapper for slides -->
 									  <div class="carousel-inner">
 										<div class="item active">
-										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images"></center>
+										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images" style = "width:950px; height:300px;"></center>
 										</div>
 									  </div>
 
@@ -122,8 +122,6 @@
 					<h5 style = "padding:20px;"><?php
 						$parsedown = new Parsedown(); 
 						echo decode($parsedown->text($fetch['content']));?></h5>
-					
-			
-				
+						
 			</div>
 </div>
