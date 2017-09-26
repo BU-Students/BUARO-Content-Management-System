@@ -1,11 +1,11 @@
 $(document).ready(function() {
 	
-	document.getElementById("about-tab").classList.add("active");
+	document.getElementById("contact-tab").classList.add("active");
 
 	//retrieve stories
 	var http = new XMLHttpRequest();
 	var url = "backend/request_handler.php";
-	var request_type = "X-0";
+	var request_type = "W-0";
 	var params = "request-type=" + request_type;
 
 	http.open("POST", url, true);
@@ -85,7 +85,7 @@ function deleteStory() {
 	//request for deletion
 	var http = new XMLHttpRequest();
 	var url = "backend/request_handler.php";
-	var request_type = "X-1";
+	var request_type = "W-1";
 	var params = "request-type=" + request_type + "&story-id=" + db_id;
 
 	http.open("POST", url, true);

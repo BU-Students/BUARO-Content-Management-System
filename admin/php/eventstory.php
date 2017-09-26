@@ -20,6 +20,7 @@ require_once "../../vendor/Parsedown/Parsedown.php";
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../vendor/sparksuite-simplemde-markdown-editor-6abda7a/dist/simplemde.min.css">
+		<link rel="stylesheet" href="../../vendor/SimpleMDE/dist/simplemde.min.css">
 		<link rel="stylesheet" href="../css/topbar.css" />
 		<link rel="stylesheet" href="../css/eventstory-sidebar.css" />
 		<link rel="stylesheet" href="../css/eventstory-carousel.css" />

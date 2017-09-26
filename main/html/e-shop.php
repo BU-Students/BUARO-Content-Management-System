@@ -6,7 +6,7 @@
 	$check = mysqli_num_rows($run);
 
 	if ($check < 1) {
-		echo "<script>window.alert('The Database for the e-shop is empty :(');<script>";
+		echo "<script>window.alert('The Database for the e-shop is empty :(');</script>";
 	}
 
 ?>
@@ -96,29 +96,29 @@
 										$path = '../img/img35.jpg';
 									}
 
-									$sql_comments = "SELECT nick,content FROM comments WHERE comments.mem_id=".$memid." ORDER BY timestamp DESC LIMIT 2";
+									$sql_comments = "SELECT nick,content,timestamp FROM comments WHERE comments.mem_id=".$memid." ORDER BY timestamp DESC LIMIT 2";
 									$exec = mysqli_query($con,$sql_comments);
 									$is_empty = mysqli_num_rows($exec);
 									if ($is_empty>0) {
 										$comment = "";
 										while ($array = mysqli_fetch_array($exec)) {
-											$comment .= "<h5 style='font-size: 12px;'>".$array['nick'].': '.$array['content']."</h5>";
+											$comment .= "<h5 style='font-size: 12px;'>".$array['nick'].' '.date('(d/m/y h:ia)',strtotime($array['timestamp'])).': '.$array['content']."</h5>";
 										}
-										$comment .= "<br>
-													<a href='comment.php?id=".$memid."' class='w3-btn w3-teal' style='margin: 10px;'>View More</a>";
+										$comment .= '<br>
+													<button onclick="document.getElementById('.'\'more'.$count.'\''.').style.display='.'\'block\''.'"  class="w3-btn w3-teal" style="margin: 10px;"">View More</button>';
 									} else {
-										$comment = "<h4 style='font-size: 12px;'>NO COMMENTS</h4>
+										$comment = '<h4 style="font-size: 12px;">NO COMMENTS</h4>
 										<br>
-													<a href='comment.php?id=".$memid."' class='w3-btn w3-teal' style='margin: 10px;'>Add Comment</a>
-										";
+													<button onclick="document.getElementById('.'\'more'.$count.'\''.').style.display='.'\'block\''.'"  class="w3-btn w3-teal" style="margin: 10px;"">Add Comment</button>
+										';
 									}
 
-									if ("") {
-
-									} else {
-
+									$all_comments = "SELECT nick,content,timestamp FROM comments WHERE comments.mem_id=".$memid." ORDER BY timestamp DESC";
+									$exec_all_comments = mysqli_query($con,$all_comments);
+									$comm_array = '';
+									while ($get_comment_array = mysqli_fetch_array($exec_all_comments)) {
+										$comm_array .= "<h5>".$get_comment_array['nick']."<i style='font-size:10px;'> ".date('(d/m/y h:ia)',strtotime($get_comment_array['timestamp']))."</i>".": ".$get_comment_array['content']."</h5>";
 									}
-
 
 									$dynamic_html = '
 										<div >
@@ -134,6 +134,60 @@
 													'.$comment.'
 												</div>
 											</div>
+
+											<div style="z-index:100;" id="more'.$count.'" class="w3-modal">
+												<div class="w3-modal-content w3-card-8 w3-animate-zoom">
+													<div class="w3-container">
+														<div class="w3-section">
+
+										<div class="w3-container w3-padding-jumbo">					
+														<div class="w3-container w3-section w3-center">
+															<br/>
+
+															<div class="cols">
+																<div class="w3-example">
+																	<form action="data.php" method="POST">
+																		<input  hidden name="id" value="'.$memid.'">
+																		<center><h2>Add Comment</h2></center>
+																		<table>
+																			<tbody >
+																				<tr>
+																					<td><h4>Nickname: </h4></td>
+																					<td><input type="text" name="nickname" style="width: 100%;"></td>
+																				</tr>
+																				<tr>
+																					<td><h4>Comment: </h4></td>
+																					<td><textarea rows="4" cols="30" name="comm" style=" width: 100%; margin-right: 20px;"></textarea></td>
+																				</tr>
+																				<tr>
+																					<td>
+																						<input class="w3-btn w3-teal" style="margin: 10px; float: right;" type="submit" name="sub">
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</form>
+																</div>
+
+																<div class="w3-example" style="margin:10px;text-align: left;">
+																	<center><h2>Comments</h2></center>
+																	<div style="max-height: 500px; overflow-y: scroll;">
+																	'.$comm_array.'
+																	</div>
+																</div>
+															</div>
+
+														</div>
+													</div>
+
+
+
+															<button onclick="document.getElementById('.'\'more'.$count.'\''.').style.display='.'\'none\''.'" type="button" class="w3-btn">Close</button>
+														</div>
+													</div>
+												</div>
+											</div>
+
 										</div>
 
 									';
