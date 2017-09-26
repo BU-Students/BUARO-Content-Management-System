@@ -14,11 +14,11 @@ if (!mysqli_select_db ($con,'buaro'))
 }
 
 
-$feedemail = $_POST['feedemail'];
-$feedmessage = $_POST['feedmessage'];
+$email = $_POST['email'];
+$message = $_POST['message'];
 
 
-$sql = "insert into feedback (feedemail,feedmessage) values ('$feedemail','$feedmessage')";
+$sql = "insert into feedback (email,message) values ('$email','$message')";
 
 if (!mysqli_query($con,$sql))
 {
