@@ -1,5 +1,8 @@
 <?php
 	include '../../vendor/Parsedown/Parsedown.php';
+	function decode($string) {
+	return htmlspecialchars_decode($string, ENT_HTML5 | ENT_QUOTES);
+	}
 ?>
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
 <script type="text/javascript" src="userendpages/loadjs/viewS.js"></script>
@@ -17,11 +20,14 @@
 					$id = 0;
 					while($row = mysqli_fetch_array($run)){
 						$newstring = substr($parsedown->text($row['content']),0,250);
+						if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
+							$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
+						}
 						echo '
-						<div>					
-							<h3 class="title">'.$row['title'].'</h3>		
-  							<p>'.$newstring.'</p>
-							<a href="#" onclick="viewStory('.$row['post_id'].')" class="w3-btn w3-large w3-theme w3-margin-bottom"> <h5 class="read">Read More</h5></a>
+						<div onclick = "viewStory('.$row['post_id'].')">					
+							<h3 class="title">'.$row['title'].'</h3>	
+							<img src="'.$row['imgbanner'].'" style ="width:150px; height:150px;border-radius:50%" alt = "Avatar">	
+               				<p>'.decode($newstring).'</p>
 						</div>
 						<hr>
 							';

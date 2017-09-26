@@ -29,8 +29,6 @@
 				  <li><a href="#" onclick="loadRecent()">Recent Events</a></li>
 				  <li><?php echo $fetch['title']?></li>		
 				</ul>					
-				<h1 class="title"><?php echo $fetch['title']; ?></h1><br>
-				<h6><b>Event Date: <?php echo date("Y-M-d",strtotime($fetch['eventdate']))?></b></h6>
 				
 				<?php
 						if($fetch['imglinks']!=""){
@@ -59,7 +57,7 @@
 									if($q==1){
 										echo '
 											<div class="item active">
-												<center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'"></center>
+												<center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'" style = "width:1000px; height:400px;"></center>
 											</div>
 										';
 										$q++;
@@ -67,7 +65,7 @@
 									else{
 										echo '
 											<div class="item">
-											 <center> <img class="img-rounded" src="'.$links.'" alt="img-'.$links.'"></center>
+											 <center> <img class="img-rounded" src="'.$links.'" alt="img-'.$links.'" style = "width:1000px; height:400px;">></center>
 											</div>
 										';
 									}
@@ -119,6 +117,7 @@
 							';
 						}				
 					?>
+					<center><h1 class="title"><?php echo $fetch['title']; ?></h1><br></center>
 					<center><img style="width: 700px;"  src="../admin/img/<?php echo $fetch['imgbanner'] ?>" ></center>
 					<h5 style = "padding:20px;"><?php
 						$parsedown = new Parsedown(); 

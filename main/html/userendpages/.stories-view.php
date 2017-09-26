@@ -1,4 +1,4 @@
- <?php
+<?php
 	include '../connection.php';
 	include '../../../vendor/Parsedown/Parsedown.php';
 
@@ -27,6 +27,7 @@
 				</ul>
 
 				<?php
+
 						if($fetch['imglinks']!=""){
 							echo '
 								<div class="container">
@@ -53,7 +54,7 @@
 									if($q==1){
 										echo '
 											<div class="item active">
-												<img class="img-rounded" src="'.$links.'" alt="img-'.$links.'">
+												<img class="img-rounded" src="'.$links.'" alt="img-'.$links.'" style = "width:1000px; height:300px;">
 											</div>
 										';
 										$q++;
@@ -61,7 +62,7 @@
 									else{
 										echo '
 											<div class="item">
-											  <img class="img-rounded" src="'.$links.'" alt="img-'.$links.'">
+											  <img class="img-rounded" src="'.$links.'" alt="img-'.$links.'" style = "width:1000px; height:400px;">
 											</div>
 										';
 									}
@@ -95,7 +96,7 @@
 									  <!-- Wrapper for slides -->
 									  <div class="carousel-inner">
 										<div class="item active">
-										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images"></center>
+										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images" style = "width:1000px; height:400px;" ></center>
 										</div>
 									  </div>
 
@@ -111,22 +112,25 @@
 									</div>
 								</div>
 							';
-						}				
+						}
+
+						if(!isset($fetch['imgbanner']) || $fetch['imgbanner']=="none" || $fetch['imgbanner']==""){
+							$fetch['imgbanner'] = "../../data/events-stories/noimage.jpg";
+						}
+
+						$parsedown = new Parsedown();
+						echo '
+							 <div  style = "padding:20px;">
+							 <center>
+							 <img src="'.$fetch['imgbanner'].'" style ="width:150px; height:150px; border-radius:50%" alt = "Avatar">						
+						  	 <h3 class="title">'.$fetch['title'].'</h3></center>		
+  							 <p class = "gallerytext" style = "padding:10px;">'.$parsedown->text(decode($fetch['content'])).'</p>
+							 </div>
+							';			
+	
 					?>
 
 				<?php
-					$parsedown = new Parsedown();
-					echo '
-						<div>					
-						  <h3 class="title">'.$fetch['title'].'</h3>
-						   <div class="w3-container w3-padding-jumbo">	
-							 <center><img src="../admin/img/'.$fetch['imgbanner'].'"></center>
-  							 <p class = "gallerytext" style = "padding:20px;">'.$parsedown->text(decode($fetch['content'])).'</p>		
-								<br/>
-								<br/>
-							</div>
-							</div>
-						</div>
-							';
+					
 				?>
 			</div>
