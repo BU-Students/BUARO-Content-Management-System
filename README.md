@@ -26,3 +26,6 @@ Link to 3rd Party frameworks used:
 * http://parsedown.org/
 * https://simplemde.com/
 * https://www.highcharts.com/
+* http://getbootstrap.com/
+* http://www.chartjs.org/
+* https://jquery.com/
