@@ -543,6 +543,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				else {
 					$sql = "";
 				}
+				
+				
                $year;
                $categories = "[";
 
@@ -562,6 +564,162 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                }
                else echo $conn->error;
 				break;
+				
+				
+			case "W-0":
+				define("PARENT_ADMIN", 1);
+				define("COLLEGE_ADMIN", 2);
+				define("CONTACT", 5);
+
+				require_once "../../../vendor/Parsedown/Parsedown.php";
+				$parser = new Parsedown();
+
+				if($_SESSION['admin-type'] == COLLEGE_ADMIN)
+					$sql = "SELECT post_id, title, content, timestamp FROM post, college
+							WHERE post.admin_id = ".$_SESSION['id']." AND post.post_type = " .CONTACT;
+				else if($_SESSION['admin-type'] == PARENT_ADMIN)
+					$sql = "SELECT post_id, title, content, timestamp FROM post, college";
+
+				$sql .= " ORDER BY timestamp DESC";
+
+				$result = $conn->query($sql);
+
+				while($row = $result->fetch_assoc()) {
+					echo('
+						<div class="story" id="story-id-'.$row['post_id'].'" onclick="expandStory(this)">
+							<input type="hidden" value="'.$row['post_id'].'" /> 				<!-- reference for story deletion in the database; i.e. database ID -->
+							<input type="hidden" /> 											<!-- used to store their DOM index as reference for removeChild() -->
+							<div class="story-header">
+								<div class="story-options-container">
+									<span class="glyphicon glyphicon-resize-full" data-toggle="tooltip" title="Expand"></span>
+								</div>
+								<div class="story-title">'.$row['title'].'</div>
+								<div class="story-date">'.date('F d, Y | g:i A', strtotime(str_replace('-', '/', $row['timestamp']))).'</div>
+							</div>
+							<hr>
+							<div class="story-content">'
+								.$parser->text(decode($row['content'])).
+							'</div>
+						</div>
+					');
+				}
+
+				$result->free();
+				break;
+
+			case "W-1":
+				$sql = "DELETE FROM post WHERE post_id = ".$_POST['story-id'].";";
+				$conn->query($sql);
+				if($conn->affected_rows == 1)
+					echo "success";
+				else 
+					echo "failed";
+				break;
+			
+			case "X-0":
+				define("PARENT_ADMIN", 1);
+				define("COLLEGE_ADMIN", 2);
+				define("ABOUT_BUARO", 4);
+
+				require_once "../../../vendor/Parsedown/Parsedown.php";
+				$parser = new Parsedown();
+
+				if($_SESSION['admin-type'] == COLLEGE_ADMIN)
+					$sql = "SELECT post_id, title, content, timestamp FROM post, college
+							WHERE post.admin_id = ".$_SESSION['id']." AND post.post_type = " .ABOUT_BUARO;
+				else if($_SESSION['admin-type'] == PARENT_ADMIN)
+					$sql = "SELECT post_id, title, content, timestamp FROM post, college";
+
+				$sql .= " ORDER BY timestamp DESC";
+
+				$result = $conn->query($sql);
+
+				while($row = $result->fetch_assoc()) {
+					echo('
+						<div class="story" id="story-id-'.$row['post_id'].'" onclick="expandStory(this)">
+							<input type="hidden" value="'.$row['post_id'].'" /> 				<!-- reference for story deletion in the database; i.e. database ID -->
+							<input type="hidden" /> 											<!-- used to store their DOM index as reference for removeChild() -->
+							<div class="story-header">
+								<div class="story-options-container">
+									<span class="glyphicon glyphicon-resize-full" data-toggle="tooltip" title="Expand"></span>
+								</div>
+								<div class="story-title">'.$row['title'].'</div>
+								<div class="story-date">'.date('F d, Y | g:i A', strtotime(str_replace('-', '/', $row['timestamp']))).'</div>
+							</div>
+							<hr>
+							<div class="story-content">'
+								.$parser->text(decode($row['content'])).
+							'</div>
+						</div>
+					');
+				}
+
+				$result->free();
+				break;
+
+			case "X-1":
+				$sql = "DELETE FROM post WHERE post_id = ".$_POST['story-id'].";";
+				$conn->query($sql);
+				if($conn->affected_rows == 1)
+					echo "success";
+				else 
+					echo "failed";
+				break;
+
+
+			case "Y-0":
+				define("PARENT_ADMIN", 1);
+				define("COLLEGE_ADMIN", 2);
+				define("CONTACT", 5);
+
+				require_once "../../../parsedown-master/Parsedown.php";
+				$parser = new Parsedown();
+
+				if($_SESSION['admin-type'] == COLLEGE_ADMIN)
+					$sql = "SELECT feedback_id, email, message, timestamp FROM feedback, college
+							WHERE feedback.admin_id = ".$_SESSION['id']." AND post.post_type = " .CONTACT;
+				else if($_SESSION['admin-type'] == PARENT_ADMIN)
+					$sql = "SELECT post_id, title, content, timestamp FROM post, college";
+
+				$sql .= " ORDER BY timestamp DESC";
+
+				$result = $conn->query($sql);
+
+				while($row = $result->fetch_assoc()) {
+					echo('
+						<div class="story" id="story-id-'.$row['post_id'].'" onclick="expandStory(this)">
+							<input type="hidden" value="'.$row['post_id'].'" /> 				<!-- reference for story deletion in the database; i.e. database ID -->
+							<input type="hidden" /> 											<!-- used to store their DOM index as reference for removeChild() -->
+							<div class="story-header">
+								<div class="story-options-container">
+									<span class="glyphicon glyphicon-resize-full" data-toggle="tooltip" title="Expand"></span>
+								</div>
+								<div class="story-title">'.$row['title'].'</div>
+								<div class="story-date">'.date('F d, Y | g:i A', strtotime(str_replace('-', '/', $row['timestamp']))).'</div>
+							</div>
+							<hr>
+							<div class="story-content">'
+								.$parser->text(decode($row['content'])).
+							'</div>
+						</div>
+					');
+				}
+
+				$result->free();
+				break;
+
+			case "Y-1":
+				$sql = "DELETE FROM post WHERE post_id = ".$_POST['story-id'].";";
+				$conn->query($sql);
+				if($conn->affected_rows == 1)
+					echo "success";
+				else 
+					echo "failed";
+				break;
+
+				
+			
+			
 		}
 	}
 	else echo "Informal request";

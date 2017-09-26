@@ -1,11 +1,11 @@
 $(document).ready(function() {
 	
-	document.getElementById("about-tab").classList.add("active");
+	document.getElementById("feedback-tab").classList.add("active");
 
 	//retrieve stories
 	var http = new XMLHttpRequest();
 	var url = "backend/request_handler.php";
-	var request_type = "X-0";
+	var request_type = "Y-0";
 	var params = "request-type=" + request_type;
 
 	http.open("POST", url, true);
@@ -13,12 +13,6 @@ $(document).ready(function() {
 	//Send the proper header information along with the request
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-	http.onreadystatechange = function() {
-		if(http.readyState == 4 && http.status == 200) {
-			displayStories(http.responseText);
-			handleEmptyStories();
-		}
-	}
 
 	http.send(params);
 
@@ -85,7 +79,7 @@ function deleteStory() {
 	//request for deletion
 	var http = new XMLHttpRequest();
 	var url = "backend/request_handler.php";
-	var request_type = "X-1";
+	var request_type = "Y-1";
 	var params = "request-type=" + request_type + "&story-id=" + db_id;
 
 	http.open("POST", url, true);

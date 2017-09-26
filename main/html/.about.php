@@ -2,20 +2,17 @@
 include_once('../../admin/php/backend/input_handler.php');
 include_once('../../vendor/Parsedown/Parsedown.php');
 
-
-
-
 if(isset($_POST['search']))
 {
     $valueToSearch = $_POST['valueToSearch'];
     // search in all table columns
     // using concat mysql function
-    $query = "SELECT `title`, `content` FROM `post` WHERE post.post_type=5";
+    $query = "SELECT `title`, `content` FROM `post` WHERE post.post_type=4";
     $search_result = filterTable($query);
     
 }
  else {
-    $query = "SELECT `title`, `content` FROM `post` WHERE post.post_type=5";
+    $query = "SELECT `title`, `content` FROM `post` WHERE post.post_type=4";
     $search_result = filterTable($query);
 }
 
@@ -28,43 +25,9 @@ function filterTable($query)
 }
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-
-<style>
-input[type=text], select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-}
-
-input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
-</style>
-
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>BU | Alumni Relations Office</title>
@@ -75,19 +38,13 @@ input[type=submit]:hover {
 	<link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
-
-
-
-
-
-
 	<nav class="w3-sidenav w3-collapse w3-white w3-card-2" id="sidebar"> 	<!-- S I D E B A R -->
 
  		<a href="http://bualumnirelations@bicol-u.edu.ph" class="w3-large" id="top-sidebar">
- 		<img src="../img/bulogo.png"></a>
+ 		<img src="../../main/img/bulogo.png"></a>
  		<a href="javascript:void(0)" onclick="w3_close()" class="w3-hide-large w3-closenav w3-large">Close &nbsp;&nbsp;&nbsp;&times;</a>
- 		<a href="aro3.php" class="w3-light-grey w3-medium">Home</a>
-		<a href="e-shop.php" class="side">E-shop for Souvenirs and Memorabilla</a>	
+ 		<a href=".aro.html" class="w3-light-grey w3-medium">Home</a>	
+		<a href=".e-shop.html" class="side">E-shop for Souvenirs and Memorabilla</a>	
 		<a href="#" class="side">Donation Link</a>		
 		<a href="javascript:void(0)" class="side" onclick="myFunc('side')">UNIT/College <i class="fa fa-caret-down"></i></a>
 			<div id="side" class="w3-accordion-content w3-animate-left w3-padding">
@@ -103,9 +60,19 @@ input[type=submit]:hover {
         		<a href=".cm.html">College of Medicine</a>
         		<a href=".cssp.html">College of Social Science and Philosophy</a>
         	</div>
-		<a href="eventstory.php" class="side">BU Alumni Stories/Event</a>
-		<a href=".about.php" class="side">About BUARO</a>
-		<a href=".contact.php" class="side" style="background-color: #ababab;">Contact Us</a>
+		<a href="#" class="side">BU Alumni Stories</a>		
+		<a href="javascript:void(0)" class="side" onclick="myFunc('side1')">BUARO Events<i class="fa fa-caret-down"></i></a>
+			<div id="side1" class="w3-accordion-content w3-animate-left w3-padding">
+				<a href="http://bicol-u.edu.ph/alumni/BU2016Alumni.php">BU2017 Outstanding Alumni</a>
+				<a href="http://bicol-u.edu.ph/alumni/first_buce_alumni.php">ANS-BTC-BUCE Grand</a>
+				<a href="http://bicol-u.edu.ph/alumni/charter.php">47th BU Charter Day</a>
+				<a href="http://bicol-u.edu.ph/alumni/alumniday2.php">Alumni Day</a>
+				<a href="http://bicol-u.edu.ph/alumni/exemplar.php">Exemplar Awards</a>
+				<a href="http://bicol-u.edu.ph/alumni/valentine.php">Valentine Date with Alumni</a>
+				<a href="http://bicol-u.edu.ph/alumni/outstandingalumni.php">Search for Outstanding Alumni</a>
+			</div>	
+		<a href=".about.php" class="side" style="background-color: #ababab;">About BUARO</a>
+		<a href=".contact.php" class="side">Contact Us</a>
 	</nav>
 
 	<div class="w3-overlay w3-hide-large" onclick="w3_close()" id="close"></div>
@@ -113,7 +80,7 @@ input[type=submit]:hover {
 	<div class="w3-main">											<!--  T  H  E     M  A  I  N     B  O  D  Y  -->
 
 		<div id="topbar">
-			<h4 id="topbar1">How to Contact Us</h4>
+			<h4 id="topbar1">About BU ARO</h4>
 			<a id="toggle" class="w3-hover-black w3-opennav" href="javascript:void(0)" onclick="w3_open()">&#9776;</a>
 		</div>
 
@@ -123,10 +90,11 @@ input[type=submit]:hover {
 		</header>
 		
 		<div>												<!--  T  H  E     C  O  N  T  E  N  T  -->
-			<div class="w3-container w3-padding-jumbo" style="background-image: url('../img/BU.jpg'); background-size: 100%; background-repeat: no-repeat;">					
-			
+			<div class="w3-container w3-padding-jumbo">	
 
-				<!--  view content!!!!!!!!!!!!!!!  -->
+
+
+	<!--  view content!!!!!!!!!!!!!!!  -->
 				 <?php while($row = mysqli_fetch_array($search_result)):
 				 	 $parser = new Parsedown();
                 
@@ -141,34 +109,7 @@ input[type=submit]:hover {
                
                 <?php endwhile;?>
 	<!--  view content!!!!!!!!!!!!!!!  -->
-
-
-				<!--  FEED BACKKKK!!!!!!!!!!!!!!!  -->
-				<br><br><br><br><br><br><h3>Give feedback</h3>
-				<h4>Let us know what we can do to help you</h4>
-
-				<div class="container">
-				  <form action="feedback.php" method="post">
-				   
-				    <label for="lname">Email Address</label>
-				    <input type="text" id="email" name="email" placeholder="Your Email Address.." required="">
-
-				  
-
-				    <label for="subject">Message</label>
-				    <textarea id="message" name="message" placeholder="Write something.." style="height:200px" required=""></textarea>
-
-
-					<input type="submit" value="Submit">
-				   
-				  </form>
-				</div>
-			<!--  FEED BACKKKK!!!!!!!!!!!!!!!  -->
-
-
-
-
-
+			
 			</div>
 			<footer>											<!--  F  O  O  T  E  R  -->
 				<div id="bot">
@@ -178,9 +119,9 @@ input[type=submit]:hover {
 		</div>
 	</div>
 
-<script type="text/javascript" src="../../main/js/js_1.js" ></script>
-<script type="text/javascript" src="../../main/js/js_2.js"></script>
-<script type="text/javascript" src="../../main/js/js_3.js"></script>
-<script type="text/javascript" src="../../main/js/js_3.js"></script>
+<script src="../../main/js/js_1.js"></script>
+<script src="../../main/js/js_2.js"></script>
+<script src="../../main/js/js_3.js"></script>
+<script src="../../main/js/js_4.js"></script>
 </body>
 </html>
