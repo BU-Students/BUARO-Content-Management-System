@@ -40,6 +40,8 @@ if(!isset($_SESSION['id'])) {
 					<div class="col-sm-4"><label for="radio-1"><input type="radio" id="radio-1" value="1" name="content-type" />Alumni Story</label></div>
 					<div class="col-sm-4"><label for="radio-2"><input type="radio" id="radio-2" value="2" name="content-type" />BUARO Event</label></div>
 					<div class="col-sm-4"><label for="radio-3"><input type="radio" id="radio-3" value="3" name="content-type" />Bulletin Item</label></div>
+					<div class="col-sm-4"><label for="radio-4"><input type="radio" id="radio-4" value="4" name="content-type" />About Us</label></div>
+					<div class="col-sm-4"><label for="radio-5"><input type="radio" id="radio-5" value="5" name="content-type" />Contact Us</label></div>
 				</div>
 				<textarea id="textarea" name="content"></textarea>
 				<hr>
