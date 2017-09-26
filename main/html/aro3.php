@@ -70,7 +70,7 @@ function type_of_event($inp) {
 								$date = $img_upcoming['eventdate']; 
 								echo "
 									<div class='slides'>
-										<center><p style='text-transform:uppercase;'>".$title."<br><br><br>Event Date:<br>".$date."</p></center>
+										<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
 										<img src='".$get."'>
 									</div>
 								";

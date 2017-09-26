@@ -148,6 +148,7 @@
 																<div class="w3-example">
 																	<form action="data.php" method="POST">
 																		<input  hidden name="id" value="'.$memid.'">
+																		<center><h2>Add Comment</h2></center>
 																		<table>
 																			<tbody >
 																				<tr>
@@ -174,13 +175,8 @@
 																	'.$comm_array.'
 																	</div>
 																</div>
-
-
-
-
 															</div>
-													
-															<br/><br/><br/>
+
 														</div>
 													</div>
 
