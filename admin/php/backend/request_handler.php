@@ -62,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				break;
 
 			case "B-0":
-				require_once "../../../vendor/parsedown-master/Parsedown.php";
+				require_once "../../../vendor/Parsedown/Parsedown.php";
 				$parser = new Parsedown();
 
 				$sql = "SELECT post_id, title, content, timestamp FROM post, college
@@ -444,7 +444,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			case "H-0":
 				define("COLLEGE_ADMIN", 2);
 
-				require_once "../../../vendor/parsedown-master/Parsedown.php";
+				require_once "../../../vendor/Parsedown/Parsedown.php";
 				$parser = new Parsedown();
 
 				if($_SESSION['admin-type'] == COLLEGE_ADMIN)
