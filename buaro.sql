@@ -67,7 +67,8 @@ CREATE TABLE `admin` (
   `username` char(255) NOT NULL,
   `password` char(255) NOT NULL,
   `profile_img` varchar(500) DEFAULT NULL,
-  `cover_photo` varchar(500) DEFAULT NULL
+  `cover_photo` varchar(500) DEFAULT NULL,
+  `state` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1 if active, 0 if inactive'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -75,11 +76,11 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_type`, `address`, `college`, `first_name`, `middle_name`, `last_name`, `sex`, `contact_no`, `bdate`, `email`, `username`, `password`, `profile_img`, `cover_photo`) VALUES
-(1, 1, 1, NULL, 'Fname0', 'Mname0', 'Lname0', 0, '09772044506', '1998-12-30', '0@example.com', 'user0', '754ea1d0fb21a2ba706619100e60061c', NULL, NULL),
-(12, 2, 2, 3, 'Fname1', 'Mnme1', 'Lname1', 0, NULL, '2017-09-04', NULL, 'user1', '87f5e873e4cc3ebaed6f289303417020', NULL, NULL),
-(13, 2, 3, 7, 'Fname2', 'Mname2', 'Lname2', 0, NULL, '2017-09-25', '2@example.com', 'user2', 'ee262c7610a18ee3babfa4e36ade34a3', NULL, NULL),
-(14, 2, 4, 2, 'Fname3', 'Mname3', 'Lname3', 1, '098765443210', '2017-08-16', NULL, 'user3', '1d7579089c1d958b219b0e3450472477', NULL, NULL),
-(15, 2, 5, 7, 'Fname4', 'Mname4', 'Lname4', 1, '0987657862', '2017-09-04', NULL, 'user4', 'aeb5f991b117b589b2c5d664982a80ca', NULL, NULL);
+(1, 1, 1, NULL, 'Fname0', 'Mname0', 'Lname0', 0, '09772044506', '1998-12-30', '0@example.com', 'user0', '754ea1d0fb21a2ba706619100e60061c', NULL, NULL, 1),
+(12, 2, 2, 3, 'Fname1', 'Mnme1', 'Lname1', 0, NULL, '2017-09-04', NULL, 'user1', '87f5e873e4cc3ebaed6f289303417020', NULL, NULL, 1),
+(13, 2, 3, 7, 'Fname2', 'Mname2', 'Lname2', 0, NULL, '2017-09-25', '2@example.com', 'user2', 'ee262c7610a18ee3babfa4e36ade34a3', NULL, NULL, 1),
+(14, 2, 4, 2, 'Fname3', 'Mname3', 'Lname3', 1, '098765443210', '2017-08-16', NULL, 'user3', '1d7579089c1d958b219b0e3450472477', NULL, NULL, 1),
+(15, 2, 5, 7, 'Fname4', 'Mname4', 'Lname4', 1, '0987657862', '2017-09-04', NULL, 'user4', 'aeb5f991b117b589b2c5d664982a80ca', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
