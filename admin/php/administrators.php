@@ -45,8 +45,9 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 			</ul>
 			<div id="left-side">
 				<div class="options">
-<!--					<button class="btn btn-default">Display Attributes</button>
--->					<button class="btn btn-default" onclick="toggleSelectMode(this)" id="row-select-btn">Select Multiple Rows</button>
+					<button class="btn btn-default" data-toggle="modal" data-target="#view-options">View Options</button>
+					<button class="btn btn-default" onclick="toggleSelectMode(this)" id="row-select-btn">Select Multiple Rows</button>
+					<button class="btn btn-default" onclick="selectAllRows(this)" id="select-all-btn">Select All Rows</button>
 					<a class="btn btn-default" id="new-admin-btn" href="add_user.php">Add Account
 						<span class="glyphicon glyphicon-plus" style="margin-left: 5px;"></span>
 					</a>
@@ -56,8 +57,8 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 					</div>
 				</div>
 				<div class="table-wrapper table-responsive">
-					<table class="table table-bordered table-hover table-striped"
-					id="admins-table">
+					<div id="table-description" style="margin: 10px 0px; color: #777">ACTIVE ACCOUNTS</div>
+					<table class="table table-bordered table-hover table-striped" id="admins-table">
 						<thead>
 							<tr id="admin-table-headers">
 								<th onclick="sortAdminTable(this, 0)">First Name</th>
@@ -76,7 +77,7 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 				<div id="row-options-panel">
 					<span class="caption">SELECTION OPTIONS</span>
 					<div class="options">
-						<button class="btn btn-default" id="delete-btn" onclick="confirmDeletion()"></button>
+						<button class="btn btn-default" id="activate-deactivate" onclick="confirmAction()"></button>
 					</div>
 				</div>
 				<div id="user-info-panel">
@@ -110,7 +111,7 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 				<div id="active-admins">
 					<div class="table-wrapper table-responsive">
 						<table class="table table-striped" style="border: 1px solid #aaa;">
-							<caption>ACTIVE USERS</caption>
+							<caption>ONLINE ACCOUNTS</caption>
 							<thead>
 								<tr>
 									<th>User</th>
@@ -129,19 +130,56 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 			</div>
 		</div>
 
+		<!-- view modal here -->
+		<div id="view-options" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">VIEW OPTIONS</h4>
+					</div>
+					<div class="modal-body">
+						<div id="view-options-body">
+							<h4 class="caption">COLUMNS</h4>
+							<h5>Select the attributes you want to see on the table</h5>
+							<div class="view-options-group" id="attr-container">
+								<div class="view-checkbox"><label for="fname-attr"><input checked type="checkbox" id="fname-attr" />First name</label></div>
+								<div class="view-checkbox"><label for="mname-attr"><input checked type="checkbox" id="mname-attr" />Middle name</label></div>
+								<div class="view-checkbox"><label for="lname-attr"><input checked type="checkbox" id="lname-attr" />Last name</label></div>
+								<div class="view-checkbox"><label for="college-attr"><input checked type="checkbox" id="college-attr" />College</label></div>
+								<div class="view-checkbox"><label for="gender-attr"><input checked type="checkbox" id="gender-attr" />Gender</label></div>
+								<div class="view-checkbox"><label for="age-attr"><input checked type="checkbox" id="age-attr" />Age</label></div>
+							</div>
+							<div style="margin-top: 20px;">
+								<h4 class="caption">ADMIN STATE</h4>
+								<h5>Select admin state you want to see on the table</h5>
+								<div class="view-options-group container-fluid" id="state-container">
+									<div class="col-sm-4"><label for="active-state"><input name="state" type="radio" value="1"  id="active-state" checked />Active</label></div>
+									<div class="col-sm-4"><label for="inactive-state"><input name="state" type="radio" value="0"  id="inactive-state" />Inactive</label></div>
+									<div class="col-sm-4"><label for="all-states"><input name="state" type="radio" value="2" id="all-states" />Both</label></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success" data-dismiss="modal" onclick="displayTable()" id="" style="width: 70px">Ok</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- confirmation modal here -->
-		<div id="confirm-delete" class="modal fade" role="dialog" tabindex="-1">
+		<div id="confirm-modal" class="modal fade" role="dialog" tabindex="-1">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Delete Confirmation</h4>
+						<h4 class="modal-title" id="confirmation-title"></h4>
 					</div>
 					<div class="modal-body">
-						<p>Are you sure you want to delete <span id="num-users"></span>?</p>
+						<p id="confirmation-msg"></p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" onclick="deleteAccounts()" id="action-btn">Yes</button>
+						<button type="button" class="btn btn-danger" onclick="activate_deactivate_accounts()" id="action-btn" style="width: 69.58px">Yes</button>
 						<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
 					</div>
 				</div>

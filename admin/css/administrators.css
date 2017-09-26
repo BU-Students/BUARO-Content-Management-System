@@ -1,6 +1,6 @@
-button {
-	outline: none !important;
-}
+.modal-title { text-align: center; }
+
+button { outline: none !important; }
 
 #left-side, #right-side {
 	height: -webkit-calc(100% - 36px);
@@ -25,10 +25,11 @@ button {
 .options { margin: 10px 0px; }
 
 #row-select-btn.active {
-	background-color: #CE93D8;
+	background-color: #42A5F5;
+	border: none;
+	width: 156px;
 	color: white;
 	text-align: center;
-	width: 155px;
 }
 
 caption {
@@ -61,8 +62,8 @@ table .glyphicon {
 }
 
 #new-admin-btn:hover {
-	background-color: #5cb85c;
-	border: 1px solid #5cb85c;
+	background-color: #66BB6A;
+	border: 1px solid #66BB6A;
 }
 
 #new-admin-btn:hover, #new-admin-btn:hover .glyphicon { color: white; }
@@ -71,9 +72,7 @@ table .glyphicon {
 
 #filter-container { padding: 10px 0px 0px 0px; }
 
-tr.active td {
-	background-color: #CE93D8 !important;
-}
+tr.active td { background-color: #BBDEFB !important; }
 
 #row-options-panel, #user-info-panel {
 	display: none;
@@ -145,6 +144,33 @@ tr.active td {
 #user-info-panel .caption {
 	display: block;
 	margin-bottom: 15px;
+}
+
+#view-options-body {
+	padding: 0px 20px;
+}
+
+.view-options-group { margin-top: 20px; }
+
+.view-options-group > div { margin: 5px 0px; }
+
+.view-options-group input { margin-right: 10px; }
+
+.view-options-group label { font-weight: 100; }
+
+.view-options-group::after {
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+#view-options-body span { font-size: 18px; }
+
+.view-checkbox {
+	float: left;
+	display: inline-block;
+	width: 50%;
 }
 
 #active-admins {}

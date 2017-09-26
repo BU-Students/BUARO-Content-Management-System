@@ -334,21 +334,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				break;
 
 			case "F-0":
-				$query_1 =
-					"SELECT ".
-						"first_name, ".
-						"middle_name, ".
-						"last_name, ".
-						"sex, ".
-						"bdate, ".
-						"profile_img, ".
-						"TIMESTAMPDIFF(YEAR, bdate, CURDATE()) AS age ".
-					"FROM admin, address ".
-					"WHERE ".
-						"admin.address = address.address_id AND ".
-						"admin.admin_id = ".$_SESSION['id'];
+				$constraint = "";
 
-				$query_2 =
+				if($_POST['state'] != "2")
+					$constraint = " AND state = ".$_POST['state'];
+
+				$sql =
 					"SELECT ".
 						"admin_id, ".
 						"first_name, ".
@@ -358,35 +349,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 						"sex, ".
 						"bdate, ".
 						"profile_img, ".
+						"state, ".
 						"TIMESTAMPDIFF(YEAR, bdate, CURDATE()) AS age ".
 					"FROM admin, address, college ".
 					"WHERE ".
 						"admin.address = address.address_id AND ".
-						"college.college_id = admin.college";
+						"college.college_id = admin.college".$constraint;
 
-				$result_1 = $conn->query($query_1);
-				$result_2 = $conn->query($query_2);
+				$result = $conn->query($sql);
 
-				if($result_1 && $result_2) {
-					$row = $result_1->fetch_assoc();
-					$row['sex'] = ($row['sex'] == 0)? "Male" : "Female";
-					echo '{ '.
-							'"curr_user": { '.
-								'"f_name": "'.$row['first_name'].'", '.
-								'"m_name": "'.$row['middle_name'].'", '.
-								'"l_name": "'.$row['last_name'].'", '.
-								'"sex": "'.$row['sex'].'", '.
-								'"b_date": "'.$row['bdate'].'", '.
-								'"age": "'.$row['age'].'" '.
-							' }';
-
-					$num_rows = $result_2->num_rows;
-					if($num_rows > 1) {
-						echo ', "num_users": '.$num_rows.', "users": [';
-					}
+				if($result && $result->num_rows > 0) {
+					$num_rows = $result->num_rows;
+					echo '{ "num_users": '.$num_rows.', "users": [ ';
 
 					$counter = $num_rows;
-					while($row = $result_2->fetch_assoc()) {
+					while($row = $result->fetch_assoc()) {
 						$row['sex'] = ($row['sex'] == 0)? "Male" : "Female";
 						echo '{ '.
 							'"id": '.$row['admin_id'].', '.
@@ -397,31 +374,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 							'"sex": "'.$row['sex'].'", '.
 							'"profile_img": "'.decode($row['profile_img']).'", '.
 							'"age": "'.$row['age'].'", '.
-							'"b_date": "'.$row['bdate'].'" '.
+							'"b_date": "'.$row['bdate'].'", '.
+							'"state": "'.$row['state'].'"'.
 						' }';
 
 						if(--$counter) echo ", ";
 					}
 
-					if($num_rows > 1) echo ']';
+					echo ' ] }';
 
-					echo ' }';
-
-					$result_1->free();
-					$result_2->free();
+					$result->free();
 				}
 				else echo $conn->error;
 
 				break;
 			case "F-1":
-				//delete the addresses as it has ON DELETE CASCADE relationship with the `admin` table
-				$sql = "DELETE FROM address WHERE address_id IN (SELECT admin.address FROM admin WHERE admin_id IN (";
+				$sql = "UPDATE admin SET state = ".$_POST['new-state']." WHERE admin_id IN (";
 				$counter = $_POST['id-count'];
 				for($i = 0; $i < $counter; ++$i) {
 					$sql .= $_POST['id_'.$i].", ";
 				}
 				$sql = substr($sql, 0, -2);
-				$sql .= "))";
+				$sql .= ")";
 
 				if(!$conn->query($sql))
 					echo $conn->error;
@@ -543,8 +517,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				else {
 					$sql = "";
 				}
-				
-				
                $year;
                $categories = "[";
 
@@ -564,162 +536,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                }
                else echo $conn->error;
 				break;
-				
-				
-			case "W-0":
-				define("PARENT_ADMIN", 1);
-				define("COLLEGE_ADMIN", 2);
-				define("CONTACT", 5);
-
-				require_once "../../../vendor/Parsedown/Parsedown.php";
-				$parser = new Parsedown();
-
-				if($_SESSION['admin-type'] == COLLEGE_ADMIN)
-					$sql = "SELECT post_id, title, content, timestamp FROM post, college
-							WHERE post.admin_id = ".$_SESSION['id']." AND post.post_type = " .CONTACT;
-				else if($_SESSION['admin-type'] == PARENT_ADMIN)
-					$sql = "SELECT post_id, title, content, timestamp FROM post, college";
-
-				$sql .= " ORDER BY timestamp DESC";
-
-				$result = $conn->query($sql);
-
-				while($row = $result->fetch_assoc()) {
-					echo('
-						<div class="story" id="story-id-'.$row['post_id'].'" onclick="expandStory(this)">
-							<input type="hidden" value="'.$row['post_id'].'" /> 				<!-- reference for story deletion in the database; i.e. database ID -->
-							<input type="hidden" /> 											<!-- used to store their DOM index as reference for removeChild() -->
-							<div class="story-header">
-								<div class="story-options-container">
-									<span class="glyphicon glyphicon-resize-full" data-toggle="tooltip" title="Expand"></span>
-								</div>
-								<div class="story-title">'.$row['title'].'</div>
-								<div class="story-date">'.date('F d, Y | g:i A', strtotime(str_replace('-', '/', $row['timestamp']))).'</div>
-							</div>
-							<hr>
-							<div class="story-content">'
-								.$parser->text(decode($row['content'])).
-							'</div>
-						</div>
-					');
-				}
-
-				$result->free();
-				break;
-
-			case "W-1":
-				$sql = "DELETE FROM post WHERE post_id = ".$_POST['story-id'].";";
-				$conn->query($sql);
-				if($conn->affected_rows == 1)
-					echo "success";
-				else 
-					echo "failed";
-				break;
-			
-			case "X-0":
-				define("PARENT_ADMIN", 1);
-				define("COLLEGE_ADMIN", 2);
-				define("ABOUT_BUARO", 4);
-
-				require_once "../../../vendor/Parsedown/Parsedown.php";
-				$parser = new Parsedown();
-
-				if($_SESSION['admin-type'] == COLLEGE_ADMIN)
-					$sql = "SELECT post_id, title, content, timestamp FROM post, college
-							WHERE post.admin_id = ".$_SESSION['id']." AND post.post_type = " .ABOUT_BUARO;
-				else if($_SESSION['admin-type'] == PARENT_ADMIN)
-					$sql = "SELECT post_id, title, content, timestamp FROM post, college";
-
-				$sql .= " ORDER BY timestamp DESC";
-
-				$result = $conn->query($sql);
-
-				while($row = $result->fetch_assoc()) {
-					echo('
-						<div class="story" id="story-id-'.$row['post_id'].'" onclick="expandStory(this)">
-							<input type="hidden" value="'.$row['post_id'].'" /> 				<!-- reference for story deletion in the database; i.e. database ID -->
-							<input type="hidden" /> 											<!-- used to store their DOM index as reference for removeChild() -->
-							<div class="story-header">
-								<div class="story-options-container">
-									<span class="glyphicon glyphicon-resize-full" data-toggle="tooltip" title="Expand"></span>
-								</div>
-								<div class="story-title">'.$row['title'].'</div>
-								<div class="story-date">'.date('F d, Y | g:i A', strtotime(str_replace('-', '/', $row['timestamp']))).'</div>
-							</div>
-							<hr>
-							<div class="story-content">'
-								.$parser->text(decode($row['content'])).
-							'</div>
-						</div>
-					');
-				}
-
-				$result->free();
-				break;
-
-			case "X-1":
-				$sql = "DELETE FROM post WHERE post_id = ".$_POST['story-id'].";";
-				$conn->query($sql);
-				if($conn->affected_rows == 1)
-					echo "success";
-				else 
-					echo "failed";
-				break;
-
-
-			case "Y-0":
-				define("PARENT_ADMIN", 1);
-				define("COLLEGE_ADMIN", 2);
-				define("CONTACT", 5);
-
-				require_once "../../../parsedown-master/Parsedown.php";
-				$parser = new Parsedown();
-
-				if($_SESSION['admin-type'] == COLLEGE_ADMIN)
-					$sql = "SELECT feedback_id, email, message, timestamp FROM feedback, college
-							WHERE feedback.admin_id = ".$_SESSION['id']." AND post.post_type = " .CONTACT;
-				else if($_SESSION['admin-type'] == PARENT_ADMIN)
-					$sql = "SELECT post_id, title, content, timestamp FROM post, college";
-
-				$sql .= " ORDER BY timestamp DESC";
-
-				$result = $conn->query($sql);
-
-				while($row = $result->fetch_assoc()) {
-					echo('
-						<div class="story" id="story-id-'.$row['post_id'].'" onclick="expandStory(this)">
-							<input type="hidden" value="'.$row['post_id'].'" /> 				<!-- reference for story deletion in the database; i.e. database ID -->
-							<input type="hidden" /> 											<!-- used to store their DOM index as reference for removeChild() -->
-							<div class="story-header">
-								<div class="story-options-container">
-									<span class="glyphicon glyphicon-resize-full" data-toggle="tooltip" title="Expand"></span>
-								</div>
-								<div class="story-title">'.$row['title'].'</div>
-								<div class="story-date">'.date('F d, Y | g:i A', strtotime(str_replace('-', '/', $row['timestamp']))).'</div>
-							</div>
-							<hr>
-							<div class="story-content">'
-								.$parser->text(decode($row['content'])).
-							'</div>
-						</div>
-					');
-				}
-
-				$result->free();
-				break;
-
-			case "Y-1":
-				$sql = "DELETE FROM post WHERE post_id = ".$_POST['story-id'].";";
-				$conn->query($sql);
-				if($conn->affected_rows == 1)
-					echo "success";
-				else 
-					echo "failed";
-				break;
-
-				
-			
-			
 		}
 	}
 	else echo "Informal request";
