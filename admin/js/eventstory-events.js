@@ -12,6 +12,8 @@ xhttp4.send();
 //Function for the pagination
 function changeevents(intval){
     var num = intval;
+    eventcurpage = num;
+    console.log(eventcurpage);
     document.getElementById("event-cont").innerHTML = document.getElementById("event-page-"+num).innerHTML;
 }
 
