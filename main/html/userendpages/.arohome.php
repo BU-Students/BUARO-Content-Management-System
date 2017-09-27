@@ -4,6 +4,28 @@
 	return htmlspecialchars_decode($string, ENT_HTML5 | ENT_QUOTES);
 	}
 ?>
+
+<style>
+.pic img {
+  height: 150px;
+  width:150px;
+  border-radius:50%;
+
+ 
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+
+}
+ 
+.pic img:hover {
+  width: 200px;
+  height: 200px;
+  
+</style>
+
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
 <script type="text/javascript" src="userendpages/loadjs/viewS.js"></script>
 <div id="content2">												<!--  T  H  E     C  O  N  T  E  N  T  -->
@@ -24,9 +46,9 @@
 							$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
 						}
 						echo '
-						<div onclick = "viewStory('.$row['post_id'].')">					
+						<div  class = "pic" onclick = "viewStory('.$row['post_id'].')">					
 							<h3 class="title">'.$row['title'].'</h3>	
-							<img src="'.$row['imgbanner'].'" style ="width:150px; height:150px";border-radius:50%" alt = "Avatar">	
+							<img src="'.$row['imgbanner'].'"alt = "Avatar">	
                				<p>'.decode($newstring).'</p>
 						</div>
 						<hr>
@@ -34,4 +56,5 @@
 						$id++;
 					}
 				?>
+				
 			</div>
