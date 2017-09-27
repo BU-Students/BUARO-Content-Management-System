@@ -22,7 +22,6 @@
 .pic img:hover {
   width: 200px;
   height: 200px;
-  
 </style>
 
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
@@ -47,6 +46,7 @@
 						if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
 							$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
 						}
+
 						echo '
 						<div class = "pic" onclick="viewStory('.$row['post_id'].')">
 							<h4><b>Event Date: '.date("M d, Y",strtotime($row['eventdate'])).'</b></h4>						

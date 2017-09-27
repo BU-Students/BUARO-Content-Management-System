@@ -18,15 +18,12 @@
        -o-transition: all 1s ease;
       -ms-transition: all 1s ease;
           transition: all 1s ease;
-
 }
- 
+
 .pic img:hover {
   width: 200px;
-  height: 200px;
-  
+  height: 200px;  
 </style>
-
 
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
 <script type="text/javascript" src="userendpages/loadjs/viewS.js"></script>

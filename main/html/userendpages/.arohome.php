@@ -5,7 +5,6 @@
 	}
 ?>
 
-
 <style>
 .pic img {
   height: 150px;
