@@ -17,6 +17,9 @@
 			if($_SESSION["admin-type"] != 1) {
 				echo('<li class="sidebar-item" id="unit-college-tab"><a href="unit_college.php"><span class="glyphicon glyphicon-calendar"></span>Your College</a></li>');
 			}
+			else {
+				echo '<li class="sidebar-item" id="donation-tab"><a href="donate.php"><span class="glyphicon glyphicon-book"></span>Donation Projects</a></li>';
+			}
 		
 		?>
 	</ul>

@@ -20,11 +20,10 @@
 						<div class="form-group">
 							<div class="dropdown">
 								<button type="button" class="btn1 btn-select1" data-toggle="dropdown">Content Type</button>
-								<label style="font-size: 10px;color: red">*required</label>
 								<ul class="dropdown-menu dropdown-menu-select">
 									<li>
 										<label class="dropdown-radio">
-											<input type="radio" id="radio1" value="1" name="content-type" onclick="chng1()">
+											<input type="radio" value="1" name="content-type" onclick="chng1()">
 											<i>Story</i>
 										</label>
 									</li>

@@ -23,7 +23,8 @@
 .pic img:hover {
   width: 200px;
   height: 200px;
-  
+  box-shadow: 0px 0px 20px 10px rgba(65, 65, 65, 0.99);
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">

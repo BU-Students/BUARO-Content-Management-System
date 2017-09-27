@@ -65,10 +65,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				require_once "../../../vendor/Parsedown/Parsedown.php";
 				$parser = new Parsedown();
 
-				$sql = "SELECT post_id, title, content, timestamp FROM post, college
-						WHERE post.admin_id = ".$_SESSION['id']." AND post.post_type = (SELECT post_type_id FROM post_type WHERE label = 'STORY')";
-
-				$sql .= " ORDER BY timestamp DESC";
+				$sql = "SELECT post_id, title, content, timestamp ".
+						"FROM post
+						WHERE ".
+							"post.post_type = (SELECT post_type_id FROM post_type WHERE label = 'DONATION_LINK') ".
+							"ORDER BY timestamp DESC";
 
 				$result = $conn->query($sql);
 
