@@ -31,7 +31,7 @@
  		<a href="javascript:void(0)" onclick="w3_close()" class="w3-hide-large w3-closenav w3-large">Close &nbsp;&nbsp;&nbsp;&times;</a>
  		<a href=".aro.html" class="w3-light-grey w3-medium">Home</a>	
 		<a href="e-shop.php" class="side" style="background-color: #ababab;">E-shop for Souvenirs and Memorabilla</a>	
-		<a href="#" class="side">Donation Link</a>		
+		<a href=".donate.php" class="side">Donation Link</a>		
 		<a href="javascript:void(0)" class="side" onclick="myFunc('side')">UNIT/College <i class="fa fa-caret-down"></i></a>
 			<div id="side" class="w3-accordion-content w3-animate-left w3-padding">
 				<a href=".ce.html">College of Education</a>
@@ -54,19 +54,10 @@
 	<div class="w3-overlay w3-hide-large" onclick="w3_close()" id="close"></div>
 
 	<div class="w3-main">											<!--  T  H  E     M  A  I  N     B  O  D  Y  -->
-
-		<div id="topbar" style="z-index: 100;">
-			<h4 id="topbar1">Souvenirs and Memorabilla</h4>
-			<a id="toggle" class="w3-hover-black w3-opennav" href="javascript:void(0)" onclick="w3_open()">&#9776;</a>
-		</div>
-
-		<header class="w3-container w3-theme w3-padding-64 w3-padding-jumbo">
-			<img src="../img/logo.gif" id="aro_logo">
-			<h1 class="w3-xxxlarge w3-padding-16 w3-animate-bottom"><span class="highlight">A</span>lumni <span class="highlight">R</span>elations <span class="highlight">O</span>ffice</h1>
-		</header>
 		
 		<div>												<!--  T  H  E     C  O  N  T  E  N  T  -->
-			<div class="w3-container w3-padding-jumbo">					
+			<div class="w3-container w3-padding-jumbo">			
+			<a style="color: blue;" href="aro3.php">HOME</a> >> E-SHOP	
 				<div class="w3-container w3-section w3-center">
 					<div class="w3-tag w3-jumbo w3-red">S</div>
 					<div class="w3-tag w3-jumbo">O</div>
@@ -117,7 +108,7 @@
 									$exec_all_comments = mysqli_query($con,$all_comments);
 									$comm_array = '';
 									while ($get_comment_array = mysqli_fetch_array($exec_all_comments)) {
-										$comm_array .= "<h5>".$get_comment_array['nick']."<i style='font-size:10px;'> ".date('(d/m/y h:ia)',strtotime($get_comment_array['timestamp']))."</i>".": ".$get_comment_array['content']."</h5>";
+										$comm_array .= "<p>".$get_comment_array['nick']."<i style='font-size:10px;'> ".date('(d/m/y h:ia)',strtotime($get_comment_array['timestamp']))."</i>".": <span style='font-size:14px;'>".$get_comment_array['content']."</span></p><br>";
 									}
 
 									$dynamic_html = '

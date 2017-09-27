@@ -30,9 +30,6 @@ if (param != undefined) {
 		if (http.readyState == 4 && http.status == 200) {
 
 			if (http.responseText != "fail") {
-
-				console.log(http.responseText);
-
 				var content_info = JSON.parse(http.responseText);
 
 				document.getElementById("title").value = content_info.title;

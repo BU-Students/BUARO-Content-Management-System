@@ -8,12 +8,13 @@ xhttp.onreadystatechange = function() {
 };
 xhttp.open("GET", "eventstory-pages/stories.php", true);
 xhttp.send();
+
 //Pagination function for the stories
 function change(intval){
 	var num = intval;
-	storycurpage = num;
 	document.getElementById("story-cont").innerHTML = document.getElementById("story-page-"+num).innerHTML;
 }
+
 //Function to change the status of the post
 function changeStatus(val){
 	var current = document.getElementById("status-story-"+val).value;

@@ -16,9 +16,9 @@
 	<link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/story.css">
 	<link rel="stylesheet" type="text/css" href="../css/eventstory-carousel.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
+	<script src="../../vendor/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="../../vendor/Bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="userendpages/loadjs/loadContent.js"></script>
 	<script type="text/javascript" src="userendpages/loadjs/loadEvent.js"></script>
 	<script type="text/javascript" src="userendpages/loadjs/loadStory.js"></script>
@@ -31,7 +31,7 @@
  		<a href="javascript:void(0)" onclick="w3_close()" class="w3-hide-large w3-closenav w3-large">Close &nbsp;&nbsp;&nbsp;&times;</a>
  		<a href="aro3.php" class="w3-light-grey w3-medium">Home</a>	
 		<a href="e-shop.php" class="side">E-shop for Souvenirs and Memorabilla</a>	
-		<a href="#" class="side">Donation Link</a>		
+		<a href=".donate.php" class="side">Donation Link</a>
 		<a href="javascript:void(0)" class="side" onclick="myFunc('side')">UNIT/College <i class="fa fa-caret-down"></i></a>
 			<div id="side" class="w3-accordion-content w3-animate-left w3-padding">
 				<a href=".ce.html">College of Education</a>
@@ -52,7 +52,7 @@
 				<label>Upcoming Events</label>
 				<?php
 					$getquery = "SELECT * FROM post WHERE post_type = 2 AND status = 'shown'";
-					$run = mysqli_query($con,$getquery);
+					$run = mysqli_query($con ,$getquery);
 					$today = date("Y-m-d");
 					while($row = mysqli_fetch_array($run)){
 						if($row['eventdate'] > $today)
