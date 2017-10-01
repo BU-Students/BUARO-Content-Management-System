@@ -40,7 +40,7 @@ function type_of_event($inp) {
 			<ul class="w3-topnav w3-theme">
 				<li><a href="#home" id="tab" style="color: rgb(255, 152, 0);">Home</a></li>
 				<li><a href="#shop" id="tab">E-shop Souvenirs and Memorabilia</a></li>
-				<li><a href=".donate.php" id="tab">Donation Link</a></li>
+				<li><a href="" id="tab">Donation Link</a></li>
 				<li><a href="#unit" id="tab">UNIT/College</a></li>
 				<li><a href="" id="tab">BU Alumni Coordinators</a></li>
 				<li><a href="#stories" id="tab">BU Alumni Stories</a></li>
