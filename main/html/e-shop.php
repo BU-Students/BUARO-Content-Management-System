@@ -66,7 +66,8 @@
 		</header>
 		
 		<div>												<!--  T  H  E     C  O  N  T  E  N  T  -->
-			<div class="w3-container w3-padding-jumbo">					
+			<div class="w3-container w3-padding-jumbo">			
+			<a style="color: blue;" href="aro3.php">HOME</a> >> E-SHOP	
 				<div class="w3-container w3-section w3-center">
 					<div class="w3-tag w3-jumbo w3-red">S</div>
 					<div class="w3-tag w3-jumbo">O</div>
@@ -117,7 +118,7 @@
 									$exec_all_comments = mysqli_query($con,$all_comments);
 									$comm_array = '';
 									while ($get_comment_array = mysqli_fetch_array($exec_all_comments)) {
-										$comm_array .= "<h5>".$get_comment_array['nick']."<i style='font-size:10px;'> ".date('(d/m/y h:ia)',strtotime($get_comment_array['timestamp']))."</i>".": ".$get_comment_array['content']."</h5>";
+										$comm_array .= "<p>".$get_comment_array['nick']."<i style='font-size:10px;'> ".date('(d/m/y h:ia)',strtotime($get_comment_array['timestamp']))."</i>".": <span style='font-size:14px;'>".$get_comment_array['content']."</span></p><br>";
 									}
 
 									$dynamic_html = '

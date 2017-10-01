@@ -64,132 +64,16 @@ function type_of_event($inp) {
 							$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND imgbanner IS NOT NULL AND imgbanner!='none' ORDER BY eventdate DESC LIMIT 5";
 							$exec_upcoming = $con->query($upcoming_sql);
 
-							$num_of_imgs = mysqli_num_rows($exec_upcoming);
-
-							if ($num_of_imgs > 4) {
-								while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
-									$get = $img_upcoming['imgbanner'];
-									$title = $img_upcoming['title'];
-									$date = $img_upcoming['eventdate']; 
-									echo "
-										<div class='slides'>
-											<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-											<img src='".$get."'>
-										</div>
-									";
-								}
-							} else {
-								switch ($num_of_imgs) {
-									case 4:
-										$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND imgbanner IS NOT NULL AND imgbanner!='none' ORDER BY eventdate DESC LIMIT 4";
-										$exec_upcoming4 = $con->query($upcoming_sql);
-
-										while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
-											$get = $img_upcoming['imgbanner'];
-											$title = $img_upcoming['title'];
-											$date = $img_upcoming['eventdate'];
-											echo "
-												<div class='slides'>
-													<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-													<img src='".$get."'>
-												</div>
-											";
-											}
-											$f_arr = $exec_upcoming4->fetch_assoc();
-											$get = $f_arr['imgbanner'];
-											$title = $f_arr['title'];
-											$date = $f_arr['eventdate'];
-											echo "
-												<div class='slides'>
-													<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-													<img src='".$get."'>
-												</div>
-											";
-
-										break;
-									case 3:
-										$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND imgbanner IS NOT NULL AND imgbanner!='none' ORDER BY eventdate DESC LIMIT 3";
-										$exec_upcoming3 = $con->query($upcoming_sql);
-
-										while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
-											$get = $img_upcoming['imgbanner'];
-											$title = $img_upcoming['title'];
-											$date = $img_upcoming['eventdate'];
-											echo "
-												<div class='slides'>
-													<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-													<img src='".$get."'>
-												</div>
-											";
-											}
-											$f_arr = $exec_upcoming3->fetch_assoc();
-											$get = $f_arr['imgbanner'];
-											$title = $f_arr['title'];
-											$date = $f_arr['eventdate'];
-
-											for ($j=0; $j < 2; $j++) { 
-												echo "
-													<div class='slides'>
-														<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-														<img src='".$get."'>
-													</div>
-												";
-											}
-										break;
-
-									case 2:
-										$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND imgbanner IS NOT NULL AND imgbanner!='none' ORDER BY eventdate DESC LIMIT 2";
-										$exec_upcoming2 = $con->query($upcoming_sql);
-
-										while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
-											$get = $img_upcoming['imgbanner'];
-											$title = $img_upcoming['title'];
-											$date = $img_upcoming['eventdate'];
-											echo "
-												<div class='slides'>
-													<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-													<img src='".$get."'>
-												</div>
-											";
-											}
-											$f_arr = $exec_upcoming2->fetch_assoc();
-											$get = $f_arr['imgbanner'];
-											$title = $f_arr['title'];
-											$date = $f_arr['eventdate'];
-											for ($j=0; $j < 3; $j++) { 
-												echo "
-													<div class='slides'>
-														<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-														<img src='".$get."'>
-													</div>
-												";
-											}
-			
-										break;
-
-										case 1:
-											$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND imgbanner IS NOT NULL AND imgbanner!='none' ORDER BY eventdate DESC LIMIT 1";
-											$exec_upcoming = $con->query($upcoming_sql);
-
-											$f_arr = $exec_upcoming->fetch_assoc();
-
-											$get = $f_arr['imgbanner'];
-											$title = $f_arr['title'];
-											$date = $f_arr['eventdate'];
-											for ($j=0; $j < 5; $j++) { 
-												echo "
-													<div class='slides'>
-														<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-														<img src='".$get."'>
-													</div>
-												";
-											}
-											break;
-									
-									default:
-										# code...
-										break;
-								}
+							while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
+								$get = $img_upcoming['imgbanner'];
+								$title = $img_upcoming['title'];
+								$date = $img_upcoming['eventdate']; 
+								echo "
+									<div class='slides'>
+										<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
+										<img src='".$get."'>
+									</div>
+								";
 							}
 						?>
 					</figure>
