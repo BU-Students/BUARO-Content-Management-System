@@ -1,22 +1,30 @@
+<style type="text/css">
+  .thcl:hover{
+    cursor: pointer;
+  }
+</style>
 <div class="page-header">
   <h1>Reports on Event / Story</h1>
   <h4>As of: <?php echo date("D-M-Y")?></h4>
   <input type="button" class="btn btn-default btn-s" onclick="printDiv('printarea')" value="Print this Report" />
 </div>
 <div class="table-responsive" id="printarea">
-<table class="table table-hover" id="reportsTable">
-  <tr>
-  	<th>No.</th>
-  	<th>Title</th>
-  	<th>Status</th>
-  	<th>Views</th>
-    <th>Post Type</th>
-  	<th>Event Due</th>
-  	<th>Image Banner</th>
-  	<th>Image Slider</th>
-  	<th>Date Posted</th>
-  	<th>Posted by:</th>
+<table class="table table-bordered table-hover table-striped" id="admins-table">
+  <thead>
+  <tr id="admin-table-headers">
+  	<th class="thcl" onclick="sortAdminTable(this, 0)">No.</th>
+  	<th class="thcl" onclick="sortAdminTable(this, 1)">Title</th>
+  	<th class="thcl" onclick="sortAdminTable(this, 2)">Status</th>
+  	<th class="thcl" onclick="sortAdminTable(this, 3)">Views</th>
+    <th class="thcl" onclick="sortAdminTable(this, 4)">Post Type</th>
+  	<th class="thcl" onclick="sortAdminTable(this, 5)">Event Due</th>
+  	<th class="thcl" onclick="sortAdminTable(this, 6)">Image Banner</th>
+  	<th class="thcl" onclick="sortAdminTable(this, 7)">Image Slider</th>
+  	<th class="thcl" onclick="sortAdminTable(this, 8)">Date Posted</th>
+  	<th class="thcl" onclick="sortAdminTable(this, 9)">Posted by:</th>
   </tr>
+  </thead>
+  <tbody id="admin-table-body">
   <?php
         include 'backend/connection.php';
         include 'backend/input_handler.php';
@@ -61,6 +69,7 @@
           echo '</tr>';
         }
   ?>
+  </tbody>
 </table>
 </div>
 <script>

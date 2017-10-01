@@ -68,27 +68,30 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 <center>
 <nav aria-label="Page navigation">
 	<ul class="pagination">
-		<li>
-			<a href="#" aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span>
-			</a>
-		</li>
 		<?php
 				$count = 1;
-				
+				echo '
+					<li>
+						<a href="#" aria-label="Previous"onclick="decrpge_event('.$pagenum.')">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					';
 					while($count <= $pagenum){
 					echo '
 						<li><a href="#" onclick="changeevents('.$count.')">'.$count.'</a></li>	
 					';
 					$count++;
 				}
+				echo '
+					<li>
+					<a href="#" aria-label="Next" onclick="incrpge_event('.$pagenum.')">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+				';
 						
 		?>
-		<li>
-			<a href="#" aria-label="Next">
-				<span aria-hidden="true">&raquo;</span>
-			</a>
-		</li>
 	</ul>
 </nav>
 </center>
@@ -262,7 +265,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Edit</h4>
 		      </div>
-		      <form id="editor-form" method="POST" action="backend/update_content.php? enctype="multipart/form-data">
+		      <form id="editor-form" method="POST" action="backend/update_content.php" enctype="multipart/form-data">
 		      <input class="hidden" name="id" value="'.$row['post_id'].'">
 		      <div class="modal-body">
 		        <div id="">
@@ -272,7 +275,8 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 					  </div>
 					  <div class="form-group">
 					    <label>Image Banner</label>
-					    <input type="file" id="endis-event-'.$row['post_id'].'" name="img-banner" disabled>
+					    <input type="file" id="endis-event-'.$row['post_id'].'" name="img-bannerev" disabled>
+					    <input class="hidden" name="curr-banner" value="'.$row['imgbanner'].'">
 					    <input type="radio" name="replace-banner" onclick="endis2_event('.$row['post_id'].')" checked><label> Keep Default Banner</label>
 					    <input type="radio" name="replace-banner" onclick="endis1_event('.$row['post_id'].')"><label> Change Banner</label>
 					  </div>
@@ -299,7 +303,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 						    </li>
 						    </ul>
 						  </div>
-						<div id="event-dateEvent-'.$row['post_id'].'" value="'.$row['eventdate'].'" class="show"><label for="event-date"><input type="date" name="event-date" id="event-date">Date of Event</label></div>
+						<div id="event-dateEvent-'.$row['post_id'].'" class="show"><label for="event-date"><input type="date" name="event-date" id="event-date"  value="'.$row['eventdate'].'">Date of Event</label></div>
 						</div>
 					  <div class="form-group">
 					  		Content:

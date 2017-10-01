@@ -65,7 +65,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 			$count = 1;
 			echo '
 				<li>
-					<a href="#" aria-label="Previous">
+					<a href="#" aria-label="Previous" onclick="decrpge('.$pagenum.')">
 						<span aria-hidden="true">&laquo;</span>
 					</a>
 				</li>
@@ -79,7 +79,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 				}
 			echo '
 				<li>
-					<a href="#" aria-label="Next">
+					<a href="#" aria-label="Next"  onclick="incrpge('.$pagenum.')">
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 				</li>
