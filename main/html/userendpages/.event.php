@@ -19,6 +19,10 @@
 				  <li><?php echo $fetch['title']?></li>
 				</ul>
 				<?php
+					if(!isset($fetch['imgbanner']) || $fetch['imgbanner']=="none" || $fetch['imgbanner']==""){
+							$fetch['imgbanner'] = "../../data/events-stories/noimage.jpg";
+						}	
+
 					if($fetch['imglinks']!=""){
 						echo '
 							<div class="container">

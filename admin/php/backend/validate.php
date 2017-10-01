@@ -12,7 +12,7 @@ $password = encode($_POST['password']);
 
 $encrypted_password = encrypt($password);
 
-$query = "SELECT admin_id, admin_type FROM admin WHERE username = '$username' AND password = '$encrypted_password';";
+$query = "SELECT admin_id, admin_type FROM admin WHERE username = '$username' AND password = '$encrypted_password' AND state = 1;";
 $result = $conn->query($query);
 
 // close database connection

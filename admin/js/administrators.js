@@ -18,12 +18,14 @@ if(window.location.hash == "#success") {
 var selectMode = false;
 
 var url = "backend/request_handler.php";
-var params = "request-type=F-0";
+var params = "request-type=F-0&state=1";
 var xhr;
 
 var users;
 var num_users;
 var active_rows_num = 0;
+var state = "1";
+var action;
 
 if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
 else xhr = new ActiveXObject("Microsoft.XMLHTTP");
@@ -31,9 +33,16 @@ else xhr = new ActiveXObject("Microsoft.XMLHTTP");
 if(xhr) {
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			console.log(xhr.responseText);
+			//if there are no rows retrieved
+			if(xhr.responseText == "") {
+				document.getElementById("row-select-btn").style.display = "none";
+				document.getElementById("select-all-btn").style.display = "none";
+				document.getElementById("admin-table-body").innerHTML =
+					'<tr><td colspan="6" style="text-align: center;">Nothing to display here.</td></tr>';
+				return;
+			}
+
 			var info = JSON.parse(xhr.responseText);
-			var curr_user = info.curr_user;
 			users = info.users;
 			num_users = info.num_users;
 			var t_body = document.getElementById("admin-table-body");
@@ -42,6 +51,7 @@ if(xhr) {
 			for(var i = 0; i < num_users; ++i) {
 				row = document.createElement("tr");
 				row.setAttribute("onclick", "clickedRowFunction(this)");
+				row.setAttribute("style", "opacity: 0");
 				row.innerHTML = 
 					'<input type="hidden" value="' + users[i].id + '" />' +
 					"<td>" + users[i].f_name + "</td>" +
@@ -50,8 +60,11 @@ if(xhr) {
 					"<td>" + users[i].college + "</td>" +
 					"<td>" + users[i].sex + "</td>" +
 					"<td>" + users[i].age + "</td>" +
-					'<input type="hidden" value="' + users[i].profile_img + '" />';
-				t_body.appendChild(row);
+					'<input type="hidden" value="' + users[i].profile_img + '" />' +
+					'<input type="hidden" value="' + users[i].state + '" />';
+				t_body.insertBefore(row, t_body.childNodes[0]);
+
+				window.setTimeout(showRow.bind(null, row), i * 50);
 			}
 
 			sortAdminTable(document.getElementById("admin-table-headers").children[0], 0);
@@ -63,6 +76,8 @@ if(xhr) {
 	xhr.send(params);
 }
 else alert("Unable to communicate to the server. Try reloading the page.");
+
+function showRow(row) { row.style.opacity = 1; }
 
 function sortAdminTable(header, n) {
 	var theaders = document.getElementById("admin-table-headers").children;
@@ -170,6 +185,7 @@ function toggleSelectMode(button) {
 	}
 	else button.innerHTML = "Unselect Rows";
 
+	document.getElementById("select-all-btn").style.display = "inline-block";
 	button.blur();
 }
 
@@ -185,28 +201,31 @@ function viewUserInfo(row) {
 }
 
 function clickedRowFunction(row) {
+	//if row is disselected
 	if(row.classList.contains("active") && active_rows_num == 1) {
 		document.getElementById("user-info-panel").style.display = "none";
 		row.classList.remove("active");
 		--active_rows_num;
 	}
+	//if multiple rows selection is activated
 	else if(selectMode == true) {
 		document.getElementById("user-info-panel").style.display = "none";
 		if(row.classList.toggle("active")) {
 			++active_rows_num;
 			if(active_rows_num == 1) viewUserInfo(row);
 		}
-		else if(active_rows_num == 2) {
-			var rows = row.parentNode.children;
-			for(var i = 0; i < rows.length; ++i) {
-				if(rows[i].classList.contains("active")) break;
+		else {
+			if(active_rows_num == 2) {
+				var rows = row.parentNode.children;
+				for(var i = 0; i < rows.length; ++i) {
+					if(rows[i].classList.contains("active")) break;
+				}
+				viewUserInfo(rows[i]);
 			}
-			viewUserInfo(rows[i]);
 			--active_rows_num;
 		}
-
-		
 	}
+	//if no rows are selected
 	else {
 		if(!row.classList.contains("active")) {
 			clearActiveRows();
@@ -218,17 +237,31 @@ function clickedRowFunction(row) {
 		viewUserInfo(row);
 	}
 
-	document.getElementById("delete-btn").innerHTML = ((active_rows_num > 1)? "Delete Accounts" : "Delete Account");
+	var option_button = document.getElementById("activate-deactivate");
+	if(row.children[8].value == "1")
+		option_button.innerHTML = ((active_rows_num > 1)? "Deactivate Accounts" : "Deactivate Account");
+	else
+		option_button.innerHTML = ((active_rows_num > 1)? "Activate Accounts" : "Activate Account");
 	document.getElementById("row-options-panel").style.display = "block";
+
+	action = (row.children[8].value == "0")? 1 : 0;
 }
 
-function confirmDeletion() {
-	document.getElementById("num-users").innerHTML = active_rows_num + " user account" + ((active_rows_num > 1)? "s" : "");
-	$("#confirm-delete").modal("show");
+function confirmAction() {
+	var temp = active_rows_num + " user account" + ((active_rows_num > 1)? "s" : "");
+	if(action == 1) {
+		document.getElementById("confirmation-title").innerHTML = "Account Activation";
+		document.getElementById("confirmation-msg").innerHTML = "You're about to activate " + temp + ". Do you want to continue?";
+	}
+	else {
+		document.getElementById("confirmation-title").innerHTML = "Account deactivation";
+		document.getElementById("confirmation-msg").innerHTML = "You're about to deactivate " + temp + ". Do you want to continue?";
+	}
+	$("#confirm-modal").modal("show");
 }
 
-function deleteAccounts() {
-	params = "request-type=F-1";
+function activate_deactivate_accounts() {
+	params = "request-type=F-1&new-state=" + action;
 
 	var rows = document.getElementById("admin-table-body").children;
 	var idCounter = 0;
@@ -252,23 +285,56 @@ function deleteAccounts() {
 
 				if(xhr.responseText == "") {
 					rows = document.getElementById("admin-table-body");
-					for(var i = 0; i < rows.children.length; ++i) {
-						if(rows.children[i].classList.contains("active")) {
-							rows.removeChild(rows.childNodes[i]);
+					if(state == "2") {
+						for(var i = 0; i < rows.children.length; ++i) {
+							if(rows.children[i].classList.contains("active")) {
+								if(rows.children[i].children[8].value == "0") {
+									rows.children[i].className = "success";
+									rows.children[i].children[8].value = "1";
+								}
+								else {
+									rows.children[i].className = "danger";
+									rows.children[i].children[8].value = "0";
+								}
+							}
+						}
+					}
+					else {
+						for(var i = rows.children.length - 1; i >= 0; --i) {
+							if(rows.children[i].classList.contains("active")) {
+								rows.removeChild(rows.children[i]);
+							}
 						}
 					}
 
-					notif_img.src = "../img/check-icon.png";
-					notif_msg.innerHTML = "Selected users permanently deleted.";
+					if(action == 1) {
+						notif_img.src = "../img/check-icon.png";
+						notif_msg.innerHTML = "Selected user account" + ((active_rows_num > 1)? "s" : "") + " activated.";
+					}
+					else {
+						notif_img.src = "../img/info-icon.png";
+						notif_msg.innerHTML = "Selected user account" + ((active_rows_num > 1)? "s" : "") + " deactivated.";
+					}
 
-					var btn = document.getElementById("row-select-btn");
-					btn.innerHTML = "Select Multiple Rows";
-					btn.classList.remove("active");
-					selectMode = false;
+					if(rows.children.length == 0) {
+						document.getElementById("row-select-btn").style.display = "none";
+						document.getElementById("select-all-btn").style.display = "none";
+						document.getElementById("admin-table-body").innerHTML =
+							'<tr><td colspan="6" style="text-align: center;">Nothing to display here.</td></tr>';
+					}
+					else {
+						var btn = document.getElementById("row-select-btn");
+						btn.innerHTML = "Select Multiple Rows";
+						toggleSelectMode(btn);
+					}
+
+					active_rows_num = 0;
+					document.getElementById("row-options-panel").style.display = "none";
 				}
 				else {
+					console.log(xhr.responseText);
 					notif_img.src = "../img/error-icon.png";
-					notif_msg.innerHTML = "A server side error occured. Selection not deleted.";
+					notif_msg.innerHTML = "A server-side error occured. Selection not deleted.";
 				}
 
 				var notif = document.getElementById("notif-container");
@@ -289,5 +355,141 @@ function deleteAccounts() {
 	}
 	else alert("Unable to communicate to the server. Try reloading the page.");
 
-	$("#confirm-delete").modal("hide");
+	$("#confirm-modal").modal("hide");
+}
+
+function displayTable() {
+	var newState;
+	var states = document.getElementById("state-container").children;
+	for(var i = 0; i < states.length; ++i) {
+		if(states[i].firstChild.firstChild.checked == true) {
+			newState = states[i].firstChild.firstChild.value;
+			break;
+		}
+	}
+
+	if(newState != state) {
+		xhr = null;
+		params = "request-type=F-0&&state=" + newState;
+
+		if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
+		else xhr = new ActiveXObject("Microsoft.XMLHTTP");
+
+		if(xhr) {
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4 && xhr.status == 200) {
+					//if there are no rows retrieved
+					if(xhr.responseText == "") {
+						document.getElementById("row-select-btn").style.display = "none";
+						document.getElementById("select-all-btn").style.display = "none";
+						document.getElementById("admin-table-body").innerHTML =
+							'<tr><td colspan="6" style="text-align: center;">Nothing to display here.</td></tr>';
+						return;
+					}
+					else try {
+						info = JSON.parse(xhr.responseText);
+						users = info.users;
+						num_users = info.num_users;
+						state = newState;
+						active_rows_num = 0;
+
+						var t_body = document.getElementById("admin-table-body");
+						t_body.innerHTML = "";
+
+						var row;
+						for(var i = 0; i < num_users; ++i) {
+							row = document.createElement("tr");
+							row.setAttribute("onclick", "clickedRowFunction(this)");
+							row.setAttribute("style", "opacity: 0");
+							row.innerHTML = 
+								'<input type="hidden" value="' + users[i].id + '" />' +
+								"<td>" + users[i].f_name + "</td>" +
+								"<td>" + users[i].m_name + "</td>" +
+								"<td>" + users[i].l_name + "</td>" +
+								"<td>" + users[i].college + "</td>" +
+								"<td>" + users[i].sex + "</td>" +
+								"<td>" + users[i].age + "</td>" +
+								'<input type="hidden" value="' + users[i].profile_img + '" />' +
+								'<input type="hidden" value="' + users[i].state + '" />';
+							t_body.insertBefore(row, t_body.children[0]);
+
+							if(state == "2")
+								row.classList.add(((users[i].state == 0)? "danger" : "success"));
+
+							window.setTimeout(showRow.bind(null, row), i * 50);
+						}
+
+						sortAdminTable(document.getElementById("admin-table-headers").children[0], 0);
+
+						var table_description = document.getElementById("table-description");
+						if(state == "2") {
+							table_description.innerHTML = 'ACTIVE AND INACTIVE ACCOUNTS';
+							document.getElementById("row-select-btn").disabled = true;
+						}
+						else {
+							if(state == "0")
+								table_description.innerHTML = 'INACTIVE ACCOUNTS';
+							else if(state == "1")
+								table_description.innerHTML = 'ACTIVE ACCOUNTS';
+
+							document.getElementById("row-select-btn").style.display = "inline-block";
+							document.getElementById("select-all-btn").style.display = "inline-block";
+						}
+					}
+					catch(e) {
+						console.log(xhr.responseText);
+					}
+
+					displayColumns();
+				}
+			}
+
+			xhr.open("POST", url, true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.send(params);
+		}
+		else alert("Unable to communicate to the server. Try reloading the page.");
+	}
+	else displayColumns();
+}
+
+function displayColumns() {
+	var theaders = document.getElementById("admin-table-headers").children;
+	table = document.getElementById("admin-table-body").children;
+
+	theaders[0].style.display = (document.getElementById("fname-attr").checked)? "table-cell" : "none";
+	theaders[1].style.display = (document.getElementById("mname-attr").checked)? "table-cell" : "none";
+	theaders[2].style.display = (document.getElementById("lname-attr").checked)? "table-cell" : "none";
+	theaders[3].style.display = (document.getElementById("college-attr").checked)? "table-cell" : "none";
+	theaders[4].style.display = (document.getElementById("gender-attr").checked)? "table-cell" : "none";
+	theaders[5].style.display = (document.getElementById("age-attr").checked)? "table-cell" : "none";
+
+	for(var i = table.length - 1; i >= 0; --i) {
+		table[i].children[1].style.display = (document.getElementById("fname-attr").checked)? "table-cell" : "none";
+		table[i].children[2].style.display = (document.getElementById("mname-attr").checked)? "table-cell" : "none";
+		table[i].children[3].style.display = (document.getElementById("lname-attr").checked)? "table-cell" : "none";
+		table[i].children[4].style.display = (document.getElementById("college-attr").checked)? "table-cell" : "none";
+		table[i].children[5].style.display = (document.getElementById("gender-attr").checked)? "table-cell" : "none";
+		table[i].children[6].style.display = (document.getElementById("age-attr").checked)? "table-cell" : "none";
+	}
+}
+
+function selectAllRows(button) {
+	table = document.getElementById("admin-table-body").children;
+	console.log(table);
+	clearActiveRows();
+
+	selectMode = true;
+
+	var btn1 = document.getElementById("row-select-btn");
+	if(btn1.classList.add("active")) {
+		btn1.innerHTML = "Select Multiple Rows";
+		clearActiveRows();
+	}
+	else btn1.innerHTML = "Unselect Rows";
+
+	for(var i = 0; i < table.length; ++i)
+		clickedRowFunction(table[i]);
+
+	button.style.display = "none";
 }

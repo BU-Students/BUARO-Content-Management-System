@@ -1,0 +1,90 @@
+/* Style the list */
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
+.purpose {
+    margin-top:  10px;
+    margin-bottom: 10px;
+    padding: 15px;
+    width: 100%;
+    height: 200px;
+    border: 34px navy blue;
+    border-style: groove;
+    background-color: #ccccb3;
+    color:black;
+    font-family: "Raleway", Helvetica, Arial, sans-serif;
+
+}
+
+p.purpose {
+    margin: 35px 0;
+    font-size: 26px;
+  }
+
+h2.purpose {
+    font-size: 50px;
+    height: 10px;
+
+
+}
+
+.form{
+    border: 34px navy blue;
+    border-style: groove;
+}
+
+.btn {
+  background-color: #199EB8;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  color: #fff;
+  padding: 15px 45px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+
+.btn:hover {
+  background-color: #E04F00;
+  color: #fff;
+}
+
+.btn:focus {
+  color: #fff;
+}
+
+.btn-ghost {
+  border: 3px solid #fff;
+  background-color: transparent;
+}
+
+.btn-ghost:hover {
+  background-color: #fff;
+  color: #199EB8;
+}

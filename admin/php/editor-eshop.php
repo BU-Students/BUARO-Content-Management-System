@@ -18,7 +18,7 @@ if(!isset($_SESSION['id'])) {
         <title>Markdown Editor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="../../vendor/Bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../vendor/SimpleMDE/dist/simplemde.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
 
