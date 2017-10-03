@@ -75,7 +75,7 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`admin_id`, `admin_type`, `address`, `college`, `first_name`, `middle_name`, `last_name`, `sex`, `contact_no`, `bdate`, `email`, `username`, `password`, `profile_img`, `cover_photo`) VALUES
+INSERT INTO `admin` (`admin_id`, `admin_type`, `address`, `college`, `first_name`, `middle_name`, `last_name`, `sex`, `contact_no`, `bdate`, `email`, `username`, `password`, `profile_img`, `cover_photo`, `state`) VALUES
 (1, 1, 1, NULL, 'Fname0', 'Mname0', 'Lname0', 0, '09772044506', '1998-12-30', '0@example.com', 'user0', '754ea1d0fb21a2ba706619100e60061c', NULL, NULL, 1),
 (12, 2, 2, 3, 'Fname1', 'Mnme1', 'Lname1', 0, NULL, '2017-09-04', NULL, 'user1', '87f5e873e4cc3ebaed6f289303417020', NULL, NULL, 1),
 (13, 2, 3, 7, 'Fname2', 'Mname2', 'Lname2', 0, NULL, '2017-09-25', '2@example.com', 'user2', 'ee262c7610a18ee3babfa4e36ade34a3', NULL, NULL, 1),

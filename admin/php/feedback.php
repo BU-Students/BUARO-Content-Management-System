@@ -2,6 +2,7 @@
 
 if(session_status() == PHP_SESSION_NONE)
 	session_start();
+
 //if user attemps to access this page without authentication
 if(!isset($_SESSION['id'])) {
 	$_SESSION['error_msg'] = "Please log in first to continue";
@@ -34,6 +35,8 @@ function filterTable($query)
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -46,6 +49,32 @@ function filterTable($query)
 		<link rel="stylesheet" href="../css/stories.css" />
 		<link rel="stylesheet" href="../css/modal.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
+
+		<!-- table css -->
+		 <style> 
+           table {
+			    width:90%;
+			    margin-left: 15px;
+			}
+			table, th, td {
+			    border: 1px solid black;
+			    border-collapse: collapse;
+			}
+			th, td {
+			    padding: 5px;
+			    text-align: left;
+			}
+			table#t01 tr:nth-child(even) {
+			    background-color: #eee;
+			}
+			table#t01 tr:nth-child(odd) {
+			   background-color:#fff;
+			}
+			table#t01 th {
+			    background-color: black;
+			    color: white;
+			}
+        </style>
 	</head>
 	<style>
 		form { margin: 20px; }
@@ -60,6 +89,7 @@ function filterTable($query)
 		<?php
 			require_once "topbar.php";
 			require_once "sidebar.php";
+
 		?>
 
 		<!-- page content here -->

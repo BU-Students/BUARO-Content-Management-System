@@ -33,7 +33,7 @@
 			<div class="w3-container w3-padding-jumbo">
 				<ul class="breadcrumb">
 				  <li><a href="aro3.php">Home</a></li>
-				  <li>Recent Events</li>
+				  <li>Recent Events || <a href="#" onclick="loadStories()">Stories</a></li>
 				</ul>
 				<?php
 					$parsedown = new Parsedown();
@@ -50,7 +50,7 @@
 						}
 
 						echo '
-						<div class = "pic" onclick="viewStory('.$row['post_id'].')">
+						<div class = "pic" onclick="viewEvent('.$row['post_id'].')">
 							<h4><b>Event Date: '.date("M d, Y",strtotime($row['eventdate'])).'</b></h4>						
 							<h3 class="title">'.$row['title'].'</h3>	
 							<img src="'.$row['imgbanner'].'" alt = "Avatar">		

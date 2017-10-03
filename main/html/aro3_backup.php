@@ -40,10 +40,11 @@ function type_of_event($inp) {
 			<ul class="w3-topnav w3-theme">
 				<li><a href="#home" id="tab" style="color: rgb(255, 152, 0);">Home</a></li>
 				<li><a href="#shop" id="tab">E-shop Souvenirs and Memorabilia</a></li>
-				<li><a href=".donate.php" id="tab">Donation Link</a></li>
+				<li><a href="" id="tab">Donation Link</a></li>
 				<li><a href="#unit" id="tab">UNIT/College</a></li>
 				<li><a href="" id="tab">BU Alumni Coordinators</a></li>
-				<li><a href="#stories" id="tab">BU Alumni Stories and Events</a></li>
+				<li><a href="#stories" id="tab">BU Alumni Stories</a></li>
+				<li><a href="#events" id="tab">BUARO Events</a></li>
 				<li><a href="#about" id="tab">About BUARO</a></li>
 				<li><a href=".contact.php" id="tab">Contact Us</a></li>
 			</ul>
@@ -60,135 +61,19 @@ function type_of_event($inp) {
 				<div id="middle">
 					<figure>
 						<?php
-							$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND ((imgbanner IS NOT NULL) AND (imgbanner!='none') AND (imgbanner!='')) ORDER BY eventdate DESC LIMIT 5";
+							$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND imgbanner IS NOT NULL AND imgbanner!='none' ORDER BY eventdate DESC LIMIT 5";
 							$exec_upcoming = $con->query($upcoming_sql);
 
-							$num_of_imgs = mysqli_num_rows($exec_upcoming);
-
-							if ($num_of_imgs > 4) {
-								while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
-									$get = $img_upcoming['imgbanner'];
-									$title = $img_upcoming['title'];
-									$date = $img_upcoming['eventdate']; 
-									echo "
-										<div class='slides'>
-											<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-											<img src='".$get."'>
-										</div>
-									";
-								}
-							} else {
-								switch ($num_of_imgs) {
-									case 4:
-										$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND ((imgbanner IS NOT NULL) AND (imgbanner!='none') AND (imgbanner!='')) ORDER BY eventdate DESC LIMIT 4";
-										$exec_upcoming4 = $con->query($upcoming_sql);
-
-										while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
-											$get = $img_upcoming['imgbanner'];
-											$title = $img_upcoming['title'];
-											$date = $img_upcoming['eventdate'];
-											echo "
-												<div class='slides'>
-													<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-													<img src='".$get."'>
-												</div>
-											";
-											}
-											$f_arr = $exec_upcoming4->fetch_assoc();
-											$get = $f_arr['imgbanner'];
-											$title = $f_arr['title'];
-											$date = $f_arr['eventdate'];
-											echo "
-												<div class='slides'>
-													<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-													<img src='".$get."'>
-												</div>
-											";
-
-										break;
-									case 3:
-										$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND ((imgbanner IS NOT NULL) AND (imgbanner!='none') AND (imgbanner!='')) ORDER BY eventdate DESC LIMIT 3";
-										$exec_upcoming3 = $con->query($upcoming_sql);
-
-										while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
-											$get = $img_upcoming['imgbanner'];
-											$title = $img_upcoming['title'];
-											$date = $img_upcoming['eventdate'];
-											echo "
-												<div class='slides'>
-													<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-													<img src='".$get."'>
-												</div>
-											";
-											}
-											$f_arr = $exec_upcoming3->fetch_assoc();
-											$get = $f_arr['imgbanner'];
-											$title = $f_arr['title'];
-											$date = $f_arr['eventdate'];
-
-											for ($j=0; $j < 2; $j++) { 
-												echo "
-													<div class='slides'>
-														<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-														<img src='".$get."'>
-													</div>
-												";
-											}
-										break;
-
-									case 2:
-										$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND ((imgbanner IS NOT NULL) AND (imgbanner!='none') AND (imgbanner!='')) ORDER BY eventdate DESC LIMIT 2";
-										$exec_upcoming2 = $con->query($upcoming_sql);
-
-										while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
-											$get = $img_upcoming['imgbanner'];
-											$title = $img_upcoming['title'];
-											$date = $img_upcoming['eventdate'];
-											echo "
-												<div class='slides'>
-													<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-													<img src='".$get."'>
-												</div>
-											";
-											}
-											$f_arr = $exec_upcoming2->fetch_assoc();
-											$get = $f_arr['imgbanner'];
-											$title = $f_arr['title'];
-											$date = $f_arr['eventdate'];
-											for ($j=0; $j < 3; $j++) { 
-												echo "
-													<div class='slides'>
-														<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-														<img src='".$get."'>
-													</div>
-												";
-											}
-			
-										break;
-
-										case 1:
-											$upcoming_sql = "SELECT title,eventdate,imgbanner FROM post WHERE post_type=2 AND ((imgbanner IS NOT NULL) AND (imgbanner!='none') AND (imgbanner!='')) ORDER BY eventdate DESC LIMIT 1";
-											$exec_upcoming = $con->query($upcoming_sql);
-
-											$f_arr = $exec_upcoming->fetch_assoc();
-
-											$get = $f_arr['imgbanner'];
-											$title = $f_arr['title'];
-											$date = $f_arr['eventdate'];
-											for ($j=0; $j < 5; $j++) { 
-												echo "
-													<div class='slides'>
-														<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
-														<img src='".$get."'>
-													</div>
-												";
-											}
-											break;
-									
-									default:
-										# code...
-										break;
-								}
+							while ($img_upcoming = $exec_upcoming->fetch_assoc()) {
+								$get = $img_upcoming['imgbanner'];
+								$title = $img_upcoming['title'];
+								$date = $img_upcoming['eventdate']; 
+								echo "
+									<div class='slides'>
+										<center><p style='color:#CCCCCC;text-transform:uppercase; font-size:25px;'>".$title."<br><br><br>Event Date:<br><span style='color:#FFCC00;'>".date('F, j, Y',strtotime($date))."</span></p></center>
+										<img src='".$get."'>
+									</div>
+								";
 							}
 						?>
 					</figure>
@@ -199,24 +84,16 @@ function type_of_event($inp) {
 			<div class="w3-container w3-padding-jumbo" style="height: 100%;">
 																							<!--  I  N  T  R  O  D  U  C  T  I  O  N  -->
 				<?php 
-					$sql = "SELECT title,content,post_type,imgbanner,timestamp FROM post ORDER BY timestamp DESC LIMIT 1";
+					$sql = "SELECT title,content,post_type,timestamp FROM post ORDER BY timestamp DESC LIMIT 1";
 					$exec = $con->query($sql);
 					$fetch = $exec->fetch_assoc();
 
 					$post_type = type_of_event($fetch['post_type']);
 
-					if (is_null($fetch['imgbanner']) || $fetch['imgbanner'] == '' || $fetch['imgbanner'] == 'none') {
-						$bnr = '';
-					} else {
-						$bnr = '<div class="w3-center" style="padding:0;margin:0;height:200px;background-image:url('.'\''.$fetch['imgbanner'].'\''.'); background-size: cover; background-position:center;">
-					  									</div>';
-					}
-
 					echo "<h1 class='title'>".$fetch['title']."</h1>";
 					echo "<hr>";
 					echo '<h5 style="margin: 0;padding: 0; font-size: 11px;"><i>Published: '.$fetch['timestamp'].'</i></h5>';
-					echo "<h5 style='color:#ff9800;'>".$post_type."</h5>";
-					echo $bnr;
+					echo "<h5>".$post_type."</h5>";
 					echo "
 						<ol type='a' class='w3-leftbar w3-theme-border' style='list-style-type:none;'>
 							<li>".decode($fetch['content'])."</li>
@@ -298,7 +175,7 @@ function type_of_event($inp) {
 					if (is_null($banner) || $banner=="none") {
 						$databanner = '';
 					} else {
-						$databanner = '<div class="w3-center" style="padding:0;margin:0;height:300px;background-image:url('.'\''.$banner.'\''.'); background-size: cover; background-position:center;">
+						$databanner = '<div class="w3-center" style="padding:0;margin:0;height:300px;background-image:url('.'\'../admin/img/'.$banner.'\''.'); background-size: cover; background-position:center;">
 					  									</div>';
 					}
 
@@ -358,10 +235,10 @@ function type_of_event($inp) {
 					while ($images = $exec->fetch_assoc()) {
 						$path = $images['img_path'];
 
-						if (empty($path) || is_null($path) || $path == '') {
-							echo "<img class='mySlides w3-animate-opacity' src='../img/img35.jpg'>";
+						if (empty($path)) {
+							//Do nothing
 						} else {
-							echo "<img class='mySlides w3-animate-opacity' src='".$path."'>";
+							echo "<img class='mySlides w3-animate-opacity' src='../img/img35.jpg'>";
 						}
 					}
 
@@ -370,7 +247,6 @@ function type_of_event($inp) {
 
 				<a class="w3-btn-floating w3-hover-dark-grey" style="position:absolute;top:45%;left:-20px;" onclick="plusDivs(-1)">&#10094;</a>
 				<a class="w3-btn-floating w3-hover-dark-grey" style="position:absolute;top:45%;right:-20px;" onclick="plusDivs(+1)">&#10095;</a>
-				<br><br>
 			</div>
 		</div>
 
