@@ -43,8 +43,7 @@ function type_of_event($inp) {
 				<li><a href=".donate.php" id="tab">Donation Link</a></li>
 				<li><a href="#unit" id="tab">UNIT/College</a></li>
 				<li><a href="" id="tab">BU Alumni Coordinators</a></li>
-				<li><a href="#stories" id="tab">BU Alumni Stories</a></li>
-				<li><a href="#events" id="tab">BUARO Events</a></li>
+				<li><a href="#stories" id="tab">BU Alumni Stories and Events</a></li>
 				<li><a href="#about" id="tab">About BUARO</a></li>
 				<li><a href=".contact.php" id="tab">Contact Us</a></li>
 			</ul>
@@ -371,6 +370,7 @@ function type_of_event($inp) {
 
 				<a class="w3-btn-floating w3-hover-dark-grey" style="position:absolute;top:45%;left:-20px;" onclick="plusDivs(-1)">&#10094;</a>
 				<a class="w3-btn-floating w3-hover-dark-grey" style="position:absolute;top:45%;right:-20px;" onclick="plusDivs(+1)">&#10095;</a>
+				<br><br>
 			</div>
 		</div>
 
