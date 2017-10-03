@@ -18,18 +18,15 @@
 	<link rel="stylesheet" type="text/css" href="../css/style-Donate.css">
 	<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-		
-
 </head>
 <body>
-	<nav class="w3-sidenav w3-collapse w3-white w3-animate-left w3-card-2" id="sidebar"> 	<!-- S I D E B A R -->
+	<nav class="w3-sidenav w3-collapse w3-white w3-card-2" id="sidebar"> 	<!-- S I D E B A R -->
 
  		<a href="http://bualumnirelations@bicol-u.edu.ph" class="w3-large" id="top-sidebar">
  		<img src="../img/bulogo.png"></a>
- 		<a href="javascript:void(0)" onclick="w3_close()" class="w3-hide-large w3-closenav w3-large">Close &nbsp;&nbsp;&nbsp;&times;</a>
- 		<a href=".aro.html" class="w3-light-grey w3-medium">Home</a>	
+ 		<a href="aro3.php" class="side">Home</a>	
 		<a href="e-shop.php" class="side">E-shop for Souvenirs and Memorabilia</a>	
-		<a href=".donate.html" class="side" style="background-color: #ababab;">Donation Link</a>		
+		<a href=".donate.php" class="side" style="background-color: #ababab;">Donation Link</a>		
 		<a href="javascript:void(0)" class="side" onclick="myFunc('side')">UNIT/College <i class="fa fa-caret-down"></i></a>
 			<div id="side" class="w3-accordion-content w3-animate-left w3-padding">
 				<a href=".ce.html">College of Education</a>
@@ -44,9 +41,9 @@
         		<a href=".cm.html">College of Medicine</a>
         		<a href=".cssp.html">College of Social Science and Philosophy</a>
         	</div>
-		<a href="eventstory.php" class="side">Events/Stories</a>
+		<a href="eventstory.php" class="side">BU Alumni Stories/Events</a>
 		<a href=".about.html" class="side">About BUARO</a>
-		<a href=".contact.html" class="side">Contact Us</a>
+		<a href=".contact.php" class="side">Contact Us</a>
 	</nav>
 
 	<div class="w3-overlay w3-hide-large" onclick="w3_close()" id="close"></div>
@@ -54,21 +51,16 @@
 	<div class="w3-main">											<!--  T  H  E     M  A  I  N     B  O  D  Y  -->
 
 		<div id="topbar">
-			<h4 id="topbar1">Donation Link</h4>
-			<a id="toggle" class="w3-hover-black w3-opennav" href="javascript:void(0)" onclick="w3_open()">&#9776;</a>
+			<h4 id="topbar1">
+				<a href="aro3.php">Home</a>
+				<a href=".donate.php">/ Donation Link</a>
+			</h4>
+			<a id="toggle" class="w3-opennav" href="javascript:void(0)" onclick="w3_open()">&#9776;</a>
 		</div>
-
-		<header class="w3-container w3-theme w3-padding-32 w3-padding-jumbo">
-			<img src="../img/logo.gif" id="aro_logo">
-			<h1 class="w3-xxxlarge w3-padding-16 w3-animate-bottom"><span class="highlight">A</span>lumni <span class="highlight">R</span>elations <span class="highlight">O</span>ffice</h1>
-		</header>
 		
 		<div>												<!--  T  H  E     C  O  N  T  E  N  T  -->
+			<br><br><br>
 			<div class="w3-container w3-padding-jumbo">
-				<ul class="breadcrumb">
-				  <li><a href="aro3.php">Home</a></li>
-				  <li><a href=".donate.php">Donate</a></li>
-				</ul>
 			<div class=" w3-center">	
 					<?php
 					$parsedown = new Parsedown();
@@ -91,22 +83,24 @@
 					}
 				?>
 
-				<iframe class="form" width="600" height="200" src="../../data/donation/PLEDGE FORM.pdf"></iframe><br>
-				 <a href="../../data/donation/PLEDGE FORM.pdf" download="../../data/donation/PLEDGE FORM.pdf">
-				 	<button  class="btn btn-full"  style="vertical-align:middle " ><span>DOWNLOAD FORM HERE</span></button>
-				</a>
-				<br>
+				<iframe class="form" width="700" height="400" src="../../data/donation/PLEDGE FORM.pdf"></iframe><br>
+				 <a href="../../data/donation/PLEDGE FORM.pdf" download="../../data/donation/PLEDGE FORM.pdf">	<button  class="w3-btn btn-full"  style="vertical-align:middle " ><span>DOWNLOAD FORM HERE</span></button></a><br>
 				</div>
 			</div>	
-
-
-			<footer>											<!--  F  O  O  T  E  R  -->
+			<footer style="margin-top: 150px;">											<!--  F  O  O  T  E  R  -->
 				<div id="bot">
 					<h5 class="foot">Copyright &copy;2017.  All Rights Reserved</h5>
 				</div>
 			</footer>
 		</div>
 	</div>
+<style>
+	@media (max-width: 768px){
+		iframe{
+			width: 250px;
+		}
+	}
+</style>
 
 <script type="text/javascript" src="../js/js_1.js" ></script>
 <script type="text/javascript" src="../js/js_2.js"></script>

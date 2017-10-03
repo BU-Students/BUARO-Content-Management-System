@@ -2,7 +2,6 @@ document.getElementById("story-event-tab").classList.add("active");
 $('textarea').each(function() {
     var simplemde = new SimpleMDE({
         element: this,
-        forceSync: true
     });
     simplemde.render(); 
 });
@@ -55,3 +54,5 @@ function endis2(val){
        var num = val;
        document.getElementById("endis-"+num).disabled = true;
 }
+
+    

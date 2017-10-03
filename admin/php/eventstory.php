@@ -78,7 +78,8 @@ require_once "../../vendor/Parsedown/Parsedown.php";
 		<script src="../js/eventstory-stories.js"></script>
 		<script src="../js/eventstory-events.js"></script>
 		<script src="../js/editor-event.js"></script>
-		<script src="../js/eventstory-pagination.js"></script>
-		<script src="../js/eventstory-reports.js"></script>
+		<script>
+		var simplemde2 = new SimpleMDE({ element: document.getElementById("textarea2-31") });
+		</script>
 	</body>
 </html>

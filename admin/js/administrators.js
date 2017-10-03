@@ -309,11 +309,11 @@ function activate_deactivate_accounts() {
 
 					if(action == 1) {
 						notif_img.src = "../img/check-icon.png";
-						notif_msg.innerHTML = "Selected user account" + ((active_rows_num > 1)? "s were" : " has been") + " activated.";
+						notif_msg.innerHTML = "Selected user account" + ((active_rows_num > 1)? "s" : "") + " activated.";
 					}
 					else {
 						notif_img.src = "../img/info-icon.png";
-						notif_msg.innerHTML = "Selected user account" + ((active_rows_num > 1)? "s were" : " has been") + " deactivated.";
+						notif_msg.innerHTML = "Selected user account" + ((active_rows_num > 1)? "s" : "") + " deactivated.";
 					}
 
 					if(rows.children.length == 0) {
@@ -422,16 +422,9 @@ function displayTable() {
 						sortAdminTable(document.getElementById("admin-table-headers").children[0], 0);
 
 						var table_description = document.getElementById("table-description");
-						var row_select = document.getElementById("row-select-btn");
-						var select_all = document.getElementById("select-all-btn");
-
 						if(state == "2") {
 							table_description.innerHTML = 'ACTIVE AND INACTIVE ACCOUNTS';
-							row_select.disabled = true;
-							row_select.classList.remove("active");
-							row_select.innerHTML = "Select Multiple Rows";
-							select_all.disabled = true;
-							selectMode = false;
+							document.getElementById("row-select-btn").disabled = true;
 						}
 						else {
 							if(state == "0")
@@ -439,11 +432,8 @@ function displayTable() {
 							else if(state == "1")
 								table_description.innerHTML = 'ACTIVE ACCOUNTS';
 
-
-							row_select.disabled = false;
-							row_select.style.display = "inline-block";
-							select_all.disabled = false;
-							select_all.style.display = "inline-block";
+							document.getElementById("row-select-btn").style.display = "inline-block";
+							document.getElementById("select-all-btn").style.display = "inline-block";
 						}
 					}
 					catch(e) {

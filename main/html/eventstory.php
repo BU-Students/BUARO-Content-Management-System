@@ -9,12 +9,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>BU | Alumni Relations Office</title>
 	<link rel="stylesheet" href="../css/w3.css">
-	<link rel="stylesheet" href="../css/w3-theme-teal.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	<link rel="stylesheet" type="text/css" href="../css/e-shop_style.css">
 	<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/story.css">
 	<link rel="stylesheet" type="text/css" href="../css/eventstory-carousel.css">
 	<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
 	<script src="../../vendor/jQuery/jquery-3.2.1.min.js"></script>
@@ -23,13 +20,20 @@
 	<script type="text/javascript" src="userendpages/loadjs/loadEvent.js"></script>
 	<script type="text/javascript" src="userendpages/loadjs/loadStory.js"></script>
 </head>
+<style>
+	@media (max-width: 768px){
+		footer{
+			margin-right: -130px;
+		}
+	}
+</style>
 <body>
-	<nav class="w3-sidenav w3-collapse w3-white w3-animate-left w3-card-8" id="sidebar"> 	<!-- S I D E B A R -->
+	<nav class="w3-sidenav w3-collapse w3-white w3-animate-left w3-card-8" id="sidebar" style="width: 0px;"> 	<!-- S I D E B A R -->
 
  		<a href="http://bualumnirelations@bicol-u.edu.ph" class="w3-large" id="top-sidebar">
  		<img src="../img/bulogo.png"></a>
- 		<a href="javascript:void(0)" onclick="w3_close()" class="w3-hide-large w3-closenav w3-large">Close &nbsp;&nbsp;&nbsp;&times;</a>
- 		<a href="aro3.php" class="w3-light-grey w3-medium">Home</a>	
+ 		<a href="javascript:void(0)" onclick="w3_close()" class="w3-closenav" style="float:right;" style="text-decoration: none;">&times;</a>
+ 		<a href="aro3.php" class="w3-light-grey w3-medium">Home</a>
 		<a href="e-shop.php" class="side">E-shop for Souvenirs and Memorabilla</a>	
 		<a href=".donate.php" class="side">Donation Link</a>
 		<a href="javascript:void(0)" class="side" onclick="myFunc('side')">UNIT/College <i class="fa fa-caret-down"></i></a>
@@ -45,9 +49,8 @@
        			<a href=".cn.html">College of Nursing</a>
         		<a href=".cm.html">College of Medicine</a>
         		<a href=".cssp.html">College of Social Science and Philosophy</a>
-        	</div>
-		<a href="#" class="side" onclick="loadStories()">BU Alumni Stories</a>		
-		<a href="javascript:void(0)" class="side" onclick="myFunc('side1')">BUARO Events<i class="fa fa-caret-down"></i></a>
+        	</div>		
+		<a href="javascript:void(0)" class="side" onclick="myFunc('side1')">BU Alumni Stories/Events<i class="fa fa-caret-down"></i></a>
 			<div id="side1" class="w3-accordion-content w3-animate-left w3-padding">
 				<label>Upcoming Events</label>
 				<?php
@@ -63,23 +66,13 @@
 				<label>Other</label>
 				<a href="#" onclick="loadRecent()">Recent Events</a> 
 			</div>	
-		<a href="#" class="side testbtn" id="about" onclick="loadAbout()">About BUARO</a>
+		<a href=".about.html" class="side testbtn" id="about" onclick="loadAbout()">About BUARO</a>
 		<a href=".contact.php" class="side">Contact Us</a>
 	</nav>
 
 	<div class="w3-overlay w3-hide-large" onclick="w3_close()" id="close"></div>
 
-	<div class="w3-main">											<!--  T  H  E     M  A  I  N     B  O  D  Y  -->
-
-		<div id="topbar" style="z-index: 100;">
-			<h4 id="topbar1">Souvenirs and Memorabilla</h4>
-			<a id="toggle" class="w3-hover-black w3-opennav" href="javascript:void(0)" onclick="w3_open()">&#9776;</a>
-		</div>
-
-		<header class="w3-container w3-theme w3-padding-64 w3-padding-jumbo">
-			<img src="../img/logo.gif" id="aro_logo">
-			<h1 class="w3-xxxlarge w3-padding-16 w3-animate-bottom"><span class="highlight">A</span>lumni <span class="highlight">R</span>elations <span class="highlight">O</span>ffice</h1>
-		</header>
+	<div id="main" class="w3-container">											<!--  T  H  E     M  A  I  N     B  O  D  Y  -->
 																<!-- T H E  C O N T E N T -->
 				<div id="content">
 					<?php include_once 'userendpages/.arohome.php';?>
@@ -92,10 +85,6 @@
 			</footer>
 		</div>
 
-<script src="js/js_1.js"></script>
-<script src="js/js_2.js"></script>
-<script src="js/js_3.js"></script>
-<script src="js/js_4.js"></script>
 <script>
 function loadRecent() {
   var xhttp = new XMLHttpRequest();

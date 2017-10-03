@@ -27,10 +27,23 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
+.body{
+	min-width: 300px;
+	margin-top: 20px;
+	border-radius: 10px;
+	border: 2px solid #f2f2f2;
+}
+
 .container {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
+}
+
+@media (max-width: 380px){
+	.body{
+		margin-left: -55px;
+	}
 }
 </style>
 
@@ -44,14 +57,13 @@ input[type=submit]:hover {
 	<link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
-	<nav class="w3-sidenav w3-collapse w3-white w3-card-2" id="sidebar"> 	<!-- S I D E B A R -->
+	<nav class="w3-sidenav w3-collapse w3-white w3-card-2" id="sidebar">	<!-- S I D E B A R -->
 
  		<a href="http://bualumnirelations@bicol-u.edu.ph" class="w3-large" id="top-sidebar">
  		<img src="../img/bulogo.png"></a>
- 		<a href="javascript:void(0)" onclick="w3_close()" class="w3-hide-large w3-closenav w3-large">Close &nbsp;&nbsp;&nbsp;&times;</a>
  		<a href="aro3.php" class="w3-light-grey w3-medium">Home</a>
 		<a href="e-shop.php" class="side">E-shop for Souvenirs and Memorabilla</a>	
-		<a href="#" class="side">Donation Link</a>		
+		<a href=".donate.php" class="side">Donation Link</a>		
 		<a href="javascript:void(0)" class="side" onclick="myFunc('side')">UNIT/College <i class="fa fa-caret-down"></i></a>
 			<div id="side" class="w3-accordion-content w3-animate-left w3-padding">
 				<a href=".ce.html">College of Education</a>
@@ -66,7 +78,7 @@ input[type=submit]:hover {
         		<a href=".cm.html">College of Medicine</a>
         		<a href=".cssp.html">College of Social Science and Philosophy</a>
         	</div>
-		<a href="eventstory.php" class="side">BU Alumni Stories/Event</a>
+		<a href="eventstory.php" class="side">BU Alumni Stories/Events</a>
 		<a href=".about.html" class="side">About BUARO</a>
 		<a href=".contact.php" class="side" style="background-color: #ababab;">Contact Us</a>
 	</nav>
@@ -77,27 +89,25 @@ input[type=submit]:hover {
 
 		<div id="topbar">
 			<h4 id="topbar1">How to Contact Us</h4>
-			<a id="toggle" class="w3-hover-black w3-opennav" href="javascript:void(0)" onclick="w3_open()">&#9776;</a>
+			<a id="toggle" class="w3-opennav" href="javascript:void(0)" onclick="w3_open()">&#9776;</a>
 		</div>
-
-		<header class="w3-container w3-theme w3-padding-64 w3-padding-jumbo">
-			<img src="../img/logo.gif" id="aro_logo">
-			<h1 class="w3-xxxlarge w3-padding-16 w3-animate-bottom"><span class="highlight">A</span>lumni <span class="highlight">R</span>elations <span class="highlight">O</span>ffice</h1>
-		</header>
 		
 		<div>												<!--  T  H  E     C  O  N  T  E  N  T  -->
-			<div class="w3-container w3-padding-jumbo" style="background-image: url('../img/BU.jpg'); background-size: 100%; background-repeat: no-repeat;">					
-				<h1 class="title">Contact Us</h1><br>
-				<h5>BUREPC Building</h5>
-				<h5>Bicol University</h5>
-				<h5>Legazpi City, Philippines</h5>
-				<h5>Email: <a href="bualumnirelations@bicol-u.edu.ph">bualumnirelations@bicol-u.edu.ph</a></h5>
-				<h5>(052) 480-01-79/(052) 483-45-88</h5>
-				<h5>Facebook Page <a href="http://wwww.facebook.com/BUAlumniRelations">http://wwww.facebook.com/BUAlumniRelations</a></h5>
-				<br/>
-
+			<br/>
+			<div class="w3-container w3-padding-jumbo">
+				<div class="body w3-padding-jumbo">
+					<h1 class="title">Contact Us</h1><br>
+					<h5>BUREPC Building</h5>
+					<h5>Bicol University</h5>
+					<h5>Legazpi City, Philippines</h5>
+					<h5>Email: <a href="bualumnirelations@bicol-u.edu.ph">bualumnirelations@bicol-u.edu.ph</a></h5>
+					<h5>(052) 480-01-79/(052) 483-45-88</h5>
+					<h5>Facebook Page <a href="http://wwww.facebook.com/BUAlumniRelations">http:// wwww.facebook.com/ BUAlumniRelations</a></h5>
+					<br/>
+				</div>	
 				<!--  FEED BACKKKK!!!!!!!!!!!!!!!  -->
-				<br><br><h3>Give feedback</h3>
+				<br><br>
+				<h3 style="color: rgb(255, 152, 0);">Give feedback</h3>
 				<h4>Let us know what we can do to help you</h4>
 
 				<div class="container">
@@ -117,11 +127,6 @@ input[type=submit]:hover {
 				  </form>
 				</div>
 			<!--  FEED BACKKKK!!!!!!!!!!!!!!!  -->
-
-
-
-
-
 			</div>
 			<footer>											<!--  F  O  O  T  E  R  -->
 				<div id="bot">
@@ -133,7 +138,6 @@ input[type=submit]:hover {
 
 <script type="text/javascript" src="../js/js_1.js" ></script>
 <script type="text/javascript" src="../js/js_2.js"></script>
-<script type="text/javascript" src="../js/js_3.js"></script>
 <script type="text/javascript" src="../js/js_3.js"></script>
 </body>
 </html>
