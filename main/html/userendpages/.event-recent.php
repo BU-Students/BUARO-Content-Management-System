@@ -33,7 +33,7 @@
 			<div class="w3-container w3-padding-jumbo">
 				<ul class="breadcrumb">
 				  <li><a href="aro3.php">Home</a></li>
-				  <li>Recent Events</li>
+				  <li>Recent Events || <a href="#" onclick="loadStories()">Stories</a></li>
 				</ul>
 				<?php
 					$parsedown = new Parsedown();
