@@ -50,7 +50,7 @@
 						}
 
 						echo '
-						<div class = "pic" onclick="viewStory('.$row['post_id'].')">
+						<div class = "pic" onclick="viewEvent('.$row['post_id'].')">
 							<h4><b>Event Date: '.date("M d, Y",strtotime($row['eventdate'])).'</b></h4>						
 							<h3 class="title">'.$row['title'].'</h3>	
 							<img src="'.$row['imgbanner'].'" alt = "Avatar">		
