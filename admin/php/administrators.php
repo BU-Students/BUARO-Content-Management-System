@@ -179,8 +179,8 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 						<p id="confirmation-msg"></p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" onclick="activate_deactivate_accounts()" id="action-btn" style="width: 69.58px">Yes</button>
-						<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-default" onclick="activate_deactivate_accounts()" id="action-btn" style="width: 69.58px">Yes</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 					</div>
 				</div>
 			</div>
