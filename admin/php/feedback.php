@@ -10,33 +10,28 @@ if(!isset($_SESSION['id'])) {
 	exit;
 }
 
-
-
-
 if(isset($_POST['search']))
 {
-    $valueToSearch = $_POST['valueToSearch'];
-    // search in all table columns
-    // using concat mysql function
-    $query = "SELECT * FROM feedback";
-    $search_result = filterTable($query);
+	$valueToSearch = $_POST['valueToSearch'];
+	// search in all table columns
+	// using concat mysql function
+	$query = "SELECT * FROM feedback";
+	$search_result = filterTable($query);
     
 }
- else {
-    $query = "SELECT * FROM `feedback`";
-    $search_result = filterTable($query);
+else {
+	$query = "SELECT * FROM feedback";
+	$search_result = filterTable($query);
 }
 
 // function to connect and execute the query
 function filterTable($query)
 {
-    $connect = mysqli_connect("localhost", "root", "", "buaro");
-    $filter_Result = mysqli_query($connect, $query);
-    return $filter_Result;
+	require_once "backend/connection.php";
+	$filter_Result = mysqli_query($conn, $query);
+	$conn->close();
+	return $filter_Result;
 }
-
-
-
 
 ?>
 
@@ -47,7 +42,7 @@ function filterTable($query)
 	<head>
 		<title>Alumni Administator</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
 		<link rel="stylesheet" href="../css/sidebar.css" />
 		<link rel="stylesheet" href="../css/topbar.css" />
@@ -81,6 +76,14 @@ function filterTable($query)
 			}
         </style>
 	</head>
+	<style>
+		form { margin: 20px; }
+		table {
+			margin-bottom: 0px !important;
+			border: 1px solid #ccc;
+		}
+		th, td { text-align: center; }
+	</style>
 	<body>
 		<!-- topbar and sidebar here -->
 		<?php
@@ -92,68 +95,37 @@ function filterTable($query)
 		<!-- page content here -->
 		<div id="content-wrapper">
 			<form action="php_html_table_data_filter.php" method="post">
-            
-            <br>
-            <table id="t01">
-                <tr>
-                  
-                    <th><center>Email</center></th>
-                    <th><center>Message</center></th>
-                    <th><center>Delete Feedback</center></th>
+				<table class="table table-striped table-hover table-bordered">
+					<caption>FEEDBACKS</caption>
+					<thead>
+						<tr>
+							<th>Email</th>
+							<th>Message</th>
+							<th>Delete Feedback</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- populate table from mysql database -->
+						<?php
+							while($row = mysqli_fetch_array($search_result)) {
+								if($row['feedemail'] == "")
+									$row['feedemail'] = '<span style="color: #ccc">Anonymous</span>';
 
-                    
-
-                   
-                </tr>
-      <!-- populate table from mysql database -->
-                <?php 
-                while($row = mysqli_fetch_array($search_result)):
-                ?>
-                
-                <tr> 
-                    <td><?php echo $row['email'];?></td>
-                    <td><?php echo $row['message'];?></td>
-                    <td><a onclick="return confirm('are you sure?')" href="feedback.php?feedback_id=<?php echo $row ['feedback_id']?>"><center>Delete</center></a></td>
-                </tr>
-                <?php endwhile;?>
-
-
-                <?php
-                $connect = mysqli_connect("localhost", "root", "", "buaro");
-                	if (isset($_GET['feedback_id'])){
-
-                		$feedback_id = $_GET['feedback_id'];
-                		$result = "DELETE FROM feedback WHERE feedback_id='$feedback_id'";
-                		if ($connect->query($result)){
-                		?>
-                		<script>
-                			alert ("success to delete data ");
-                			window.location.href='feedback.php';
-                		 </script>
-                		 <?php
-                			
-                		}else {
-                		?> 
-                		<script>
-                			alert ("fail to delete data ");
-                			window.location.href='feedback.php';
-                		 </script>
-                		 <?php                		
-                		}
-                	}
-
-                 ?>
-            </table>
-        </form>
-        
-			
+								echo
+								'<tr>
+									<td>'.$row['feedemail'].'</td>
+									<td>'.$row['feedmessage'].'</td>
+									<td onclick="attemptDelete(this, '.$row['feedback_id'].')"><a href="javascript:void(0)">Delete</a></td>
+								</tr>';
+							}
+						?>
+					</tbody>
+				</table>
+			</form>
 		</div>
 
-	
-		
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="../../vendor/jQuery/jquery-3.2.1.min.js"></script>
+		<script src="../../vendor/Bootstrap/js/bootstrap.min.js"></script>
 		<script src="../js/feedback.js"></script>
 		<script src="../js/sidebar.js"></script>
 		<script src="../js/notif.js"></script>

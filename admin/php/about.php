@@ -15,14 +15,14 @@ if(!isset($_SESSION['id'])) {
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Alumni Administator</title>
+		<title>Markdown Editor</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../vendor/SimpleMDE/dist/simplemde.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
-		<link rel="stylesheet" href="../css/sidebar.css" />
 		<link rel="stylesheet" href="../css/topbar.css" />
+		<link rel="stylesheet" href="../css/sidebar.css" />
 		<link rel="stylesheet" href="../css/about.css" />
-		<link rel="stylesheet" href="../css/modal.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
 	</head>
 	<body>
@@ -34,39 +34,14 @@ if(!isset($_SESSION['id'])) {
 
 		<!-- page content here -->
 		<div id="content-wrapper">
-			<!-- background image if no stories -->
-			<div id="no-stories-backdrop">
-				<img src="https://cdn4.iconfinder.com/data/icons/linecon/512/file-512.png" />
-				<label>No stories to show yet.</label><br>
-				<a href="editor.php">
-					<h5>Create your first story<span class="glyphicon glyphicon-pencil"></span></h5>
-				</a>
-			</div>
-
-			<div id="stories-wrapper">
-			</div>
-		</div>
-
-		<!-- story modal here -->
-		<div class="modal fade" id="expanded-story" role="dialog" tabindex="-1">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title" id="expanded-story-title"></h4>
-						<h6 id="expanded-story-date"></h6>
-						<div class="container-fluid">
-							<div class="col-xs-6"><a id="edit-story-link">Edit<span class="glyphicon glyphicon-pencil"></span></a></div>
-							<div class="col-xs-6"><a id="delete-story-link" data-toggle="modal" data-target="#confirmation-modal">Delete<span class="glyphicon glyphicon-trash"></span></a></div>
-						</div>
-					</div>
-					<div class="modal-body">
-						<div id="expanded-story-body">
-						</div>
-					</div>
-					<div class="modal-footer">
-						<a id="story-stat-link"><span class="glyphicon glyphicon-stats"></span>See statistics</a>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<label for="about-content" id="title">About the BU Alumni Relations Office</label>
+			<form>
+				<div id="about-container">
+					<textarea id="about-content" hidden></textarea>
+					<div id="options">
+						<button class="btn btn-danger" type="submit">Cancel</button>
+						<button class="btn btn-success" type="button" onclick="update()">Update</button>
+						<div style="clear: both"></div>
 					</div>
 				</div>
 			</div>
@@ -94,40 +69,10 @@ if(!isset($_SESSION['id'])) {
 			</div>
 		</div>
 
-		<!-- notification here -->
-		<?php
-			$img_path = "";
-			$message = "";
-			$class = "";
-
-			if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['notif-status'])) {
-				$class = "show-notif";
-				$img_path = "../img/ctaLessonCheck.png";
-
-				if($_POST['notif-status'] == "story-created") {
-					$message = "Story successfully created.";
-				}
-				else if($_POST['notif-status'] == "story-updated") {
-					$message = "Story successfully updated.";
-				}
-
-				unset($_POST['notif-status']);
-			}
-
-			echo('
-				<div class="notif '.$class.'" id="notif-container">
-					<div class="notif-img">
-						<img id="notif-img" src="'.$img_path.'" />
-					</div>
-					<div class="notif-content" id="notif-content">'.$message.'</div>
-				</div>
-			');
-		?>
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="../../vendor/jQuery/jquery-3.2.1.min.js"></script>
+		<script src="../../vendor/Bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../vendor/SimpleMDE/dist/simplemde.min.js"></script>
 		<script src="../js/about.js"></script>
 		<script src="../js/sidebar.js"></script>
-		<script src="../js/notif.js"></script>
 	</body>
 </html>
