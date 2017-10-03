@@ -29,7 +29,7 @@
  		<a href="http://bualumnirelations@bicol-u.edu.ph" class="w3-large" id="top-sidebar">
  		<img src="../img/bulogo.png"></a>
  		<a href="javascript:void(0)" onclick="w3_close()" class="w3-hide-large w3-closenav w3-large">Close &nbsp;&nbsp;&nbsp;&times;</a>
- 		<a href=".aro.html" class="w3-light-grey w3-medium">Home</a>	
+ 		<a href="aro3.php" class="w3-light-grey w3-medium">Home</a>	
 		<a href="e-shop.php" class="side" style="background-color: #ababab;">E-shop for Souvenirs and Memorabilla</a>	
 		<a href=".donate.php" class="side">Donation Link</a>		
 		<a href="javascript:void(0)" class="side" onclick="myFunc('side')">UNIT/College <i class="fa fa-caret-down"></i></a>
@@ -107,14 +107,20 @@
 									$all_comments = "SELECT nick,content,timestamp FROM comments WHERE comments.mem_id=".$memid." ORDER BY timestamp DESC";
 									$exec_all_comments = mysqli_query($con,$all_comments);
 									$comm_array = '';
-									while ($get_comment_array = mysqli_fetch_array($exec_all_comments)) {
-										$comm_array .= "<p>".$get_comment_array['nick']."<i style='font-size:10px;'> ".date('(d/m/y h:ia)',strtotime($get_comment_array['timestamp']))."</i>".": <span style='font-size:14px;'>".$get_comment_array['content']."</span></p><br>";
+
+									if (mysqli_num_rows($exec_all_comments) < 1) {
+										$comm_array = "<br><center><h5>No Comments</h5></center><br>";
+									} else {
+										while ($get_comment_array = mysqli_fetch_array($exec_all_comments)) {
+											$comm_array .= "<p>".$get_comment_array['nick']."<i style='font-size:10px;'> ".date('(d/m/y h:ia)',strtotime($get_comment_array['timestamp']))."</i>".": <span style='font-size:14px;'>".$get_comment_array['content']."</span></p><br>";
+										}
+
 									}
 
 									$dynamic_html = '
 										<div >
 											<h3>'.$label.'</h3>
-											<p class="w3-card-8" style="text-align:left; text-indent:10px;min-height: 180px;">
+											<p class="w3-card-8" style="text-align:left; text-indent:10px;min-height: 180px;word-wrap:break-word;">
 											<img src="'.$path.'" alt=" photo" style="border-radius: 5px;height:200px;width:200px;float: left;padding: 0 20px 20px 0;">
 											'.$desc.'
 											</p>
@@ -191,34 +197,7 @@
 						?>
 
 
-						<?php /*
-							if ($check > 0) {
-								while ($array_data = mysqli_fetch_array($run)) {
-									$path = $array_data['img_path'];
-									$desc = $array_data['description'];
-									$label = $array_data['label'];
-									$dynamic_html = '
-									<div class="col" ontouchstart="this.classList.toggle(\'hover\');">
-										<div class="container">
-											<div class="front" style="background-image: url(\''.$path.'\'); overflow:hidden;position:relative;z-index:1;">
-												<div class="inner">
-													<p>'.$label.'</p>
-						              <span>Lorem ipsum</span>
-												</div>
-											</div>
-											<div class="back">
-												<div class="inner" style="height:275px;position:absolute; overflow-y:auto;z-index:0;">
-												  <p>'.$desc.'</p>
-												</div>
-											</div>
-										</div>
-									</div>
-							';
 
-									echo $dynamic_html;
-								}
-							}*/
-						?>
 					</div>
 			
 					<br/><br/><br/>
@@ -259,26 +238,4 @@
 <script src="../js/js_4.js"></script>
 </body>
 </html>
-<!--
-					<?php 
-						if ($check > 0) {
-							while ($array_data = mysqli_fetch_array($run)) {
-								$path = $array_data['img_path'];
-								$desc = $array_data['description'];
-								$label = $array_data['label'];
-								$dynamic_html = '
-									<div class="w3-quarter" style="margin-top:20px;">
-										<div class="w3-card-2 w3-hover-shadow">
-											<img src="../../admin/php/'.$path.'" style="width:100%;">
-											<div class="w3-container" style="overflow-y:scroll;height:100px;">
-												<h3 style="font-weight:bold;">'.$label.'</h3>
-												<h4 style="word-wrap: break-word;">'.$desc.'</h4>
-											</div>
-										</div>
-									</div>';
 
-								echo $dynamic_html;
-							}
-						}
-					?>
-					-->
