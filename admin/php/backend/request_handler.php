@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					//using JSON for parsing on client side
 					echo '{ '.
 							'"title": "'.decode($row['title']).'", '.
-							'"post_type": '.$row['post_type'].', '.
+							$row['post_type'].', '.
 							'"content": "'.decode($row['content']).'" '.
 						' }';
 
@@ -404,26 +404,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				break;
 
 			case "G-0":
-				if($_SESSION['admin-type'] == PARENT_ADMIN)
-					$sql = "SELECT post_id, title, content, timestamp ".
-						"FROM post ".
-						"WHERE post.admin_id = ".$_SESSION['id']." AND post.post_type = (SELECT post_type_id FROM post_type WHERE label = '".$_POST['post-label']."')";
+				$sql = "SELECT title, content FROM post WHERE post.post_type = 4";
+				exit('{ "title": "ABOUT BU Alumni Relations Office", "content": "content here" }');
 
-				if($result = $conn->query($sql)) {
+				if(($result = $conn->query($sql)) && $result->num_rows == 1) {
 					$row = $result->fetch_assoc();
-					echo decode($row['content']);
+					echo '{ "title": "'.$row['title'].'", "content": "'.$row['content'].'" }';
 					$result->free();
 				}
-				else echo $conn->error();
+				else echo $conn->error;
 
-				break;
-
-			case "G-1":
-				$sql = "UPDATE post SET content = '".$_POST['content'].
-					"' WHERE post_type = (SELECT post_type_id FROM post_type WHERE label = '".$_POST['post-label']."')";
-				$conn->query($sql);
-				if($conn->affected_rows != 1)
-					echo $conn->error();
 				break;
 
 			case "H-0":
@@ -515,47 +505,38 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				else echo "fail";
 				break;
 
-				case "I-0":
-					if($_SESSION['admin-type'] != 1) {
-						$sql = "SELECT grad_year, grad_num, course.label AS label ".
-							"FROM graduates, college, admin, course ".
-							"WHERE college.college_id = admin.college AND ".
-								"graduates.course_id = course.course_id AND ".
-								"course.college_id = college.college_id AND ".
-								"admin_id = ".$_SESSION['id']." AND grad_year = (SELECT grad_year FROM graduates ORDER BY grad_year DESC LIMIT 1) ".
-								"ORDER BY grad_year DESC";
-					}
-					else {
-						$sql = "";
-					}
-					$year;
-					$categories = "[";
+			case "I-0":
+				if($_SESSION['admin-type'] != 1) {
+					$sql = "SELECT grad_year, grad_num, course.label AS label ".
+						"FROM graduates, college, admin, course ".
+						"WHERE college.college_id = admin.college AND ".
+							"graduates.course_id = course.course_id AND ".
+							"course.college_id = college.college_id AND ".
+							"admin_id = ".$_SESSION['id']." AND grad_year = (SELECT grad_year FROM graduates ORDER BY grad_year DESC LIMIT 1) ".
+							"ORDER BY grad_year DESC";
+				}
+				else {
+					$sql = "";
+				}
+               $year;
+               $categories = "[";
 
-					if($result = $conn->query($sql)) {
-						$str = '{"dataPoints": [{ "data": [ ';
-						while($row = $result->fetch_assoc()) {
-							$year = $row['grad_year'];
-							$categories .='"'.$row['label'].'",';
-							$str .= ' { "name": "'.$row['label'].'", "y": '.$row['grad_num'].', "color": "#ff0000"},';
-						}
+               if($result = $conn->query($sql)) {
+               	   $str = '{"dataPoints": [{ "data": [ ';
+               	   while($row = $result->fetch_assoc()) {
+               	   	    $year = $row['grad_year'];
+               	   	    $categories .='"'.$row['label'].'",';
+               	   	    $str .= ' { "name": "'.$row['label'].'", "y": '.$row['grad_num'].', "color": "#ff0000"},';
+               	   }
 
-					   $str = substr($str, 0, -1);
-					   $categories = substr($categories, 0, -1).' ]';
-					   $str .= '] }], "batch": '.$year.', "categories": '.$categories.' }';
-					   echo $str;
-					   $result->free();
-					}
-					else echo $conn->error;
-					break;
-
-				case "J-0":
-					$sql = "DELETE FROM feedback WHERE feedback_id = ".$_POST['feedback-id'].";";
-					$conn->query($sql);
-					if($conn->affected_rows != 1)
-						echo $conn->error();
-					break;
-				default:
-					echo "Invalid request type";
+               	   $str = substr($str, 0, -1);
+               	   $categories = substr($categories, 0, -1).' ]';
+               	   $str .= '] }], "batch": '.$year.', "categories": '.$categories.' }';
+               	   echo $str;
+               	   $result->free();
+               }
+               else echo $conn->error;
+				break;
 		}
 	}
 	else echo "Informal request";
