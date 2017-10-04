@@ -36,18 +36,23 @@
 				  <li><a href="aro3.php">Home</a></li>
 				  <li>Stories</li>
 				</ul>
+
+				<div class="page">
+					<div class="list-of-posts">
+
 				<?php
 					$parsedown = new Parsedown();
 					$getquery = "SELECT * FROM post WHERE post_type = 1 AND status = 'shown'" ;
 					$run = mysqli_query($con,$getquery);
 					$id = 0;
 					while($row = mysqli_fetch_array($run)){
+						echo '<div class="post">';
 						$newstring = substr($parsedown->text($row['content']),0,250);
 						if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
 							$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
 						}
 						echo '
-						<div  class = "pic" onclick = "viewStory('.$row['post_id'].')">					
+						<div class = "pic" onclick = "viewStory('.$row['post_id'].')">					
 							<h3 class="title">'.$row['title'].'</h3>	
 							<img src="'.$row['imgbanner'].'"alt = "Avatar">	
                				<p>'.decode($newstring).'</p>
@@ -55,7 +60,13 @@
 						<hr>
 							';
 						$id++;
+						echo '</div>';
 					}
 				?>
+				</div>
+				<div class="pagination">
+
+				</div>
+				</div>
 				
 			</div>

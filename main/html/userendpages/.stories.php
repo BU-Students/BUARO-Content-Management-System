@@ -36,7 +36,11 @@
 				  <li><a href="aro3.php">Home</a></li>
 				  <li>Stories</li>
 				</ul>
+
+				<div class="page">
+					<div class="list-of-posts">
 				<?php
+					echo '<div class="post">';
 					$parsedown = new Parsedown();
 					$getquery = "SELECT * FROM post WHERE post_type = 1 AND status = 'shown'" ;
 					$run = mysqli_query($con,$getquery);
@@ -57,6 +61,12 @@
 							';
 						$id++;
 					}
+					echo '</div>';
 				?>
+				</div>
+				<div class="pagination">
+
+				</div>
+				</div>
 				
 			</div>
