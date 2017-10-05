@@ -203,6 +203,7 @@ function viewUserInfo(row) {
 function clickedRowFunction(row) {
 	//if row is disselected
 	if(row.classList.contains("active") && active_rows_num == 1) {
+		document.getElementById("row-options-panel").style.display = "none";
 		document.getElementById("user-info-panel").style.display = "none";
 		row.classList.remove("active");
 		--active_rows_num;
@@ -334,7 +335,7 @@ function activate_deactivate_accounts() {
 				else {
 					console.log(xhr.responseText);
 					notif_img.src = "../img/error-icon.png";
-					notif_msg.innerHTML = "A server-side error occured. Selection not deleted.";
+					notif_msg.innerHTML = "An error occured. No selected account was deactivated.";
 				}
 
 				var notif = document.getElementById("notif-container");

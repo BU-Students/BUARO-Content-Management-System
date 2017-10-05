@@ -1,6 +1,6 @@
 <?php
 
-require_once "../admin/php/backend/connection.php";
+require_once "../../admin/php/backend/connection.php";
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$year = -1;

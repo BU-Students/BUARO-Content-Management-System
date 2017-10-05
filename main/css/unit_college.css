@@ -1,0 +1,14 @@
+.h7 {
+
+	text-align: center;
+}
+
+#right-side {
+	position: relative;
+	left: 500px;
+
+}
+
+@media only screen (width: 990px) {
+	position: static;
+}

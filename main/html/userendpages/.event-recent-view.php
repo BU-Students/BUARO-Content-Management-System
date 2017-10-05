@@ -23,13 +23,14 @@
 
 <div>	
 											<!--  T  H  E     C  O  N  T  E  N  T  -->
-			<div class="w3-container w3-padding-jumbo">
+			
 				<ul class="breadcrumb">
-				  <li><a href="aro3.php">Home</a></li>
-				  <li><a href="#" onclick="loadRecent()">Recent Events</a></li>
-				  <li><?php echo $fetch['title']?></li>		
+					<a class="w3-padding-16 w3-opennav" href="javascript:void(0)" onclick="w3_open()" style="text-decoration:none;margin-left:40px;margin-right:10px;font-size:20px;">&#9776;</a>
+				  	<li><a href="aro3.php">Home</a></li>
+				  	<li><a href="#" onclick="loadRecent()">Recent Events</a></li>
+				  	<li><?php echo $fetch['title']?></li>		
 				</ul>					
-				
+				<div class="w3-container w3-padding-jumbo">
 				<?php
 						if($fetch['imglinks']!=""){
 							echo '
@@ -37,6 +38,9 @@
 								<div id="myCarousel-'.$fetch['post_id'].'" class="carousel slide" data-ride="carousel">
 								  <!-- Wrapper for slides -->
 								  <div class="carousel-inner">
+								  </div>
+								  </div>
+								</div>
 								';
 
 							$nostr = explode(";", $fetch['imglinks']);

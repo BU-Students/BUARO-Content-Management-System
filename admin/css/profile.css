@@ -98,7 +98,39 @@
 	width: calc(100% - 400px);
 }
 
-#cover-photo {}
+#cover-photo { position: relative; }
+
+#cover-photo:hover #pic-options {
+	opacity: 1;
+}
+
+#pic-options {
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	padding: 5px;
+	-webkit-transition: opacity 0.2s ease-out;
+	-moz-transition: opacity 0.2s ease-out;
+	-o-transition: opacity 0.2s ease-out;
+	transition: opacity 0.2s ease-out;
+}
+
+.overlap-helper { display: inline; }
+
+.overlap-helper > * {
+	display: inline-block;
+	width: 137px;
+	height: 34px;
+}
+
+.overlap-helper > input[type=file] {
+	position: relative;
+	bottom: 34px;
+	opacity: 0;
+}
 
 #cover-photo-img {
 	width: 100%;
@@ -298,6 +330,28 @@ input[type=text], input[type=email], input[type=tel] {
 		margin-top: 0px;
 		opacity: 1;
 	}
+}
+
+.click-effect {
+	-webkit-animation: click 0.5s;
+	-moz-animation: click 0.5s;
+	animation: click 0.5s;
+}
+
+@-webkit-keyframes click {
+	20% { background-color: #eee; }
+}
+
+@-moz-keyframes click {
+	20% { background-color: #eee; }
+}
+
+@-o-keyframes click {
+	20% { background-color: #eee; }
+}
+
+@keyframes click {
+	20% { background-color: #eee; }
 }
 
 @media only screen and (max-width: 767px) {

@@ -82,6 +82,7 @@ label {
    background: linear-gradient(to top, #ccc 0px, #fff 20px, #fff 100%);
 }
 
+
 .story:hover {
 	cursor: pointer;
 }

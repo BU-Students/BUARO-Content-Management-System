@@ -196,13 +196,8 @@ function attemptToSave() {
 
 	params = "";
 
-	if(b_date != user_info.raw_bdate) {
-		if(isValidDate(b_date))
-			params += "&b-date=" + b_date;
-		else {
-			//error checking here
-		}
-	}
+	if(b_date != user_info.raw_bdate && isValidDate(b_date))
+		params += "&b-date=" + b_date;
 	if(contact_no != user_info.contact_no) params += "&contact-no=" + contact_no;
 	if(email != user_info.email) params += "&email=" + email;
 	if(barangay != user_info.barangay) params += "&barangay=" + barangay;
@@ -292,6 +287,7 @@ function attemptToSave() {
 	}
 
 	exitEditMode();
+	return false;
 }
 
 function readableDate(dateString) {

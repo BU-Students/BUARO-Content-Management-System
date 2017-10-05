@@ -4,7 +4,7 @@
 	padding-top: 10px;
 	margin-top: 10px;
 	font-size: 30px;
-	font-family: 'Merriweather', serif;
+	font-family: 'open_sans', sans-serif;
 	font-weight: lighter;
 }
 
@@ -25,4 +25,9 @@
 
 .CodeMirror {
 	height: 100%;
+}
+
+@font-face {
+	font-family: 'open_sans';
+	src: url('../../vendor/Fonts/Open_Sans/OpenSans-SemiBold.ttf') format('truetype');
 }

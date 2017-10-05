@@ -47,7 +47,8 @@ function update() {
 		return;
 	}
 
-	var content = editor.value().replaceAll("\n", "<br/>");
+	var content = editor.value();
+	console.log(content);//.replaceAll("\n", "<br/>");
 	params = "request-type=G-1&&content=" + content + "&&post-label=ABOUT";
 
 	http.open("POST", url, true);

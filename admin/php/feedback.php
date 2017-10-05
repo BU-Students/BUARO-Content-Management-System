@@ -2,7 +2,6 @@
 
 if(session_status() == PHP_SESSION_NONE)
 	session_start();
-
 //if user attemps to access this page without authentication
 if(!isset($_SESSION['id'])) {
 	$_SESSION['error_msg'] = "Please log in first to continue";
@@ -22,6 +21,7 @@ if(isset($_POST['search']))
 else {
 	$query = "SELECT * FROM feedback";
 	$search_result = filterTable($query);
+	$totalCount = $search_result->num_rows;
 }
 
 // function to connect and execute the query
@@ -35,8 +35,6 @@ function filterTable($query)
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -49,32 +47,6 @@ function filterTable($query)
 		<link rel="stylesheet" href="../css/stories.css" />
 		<link rel="stylesheet" href="../css/modal.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
-
-		<!-- table css -->
-		 <style> 
-           table {
-			    width:90%;
-			    margin-left: 15px;
-			}
-			table, th, td {
-			    border: 1px solid black;
-			    border-collapse: collapse;
-			}
-			th, td {
-			    padding: 5px;
-			    text-align: left;
-			}
-			table#t01 tr:nth-child(even) {
-			    background-color: #eee;
-			}
-			table#t01 tr:nth-child(odd) {
-			   background-color:#fff;
-			}
-			table#t01 th {
-			    background-color: black;
-			    color: white;
-			}
-        </style>
 	</head>
 	<style>
 		form { margin: 20px; }
@@ -89,7 +61,6 @@ function filterTable($query)
 		<?php
 			require_once "topbar.php";
 			require_once "sidebar.php";
-
 		?>
 
 		<!-- page content here -->
@@ -104,24 +75,15 @@ function filterTable($query)
 							<th>Delete Feedback</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="tbody">
 						<!-- populate table from mysql database -->
-						<?php
-							while($row = mysqli_fetch_array($search_result)) {
-								if($row['feedemail'] == "")
-									$row['feedemail'] = '<span style="color: #ccc">Anonymous</span>';
-
-								echo
-								'<tr>
-									<td>'.$row['feedemail'].'</td>
-									<td>'.$row['feedmessage'].'</td>
-									<td onclick="attemptDelete(this, '.$row['feedback_id'].')"><a href="javascript:void(0)">Delete</a></td>
-								</tr>';
-							}
-						?>
 					</tbody>
 				</table>
 			</form>
+			<nav aria-label="Page navigation" style="text-align:center">
+				<ul class="pagination" id="pagination">
+				</ul>
+			</nav>
 		</div>
 
 		<script src="../../vendor/jQuery/jquery-3.2.1.min.js"></script>
