@@ -17,7 +17,7 @@ input[type=text], select, textarea {
 input[type=submit] {
     background-color: #4CAF50;
     color: white;
-    padding: 12px 20px;
+    padding: 15px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -40,6 +40,7 @@ input[type=submit]:hover {
 	<link rel="stylesheet" href="../css/w3.css">
 	<link rel="stylesheet" href="../css/w3-theme-teal.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
 	<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
@@ -51,7 +52,7 @@ input[type=submit]:hover {
  		<a href="javascript:void(0)" onclick="w3_close()" class="w3-hide-large w3-closenav w3-large">Close &nbsp;&nbsp;&nbsp;&times;</a>
  		<a href="aro3.php" class="w3-light-grey w3-medium">Home</a>
 		<a href="e-shop.php" class="side">E-shop for Souvenirs and Memorabilla</a>	
-		<a href="#" class="side">Donation Link</a>		
+		<a href=".donate.php" class="side">Donation Link</a>		
 		<a href="javascript:void(0)" class="side" onclick="myFunc('side')">UNIT/College <i class="fa fa-caret-down"></i></a>
 			<div id="side" class="w3-accordion-content w3-animate-left w3-padding">
 				<a href=".ce.html">College of Education</a>
@@ -67,7 +68,7 @@ input[type=submit]:hover {
         		<a href=".cssp.html">College of Social Science and Philosophy</a>
         	</div>
 		<a href="eventstory.php" class="side">BU Alumni Stories/Event</a>
-		<a href=".about.html" class="side">About BUARO</a>
+		<a href=".about.php" class="side">About BUARO</a>
 		<a href=".contact.php" class="side" style="background-color: #ababab;">Contact Us</a>
 	</nav>
 
@@ -88,40 +89,32 @@ input[type=submit]:hover {
 		<div>												<!--  T  H  E     C  O  N  T  E  N  T  -->
 			<div class="w3-container w3-padding-jumbo" style="background-image: url('../img/BU.jpg'); background-size: 100%; background-repeat: no-repeat;">					
 				<h1 class="title">Contact Us</h1><br>
-				<h5>BUREPC Building</h5>
-				<h5>Bicol University</h5>
-				<h5>Legazpi City, Philippines</h5>
-				<h5>Email: <a href="bualumnirelations@bicol-u.edu.ph">bualumnirelations@bicol-u.edu.ph</a></h5>
-				<h5>(052) 480-01-79/(052) 483-45-88</h5>
-				<h5>Facebook Page <a href="http://wwww.facebook.com/BUAlumniRelations">http://wwww.facebook.com/BUAlumniRelations</a></h5>
-				<br/>
+				<?php
+					include_once('connection.php');
+					include_once('../../admin/php/backend/input_handler.php');
+					include_once('../../vendor/Parsedown/Parsedown.php');
+
+					$result = $con->query('SELECT content FROM post, post_type WHERE post.post_type = post_type.post_type_id && post_type.label = "CONTACT"');
+					if($result) {
+						$parser = new Parsedown();
+						echo $parser->text(decode($result->fetch_assoc()['content']));
+					}
+				?>
 
 				<!--  FEED BACKKKK!!!!!!!!!!!!!!!  -->
 				<br><br><h3>Give feedback</h3>
 				<h4>Let us know what we can do to help you</h4>
 
 				<div class="container">
-				  <form action="feedback.php" method="post">
-				   
-				    <label for="lname">Email Address</label>
-				    <input type="text" id="feedemail" name="feedemail" placeholder="Your Email Address.." required="">
-
-				  
-
-				    <label for="subject">Message</label>
-				    <textarea id="feedmessage" name="feedmessage" placeholder="Write something.." style="height:200px" required=""></textarea>
-
-
-					<input type="submit" value="Submit">
-				   
-				  </form>
+					<form action="feedback.php" method="post">
+						<label for="lname">Email Address</label>
+						<input type="text" id="feedemail" name="feedemail" placeholder="Your Email Address..">
+						<label for="subject">Message</label>
+						<textarea onkeyup="checkInput(this.value)" id="feedmessage" name="feedmessage" placeholder="Write something.." style="height:200px" required="" ></textarea>
+						<button type="submit" id="submit" class="btn btn-success" disabled>Submit</button>
+					</form>
 				</div>
 			<!--  FEED BACKKKK!!!!!!!!!!!!!!!  -->
-
-
-
-
-
 			</div>
 			<footer>											<!--  F  O  O  T  E  R  -->
 				<div id="bot">
@@ -131,9 +124,15 @@ input[type=submit]:hover {
 		</div>
 	</div>
 
-<script type="text/javascript" src="../js/js_1.js" ></script>
-<script type="text/javascript" src="../js/js_2.js"></script>
-<script type="text/javascript" src="../js/js_3.js"></script>
-<script type="text/javascript" src="../js/js_3.js"></script>
+<script>
+	function checkInput(str) {
+		var button = document.getElementById("submit");
+		if(str.trim() == "")
+			button.disabled = true;
+		else button.disabled = false;
+	}
+</script>
+<script type="text/javascript" src="../../vendor/jQuery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../vendor/Bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

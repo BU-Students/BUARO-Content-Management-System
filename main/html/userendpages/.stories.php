@@ -21,24 +21,29 @@
 }
 
 .pic img:hover {
-  width: 200px;
-  height: 200px;
-  box-shadow: 0px 0px 20px 10px rgba(65, 65, 65, 0.99);
+  box-shadow: 0px 0px 15px 5px rgba(65, 65, 65, 0.99);
 }
+@media (max-width: 768px){
+	h3{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	p{
+		margin-top: 230px;
+		max-width: 300px;
+	}
+}
+
 </style>
 
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
-<script type="text/javascript" src="userendpages/loadjs/viewS.js"></script>
 <div id="content2">												<!--  T  H  E     C  O  N  T  E  N  T  -->
-			
+		<ul class="breadcrumb">
+			<a class="w3-padding-16 w3-opennav" href="javascript:void(0)" onclick="w3_open()" style="text-decoration:none;margin-left:40px;margin-right:10px;font-size:20px;">&#9776;</a>
+			<li><a href="aro3.php">Home</a></li>
+			<li>Stories</li>
+		</ul>
 			<div class="w3-container w3-padding-jumbo">
-				<ul class="breadcrumb">
-				  <li><a href="aro3.php">Home</a></li>
-				  <li>Stories</li>
-				</ul>
-
-				<div class="page">
-					<div class="list-of-posts">
 				<?php
 					echo '<div class="post">';
 					$parsedown = new Parsedown();
@@ -51,13 +56,20 @@
 							$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
 						}
 						echo '
-						<div class = "pic" onclick="viewStory('.$row['post_id'].')">					
-							<h3 class="title">'.$row['title'].'</h3>
-							<img src="'.$row['imgbanner'].'" alt = "Avatar">		
-  							<p>'.decode($newstring).'</p>
-							
+						<div  class = "pic" onclick = "viewStory('.$row['post_id'].')">
+							<div class="w3-container w3-half">
+								<div style="height:50px;">
+									<h3>'.$row['title'].'</h3>
+								</div>
+								<div class="w3-container w3-half" style="margin-bottom:50px;">
+               						<img src="'.$row['imgbanner'].'"alt = "Avatar">
+               					</div>
+               					<div clss="w3-container" style="min-width:500px;">
+									<p>'.decode($newstring).'<a style="cursor:pointer; color:#441cff;">...Read More</a></p>
+								</div>
+               					<hr>
+               				</div>
 						</div>
-						<hr>
 							';
 						$id++;
 					}

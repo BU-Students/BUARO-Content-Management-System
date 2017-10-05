@@ -11,8 +11,7 @@ $username = encode($_POST['username']);
 $password = encode($_POST['password']);
 
 $encrypted_password = encrypt($password);
-
-$query = "SELECT admin_id, admin_type FROM admin WHERE username = '$username' AND password = '$encrypted_password' AND state = 1;";
+$query = "SELECT admin_id, admin_type, state FROM admin WHERE username = '$username' AND password = '$encrypted_password';";
 $result = $conn->query($query);
 
 // close database connection
@@ -25,6 +24,12 @@ if($result->num_rows < 1) {
 }
 else if($result->num_rows > 0) {
 	$row = $result->fetch_assoc();
+	if($row['state'] == 0) {
+		$_SESSION['error_msg'] = "The account is currently inactive";
+		header("Location: ../login.php");
+		exit;
+	}
+
 	$_SESSION['id'] = $row["admin_id"];
 	$_SESSION['admin-type'] = $row["admin_type"];
 	if($_SESSION['admin-type'] == 1)

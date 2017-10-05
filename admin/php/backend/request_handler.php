@@ -419,7 +419,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				break;
 
 			case "G-1":
-				$sql = "UPDATE post SET content = '".$_POST['content'].
+				$sql = "UPDATE post SET content = '".encode($_POST['content']).
 					"' WHERE post_type = (SELECT post_type_id FROM post_type WHERE label = '".$_POST['post-label']."')";
 				$conn->query($sql);
 				if($conn->affected_rows != 1)
@@ -444,6 +444,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 				while($row = $result->fetch_assoc()) {
 					echo('
+					<div class="top-story">
 						<div class="story" id="story-id-'.$row['mem_id'].'" onclick="expandStory(this)">
 							<input type="hidden" value="'.$row['mem_id'].'" /> <!-- reference for story deletion in the database; i.e. database ID -->
 							<input type="hidden" /> <!-- used to store their DOM index as reference for removeChild() -->
@@ -451,7 +452,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 								<div class="story-options-container">
 									<span class="glyphicon glyphicon-resize-full" data-toggle="tooltip" title="Expand"></span>
 								</div>
-								<div class="story-title"><img src="'.$row['img_path'].'" height="210px"></div>
+								<div class="story-title"><img src="'.$row['img_path'].'" height="180px"></div>
 
 							</div>
 							<hr>
@@ -459,6 +460,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 								.$parser->text(decode($row['label'])).
 							'</div>
 						</div>
+					</div>
 					');
 				}
 
@@ -554,6 +556,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					if($conn->affected_rows != 1)
 						echo $conn->error();
 					break;
+
+				case "J-1":
+					$count = $conn->query("SELECT COUNT(feedback_id) FROM feedback")->fetch_array()[0];
+					$sql = "SELECT * FROM feedback LIMIT ".$_POST['limit']." OFFSET ".$_POST['offset'];
+					$json = '{ "total_rows": '.$count.', "table_content": "';
+					if(!($result = $conn->query($sql)))
+						echo $conn->error;
+					else {
+						while($row = $result->fetch_assoc()) {
+							if($row['feedemail'] == "") $row['feedemail'] = '<span style=\"color: #ccc\">Anonymous</span>';
+							$json .=
+							'<tr>'.
+								'<td>'.$row['feedemail'].'</td>'.
+								'<td>'.$row['feedmessage'].'</td>'.
+								'<td><a onclick=\"attemptDelete(this, '.$row['feedback_id'].')\" href=\"javascript:void(0)\">Delete</a></td>'.
+							'</tr>';
+						}
+					}
+					$json .= '" }';
+					echo $json;
+					break;
+
 				default:
 					echo "Invalid request type";
 		}

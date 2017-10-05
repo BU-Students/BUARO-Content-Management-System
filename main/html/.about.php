@@ -45,7 +45,7 @@ function filterTable($query)
  		<a href="javascript:void(0)" onclick="w3_close()" class="w3-hide-large w3-closenav w3-large">Close &nbsp;&nbsp;&nbsp;&times;</a>
  		<a href=".aro.html" class="w3-light-grey w3-medium">Home</a>	
 		<a href=".e-shop.html" class="side">E-shop for Souvenirs and Memorabilla</a>	
-		<a href="#" class="side">Donation Link</a>		
+		<a href=".donate.php" class="side">Donation Link</a>		
 		<a href="javascript:void(0)" class="side" onclick="myFunc('side')">UNIT/College <i class="fa fa-caret-down"></i></a>
 			<div id="side" class="w3-accordion-content w3-animate-left w3-padding">
 				<a href=".ce.html">College of Education</a>
@@ -95,19 +95,12 @@ function filterTable($query)
 
 
 	<!--  view content!!!!!!!!!!!!!!!  -->
-				 <?php while($row = mysqli_fetch_array($search_result)):
-				 	 $parser = new Parsedown();
-                
-				 ?>
-                <h5><?php 
-              
-                echo '<h4>' .$parser->text(decode($row['content'])). '</h4>';
-                
-		
-                ?></h5>;
-                    
-               
-                <?php endwhile;?>
+				<?php
+					$parser = new Parsedown();
+					$row = mysqli_fetch_array($search_result);
+					echo $parser->text(decode($row['content']));
+				?>
+
 	<!--  view content!!!!!!!!!!!!!!!  -->
 			
 			</div>
