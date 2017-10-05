@@ -44,8 +44,8 @@
 			<li>Stories</li>
 		</ul>
 			<div class="w3-container w3-padding-jumbo">
-				
 				<?php
+					echo '<div class="post">';
 					$parsedown = new Parsedown();
 					$getquery = "SELECT * FROM post WHERE post_type = 1 AND status = 'shown'" ;
 					$run = mysqli_query($con,$getquery);
@@ -73,6 +73,12 @@
 							';
 						$id++;
 					}
+					echo '</div>';
 				?>
+				</div>
+				<div class="pagination">
+
+				</div>
+				</div>
 				
 			</div>

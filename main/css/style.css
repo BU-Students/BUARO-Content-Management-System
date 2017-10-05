@@ -325,6 +325,8 @@ footer{
 	text-align: center;
 }
 
+
+
 @media only screen and (max-width: 600px;){
 	body .w3-main{
 		min-width: 300px !important;

@@ -68,6 +68,7 @@ function w3_close() {
 					$run = mysqli_query($con,$getquery);
 					$id = 0;
 					while($row = mysqli_fetch_array($run)){
+						echo '<div class="post">';
 						$newstring = substr($parsedown->text($row['content']),0,250);
 						if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
 							$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
@@ -89,7 +90,13 @@ function w3_close() {
 						</div>
 							';
 						$id++;
+						echo '</div>';
 					}
 				?>
+				</div>
+				<div class="pagination">
+
+				</div>
+				</div>
 				
 			</div>

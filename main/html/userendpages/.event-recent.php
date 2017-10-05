@@ -46,7 +46,6 @@
 			<li>Recent Events || <a href="#" onclick="loadStories()">Stories</a></li>
 		</ul>	
 			<div class="w3-container w3-padding-jumbo">
-				
 				<?php
 					$parsedown = new Parsedown();
 					$getquery = "SELECT * FROM post WHERE post_type = 2  AND status = 'shown'";
@@ -55,6 +54,7 @@
 					$id = 0;
 					$today = date("Y-m-d");
 					while($row = mysqli_fetch_array($run)){
+						echo '<div class="post-event">';
 						$newstring = decode(substr($parsedown->text($row['content']),0,250));
 						if($row['eventdate'] < $today){
 						if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
@@ -79,8 +79,16 @@
 						</div>
 							';
 						$id++;
+
 					}
+					echo '</div>';
 					}
 				?>
+				</div>
+				<div class="pagination-event">
+
+				</div>
+				</div>
 				
 			</div>
+			
