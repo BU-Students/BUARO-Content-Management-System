@@ -1,5 +1,6 @@
 <?php include_once('connection.php');
 include_once('../../admin/php/backend/input_handler.php');
+include_once('../../vendor/Parsedown/Parsedown.php');
 function type_of_event($inp) {
 	switch ($inp) {
 		case 1:
@@ -37,14 +38,13 @@ function type_of_event($inp) {
 <body>
 	<div>											<!--  T  H  E     M  A  I  N     B  O  D  Y  -->
 		<div id="topbar" style="z-index: 100;">
-			<ul class="w3-topnav w3-theme">
+			<ul class="w3-topnav">
 				<li><a href="#home" id="tab" style="color: rgb(255, 152, 0);">Home</a></li>
 				<li><a href="#shop" id="tab">E-shop Souvenirs and Memorabilia</a></li>
 				<li><a href=".donate.php" id="tab">Donation Link</a></li>
-				<li><a href="#unit" id="tab">UNIT/College</a></li>
+				<li><a href="#college" id="tab">UNIT/College</a></li>
 				<li><a href="" id="tab">BU Alumni Coordinators</a></li>
-				<li><a href="#stories" id="tab">BU Alumni Stories</a></li>
-				<li><a href="#events" id="tab">BUARO Events</a></li>
+				<li><a href="#stories" id="tab">BU Alumni Stories / Events</a></li>
 				<li><a href="#about" id="tab">About BUARO</a></li>
 				<li><a href=".contact.php" id="tab">Contact Us</a></li>
 			</ul>
@@ -199,7 +199,8 @@ function type_of_event($inp) {
 																							<!--  T  H  E     C  O  N  T  E  N  T  -->
 			<div class="w3-container w3-padding-jumbo" style="height: 100%;">
 																							<!--  I  N  T  R  O  D  U  C  T  I  O  N  -->
-				<?php 
+				<?php
+					$parser = new Parsedown();
 					$sql = "SELECT title,content,post_type,imgbanner,timestamp FROM post ORDER BY timestamp DESC LIMIT 1";
 					$exec = $con->query($sql);
 					$fetch = $exec->fetch_assoc();
@@ -220,7 +221,7 @@ function type_of_event($inp) {
 					echo $bnr;
 					echo "
 						<ol type='a' class='w3-leftbar w3-theme-border' style='list-style-type:none;'>
-							<li>".decode($fetch['content'])."</li>
+							<li>".$parser->text(decode($fetch['content']))."</li>
 						</ol>
 					";
 					
@@ -228,7 +229,7 @@ function type_of_event($inp) {
 				?>
 			</div>
 
-		</div>		
+		</div>
 		<br><br><br>
 
 		<div id="about">
@@ -236,7 +237,7 @@ function type_of_event($inp) {
 			<img id="abt-img2" src="../img/smile.jpg">
 			<div>
 				<div class="abt_content">					
-					<a href=".about.html"><h1 class="title">ABOUT</h1><br></a>
+					<a href=".about.php"><h1 class="title">ABOUT</h1><br></a>
 					<div class="abt_inside">
 						<h5>The Bicol University Alumni Relations Office serves as the line between the alumni and the BU Community. It seeks to:</h5>
 						<ol type="a" class="w3-leftbar w3-theme-border" style="list-style-type:none;">
@@ -279,7 +280,7 @@ function type_of_event($inp) {
 					$filtered_content = '';
 
 					if (strlen($content) > 110) {
-						$filtered_content = '<p style="height:90px;width: 100%;text-align: center; overflow: hidden;font-size: 15px;">'.$cut_content.'.<a style="cursor:pointer; color:#441cff;" onclick="document.getElementById('.'\'more'.$count.'\''.').style.display='.'\'block\''.'">  Read More</a></p>';
+						$filtered_content = '<p style="height:90px;width: 100%; overflow: hidden;font-size: 15px;">'.$cut_content.'.<a style="cursor:pointer; color:#441cff;" onclick="document.getElementById('.'\'more'.$count.'\''.').style.display='.'\'block\''.'">  Read More</a></p>';
 					} else {
 						$filtered_content = '<p style="height:100px;width: 100%;text-align: center; overflow: hidden;font-size: 15px;">'.$content.'</p>';
 					}
@@ -306,9 +307,9 @@ function type_of_event($inp) {
 					echo '
 						<div class="w3-second">
 							<div class="w3-content w3-quarter w3-section w3-example w3-card-16 w3-white" style="height: 270px; margin-top: -70px; overflow: hidden;">
-								<h5 style="color:#ff9800;">'.$type_post.'</h5>
+								<h5 style="color:#ff9800; text-align:center;">'.$type_post.'</h5>
 
-								<header><h5>'.$title.'</h5><h5 style="margin: 0;padding: 0; font-size: 11px;"><i>Published: '.$time.'</i></h5></header>
+								<header><h5>'.$title.'</h5><h5 style="margin: 0;padding: 0; font-size: 11px; text-align: center;"><i>Published: '.$time.'</i></h5></header>
 								<section>'.$filtered_content.'
 
 					  					<div id="more'.$count.'" class="w3-modal">
@@ -340,7 +341,7 @@ function type_of_event($inp) {
 
 			?>
 
-						<a class="w3-btn w3-hover-blue" href="eventstory.php" style="float: right; margin-right: 35%; margin-top: 20px; margin-bottom: -10px;">See More</a>
+						<a class="w3-btn blu-btn" href="eventstory.php">See More</a>
 					</div>
 						
 					</div>
@@ -350,7 +351,7 @@ function type_of_event($inp) {
 		<br>
 		<div id="shop"></div>
 		<div class="shop w3-row-padding">
-			<a href="e-shop.php"><h1><span class="highlight">S</span>ouvenirs and <span class="highlight">M</span>emorabilia</h1></a> 
+			<a href="e-shop.php"><h1>Souvenirs and Memorabilia</h1></a> 
 			<div class="w3-content" id="shop_img">
 				<?php 
 					$sql = "SELECT img_path FROM memorabilia WHERE img_path IS NOT NULL ORDER BY label DESC LIMIT 5";
@@ -371,6 +372,7 @@ function type_of_event($inp) {
 
 				<a class="w3-btn-floating w3-hover-dark-grey" style="position:absolute;top:45%;left:-20px;" onclick="plusDivs(-1)">&#10094;</a>
 				<a class="w3-btn-floating w3-hover-dark-grey" style="position:absolute;top:45%;right:-20px;" onclick="plusDivs(+1)">&#10095;</a>
+				<br><br>
 			</div>
 		</div>
 
@@ -378,103 +380,24 @@ function type_of_event($inp) {
 			<div style="width: 100%;"> 
 				<div style="width: 100%;">
 					<div class="w3-row-padding w3-center w3-margin-top " id="boxes">
-						<div class="">
-							<div class="w3-padding unit" style="background-image: url();">
-								<a href=".ce.html"><h4 id="big">College of Education</h4><br></a>
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
-					</div>
-					<hr class="college-div">
-					<div class="w3-row-padding w3-center w3-margin-top" id="boxes1">
-						<div class="">
-							<div class="w3-padding unit" style="">
-								<a href=".cit.html"><h4 id="big">College of Industrial Technology</h4><br></a> 
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
-					</div>
-					<hr class="college-div">
-					<div class="w3-row-padding w3-center w3-margin-top" id="boxes2">
-						<div class="">
-							<div class="w3-padding unit" style="background-image: url();">
-								<a href=".cs.html"><h4 id="big">College of Science</h4><br></a> 
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
-					</div>
-					<hr class="college-div">
-					<div class="w3-row-padding w3-center w3-margin-top" id="boxes3">
-						<div class="">
-							<div class="w3-padding unit" style="">
-								<a href=".ia.html"><h4 id="big">Institute of Architecture</h4><br></a> 
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
-					</div>
-					<hr class="college-div">
-					<div class="w3-row-padding w3-center w3-margin-top" id="boxes4">
-						<div class="">
-							<div class="w3-padding unit" style="background-image: url();">
-								<a href=".cbem.html"><h4 id="big">College of Business and Economic Management</h4><br></a> 
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
-					</div>
-					<hr class="college-div">
-					<div class="w3-row-padding w3-center w3-margin-top" id="boxes5">
-						<div class="">
-							<div class="w3-padding unit" style="">
-								<a href=".ipesr.html"><h4 id="big">Institute of Physical Education & Sports Recreation</h4><br></a> 
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
-					</div>
-					<br>
-					<hr class="college-div">
-					<div class="w3-row-padding w3-center w3-margin-top" id="boxes6">
-						<div class="">
-							<div class="w3-padding unit" style="">
-								<a href=".ceng.html"><h4 id="big">College of Engineering</h4><br></a> 
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
-					</div>
-					<hr class="college-div">
-					<div class="w3-row-padding w3-center w3-margin-top" id="boxes7">
-						<div class="">
-							<div class="w3-padding unit" style="">
-								<a href=".cn.html"><h4 id="big">College of Nursing</h4><br></a> 
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
-					</div>
-					<hr class="college-div">
-					<div class="w3-row-padding w3-center w3-margin-top" id="boxes8">
-						<div class="">
-							<div class="w3-padding unit" style="">
-								<a href=".cal.html"><h4 id="big">College of Arts & Letters</h4><br></a> 
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
-					</div>
-					<hr class="college-div">
-					<div class="w3-row-padding w3-center w3-margin-top" id="boxes9">
-						<div class="">
-							<div class="w3-padding unit" style="">
-								<a href=".cm.html"><h4 id="big">College of Medicine</h4><br></a> 
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
-					</div>
-					<hr class="college-div">
-					<div class="w3-row-padding w3-center w3-margin-top" id="boxes10">
-						<div class="">
-							<div class="w3-padding unit" style="">
-								<a href=".cssp.html"><h4 id="big">College of Social Sciences and Philosophy</h4><br></a> 
-								<i class="fa fa-desktop w3-text-theme"></i>
-							</div>
-						</div>
+						<?php
+							include_once "connection.php";
+							$result = $con->query("SELECT * FROM college");
+							while($row = $result->fetch_assoc()) {
+								echo
+								'
+								<div class="">
+									<div class="w3-padding unit" style="">
+										<a href="unit_college.php?college='.str_replace(' ', '%20', $row['label']).'"><h4 id="big">'.$row['label'].'</h4><br></a> 
+										<i class="fa fa-desktop w3-text-theme"></i>
+									</div>
+								</div>
+								<hr class="college-div">
+								';
+							}
+							$result->free();
+							$con->close();
+						?>
 					</div>
 				</div>
 			</div>
@@ -487,7 +410,7 @@ function type_of_event($inp) {
 			</div>
 		</footer>
 	</div>
-<script src="jquery-1.12.0.min.js"></script>
+<script src="../js/jquery-3.2.1.min.js"></script>
 <script src="../js/js_1.js"></script>
 <script src="../js/js_4.js"></script>
 <script src="../js/js_5.js"></script>

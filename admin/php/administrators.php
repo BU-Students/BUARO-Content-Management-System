@@ -107,7 +107,7 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 							<span class="glyphicon glyphicon-chevron-right"></span>
 						</a>
 					</div>
-				</div>
+				</div><!--
 				<div id="active-admins">
 					<div class="table-wrapper table-responsive">
 						<table class="table table-striped" style="border: 1px solid #aaa;">
@@ -126,7 +126,7 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 							</tbody>
 						</table>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 
@@ -179,8 +179,8 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 						<p id="confirmation-msg"></p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" onclick="activate_deactivate_accounts()" id="action-btn" style="width: 69.58px">Yes</button>
-						<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-default" onclick="activate_deactivate_accounts()" id="action-btn" style="width: 69.58px">Yes</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 					</div>
 				</div>
 			</div>

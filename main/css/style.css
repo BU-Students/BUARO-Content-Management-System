@@ -27,7 +27,7 @@ a{
 	background-color: #001e42;
 	position: fixed;
 	width: 100%;
-	height: 40px;
+	height: 50px;
 	transition: 0.5s;
 }
 
@@ -63,7 +63,7 @@ a{
 
 #topbar1{
 	color: white;
-	opacity: 0;
+
 	margin-left: 65px;
 	transition: 0.8s;
 }
@@ -143,13 +143,12 @@ nav img{
 
 #toggle{
 	color: white;
-	margin-top: -50px;
-	margin-right: 20px;
-	padding: 10px;
 	border-radius: 2px;
 	float: right;
+	margin-top: -50px;
+	margin-right: 20px;
+	font-size: 30px;
 	text-decoration: none;
-	border: 1px solid white;
 }
 
 #close{
@@ -259,10 +258,6 @@ nav img{
 	box-shadow: 0px 0px 25px 10px rgba(65,65,65,0.99);
 }
 
-@media {
-
-}
-
 button{
 	margin-top: 50px;
 }
@@ -308,7 +303,7 @@ button{
 }
 
 #bot{
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 #bot a:hover{
@@ -318,8 +313,9 @@ button{
 }
 
 footer{
+	margin-top: 20px;
 	background-color: #001e42;
-	height: 100px;
+	height: 70px;
 	color: white;
 	border-top: 5px solid rgb(255, 152, 0);
 }
@@ -335,4 +331,10 @@ footer{
 	body .w3-main{
 		min-width: 300px !important;
 	} 	
+}
+
+@media (max-width: 768px){
+	#topbar1{
+			margin-left: 20px;
+		}
 }

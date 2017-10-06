@@ -1,0 +1,33 @@
+#title {
+	display: block;
+	text-align: center;
+	padding-top: 10px;
+	margin-top: 10px;
+	font-size: 30px;
+	font-family: 'open_sans', sans-serif;
+	font-weight: lighter;
+}
+
+#options {
+	margin: 10px 0px;
+	text-align: center;
+}
+
+#options > button {
+	display: inline;
+	margin: 0px 20px;
+	width: 100px;
+}
+
+#about-container {
+	margin: 20px;
+}
+
+.CodeMirror {
+	height: 100%;
+}
+
+@font-face {
+	font-family: 'open_sans';
+	src: url('../../vendor/Fonts/Open_Sans/OpenSans-SemiBold.ttf') format('truetype');
+}

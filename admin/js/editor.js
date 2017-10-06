@@ -1,4 +1,4 @@
-document.getElementById("editor-tab").className = "active";
+//document.getElementById("editor-tab").className = "active";
 
 //initialize editor
 var editor = new SimpleMDE({
@@ -40,6 +40,7 @@ if(param != undefined) {
 				};
 
 				editor.value(content_info.content.replaceAll("<br/>", "\n"));
+				editor.togglePreview();
 			}
 			else {
 				//handle failure here

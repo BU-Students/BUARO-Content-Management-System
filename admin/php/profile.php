@@ -55,59 +55,58 @@ if(!isset($_SESSION['id'])) {
 						<div id="view-count"></div>
 					</div>
 				</div>
-<!--				<div id="quote-container">
-					<q id="quote">We accept the love we think we deserve</q>
-				</div>
--->			</div>
+			</div>
 			<div id="right-side">
 				<div id="cover-photo">
 					<img id="cover-photo-img" />
 				</div>
-				<table class="profile-info">
-					<caption>BASIC INFORMATION</caption>
-					<tr>
-						<th>Birthday:</th>
-						<td id="b-date-display"></td>
-						<td style="display: none" id="b-date"><input type="date" id="b-date-input" /></td>
-					</tr>
-					<tr>
-						<th>Age:</th>
-						<td id="age"></td>
-					</tr>
-					<tr>
-						<th>Gender:</th>
-						<td id="sex"></td>
-					</tr>
-				</table>
-				<table class="profile-info">
-					<caption>CONTACT INFORMATION</caption>
-					<tr>
-						<th>Contact no:</th>
-						<td id="contact-no-display"><a id="contact-no-link"></a></td>
-						<td style="display: none" id="contact-no"><input type="tel" pattern="[0-9]*" id="contact-no-input" /></td>
-					</tr>
-					<tr>
-						<th>Address:</th>
-						<td id="address-display"><a target="_blank" id="address-link"></a></td>
-						<td style="display: none" id="address">
-							<input spellcheck="false" type="text" id="barangay-input" placeholder="Barangay" class="edit-mode" />
-							<input spellcheck="false" type="text" id="municipality-input" placeholder="Municipality" class="edit-mode" />
-							<input spellcheck="false" type="text" id="province-input" placeholder="Province" class="edit-mode" />
-						</td>
-					</tr>
-					<tr>
-						<th>E-mail:</th>
-						<td id="email-display"><a id="email-link"></a></td>
-						<td style="display: none" id="email"><input spellcheck="false" type="email" id="email-input" /></td>
-					</tr>
-				</table>
-				<div id="profile-options" style="text-align: center;">
-					<button class="btn" onclick="editProfile(this)" id="editButton">Edit</button>
-				</div>
-				<div style="text-align: center; display: none" id="editing-options">
-					<button class="btn" onclick="attemptToSave()" id="saveButton">Save</button>
-					<button class="btn" onclick="exitEditMode()" id="cancelButton">Cancel</button>
-				</div>
+				<form onsubmit="return false">
+					<table class="profile-info">
+						<caption>BASIC INFORMATION</caption>
+						<tr>
+							<th>Birthday:</th>
+							<td id="b-date-display"></td>
+							<td style="display: none" id="b-date"><input type="date" id="b-date-input" /></td>
+						</tr>
+						<tr>
+							<th>Age:</th>
+							<td id="age"></td>
+						</tr>
+						<tr>
+							<th>Gender:</th>
+							<td id="sex"></td>
+						</tr>
+					</table>
+					<table class="profile-info">
+						<caption>CONTACT INFORMATION</caption>
+						<tr>
+							<th>Contact no:</th>
+							<td id="contact-no-display"><a id="contact-no-link"></a></td>
+							<td style="display: none" id="contact-no"><input type="tel" pattern="[0-9]*" id="contact-no-input" /></td>
+						</tr>
+						<tr>
+							<th>Address:</th>
+							<td id="address-display"><a target="_blank" id="address-link"></a></td>
+							<td style="display: none" id="address">
+								<input spellcheck="false" type="text" id="barangay-input" placeholder="Barangay" class="edit-mode" />
+								<input spellcheck="false" type="text" id="municipality-input" placeholder="Municipality" class="edit-mode" />
+								<input spellcheck="false" type="text" id="province-input" placeholder="Province" class="edit-mode" />
+							</td>
+						</tr>
+						<tr>
+							<th>E-mail:</th>
+							<td id="email-display"><a id="email-link"></a></td>
+							<td style="display: none" id="email"><input spellcheck="false" type="email" id="email-input" /></td>
+						</tr>
+					</table>
+					<div id="profile-options" style="text-align: center;">
+						<button class="btn" type="button" onclick="editProfile(this)" id="editButton">Edit</button>
+					</div>
+					<div style="text-align: center; display: none" id="editing-options">
+						<button class="btn" type="submit" onclick="attemptToSave();" id="saveButton">Save</button>
+						<button class="btn" type="button" onclick="exitEditMode()" id="cancelButton">Cancel</button>
+					</div>
+				</form>
 				<div style="height: 50px"></div>
 			</div>
 		</div>

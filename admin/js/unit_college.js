@@ -1,7 +1,7 @@
 var info;
 
 var url = "../php/backend/request_handler.php";
-var params = "request-type=G-1";
+var params = "request-type=I-0";
 var xhr;
 
 if(window.XMLHttpRequest)
@@ -13,8 +13,8 @@ if(xhr) {
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			try{
-                console.log(info);
 				info = JSON.parse(xhr.responseText);
+                console.log(info);
                 
 
              Highcharts.chart('container', {
