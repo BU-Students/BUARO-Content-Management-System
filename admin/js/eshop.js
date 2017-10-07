@@ -175,14 +175,6 @@ function deleteStory() {
 			if (http.responseText == "failed") {
 				alert(http.responseText);
 			} else {
-				//remove the shild specified by dom_index
-				var stories = document.getElementById("stories-wrapper");
-				stories.removeChild(stories.children[dom_index]);
-
-				//and update all index information of childrens with greater dom_index values
-				for (var i = dom_index; i < stories.children.length; ++i)
-					stories.children[i].children[1].value = stories.children[i].children[1].value - 1;
-
 				//notify user that deletion was successful
 				document.getElementById("notif-img").src = "../img/delete-icon.png";
 				document.getElementById("notif-content").innerHTML = "Item permanently deleted.";
@@ -196,9 +188,18 @@ function deleteStory() {
 
 				$("#confirmation-modal").modal("hide");
 				$("#expanded-story").modal("hide");
+				window.location.replace("../php/eshop.php");
 			}
 		}
 	}
 
 	http.send(params);
+}
+
+function div_show() {
+document.getElementById('manage_comment').style.display = "block";
+}
+//Function to Hide Popup
+function div_hide(){
+document.getElementById('manage_comment').style.display = "none";
 }
