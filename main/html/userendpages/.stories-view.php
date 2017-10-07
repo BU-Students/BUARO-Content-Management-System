@@ -12,19 +12,33 @@
 }
 ?>
 <style>
+.container{
+	border-radius: 10px;
+}
 .carousel {
    width:80%;
    height:100%;
 }
+@media (max-width: 768px){
+	.carousel{
+		width: 150%;
+	}
+	.container{
+		margin-left: -80px;
+	}
+}
 </style>
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
+<body>
+			<ul class="breadcrumb">
+				<a class="w3-padding-16 w3-opennav" href="javascript:void(0)" onclick="w3_open()" style="text-decoration:none;margin-left:40px;margin-right:10px;font-size:20px;">&#9776;</a>
+				<li><a href="aro3.php">Home</a></li>
+				<li><a href="#" onclick="loadStories()">Stories</a></li>
+				<li><?php echo $fetch['title']?></li>
+			</ul>
 												<!--  T  H  E     C  O  N  T  E  N  T  -->
 			<div class="w3-container w3-padding-jumbo">
-				<ul class="breadcrumb">
-				  <li><a href="aro3.php">Home</a></li>
-				  <li><a href="#" onclick="loadStories()">Stories</a></li>
-				  <li><?php echo $fetch['title']?></li>
-				</ul>
+				
 
 				<?php
 
@@ -123,3 +137,4 @@
 							';			
 					?>
 			</div>
+</body>

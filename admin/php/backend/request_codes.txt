@@ -15,3 +15,5 @@
        G-0        | Get About article content                          | about.php           | about.js
        H-* -> Tanungin ang team 1
        I-0        | Get colleges' course information                   | unit_college.php    | unit_college.js
+       J-0        | Delete feedback                                    | feedback.php        | feedback.js
+       J-1        | Display feedback (pagination considered)           | feedback.php        | feedback.js

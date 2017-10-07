@@ -15,15 +15,15 @@ if(!isset($_SESSION['id'])) {
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>contact us Editor</title>
+		<title>Markdown Editor</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../sparksuite-simplemde-markdown-editor-6abda7a/dist/simplemde.min.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
+		<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../vendor/SimpleMDE/dist/simplemde.min.css">
+
 		<link rel="stylesheet" href="../css/topbar.css" />
 		<link rel="stylesheet" href="../css/sidebar.css" />
-		<link rel="stylesheet" href="../css/editor.css" />
+		<link rel="stylesheet" href="../css/about.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
 	</head>
 	<body>
@@ -32,11 +32,15 @@ if(!isset($_SESSION['id'])) {
 			require_once "sidebar.php";
 		?>
 		<div id="content-wrapper">
-			<form id="editor-form">
-				<textarea id="textarea" name="content"></textarea>
-				<hr>
-				<div class="container-fluid">
-					<div class="col-sm-12" style="text-align: center;"><button type="button" class="btn btn-success" id="submit">Publish</button></div>
+			<label for="about-content" id="title">ABOUT THE BU ALUMNI RELATIONS OFFICE</label>
+			<form>
+				<div id="about-container">
+					<textarea id="about-content" hidden></textarea>
+					<div id="options">
+						<button class="btn btn-danger" type="submit">Cancel</button>
+						<button class="btn btn-success" type="button" onclick="update()">Update</button>
+						<div style="clear: both"></div>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -48,12 +52,10 @@ if(!isset($_SESSION['id'])) {
 			<div class="notif-content" id="notif-content"></div>
 		</div>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="../../sparksuite-simplemde-markdown-editor-6abda7a/dist/simplemde.min.js"></script>
-		<script src="../js/editor.js"></script>
-		<script src="../js/sidebar.js"></script>
+		<script src="../../vendor/jQuery/jquery-3.2.1.min.js"></script>
+		<script src="../../vendor/Bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../vendor/SimpleMDE/dist/simplemde.min.js"></script>
 		<script src="../js/about.js"></script>
+		<script src="../js/sidebar.js"></script>
 	</body>
-
 </html>

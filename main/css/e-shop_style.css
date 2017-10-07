@@ -1,3 +1,7 @@
+body,h1,h2,h3,h4,h5{
+  font-family: "Segoe UI",Arial,sans-serif;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -177,6 +181,68 @@
   .col{
     width: 100%;
     margin: 0 0 2rem 0;
+  }
+}
+
+.section{
+  background-color: #f2f2f2;
+  text-align:left;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-indent:10px;
+  min-height:280px;
+  border-radius:5px;
+}
+
+.section img{
+  border-radius:5px;
+  height:300px;
+  width:300px;
+  float:left;
+  padding: 0 20px 20px 0;
+}
+
+.section h3{
+  width:55%;
+  float:left;
+  margin-left:10px;
+  border:1px solid #d1e0f1;
+  border-left-color:rgb(255,152,0);
+  border-left-width:5px;
+  border-radius:5px;
+}
+
+.comm{
+  text-align:left;
+  margin-top:50px;
+  margin-left: 10%;
+}
+
+.comm h3{
+  text-align:left;
+  margin-bottom:10px;
+}
+
+.comm p{
+  min-width: 500px;
+}
+
+@media (max-width: 768px){
+  .section{
+    margin-left: -30px;
+    min-width: 220px;
+  }
+  .section img{
+    max-width: 240px;
+  }
+  .section h3{
+    width: 200px;
+  }
+  .section p{
+    padding-bottom: 20px;
+  }
+  footer{
+    min-width: 400px;
   }
 }
 
