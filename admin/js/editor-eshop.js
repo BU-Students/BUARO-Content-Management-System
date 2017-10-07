@@ -30,6 +30,9 @@ if (param != undefined) {
 		if (http.readyState == 4 && http.status == 200) {
 
 			if (http.responseText != "fail") {
+
+				console.log(http.responseText);
+
 				var content_info = JSON.parse(http.responseText);
 
 				document.getElementById("title").value = content_info.title;
@@ -80,22 +83,7 @@ function parseURLParams(url) {
 document.getElementById("submit").addEventListener("click", function() {
 	var title = document.getElementById("title").value;
 	var content = editor.value();
-	var img_path = document.getElementById("img_path").files[0].name;
-	console.log(img_path);
- //img_path= img_path.replace(/^.*\\,"");
 
-if (title == null || title == "") {
-        alert("title must be filled out");
-        return false;
-    }
-else if (content == null || content == "") {
-        alert("Description must be filled out");
-        return false;
-    }
-else if (img_path == null || img_path == "") {
-        alert("You must select an Image!!");
-        return false;
-    }
 	//assuming user has chosen a content type
 	var content_type = "";
 	var checkboxes = document.getElementsByName("content-type");
@@ -113,7 +101,7 @@ else if (img_path == null || img_path == "") {
 	if (story_id != -1)
 		story_id_param = "&story-id=" + story_id;
 
-
+	var img_path = document.getElementById("img_path").value;
 	var http = new XMLHttpRequest();
 	var url = "backend/request_handler.php";
 	var request_type = "H-1";
@@ -190,7 +178,7 @@ function handleFileSelect(evt) {
 			return function(e) {
 				// Render thumbnail.
 				var span = document.createElement('span');
-				span.innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
+				span.innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '" height = "210px"/>'].join('');
 				document.getElementById('list').insertBefore(span, null);
 			}
 			;
