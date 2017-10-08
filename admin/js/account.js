@@ -69,6 +69,7 @@ function change(toChange) {
 					document.getElementById("new_username").value = "";
 					document.getElementById("new_pass").value = "";
 					document.getElementById("curr_pass1").value = "";
+					document.getElementById("curr_pass2").value = "";
 					document.getElementById("confirm_pass").value = "";
 				}
 				else if(xhr.responseText == "wrong password") {

@@ -19,8 +19,20 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right" id="topbar-right">
 				<!--<li id="editor-tab"><a href="editor.php">Editor</a></li>-->
+				<li><a href="profile.php">
+					<?php
+						/* assuming backend/connection.php is included from pages that includes this file,
+						 * a session has been established, and query is correct
+						 */
+						 require_once 'backend/connection.php';
+						$result = $conn->query("SELECT first_name, MID(middle_name, 1, 1) AS mi, last_name FROM admin WHERE admin_id = ".$_SESSION['id']);
+						$conn->close();
+						$row = $result->fetch_assoc();
+						echo $row['first_name'].' '.$row['mi'].'. '.$row['last_name'];
+					?>
+				</a></li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More&ensp;<span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">&ensp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li class="dropdown-header">Setings</li>
 						<li><a href="profile.php">Profile</a></li>

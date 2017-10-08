@@ -107,7 +107,7 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 							<span class="glyphicon glyphicon-chevron-right"></span>
 						</a>
 					</div>
-				</div><!--
+				</div>
 				<div id="active-admins">
 					<div class="table-wrapper table-responsive">
 						<table class="table table-striped" style="border: 1px solid #aaa;">
@@ -126,7 +126,7 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 							</tbody>
 						</table>
 					</div>
-				</div>-->
+				</div>
 			</div>
 		</div>
 
