@@ -6,7 +6,10 @@
 include '../backend/connection.php';
 include '../backend/input_handler.php';
 require_once "../../../vendor/Parsedown/Parsedown.php";
-	$sql = "SELECT * FROM post WHERE post_type=2";
+	if($_SESSION['admin-type']==1)
+		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND post_type=2";
+	else	
+		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND college=".$_SESSION['college']." AND post_type=2";
 	$sql .= " ORDER BY eventdate DESC";
 	$result = $conn->query($sql);
 	$parser = new Parsedown();
@@ -14,8 +17,8 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 	$flag = 1;
 	$pagenum = 0;
 	$today = date("Y-m-d");
-
-	while($row = $result->fetch_assoc()) {
+	if($result==true){
+		while($row = $result->fetch_assoc()) {
 		if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
 			$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
 		}
@@ -63,6 +66,11 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 	if($flag!=1){
 		echo '</div>';
 	}
+	}
+	else{
+		echo "No events posted yet";
+	}
+	
 ?>
 </div>
 <center>
@@ -98,7 +106,10 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 
 <!--For the events modal, each events get their own modal-->
 <?php
-	$sql = "SELECT * FROM POST WHERE post_type=2";
+	if($_SESSION['admin-type']==1)
+		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND post_type=2";
+	else	
+		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND college=".$_SESSION['college']." AND post_type=2";
 	$sql .= " ORDER BY eventdate DESC";
 	$result = $conn->query($sql);
 	$parser = new Parsedown();
@@ -250,7 +261,10 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 
 <!--Each of the events gets their own edit modal-->
 <?php
-	$sql = "SELECT * FROM POST WHERE post_type=2";
+	if($_SESSION['admin-type']==1)
+		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND post_type=2";
+	else	
+		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND college=".$_SESSION['college']." AND post_type=2";
 	$sql .= " ORDER BY timestamp DESC";
 	$result = $conn->query($sql);
 	$parser = new Parsedown();
@@ -307,7 +321,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 						</div>
 					  <div class="form-group">
 					  		Content:
-					    <textarea class="form-control" rows="5" id="textarea2" name="content2">'.substr(($parser->text(decode($row['content']))),0).'</textarea>
+					    <textarea rows="20" class="form-control" rows="5" id="textarea2" name="content2">'.substr(($parser->text(decode($row['content']))),0).'</textarea>
 					  </div>
 				</div>
 		      </div>

@@ -7,11 +7,10 @@ require_once "input_handler.php";
 require_once "connection.php";
 require_once "cipher.php";
 
-$username = encode($_POST['username']);
-$password = encode($_POST['password']);
+$username = encrypt(encode($_POST['username']));
+$password = encrypt(encode($_POST['password']));
 
-$encrypted_password = encrypt($password);
-$query = "SELECT admin_id, admin_type, state FROM admin WHERE username = '$username' AND password = '$encrypted_password';";
+$query = "SELECT admin_id, admin_type, state FROM admin WHERE username = '$username' AND password = '$password';";
 $result = $conn->query($query);
 
 // close database connection
@@ -32,6 +31,7 @@ else if($result->num_rows > 0) {
 
 	$_SESSION['id'] = $row["admin_id"];
 	$_SESSION['admin-type'] = $row["admin_type"];
+	$_SESSION['college'] = $row["college"];
 	if($_SESSION['admin-type'] == 1)
 		header("Location: ../administrators.php");
 	else
