@@ -363,7 +363,7 @@ function type_of_event($inp) {
 		<div id="shop"></div>
 		<div class="shop w3-row-padding">
 			<a href="e-shop.php"><h1>Souvenirs and Memorabilia</h1></a> 
-			<div class="w3-content" id="shop_img">
+			<div class="w3-content" id="shop_img" style="min-height: 500px;">
 				<?php 
 					$sql = "SELECT img_path FROM memorabilia WHERE img_path IS NOT NULL ORDER BY label DESC LIMIT 5";
 					$exec = $con->query($sql);
@@ -371,7 +371,7 @@ function type_of_event($inp) {
 					while ($images = $exec->fetch_assoc()) {
 						$path = $images['img_path'];
 
-						if (empty($path) || is_null($path) || $path == '') {
+						if (empty($path) || is_null($path) || $path == ''  || !file_exists($path)) {
 							echo "<img class='mySlides w3-animate-opacity' src='../img/img35.jpg'>";
 						} else {
 							echo "<img class='mySlides w3-animate-opacity' src='".$path."'>";
