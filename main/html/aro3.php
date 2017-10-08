@@ -238,16 +238,27 @@ function type_of_event($inp) {
 			<div>
 				<div class="abt_content">					
 					<a href=".about.php"><h1 class="title">ABOUT</h1><br></a>
-					<div class="abt_inside">
-						<h5>The Bicol University Alumni Relations Office serves as the line between the alumni and the BU Community. It seeks to:</h5>
-						<ol type="a" class="w3-leftbar w3-theme-border" style="list-style-type:none;">
-							<li>Invite wide alumni participation and contribution to the development of the education gaols of Bicol University.</li>
-							<li>Recognize the meritorious services and achievements of the alumni, and</li>
-							<li>Provide leadership in coordinating, planning, implementing and monitoring of the development programs of the alumni associations.</li>  
-							<li>Plan and implement Alumni Continuing Education and other activities designed for the continuing professional growth of the Alumni.</li>
-							<li>Coordinate the organization of an alumni fund and other source of support funds.</li>
-						</ol>
-					</div> 				
+						<?php
+							$parse_text = new Parsedown();
+
+							$sql_about = "SELECT title,content FROM post WHERE post_type=4 ORDER BY timestamp DESC";
+							$exec_about = $con->query($sql_about);
+							$fetch_about = $exec_about->fetch_assoc();
+
+							if (strlen($fetch_about['content']) > 585) {
+								echo '<div class="abt_inside" style="height: 400px; overflow-y: scroll;">';
+							}
+							else {
+								echo '<div class="abt_inside" style="height: 80%;">';
+							}
+
+						
+						 	echo "<h5>".$parse_text->text(decode($fetch_about['title']))."</h5>";
+						 	
+							echo '<ol type="a" class="w3-leftbar w3-theme-border" style="word-wrap:break-word;list-style-type:none;">'.
+								$parse_text->text(decode($fetch_about['content']))
+							.'</ol>';
+						?>			
 				</div>
 			</div>
 		</div>
@@ -323,7 +334,7 @@ function type_of_event($inp) {
 													    <center><i style="font-size: 11px;">Published: '.$time.'</i></center>
 													    <center><h5 style="color:#ff9800;">'.$type_post.'</h5></center>
 														<hr/>
-					  									<p class="w3-animate-opacity">'.$content.'</p>
+					  									<p class="w3-animate-opacity">'.$parse_text->text(decode($content)).'</p>
 					      								<button onclick="document.getElementById('.'\'more'.$count.'\''.').style.display='.'\'none\''.'" type="button" class="w3-btn">Close</button>
 					  								</div>
 					  							</div>
@@ -376,18 +387,17 @@ function type_of_event($inp) {
 			</div>
 		</div>
 
-		<div class="w3-container w3-padding-jumbo w3-half" id="college">	
+		<div class="w3-container w3-padding-jumbo w3-half" id="college" style="margin-top: ;">	
 			<div style="width: 100%;"> 
 				<div style="width: 100%;">
-					<div class="w3-row-padding w3-center w3-margin-top " id="boxes">
+					<div class="w3-row-padding w3-center w3-margin-top " id="boxes" >
 						<?php
-							include_once "connection.php";
 							$result = $con->query("SELECT * FROM college");
 							while($row = $result->fetch_assoc()) {
 								echo
 								'
 								<div class="">
-									<div class="w3-padding unit" style="">
+									<div class="w3-padding unit">
 										<a href="unit_college.php?college='.str_replace(' ', '%20', $row['label']).'"><h4 id="big">'.$row['label'].'</h4><br></a> 
 										<i class="fa fa-desktop w3-text-theme"></i>
 									</div>

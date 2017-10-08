@@ -285,9 +285,8 @@ CREATE TABLE `memorabilia` (
 --
 
 INSERT INTO `memorabilia` (`mem_id`, `admin_id`, `label`, `description`, `img_path`) VALUES
-(13, 1, 'adff', 'adfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfas', '../../data/e-shop/default-profile-cover-photo.jpg'),
-(14, 1, 'kghhhjg', 'jgfhfh', '../../data/e-shop/default-profile-cover-photo.jpg');
-
+(13, 1, 'Memorabilia Mug', 'A limited edition Mug Memorabilia!', '../../data/e-shop/mugs.jpg'),
+(14, 1, 'Memorabilia T-shirt', 'A Limited edition Memorabilia T-shirt!', '../../data/e-shop/tshirt.jpg');
 -- --------------------------------------------------------
 
 --
