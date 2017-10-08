@@ -7,11 +7,10 @@ require_once "input_handler.php";
 require_once "connection.php";
 require_once "cipher.php";
 
-$username = encode($_POST['username']);
-$password = encode($_POST['password']);
+$username = encrypt(encode($_POST['username']));
+$password = encrypt(encode($_POST['password']));
 
-$encrypted_password = encrypt($password);
-$query = "SELECT admin_id, admin_type, state FROM admin WHERE username = '$username' AND password = '$encrypted_password';";
+$query = "SELECT admin_id, admin_type, state FROM admin WHERE username = '$username' AND password = '$password';";
 $result = $conn->query($query);
 
 // close database connection

@@ -322,7 +322,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				if($result = $conn->query($sql)) {
 					if($result->num_rows == 1) {
 						$sql = "UPDATE admin SET ".(($_POST['to-change'] == "username")? "username" : "password").
-							" = '".$_POST['value']."' WHERE admin_id = ".$_SESSION['id'];
+							" = '".encrypt($_POST['value'])."' WHERE admin_id = ".$_SESSION['id'];
 						if($conn->query($sql))
 							echo "success";
 						else echo $conn->error;

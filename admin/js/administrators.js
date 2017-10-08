@@ -203,49 +203,52 @@ function viewUserInfo(row) {
 function clickedRowFunction(row) {
 	//if row is disselected
 	if(row.classList.contains("active") && active_rows_num == 1) {
-		document.getElementById("row-options-panel").style.display = "none";
 		document.getElementById("user-info-panel").style.display = "none";
+		document.getElementById("row-options-panel").style.display = "none";
+		console.log(document.getElementById("row-options-panel"));
 		row.classList.remove("active");
 		--active_rows_num;
 	}
 	//if multiple rows selection is activated
-	else if(selectMode == true) {
-		document.getElementById("user-info-panel").style.display = "none";
-		if(row.classList.toggle("active")) {
-			++active_rows_num;
-			if(active_rows_num == 1) viewUserInfo(row);
-		}
-		else {
-			if(active_rows_num == 2) {
-				var rows = row.parentNode.children;
-				for(var i = 0; i < rows.length; ++i) {
-					if(rows[i].classList.contains("active")) break;
-				}
-				viewUserInfo(rows[i]);
-			}
-			--active_rows_num;
-		}
-	}
-	//if no rows are selected
 	else {
-		if(!row.classList.contains("active")) {
-			clearActiveRows();
-			row.classList.add("active");
-			active_rows_num = 1;
-			document.getElementById("user-info-panel").style.display = "block";
+		if(selectMode == true) {
+			document.getElementById("user-info-panel").style.display = "none";
+			if(row.classList.toggle("active")) {
+				++active_rows_num;
+				if(active_rows_num == 1) viewUserInfo(row);
+			}
+			else {
+				if(active_rows_num == 2) {
+					var rows = row.parentNode.children;
+					for(var i = 0; i < rows.length; ++i) {
+						if(rows[i].classList.contains("active")) break;
+					}
+					viewUserInfo(rows[i]);
+				}
+				--active_rows_num;
+			}
 		}
-		else clearActiveRows();
-		viewUserInfo(row);
+		//if no rows are selected
+		else {
+			if(!row.classList.contains("active")) {
+				clearActiveRows();
+				row.classList.add("active");
+				active_rows_num = 1;
+				document.getElementById("user-info-panel").style.display = "block";
+			}
+			else clearActiveRows();
+			viewUserInfo(row);
+		}
+
+		var option_button = document.getElementById("activate-deactivate");
+		if(row.children[8].value == "1")
+			option_button.innerHTML = ((active_rows_num > 1)? "Deactivate Accounts" : "Deactivate Account");
+		else
+			option_button.innerHTML = ((active_rows_num > 1)? "Activate Accounts" : "Activate Account");
+		document.getElementById("row-options-panel").style.display = "block";
+
+		action = (row.children[8].value == "0")? 1 : 0;
 	}
-
-	var option_button = document.getElementById("activate-deactivate");
-	if(row.children[8].value == "1")
-		option_button.innerHTML = ((active_rows_num > 1)? "Deactivate Accounts" : "Deactivate Account");
-	else
-		option_button.innerHTML = ((active_rows_num > 1)? "Activate Accounts" : "Activate Account");
-	document.getElementById("row-options-panel").style.display = "block";
-
-	action = (row.children[8].value == "0")? 1 : 0;
 }
 
 function confirmAction() {
