@@ -7,6 +7,12 @@
   <h1>Reports on Event / Story</h1>
   <h4>As of: <?php echo date("D-M-Y")?></h4>
   <input type="button" class="btn btn-default btn-s" onclick="printDiv('printarea')" value="Print this Report" />
+  <input type="button" id="button-report-date" class="btn btn-default btn-s" onclick="showDate()" value="Print a report by post date" />
+    <div id="report-date" class="hidden">
+      <label for="start">From: </label><input type="date" id="start">
+      <label for="end">To: </label><input type="date" id="end">
+      <input type="button" class="btn btn-default btn-s" onclick="printdate()" value="Print Up to this date" />
+    </div>
 </div>
 <div class="table-responsive" id="printarea">
 <table class="table table-bordered table-hover table-striped" id="admins-table">
@@ -72,6 +78,7 @@
   </tbody>
 </table>
 </div>
+<div class="hidden" id="speccont"></div>
 <script>
 function printDiv(divName) {
      var printContents = document.getElementById(divName).innerHTML;
@@ -83,4 +90,40 @@ function printDiv(divName) {
 
      document.body.innerHTML = originalContents;
 }
+</script>
+<script>
+  function printdate(){
+    val1 = document.getElementById("start").value;
+    val2 = document.getElementById("end").value;
+    var params = "start="+val1+"&end="+val2;
+    console.log(params);
+    var xhttp4 = new XMLHttpRequest();
+    xhttp4.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("speccont").innerHTML = this.responseText;
+        var printContents = document.getElementById("speccont").innerHTML;
+         var originalContents = document.body.innerHTML;
+
+         document.body.innerHTML = printContents;
+
+         window.print();
+
+         document.body.innerHTML = originalContents;
+      }
+    };
+  xhttp4.open("GET", "backend/spec-reports.php?"+params, true);
+  xhttp4.send();
+  };
+</script>
+<script>
+  function showDate(){
+    if(document.getElementById("button-report-date").className=="btn btn-default btn-s active"){
+      document.getElementById("button-report-date").className ="btn btn-default btn-s";
+      document.getElementById("report-date").className="hidden";
+    }
+    else{
+    document.getElementById("button-report-date").className +=" active";
+    document.getElementById("report-date").className="show";
+  }
+  }
 </script>

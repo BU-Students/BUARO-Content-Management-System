@@ -32,6 +32,7 @@ else if($result->num_rows > 0) {
 
 	$_SESSION['id'] = $row["admin_id"];
 	$_SESSION['admin-type'] = $row["admin_type"];
+	$_SESSION['college'] = $row["college"];
 	if($_SESSION['admin-type'] == 1)
 		header("Location: ../administrators.php");
 	else
