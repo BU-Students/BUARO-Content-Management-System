@@ -22,11 +22,10 @@
 				<li><a href="profile.php">
 					<?php
 						/* assuming backend/connection.php is included from pages that includes this file,
-						 * a session has been established, and query is correct
+						 * a session has been established, and the query is correct
 						 */
-						 require_once 'backend/connection.php';
+						require_once 'backend/connection.php';
 						$result = $conn->query("SELECT first_name, MID(middle_name, 1, 1) AS mi, last_name FROM admin WHERE admin_id = ".$_SESSION['id']);
-						$conn->close();
 						$row = $result->fetch_assoc();
 						echo $row['first_name'].' '.$row['mi'].'. '.$row['last_name'];
 					?>

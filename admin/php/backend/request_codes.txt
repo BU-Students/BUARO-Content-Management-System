@@ -12,8 +12,10 @@
        E-1        | Change username or password                        | account.php         | account.js
        F-0        | Fetch active/deactive admin information            | administrators.php  | administrators.js
        F-1        | Activate/Deactivate admin account                  | administrators.php  | administrators.js
+       F-2        | Update currently online users                      | administrators.php  | administrators.js
        G-0        | Get About article content                          | about.php           | about.js
        H-* -> Tanungin ang team 1
        I-0        | Get colleges' course information                   | unit_college.php    | unit_college.js
        J-0        | Delete feedback                                    | feedback.php        | feedback.js
        J-1        | Display feedback (pagination considered)           | feedback.php        | feedback.js
+       K-0        | Update user's last activity timestamp              | administrators.php  | user_activity.js

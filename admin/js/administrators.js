@@ -192,12 +192,22 @@ function toggleSelectMode(button) {
 function viewUserInfo(row) {
 	var rows = row.parentNode.children;
 	document.getElementById("f-name").innerHTML = row.children[1].innerHTML;
-	document.getElementById("m-name").innerHTML = row.children[2].innerHTML;
+	document.getElementById("m-name").innerHTML = row.children[2].innerHTML.charAt(0) + '.';
 	document.getElementById("l-name").innerHTML = row.children[3].innerHTML;
-	document.getElementById("college").innerHTML = row.children[4].innerHTML + " Alumni Coordinator";
+	document.getElementById("college").innerHTML = abbreviateCollege(row.children[4].innerHTML) + " Alumni Coordinator";
 	document.getElementById("profile-img").src = (row.children[7].value == "")? "../img/default-profile-img.png" : row.children[7].value;
 	document.getElementById("profile-link").href = "profile.php?user_id=" + row.children[0].value;
 	document.getElementById("user-info-panel").style.display = "block";
+}
+
+function abbreviateCollege(college) {
+	var tokens = college.split(" ");
+	var abbr = ""
+	for(var i = 0; i < tokens.length; ++i) {
+		if(tokens[i] !== "of" && tokens[i] !== "and")
+		abbr += tokens[i].charAt(0).toUpperCase();
+	}
+	return abbr;
 }
 
 function clickedRowFunction(row) {
@@ -507,3 +517,37 @@ function selectAllRows(button) {
 
 	button.style.display = "none";
 }
+
+//update the active users display every n seconds
+var n = 2;
+window.setInterval(function() {
+	var http;
+	if(window.XMLHttpRequest) http  = new XMLHttpRequest();
+	else http = new ActiveXObject("Microsoft.XMLHTTP");
+
+	http.onreadystatechange = function() {
+		if(this.readyState == 4 && this.status == 200) {
+			try {
+				var users = JSON.parse(this.responseText);
+				var tbody = document.getElementById("active-users-body");
+				if(users.length == 0) {
+					tbody.innerHTML = '<tr><td colspan="2" align="center">None</td></tr>';
+				}
+				else {
+					tbody.innerHTML = "";
+					for(var i = 0; i < users.length; ++i) {
+						tbody.innerHTML +=
+							'<tr>' +
+								'<td><a href="profile.php?user_id=' + users[i].id + '">' + users[i].f_name + ' ' + users[i].l_name + '</a></td>' +
+								'<td align="center">' + users[i].login_time + '</td>' +
+							'</tr>';
+					}
+				}
+			} catch(e) {
+				console.log(this.responseText);
+			}
+		}
+	};
+	http.open("GET", "backend/request_handler.php?request-type=F-2", true);
+	http.send();
+}, n * 1000);
