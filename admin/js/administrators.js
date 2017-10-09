@@ -519,7 +519,7 @@ function selectAllRows(button) {
 }
 
 //update the active users display every n seconds
-var n = 2;
+var n = 10;
 window.setInterval(function() {
 	var http;
 	if(window.XMLHttpRequest) http  = new XMLHttpRequest();

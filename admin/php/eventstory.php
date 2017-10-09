@@ -35,6 +35,7 @@ require_once "../../vendor/Parsedown/Parsedown.php";
 				}
 			}
 		</style>
+		<script src="../js/user_activity.js"></script>
 	</head>
 	</head>
 	<body>

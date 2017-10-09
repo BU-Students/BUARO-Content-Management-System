@@ -25,6 +25,7 @@ if(!isset($_SESSION['id'])) {
 		<link rel="stylesheet" href="../css/sidebar.css" />
 		<link rel="stylesheet" href="../css/about.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
+		<script src="../js/user_activity.js"></script>
 	</head>
 	<body>
 		<?php
