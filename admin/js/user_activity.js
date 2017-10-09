@@ -3,7 +3,7 @@
  * still online; and update the database
  * if so
  */
-var n = 2;
+var n = 60;
 var event_occured = false;
 var xhr;
 
