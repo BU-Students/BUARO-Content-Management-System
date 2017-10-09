@@ -6,19 +6,19 @@ button { outline: none !important; }
 	height: -webkit-calc(100% - 36px);
 	height: -moz-calc(100% - 36px);
 	height: calc(100% - 36px);
-	overflow-y: auto;
+/* 	overflow-y: auto; */
 	padding: 10px;
 	float: left;
 }
 
 #left-side {
-	width: -webkit-calc(100% - 400px);
-	width: -moz-calc(100% - 400px);
-	width: calc(100% - 400px);
+	width: -webkit-calc(100% - 300px);
+	width: -moz-calc(100% - 300px);
+	width: calc(100% - 300px);
 }
 
 #right-side {
-	width: 400px;
+	width: 300px;
 	float: right;
 }
 
@@ -33,7 +33,7 @@ button { outline: none !important; }
 }
 
 caption {
-	padding: 10px;
+	padding: 10px 10px 10px 0px;
 }
 
 .table-wrapper { width: 100%; }
@@ -47,15 +47,15 @@ tr, th, #new-admin-btn, #new-admin-btn .glyphicon {
 
 th:hover { cursor: pointer; }
 
-th, td { text-align: center; }
+#active-users th,
+#admins-table th,
+#admins-table td { text-align: center; }
 
 table .glyphicon {
 	position: relative;
 	left: 10px;
 	font-size: 10px;
 }
-
-/* #active-admins caption { text-align: center; } */
 
 #new-admin-btn {
 	float: right;
@@ -96,8 +96,8 @@ tr.active td { background-color: #BBDEFB !important; }
 	border-radius: 50%;
 	display: block;
 	margin: 10px auto;
-	width: 100px;
-	height: 100px;
+	width: 90px;
+	height: 90px;
 }
 
 #name {
@@ -173,7 +173,9 @@ tr.active td { background-color: #BBDEFB !important; }
 	width: 50%;
 }
 
-#active-admins {}
+#active-users {
+	border: 1px solid #aaa;
+}
 
 @media only screen and (max-width: 767px) {
 	#left-side, #right-side {

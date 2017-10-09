@@ -578,6 +578,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					echo $json;
 					break;
 
+				case "K-0":
+					$sql = 'UPDATE admin, admin_activity '.
+						'SET last_active = CURRENT_TIMESTAMP() '.
+						'WHERE admin_activity.admin_id = admin.admin_id AND '.
+						'admin.admin_id = '.$_SESSION['id'];
+					if(!$conn->query($sql))
+						echo $conn->error;
+					break;
+
 				default:
 					echo "Invalid request type";
 		}
@@ -587,7 +596,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	unset($_POST);
 }
 else if($_SERVER["REQUEST_METHOD"] == "GET") {
+	switch($_GET['request-type']) {
+		case "F-2":
+			$sql =
+				"SELECT ".
+					"admin.admin_id, ".
+					"first_name, ".
+					"last_name, ".
+					"last_login ".
+				"FROM admin, admin_activity ".
+				"WHERE ".
+				"admin.admin_id = admin_activity.admin_id AND ".
+				"admin.admin_id != ".$_SESSION['id']." AND ".
+				"TIMESTAMPDIFF(MINUTE, last_active, CURRENT_TIMESTAMP()) <= 1";
 
+			if($result = $conn->query($sql)) {
+				$users = array();
+				while($row = $result->fetch_assoc()) {
+					array_push($users, array(
+						'id' => $row['admin_id'],
+						'f_name' => $row['first_name'],
+						'l_name' => $row['last_name'],
+						'login_time' => date("h:i A", strtotime($row['last_login']))
+					));
+				}
+				echo json_encode($users);
+				$result->free();
+			}
+			else echo $conn->error;
+			break;
+	}
 }
 else {
 	$conn->close();
@@ -596,5 +634,4 @@ else {
 }
 
 $conn->close();
-
 ?>
