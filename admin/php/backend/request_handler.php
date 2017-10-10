@@ -318,11 +318,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				break;
 
 			case "E-1":
-				$sql = "SELECT admin_id FROM admin WHERE password = '".encrypt($_POST['password'])."' AND admin_id = ".$_SESSION['id'];
+				$sql = "SELECT admin_id FROM admin WHERE password = '".encrypt(encode($_POST['password']))."' AND admin_id = ".$_SESSION['id'];
 				if($result = $conn->query($sql)) {
 					if($result->num_rows == 1) {
 						$sql = "UPDATE admin SET ".(($_POST['to-change'] == "username")? "username" : "password").
-							" = '".encrypt($_POST['value'])."' WHERE admin_id = ".$_SESSION['id'];
+							" = '".encrypt(encode($_POST['value']))."' WHERE admin_id = ".$_SESSION['id'];
 						if($conn->query($sql))
 							echo "success";
 						else echo $conn->error;

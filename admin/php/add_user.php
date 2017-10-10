@@ -17,9 +17,8 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 	exit();
 }
 
-require_once "backend/connection.php";
-
 if($_SERVER['REQUEST_METHOD'] == "POST") {
+	require_once "backend/connection.php";
 	require_once "backend/input_handler.php";
 	require_once "backend/cipher.php";
 
@@ -60,28 +59,44 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			$_POST['contact-no'].", ".
 			"'".$_POST['b-date']."', ".
 			$_POST['email'].", ".
-			"'".encode($_POST['username'])."', ".
-			"'".encrypt($_POST['password'])."', ".
+			"'".encrypt(encode($_POST['username']))."', ".
+			"'".encrypt(encode($_POST['password']))."', ".
 			$_POST['profile-img'].", ".
-			$_POST['cover-photo'].
+			$_POST['cover-photo'].", ".
+			"1 ".
 		")";
 
+	//insertion query for `user_activity` table
+	$query_3 =
+		"INSERT INTO admin_activity VALUES( null, ".
+			"(SELECT admin_id FROM admin ORDER BY admin_id DESC LIMIT 1), ".
+			"null, ".
+			"null ".
+		")";
+
+	/* maks sure that all three insertions are successfull;
+	 * if at least one is unsuccesful, delete all inserted
+	 * rows
+	 */
 	if(!$conn->query($query_1))
-		exit(!$conn->error);
+		exit($conn->error);
 
 	if(!$conn->query($query_2)) {
-		$conn->query("DELETE FROM address ORDER BY address_id DESC LIMIT 1"); //delete the inserted address
-		exit(!$conn->error);
+		$error = $conn->error;
+		$conn->query("DELETE FROM address ORDER BY address_id DESC LIMIT 1");
+		exit("Query 2: ".$error);
+	}
+
+	if(!$conn->query($query_3)) {
+		$error = $conn->error;
+		$conn->query("DELETE FROM address ORDER BY address_id DESC LIMIT 1");
+		exit("Query 3: ".$error);
 	}
 
 	unset($_POST);
 	$conn->close();
 	header("Location: administrators.php#success");
 	exit();
-}
-else {
-	//get available colleges to administrate from database
-	$result = $conn->query("SELECT * FROM college");
 }
 
 ?>
@@ -193,10 +208,11 @@ else {
 							<td>
 								<select class="form-control" name="college" id="colleges">
 								<?php
+									//get available colleges to administrate from database
+									$result = $conn->query("SELECT * FROM college");
 									while($college = $result->fetch_assoc())
 										echo '<option value="'.$college['college_id'].'">'.$college['label'].'</option>';
 									$result->free();
-									$conn->close();
 								?>
 								</select>
 							</td>
