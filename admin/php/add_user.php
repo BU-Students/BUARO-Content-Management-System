@@ -112,6 +112,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 		<link rel="stylesheet" href="../css/scrollbar.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
 		<link rel="stylesheet" href="../css/add_user.css" />
+		<script src="../js/user_activity.js"></script>
 	</head>
 	<body>
 		<!-- topbar and sidebar here -->
