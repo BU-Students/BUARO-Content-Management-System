@@ -98,7 +98,7 @@ if(!$active_users = $conn->query($sql)) {
 					<span class="caption">SELECTION OPTIONS</span>
 					<div class="options">
 						<button class="btn btn-default" id="activate-deactivate" onclick="confirmAction()"></button>
-						<button class="btn btn-default">Edit Info</button>
+						<button class="btn btn-default" id="edit-account" onclick="editUserAccount()">Edit Info</button>
 					</div>
 				</div>
 				<div id="user-info-panel">

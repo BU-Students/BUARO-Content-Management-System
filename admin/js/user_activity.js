@@ -22,17 +22,13 @@ function updateDB() {
 		window.onclick = signalEvent;
 		window.onmousemove = signalEvent;
 		window.onkeydown = signalEvent;
-		console.log("ok na");
 	}, n * 1000);
 
 	var xhr;
 	if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
 	else xhr = new ActiveXObject("Microsoft.XMLHTTP");
 
-	xhr.onreadystatechange = function() {
-		if(this.readyState == 4 && this.status == 200) {
-		}
-	};
+	xhr.onreadystatechange = "";
 	xhr.open("POST", "backend/request_handler.php", true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send("request-type=K-0");
