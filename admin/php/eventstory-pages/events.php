@@ -113,7 +113,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 	$sql .= " ORDER BY eventdate DESC";
 	$result = $conn->query($sql);
 	$parser = new Parsedown();
-
+	if($result==true){
 	while($row = $result->fetch_assoc()) {
 		if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
 			$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
@@ -257,6 +257,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 		</div>
 		';
 	}
+}
 ?>
 
 <!--Each of the events gets their own edit modal-->
@@ -268,7 +269,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 	$sql .= " ORDER BY timestamp DESC";
 	$result = $conn->query($sql);
 	$parser = new Parsedown();
-
+	if($result==true){
 	while($row = $result->fetch_assoc()) {
 		echo '
 		<!-- Modal -->
@@ -336,4 +337,5 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 
 		';
 	}
+}
 ?>
