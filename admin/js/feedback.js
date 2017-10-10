@@ -30,6 +30,7 @@ function feedbackPagination(page) {
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	http.onreadystatechange = function() {
 		if(http.readyState == 4 && http.status == 200) {
+			console.log(this.responseText);
 			var info = JSON.parse(this.responseText);
 			total_pages = Math.ceil(info.total_rows / limit);
 			document.getElementById("tbody").innerHTML = info.table_content;

@@ -565,7 +565,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 						echo $conn->error;
 					else {
 						while($row = $result->fetch_assoc()) {
-							if($row['feedemail'] == "") $row['feedemail'] = '<span style=\"color: #ccc\">Anonymous</span>';
+							if(empty($row['feedemail']))
+								$row['feedemail'] = '<span style=\"color: #ccc\">Anonymous</span>';
+							else
+								$row['feedemail'] = '<a href=\"mailto:'.$row['feedemail'].'\">'.$row['feedemail'].'</a>';
 							$json .=
 							'<tr>'.
 								'<td>'.$row['feedemail'].'</td>'.

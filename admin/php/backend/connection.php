@@ -18,6 +18,4 @@ if($conn->connect_error) {
 	exit;
 }
 
-//please close connection after use. Thank you.
-
 ?>
