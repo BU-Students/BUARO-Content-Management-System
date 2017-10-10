@@ -40,11 +40,13 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script  src="../js/jquery_pagination.js"></script>
 <div id="content2">												<!--  T  H  E     C  O  N  T  E  N  T  -->
-		<ul class="breadcrumb">
+	<div class="top-b">
+		<ul class="breadcrumbs">
 			<a class="w3-padding-16 w3-opennav" href="javascript:void(0)" onclick="w3_open()" style="text-decoration:none;margin-left:40px;margin-right:10px;font-size:20px;">&#9776;</a>
 			<li><a href="aro3.php">Home</a></li>
 			<li>Recent Events || <a href="#" onclick="loadStories()">Stories</a></li>
-		</ul>	
+		</ul>
+	</div>
 			<div class="w3-container w3-padding-jumbo">
 				<?php
 					$parsedown = new Parsedown();
