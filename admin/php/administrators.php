@@ -17,6 +17,25 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 	exit;
 }
 
+//get currently active users
+require_once 'backend/connection.php';
+
+$sql =
+	"SELECT ".
+		"admin.admin_id, ".
+		"first_name, ".
+		"last_name, ".
+		"last_login ".
+	"FROM admin, admin_activity ".
+	"WHERE admin.admin_id = admin_activity.admin_id AND ".
+		"admin.admin_id != ".$_SESSION['id']." AND ".
+		"TIMESTAMPDIFF(MINUTE, last_active, CURRENT_TIMESTAMP()) <= 1";
+
+if(!$active_users = $conn->query($sql)) {
+	exit("Query:<br>".$sql."<br><br>Response:<br>".$conn->error);
+}
+// else exit(var_dump($active_users));
+
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +49,7 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 		<link rel="stylesheet" href="../css/scrollbar.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
 		<link rel="stylesheet" href="../css/administrators.css" />
+		<script src="../js/user_activity.js"></script>
 	</head>
 	<body>
 		<!-- topbar and sidebar here -->
@@ -78,6 +98,7 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 					<span class="caption">SELECTION OPTIONS</span>
 					<div class="options">
 						<button class="btn btn-default" id="activate-deactivate" onclick="confirmAction()"></button>
+						<button class="btn btn-default">Edit Info</button>
 					</div>
 				</div>
 				<div id="user-info-panel">
@@ -108,21 +129,32 @@ if(!isset($_SESSION['admin-type']) || $_SESSION['admin-type'] == 2) {
 						</a>
 					</div>
 				</div>
-				<div id="active-admins">
+				<div>
 					<div class="table-wrapper table-responsive">
-						<table class="table table-striped" style="border: 1px solid #aaa;">
+						<table class="table table-striped" id="active-users">
 							<caption>ONLINE ACCOUNTS</caption>
 							<thead>
 								<tr>
 									<th>User</th>
-									<th>Time-in</th>
+									<th>Login Time</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>Christian Collamar</td>
-									<td>9:32 am</td>
-								</tr>
+							<tbody id="active-users-body">
+								<?php
+									require_once 'backend/input_handler.php';
+									if($active_users->num_rows == 0) {
+										echo '<tr><td colspan="2" align="center">None</td></tr>';
+									}
+									else {
+										while($user = $active_users->fetch_assoc()) {
+											echo
+											'<tr>'.
+												'<td>'.decode($user['first_name']).' '.decode($user['last_name']).'</td>'.
+												'<td align="center">'.date("h:i A", strtotime($user['last_login'])).'</td>'.
+											'</tr>';
+										}
+									}
+								?>
 							</tbody>
 						</table>
 					</div>

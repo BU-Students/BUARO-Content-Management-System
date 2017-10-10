@@ -25,6 +25,7 @@ if(!isset($_SESSION['id'])) {
 		<link href="https://fonts.googleapis.com/css?family=Saira+Condensed" rel="stylesheet">
 		<link rel="stylesheet" href="../css/scrollbar.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
+		<script src="../js/user_activity.js"></script>
 	</head>
 	</head>
 	<body>

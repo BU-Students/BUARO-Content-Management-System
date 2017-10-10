@@ -20,12 +20,12 @@ if(!isset($_SESSION['id'])) {
 
 		<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../vendor/SimpleMDE/dist/simplemde.min.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
 
 		<link rel="stylesheet" href="../css/topbar.css" />
 		<link rel="stylesheet" href="../css/sidebar.css" />
 		<link rel="stylesheet" href="../css/contact.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
+		<script src="../js/user_activity.js"></script>
 	</head>
 	<body>
 		<?php

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2017 at 05:14 PM
+-- Generation Time: Oct 09, 2017 at 07:45 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -81,6 +81,30 @@ INSERT INTO `admin` (`admin_id`, `admin_type`, `address`, `college`, `first_name
 (13, 2, 3, 7, 'Fname2', 'Mname2', 'Lname2', 0, NULL, '2017-09-25', '2@example.com', 'eca4fe101390ff3d3babcf9a1245e546', 'ee262c7610a18ee3babfa4e36ade34a3', NULL, NULL, 1),
 (14, 2, 4, 2, 'Fname3', 'Mname3', 'Lname3', 1, '098765443210', '2017-08-16', NULL, 'd2d26a22184ec3f69c7f4016d6152c29', '1d7579089c1d958b219b0e3450472477', NULL, NULL, 1),
 (15, 2, 5, 7, 'Fname4', 'Mname4', 'Lname4', 1, '0987657862', '2017-09-04', NULL, '4a26b0788fd819cc890894b8c2f9162e', 'aeb5f991b117b589b2c5d664982a80ca', NULL, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_activity`
+--
+
+CREATE TABLE `admin_activity` (
+  `activity_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `last_active` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_activity`
+--
+
+INSERT INTO `admin_activity` (`activity_id`, `admin_id`, `last_active`, `last_login`) VALUES
+(1, 1, '2017-10-09 17:44:38', '2017-10-09 15:29:05'),
+(2, 12, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
+(3, 13, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
+(4, 14, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
+(5, 15, '2017-10-09 15:28:05', '2017-10-09 15:28:05');
 
 -- --------------------------------------------------------
 
@@ -382,6 +406,13 @@ ALTER TABLE `admin`
   ADD KEY `college` (`college`);
 
 --
+-- Indexes for table `admin_activity`
+--
+ALTER TABLE `admin_activity`
+  ADD PRIMARY KEY (`activity_id`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
 -- Indexes for table `admin_type`
 --
 ALTER TABLE `admin_type`
@@ -459,6 +490,11 @@ ALTER TABLE `address`
 ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
+-- AUTO_INCREMENT for table `admin_activity`
+--
+ALTER TABLE `admin_activity`
+  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `admin_type`
 --
 ALTER TABLE `admin_type`
@@ -514,6 +550,12 @@ ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`address`) REFERENCES `address` (`address_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`college`) REFERENCES `college` (`college_id`) ON DELETE SET NULL,
   ADD CONSTRAINT `admin_ibfk_3` FOREIGN KEY (`admin_type`) REFERENCES `admin_type` (`admin_type_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `admin_activity`
+--
+ALTER TABLE `admin_activity`
+  ADD CONSTRAINT `admin_activity_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `comments`

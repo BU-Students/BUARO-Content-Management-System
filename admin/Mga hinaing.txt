@@ -1,5 +1,0 @@
-In eshop.php
- - Paki-ayos ng code
- - Paki-ayos ng errors:
-    - GET http://localhost/buaro/admin/data/e-shop/default-profile-cover-photo.jpg 404 (Not Found)
-    - GET https://cdn4.iconfinder.com/data/icons/linecon/512/file-512.png net::ERR_PROXY_CONNECTION_FAILED

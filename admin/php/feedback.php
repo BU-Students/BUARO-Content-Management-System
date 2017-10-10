@@ -47,6 +47,7 @@ function filterTable($query)
 		<link rel="stylesheet" href="../css/stories.css" />
 		<link rel="stylesheet" href="../css/modal.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
+		<script src="../js/user_activity.js"></script>
 	</head>
 	<style>
 		form { margin: 20px; }

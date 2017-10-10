@@ -24,6 +24,7 @@ if(!isset($_SESSION['id'])) {
 		<link rel="stylesheet" href="../css/donate.css" />
 		<link rel="stylesheet" href="../css/modal.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
+		<script src="../js/user_activity.js"></script>
 	</head>
 	<body>
 		<?php
