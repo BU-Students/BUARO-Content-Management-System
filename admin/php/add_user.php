@@ -66,11 +66,28 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			$_POST['cover-photo'].
 		")";
 
+	//insertion query for `user_activity` table
+	$query_3 =
+		"INSERT INTO user_activity VALUES( null, ".
+			"(SELECT admin_id FROM admin ORDER BY admin_id DESC LIMIT 1), ".
+			"null, ".
+			"null ".
+		")";
+
+	/* maks sure that all three insertions are successfull;
+	 * if at least one is unsuccesful, delete all inserted
+	 * rows
+	 */
 	if(!$conn->query($query_1))
 		exit(!$conn->error);
 
 	if(!$conn->query($query_2)) {
-		$conn->query("DELETE FROM address ORDER BY address_id DESC LIMIT 1"); //delete the inserted address
+		$conn->query("DELETE FROM address ORDER BY address_id DESC LIMIT 1");
+		exit(!$conn->error);
+	}
+
+	if(!$conn->query($query_3)) {
+		$conn->query("DELETE FROM address ORDER BY address_id DESC LIMIT 1");
 		exit(!$conn->error);
 	}
 
