@@ -66,14 +66,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			"1 ".
 		")";
 
-	//insertion query for `user_activity` table
-	$query_3 =
-		"INSERT INTO admin_activity VALUES( null, ".
-			"(SELECT admin_id FROM admin ORDER BY admin_id DESC LIMIT 1), ".
-			"null, ".
-			"null ".
-		")";
-
 	/* maks sure that all three insertions are successfull;
 	 * if at least one is unsuccesful, delete all inserted
 	 * rows
@@ -95,7 +87,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
 	unset($_POST);
 	$conn->close();
-	header("Location: administrators.php#success");
+	header("Location: administrators.php#created");
 	exit();
 }
 
@@ -104,7 +96,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Alumni Administator</title>
+		<title>Add Account</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/sidebar.css" />
@@ -134,9 +126,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 				<div class="section-wrapper">
 					<table class="table">
 						<caption>BASIC</caption>
-						<tr><td colspan="2"><input required name="f-name" type="text" class="form-control" placeholder="* First name" style="width: 100%;"</td></tr>
-						<tr><td colspan="2"><input required name="m-name" type="text" class="form-control" placeholder="* Middle name" style="width: 100%;"</td></tr>
-						<tr><td colspan="2"><input required name="l-name" type="text" class="form-control" placeholder="* Last name" style="width: 100%;"</td></tr>
+						<tr><td colspan="2"><input required name="f-name" type="text" class="form-control" placeholder="* First name" style="width: 100%;"></td></tr>
+						<tr><td colspan="2"><input required name="m-name" type="text" class="form-control" placeholder="* Middle name" style="width: 100%;"></td></tr>
+						<tr><td colspan="2"><input required name="l-name" type="text" class="form-control" placeholder="* Last name" style="width: 100%;"></td></tr>
 						<tr>
 							<th class="required"><label for="sex">Gender</label></th>
 							<td>
@@ -148,16 +140,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 						</tr>
 						<tr>
 							<th class="required"><label for="b-date">Birth date</label></th>
-							<td><input required class="form-control" type="date" id="b-date" name="b-date" </td>
+							<td><input required class="form-control" type="date" id="b-date" name="b-date"></td>
 						</tr>
 					</table>
 				</div>
 				<div class="section-wrapper">
 					<table class="table">
 						<caption>PERSONAL</caption>
-						<tr><td colspan="2"><input required name="barangay" type="text" class="form-control" placeholder="* Barangay" style="width: 100%;"</td></tr>
-						<tr><td colspan="2"><input required name="municipality" type="text" class="form-control" placeholder="* Municipality" style="width: 100%;"</td></tr>
-						<tr><td colspan="2"><input required name="province" type="text" class="form-control" placeholder="* Province" style="width: 100%;"</td></tr>
+						<tr><td colspan="2"><input required name="barangay" type="text" class="form-control" placeholder="* Barangay" style="width: 100%;"></td></tr>
+						<tr><td colspan="2"><input required name="municipality" type="text" class="form-control" placeholder="* Municipality" style="width: 100%;"></td></tr>
+						<tr><td colspan="2"><input required name="province" type="text" class="form-control" placeholder="* Province" style="width: 100%;"></td></tr>
 						<tr>
 							<th>
 								Profile image
@@ -193,7 +185,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 						<caption>CONTACT</caption>
 						<tr>
 							<th>Contact number</th>
-							<td><input class="form-control"  name="contact-no" /></td>
+							<td><input class="form-control" name="contact-no" /></td>
 						</tr>
 						<tr>
 							<th>E-mail address</th>
@@ -220,19 +212,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 						</tr>
 						<tr>
 							<th class="required">Username</th>
-							<td><input required class="form-control" type="text" name="username" </td>
+							<td><input required class="form-control" type="text" name="username"></td>
 						</tr>
 						<tr>
 							<th class="required">Password</th>
-							<td><input required class="form-control" type="password" pattern=".{8,}" title="Password must be at least 8 or more characters long" id="pass" </td>
+							<td><input required class="form-control" type="password" pattern=".{8,}" title="Password must be at least 8 or more characters long" id="pass"></td>
 						</tr>
 						<tr>
-							<th class="required">Re-type password</th>
-							<td id="pass-container"><input class="form-control" type="password" id="verify-pass" name="password" </td>
+							<th class="required">Re-enter password</th>
+							<td id="pass-container"><input class="form-control" type="password" id="verify-pass" name="password"></td>
 						</tr>
 					</table>
 				</div>
-				<button type="submit" class="btn btn-success">Create Account</button>
+				<div id="buttons-container">
+					<button type="submit" class="button go">Update Account</button>
+					<a class="button cancel" href="administrators.php#canceled">Cancel</a>
+				</div>
 			</form>
 		</div>
 

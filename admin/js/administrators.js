@@ -1,8 +1,22 @@
 document.getElementById("admins-tab").classList.add("active");
 
-if(window.location.hash == "#success") {
-	document.getElementById("notif-img").src = "../img/check-icon.png";
-	document.getElementById("notif-content").innerHTML = "Account successfully created";
+if(window.location.hash) {
+	if(window.location.hash == "#created") {
+		document.getElementById("notif-img").src = "../img/check-icon.png";
+		document.getElementById("notif-content").innerHTML = "Account successfully created";
+	}
+	else if(window.location.hash == "#canceled") {
+		document.getElementById("notif-img").src = "../img/info-icon.png";
+		document.getElementById("notif-content").innerHTML = "Account not created";
+	}
+	else if(window.location.hash == "#modified") {
+		document.getElementById("notif-img").src = "../img/info-icon.png";
+		document.getElementById("notif-content").innerHTML = "Account successfully modified";
+	}
+	else if(window.location.hash == "#nochanges") {
+		document.getElementById("notif-img").src = "../img/info-icon.png";
+		document.getElementById("notif-content").innerHTML = "Account not changed";
+	}
 
 	var notif = document.getElementById("notif-container");
 	if(notif.classList.contains("show-notif")) {
@@ -173,6 +187,7 @@ function clearActiveRows() {
 		rows[i].classList.remove("active");
 	document.getElementById("row-options-panel").style.display = "none";
 	document.getElementById("user-info-panel").style.display = "none";
+	document.getElementById("edit-account").style.display = "none";
 	active_rows_num = 0;
 }
 
@@ -198,6 +213,7 @@ function viewUserInfo(row) {
 	document.getElementById("profile-img").src = (row.children[7].value == "")? "../img/default-profile-img.png" : row.children[7].value;
 	document.getElementById("profile-link").href = "profile.php?user_id=" + row.children[0].value;
 	document.getElementById("user-info-panel").style.display = "block";
+	document.getElementById("edit-account").style.display = "inline";
 }
 
 function abbreviateCollege(college) {
@@ -213,6 +229,7 @@ function abbreviateCollege(college) {
 function clickedRowFunction(row) {
 	//if row is disselected
 	if(row.classList.contains("active") && active_rows_num == 1) {
+		document.getElementById("edit-account").style.display = "none";
 		document.getElementById("user-info-panel").style.display = "none";
 		document.getElementById("row-options-panel").style.display = "none";
 		console.log(document.getElementById("row-options-panel"));
@@ -222,6 +239,7 @@ function clickedRowFunction(row) {
 	//if multiple rows selection is activated
 	else {
 		if(selectMode == true) {
+			document.getElementById("edit-account").style.display = "none";
 			document.getElementById("user-info-panel").style.display = "none";
 			if(row.classList.toggle("active")) {
 				++active_rows_num;
@@ -245,6 +263,7 @@ function clickedRowFunction(row) {
 				row.classList.add("active");
 				active_rows_num = 1;
 				document.getElementById("user-info-panel").style.display = "block";
+				document.getElementById("edit-account").style.display = "inline";
 			}
 			else clearActiveRows();
 			viewUserInfo(row);
@@ -518,6 +537,25 @@ function selectAllRows(button) {
 		clickedRowFunction(table[i]);
 
 	button.style.display = "none";
+}
+
+function editUserAccount() {
+	var rows = document.getElementById("admin-table-body").children;
+	for(var i = 0; i < rows.length; ++i) {
+		if(rows[i].classList.contains("active")) {
+			break;
+		}
+	}
+
+	if(i == rows.length)
+		return;
+
+	var form = document.createElement("form");
+	form.method = "POST";
+	form.action = "edit_user.php";
+	form.innerHTML = '<input name="user-id" value="' + rows[i].firstChild.value + '" />';
+	document.body.appendChild(form);
+	form.submit();
 }
 
 //update the active users display every n seconds
