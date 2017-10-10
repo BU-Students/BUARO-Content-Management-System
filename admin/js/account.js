@@ -24,13 +24,13 @@ if(xhr) {
 }
 else alert("Unable to communicate to the server. Try reloading the page.");
 
-function changePass() {
+function passMatch() {
 	if(document.getElementById("confirm_pass").value != document.getElementById("new_pass").value) {
 		document.getElementById("notif-img").src = "../img/error-icon.png";
 		document.getElementById("notif-content").innerHTML = "Passwords do not match";
 		document.getElementById("confirm_pass").style.border = "1px solid red";
 
-		var input_container = document.getElementById("pass-container");
+		var input_container = document.getElementById("confirm_pass");
 		if(!input_container.classList.contains("has-error"))
 			input_container.classList.add("has-error");
 
@@ -43,18 +43,34 @@ function changePass() {
 		else {
 			notif.classList.add("show-notif");
 		}
-	} else change('password');
+
+		return false;
+	}
+
+	return true;
 }
 
+$("#form2").submit(function(e) {
+	e.preventDefault();
+});
+
 function change(toChange) {
+	document.getElementById("curr_pass0").style.border = "none";
+	document.getElementById("curr_pass1").style.border = "none";
+	document.getElementById("confirm_pass").style.border = "none";
+
+	if(toChange === "password" && !passMatch()) {
+		return false;
+	}
+
 	params = "request-type=E-1&to-change=";
 
 	if(toChange == "username")
 		params += "username&value=" + document.getElementById("new_username").value +
-			"&password=" + document.getElementById("curr_pass1").value;
+			"&password=" + document.getElementById("curr_pass0").value;
 	else
 		params += "password&value=" + document.getElementById("new_pass").value +
-			"&password=" + document.getElementById("curr_pass2").value;
+			"&password=" + document.getElementById("curr_pass1").value;
 
 	xhr = null;
 	if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
@@ -68,14 +84,15 @@ function change(toChange) {
 					document.getElementById("notif-content").innerHTML = toChange + " successfully changed";
 					document.getElementById("new_username").value = "";
 					document.getElementById("new_pass").value = "";
+					document.getElementById("curr_pass0").value = "";
 					document.getElementById("curr_pass1").value = "";
-					document.getElementById("curr_pass2").value = "";
 					document.getElementById("confirm_pass").value = "";
 				}
 				else if(xhr.responseText == "wrong password") {
 					document.getElementById("notif-img").src = "../img/error-icon.png";
-					document.getElementById("notif-content").innerHTML = "The value you entered for your current password is incorrect";
-					var input = document.getElementById("curr_pass" + ((toChange == "username") + 2));
+					document.getElementById("notif-content").innerHTML = "The password you entered is incorrect";
+					console.log("curr_pass" + ((toChange === "password") + 0));
+					var input = document.getElementById("curr_pass" + ((toChange == "password") + 0));
 					input.style.border = "1px solid red";
 					input.value = "";
 				}
@@ -94,6 +111,8 @@ function change(toChange) {
 				else {
 					notif.classList.add("show-notif");
 				}
+
+				return false;
 			}
 		}
 
@@ -102,4 +121,6 @@ function change(toChange) {
 		xhr.send(params);
 	}
 	else alert("Unable to communicate to the server. Try reloading the page.");
+
+	return false;
 }
