@@ -30,12 +30,14 @@
 </style>
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
 <body>
-			<ul class="breadcrumb">
-				<a class="w3-padding-16 w3-opennav" href="javascript:void(0)" onclick="w3_open()" style="text-decoration:none;margin-left:40px;margin-right:10px;font-size:20px;">&#9776;</a>
+		<div class="top-b">
+			<ul class="breadcrumbs">
+				<a class="w3-padding-16 w3-opennav" href="javascript:void(0)" onclick="w3_open()" style="text-decoration:none;margin-left:40px;margin-right:10px;font-size:20px;color:white;">&#9776;</a>
 				<li><a href="aro3.php">Home</a></li>
 				<li><a href="#" onclick="loadStories()">Stories</a></li>
 				<li><?php echo $fetch['title']?></li>
 			</ul>
+		</div>
 												<!--  T  H  E     C  O  N  T  E  N  T  -->
 			<div class="w3-container w3-padding-jumbo">
 				
