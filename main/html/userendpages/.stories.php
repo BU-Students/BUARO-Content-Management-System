@@ -38,11 +38,13 @@
 
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
 <div id="content2">												<!--  T  H  E     C  O  N  T  E  N  T  -->
-		<ul class="breadcrumb">
-			<a class="w3-padding-16 w3-opennav" href="javascript:void(0)" onclick="w3_open()" style="text-decoration:none;margin-left:40px;margin-right:10px;font-size:20px;">&#9776;</a>
+	<div class="top-b">
+		<ul class="breadcrumbs">
+			<a class="w3-padding-16 w3-opennav" href="javascript:void(0)" onclick="w3_open()" style="text-decoration:none;margin-left:40px;margin-right:10px;font-size:20px;color:white;">&#9776;</a>
 			<li><a href="aro3.php">Home</a></li>
-			<li>Stories</li>
+			<li>Stories || <a href="#" onclick="loadRecent()">Recent Events</a></li>
 		</ul>
+	</div>
 			<div class="w3-container w3-padding-jumbo">
 				<?php
 					echo '<div class="post">';
