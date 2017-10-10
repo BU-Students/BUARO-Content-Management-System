@@ -383,6 +383,7 @@ function displayTable() {
 	}
 
 	if(newState != state) {
+		state = newState;
 		xhr = null;
 		params = "request-type=F-0&&state=" + newState;
 
@@ -400,71 +401,72 @@ function displayTable() {
 							'<tr><td colspan="6" style="text-align: center;">Nothing to display here.</td></tr>';
 						return;
 					}
-					else try {
-						info = JSON.parse(xhr.responseText);
-						users = info.users;
-						num_users = info.num_users;
-						state = newState;
-						active_rows_num = 0;
+					else {
+						try {
+							info = JSON.parse(xhr.responseText);
+							users = info.users;
+							num_users = info.num_users;
+							active_rows_num = 0;
 
-						var t_body = document.getElementById("admin-table-body");
-						t_body.innerHTML = "";
+							var t_body = document.getElementById("admin-table-body");
+							t_body.innerHTML = "";
 
-						var row;
-						for(var i = 0; i < num_users; ++i) {
-							row = document.createElement("tr");
-							row.setAttribute("onclick", "clickedRowFunction(this)");
-							row.setAttribute("style", "opacity: 0");
-							row.innerHTML = 
-								'<input type="hidden" value="' + users[i].id + '" />' +
-								"<td>" + users[i].f_name + "</td>" +
-								"<td>" + users[i].m_name + "</td>" +
-								"<td>" + users[i].l_name + "</td>" +
-								"<td>" + users[i].college + "</td>" +
-								"<td>" + users[i].sex + "</td>" +
-								"<td>" + users[i].age + "</td>" +
-								'<input type="hidden" value="' + users[i].profile_img + '" />' +
-								'<input type="hidden" value="' + users[i].state + '" />';
-							t_body.insertBefore(row, t_body.children[0]);
+							var row;
+							for(var i = 0; i < num_users; ++i) {
+								row = document.createElement("tr");
+								row.setAttribute("onclick", "clickedRowFunction(this)");
+								row.setAttribute("style", "opacity: 0");
+								row.innerHTML = 
+									'<input type="hidden" value="' + users[i].id + '" />' +
+									"<td>" + users[i].f_name + "</td>" +
+									"<td>" + users[i].m_name + "</td>" +
+									"<td>" + users[i].l_name + "</td>" +
+									"<td>" + users[i].college + "</td>" +
+									"<td>" + users[i].sex + "</td>" +
+									"<td>" + users[i].age + "</td>" +
+									'<input type="hidden" value="' + users[i].profile_img + '" />' +
+									'<input type="hidden" value="' + users[i].state + '" />';
+								t_body.insertBefore(row, t_body.children[0]);
 
-							if(state == "2")
-								row.classList.add(((users[i].state == 0)? "danger" : "success"));
+								if(state == "2")
+									row.classList.add(((users[i].state == 0)? "danger" : "success"));
 
-							window.setTimeout(showRow.bind(null, row), i * 50);
+								window.setTimeout(showRow.bind(null, row), i * 50);
+							}
+
+							sortAdminTable(document.getElementById("admin-table-headers").children[0], 0);
+
+							var table_description = document.getElementById("table-description");
+							var row_select = document.getElementById("row-select-btn");
+							var select_all = document.getElementById("select-all-btn");
+
+							if(state == "2") {
+								table_description.innerHTML = 'ACTIVE AND INACTIVE ACCOUNTS';
+								row_select.disabled = true;
+								row_select.classList.remove("active");
+								row_select.innerHTML = "Select Multiple Rows";
+								select_all.disabled = true;
+								selectMode = false;
+							}
+							else {
+								if(state == "0")
+									table_description.innerHTML = 'INACTIVE ACCOUNTS';
+								else if(state == "1")
+									table_description.innerHTML = 'ACTIVE ACCOUNTS';
+
+
+								row_select.disabled = false;
+								row_select.style.display = "inline-block";
+								select_all.disabled = false;
+								select_all.style.display = "inline-block";
+							}
+						}
+						catch(e) {
+							console.log(xhr.responseText);
 						}
 
-						sortAdminTable(document.getElementById("admin-table-headers").children[0], 0);
-
-						var table_description = document.getElementById("table-description");
-						var row_select = document.getElementById("row-select-btn");
-						var select_all = document.getElementById("select-all-btn");
-
-						if(state == "2") {
-							table_description.innerHTML = 'ACTIVE AND INACTIVE ACCOUNTS';
-							row_select.disabled = true;
-							row_select.classList.remove("active");
-							row_select.innerHTML = "Select Multiple Rows";
-							select_all.disabled = true;
-							selectMode = false;
-						}
-						else {
-							if(state == "0")
-								table_description.innerHTML = 'INACTIVE ACCOUNTS';
-							else if(state == "1")
-								table_description.innerHTML = 'ACTIVE ACCOUNTS';
-
-
-							row_select.disabled = false;
-							row_select.style.display = "inline-block";
-							select_all.disabled = false;
-							select_all.style.display = "inline-block";
-						}
+						displayColumns();
 					}
-					catch(e) {
-						console.log(xhr.responseText);
-					}
-
-					displayColumns();
 				}
 			}
 
