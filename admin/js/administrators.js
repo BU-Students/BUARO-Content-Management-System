@@ -15,7 +15,7 @@ if(window.location.hash) {
 	}
 	else if(window.location.hash == "#nochanges") {
 		document.getElementById("notif-img").src = "../img/info-icon.png";
-		document.getElementById("notif-content").innerHTML = "Account not changed";
+		document.getElementById("notif-content").innerHTML = "Operation cancelled";
 	}
 
 	var notif = document.getElementById("notif-container");
@@ -35,11 +35,97 @@ var url = "backend/request_handler.php";
 var params = "request-type=F-0&state=1";
 var xhr;
 
-var users;
-var num_users;
+var users;                //all users
+var active_users = [];    //all inactive user accounts
+var inactive_users = [];  //all active user accounts
+
+var usersTable = document.createElement("table"); //a table version of `users` object for filtering purposes
+
 var active_rows_num = 0;
-var state = "1";
+var state = "1";          //based on HTML values; 0 for inactive, 1 for active, and 2 for both
 var action;
+
+var curr_page = 1;        //first page starts at
+var row_limit = 10;       //the number of rows to display on the table
+
+function displayPage(pageNum) {
+	//set active pagination button
+	var pagination = document.getElementById("pagination")
+	pagination.children[curr_page].classList.remove("active");
+	curr_page = pageNum;
+	pagination.children[curr_page].classList.add("active");
+
+	//activate/deactivate pagination toggles if necessary
+	if(curr_page + 1 > Math.ceil(users.length / row_limit))
+		pagination.lastChild.classList.add("disabled");
+	else
+		pagination.lastChild.classList.remove("disabled");
+
+	if(curr_page == 1)
+		pagination.firstChild.classList.add("disabled");
+	else
+		pagination.firstChild.classList.remove("disabled");
+
+	//begin the function's main purpose
+	var t_body = document.getElementById("admin-table-body");
+	t_body.innerHTML = "";
+
+	var row;
+	var info;
+
+	if(state === "1")
+		info = JSON.parse(JSON.stringify(active_users));
+	else if(state === "0")
+		info = JSON.parse(JSON.stringify(inactive_users));
+	else info = JSON.parse(JSON.stringify(users));
+
+	if(info.length > 0) {
+		var lim = pageNum * row_limit;
+		var offset = lim - row_limit;
+		var i = (lim >= info.length)? info.length : lim;
+
+		for(--i; i >= offset; --i) {
+			row = document.createElement("tr");
+			row.setAttribute("onclick", "clickedRowFunction(this)");
+			row.setAttribute("style", "opacity: 0");
+			row.innerHTML =
+				'<input type="hidden" value="' + info[i].admin_id + '" />' +
+				"<td>" + info[i].first_name + "</td>" +
+				"<td>" + info[i].middle_name + "</td>" +
+				"<td>" + info[i].last_name + "</td>" +
+				"<td>" + info[i].label + "</td>" +
+				"<td>" + ((info[i].sex == "0")? "Male" : "Female") + "</td>" +
+				"<td>" + info[i].age + "</td>" +
+				'<input type="hidden" value="' + info[i].profile_img + '" />' +
+				'<input type="hidden" value="' + info[i].state + '" />';
+			t_body.insertBefore(row, t_body.childNodes[0]);
+
+			if(state === "2") {
+				row.classList.add(((info[i].state == "0")? "danger" : "success"));
+			}
+		}
+
+		sortAdminTable(document.getElementById("admin-table-headers").children[0], 0);
+	}
+	else {
+		document.getElementById("row-select-btn").style.display = "none";
+		document.getElementById("select-all-btn").style.display = "none";
+		document.getElementById("admin-table-body").innerHTML =
+			'<tr><td colspan="6" style="text-align: center;">No row to display</td></tr>';
+	}
+}
+
+function prevPage() {
+	if(curr_page - 1 > 0) {
+		displayPage(curr_page - 1);
+	}
+}
+
+function nextPage() {
+	if(curr_page + 1 <= Math.ceil(users.length / row_limit)) {
+		displayPage(curr_page + 1);
+	}
+}
 
 if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
 else xhr = new ActiveXObject("Microsoft.XMLHTTP");
@@ -56,32 +142,37 @@ if(xhr) {
 				return;
 			}
 
-			var info = JSON.parse(xhr.responseText);
-			users = info.users;
-			num_users = info.num_users;
-			var t_body = document.getElementById("admin-table-body");
+			users = JSON.parse(xhr.responseText);
+			console.log(users);
 
-			var row;
-			for(var i = 0; i < num_users; ++i) {
-				row = document.createElement("tr");
-				row.setAttribute("onclick", "clickedRowFunction(this)");
-				row.setAttribute("style", "opacity: 0");
-				row.innerHTML = 
-					'<input type="hidden" value="' + users[i].id + '" />' +
-					"<td>" + users[i].f_name + "</td>" +
-					"<td>" + users[i].m_name + "</td>" +
-					"<td>" + users[i].l_name + "</td>" +
-					"<td>" + users[i].college + "</td>" +
-					"<td>" + users[i].sex + "</td>" +
+			for(var i = 0; i < users.length; ++i) {
+				var row = document.createElement("tr");
+				row.innerHTML =
+					'<input type="hidden" value="' + users[i].admin_id + '" />' +
+					"<td>" + users[i].first_name + "</td>" +
+					"<td>" + users[i].middle_name + "</td>" +
+					"<td>" + users[i].last_name + "</td>" +
+					"<td>" + users[i].label + "</td>" +
+					"<td>" + ((users[i].sex == "0")? "Male" : "Female") + "</td>" +
 					"<td>" + users[i].age + "</td>" +
 					'<input type="hidden" value="' + users[i].profile_img + '" />' +
 					'<input type="hidden" value="' + users[i].state + '" />';
-				t_body.insertBefore(row, t_body.childNodes[0]);
+				usersTable.appendChild(row);
 
-				window.setTimeout(showRow.bind(null, row), i * 50);
+				if(users[i].state === "0")
+					inactive_users.push(users[i]);
+				else if(users[i].state === "1")
+					active_users.push(users[i]);
 			}
 
-			sortAdminTable(document.getElementById("admin-table-headers").children[0], 0);
+			var page_links = document.getElementById("pagination");
+			page_links.innerHTML = '<li><a href="#" onclick="prevPage()"><span class="glyphicon glyphicon-chevron-left"></span></a></li>';
+			for(var i = 1, j = 1; j <= users.length; ++i, j += row_limit) {
+				page_links.innerHTML += '<li><a href="#" onclick="displayPage(' + i + ')">' + i + '</a></li>';
+			}
+			page_links.innerHTML += '<li><a onclick="nextPage()" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>';
+
+			displayPage(curr_page);
 		}
 	}
 
@@ -98,7 +189,7 @@ function sortAdminTable(header, n) {
 	for(var i = 0; i < theaders.length; ++i)
 		theaders[i].classList.remove("active");
 	header.classList.add("active");
-	document.getElementById("filter").placeholder = "Filter based on active column (" + header.innerHTML + ")";
+	document.getElementById("filter").placeholder = "Filter current page based on active column (" + header.innerHTML + ")";
 
 	var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
 	table = document.getElementById("admin-table-body");
@@ -149,10 +240,20 @@ function sortAdminTable(header, n) {
 			}
 		}
 	}
+
+	for(var i = 0; i < table.children.length; ++i) {
+		window.setTimeout(showRow.bind(null, table.children[i]), i * 50);
+	}
 }
 
 function filter(input) {
-	//define what is being searched for
+	//if search query is empty
+	if(input.value == "") {
+		displayPage(curr_page);
+		return;
+	}
+
+	//determine the column being searched for
 	var tab;
 	var theaders = document.getElementById("admin-table-headers").children;
 
@@ -161,22 +262,24 @@ function filter(input) {
 			tab = i;
 			break;
 		}
-	}		
+	}
 
 	var input, filter, table, tr, td, i;
 
 	filter = input.value.toUpperCase();
 	table = document.getElementById("admin-table-body");
-	tr = table.getElementsByTagName("tr");
+	table.innerHTML = "";
+
+	tr = usersTable.getElementsByTagName("tr");
 
 	//Loop through all table rows, and hide those who don't match the search query
 	for(i = 0; i < tr.length; i++) {
 		td = tr[i].getElementsByTagName("td")[tab];
 		if(td) {
 			if(td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-				tr[i].style.display = "";
+				var clone = tr[i].cloneNode(true);
+				table.appendChild(clone);
 			}
-			else tr[i].style.display = "none";
 		} 
 	}
 }
@@ -210,7 +313,7 @@ function viewUserInfo(row) {
 	document.getElementById("m-name").innerHTML = row.children[2].innerHTML.charAt(0) + '.';
 	document.getElementById("l-name").innerHTML = row.children[3].innerHTML;
 	document.getElementById("college").innerHTML = abbreviateCollege(row.children[4].innerHTML) + " Alumni Coordinator";
-	document.getElementById("profile-img").src = (row.children[7].value == "")? "../img/default-profile-img.png" : row.children[7].value;
+	document.getElementById("profile-img").src = (row.children[7].value == "null")? "../img/default-profile-img.png" : row.children[7].value;
 	document.getElementById("profile-link").href = "profile.php?user_id=" + row.children[0].value;
 	document.getElementById("user-info-panel").style.display = "block";
 	document.getElementById("edit-account").style.display = "inline";
@@ -322,10 +425,14 @@ function activate_deactivate_accounts() {
 						for(var i = 0; i < rows.children.length; ++i) {
 							if(rows.children[i].classList.contains("active")) {
 								if(rows.children[i].children[8].value == "0") {
+									console.log(users);
+									console.log(rows.children);
 									rows.children[i].className = "success";
 									rows.children[i].children[8].value = "1";
 								}
 								else {
+									console.log(users);
+									console.log(rows.children);
 									rows.children[i].className = "danger";
 									rows.children[i].children[8].value = "0";
 								}
@@ -353,9 +460,9 @@ function activate_deactivate_accounts() {
 						document.getElementById("row-select-btn").style.display = "none";
 						document.getElementById("select-all-btn").style.display = "none";
 						document.getElementById("admin-table-body").innerHTML =
-							'<tr><td colspan="6" style="text-align: center;">Nothing to display here.</td></tr>';
+							'<tr><td colspan="6" style="text-align: center;">No row to display</td></tr>';
 					}
-					else {
+					else if(state !== "2") {
 						var btn = document.getElementById("row-select-btn");
 						btn.innerHTML = "Select Multiple Rows";
 						toggleSelectMode(btn);
@@ -403,97 +510,34 @@ function displayTable() {
 
 	if(newState != state) {
 		state = newState;
-		xhr = null;
-		params = "request-type=F-0&&state=" + newState;
 
-		if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
-		else xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		displayPage(curr_page);
+		displayColumns();
 
-		if(xhr) {
-			xhr.onreadystatechange = function() {
-				if(xhr.readyState == 4 && xhr.status == 200) {
-					//if there are no rows retrieved
-					if(xhr.responseText == "") {
-						document.getElementById("row-select-btn").style.display = "none";
-						document.getElementById("select-all-btn").style.display = "none";
-						document.getElementById("admin-table-body").innerHTML =
-							'<tr><td colspan="6" style="text-align: center;">Nothing to display here.</td></tr>';
-						return;
-					}
-					else {
-						try {
-							info = JSON.parse(xhr.responseText);
-							users = info.users;
-							num_users = info.num_users;
-							active_rows_num = 0;
+		var table_description = document.getElementById("table-description");
+		var row_select = document.getElementById("row-select-btn");
+		var select_all = document.getElementById("select-all-btn");
 
-							var t_body = document.getElementById("admin-table-body");
-							t_body.innerHTML = "";
-
-							var row;
-							for(var i = 0; i < num_users; ++i) {
-								row = document.createElement("tr");
-								row.setAttribute("onclick", "clickedRowFunction(this)");
-								row.setAttribute("style", "opacity: 0");
-								row.innerHTML = 
-									'<input type="hidden" value="' + users[i].id + '" />' +
-									"<td>" + users[i].f_name + "</td>" +
-									"<td>" + users[i].m_name + "</td>" +
-									"<td>" + users[i].l_name + "</td>" +
-									"<td>" + users[i].college + "</td>" +
-									"<td>" + users[i].sex + "</td>" +
-									"<td>" + users[i].age + "</td>" +
-									'<input type="hidden" value="' + users[i].profile_img + '" />' +
-									'<input type="hidden" value="' + users[i].state + '" />';
-								t_body.insertBefore(row, t_body.children[0]);
-
-								if(state == "2")
-									row.classList.add(((users[i].state == 0)? "danger" : "success"));
-
-								window.setTimeout(showRow.bind(null, row), i * 50);
-							}
-
-							sortAdminTable(document.getElementById("admin-table-headers").children[0], 0);
-
-							var table_description = document.getElementById("table-description");
-							var row_select = document.getElementById("row-select-btn");
-							var select_all = document.getElementById("select-all-btn");
-
-							if(state == "2") {
-								table_description.innerHTML = 'ACTIVE AND INACTIVE ACCOUNTS';
-								row_select.disabled = true;
-								row_select.classList.remove("active");
-								row_select.innerHTML = "Select Multiple Rows";
-								select_all.disabled = true;
-								selectMode = false;
-							}
-							else {
-								if(state == "0")
-									table_description.innerHTML = 'INACTIVE ACCOUNTS';
-								else if(state == "1")
-									table_description.innerHTML = 'ACTIVE ACCOUNTS';
-
-
-								row_select.disabled = false;
-								row_select.style.display = "inline-block";
-								select_all.disabled = false;
-								select_all.style.display = "inline-block";
-							}
-						}
-						catch(e) {
-							console.log(xhr.responseText);
-						}
-
-						displayColumns();
-					}
-				}
-			}
-
-			xhr.open("POST", url, true);
-			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhr.send(params);
+		if(state == "2") {
+			table_description.innerHTML = 'ACTIVE AND INACTIVE ACCOUNTS';
+			row_select.disabled = true;
+			row_select.classList.remove("active");
+			row_select.innerHTML = "Select Multiple Rows";
+			select_all.disabled = true;
+			selectMode = false;
 		}
-		else alert("Unable to communicate to the server. Try reloading the page.");
+		else {
+			if(state == "0")
+				table_description.innerHTML = 'INACTIVE ACCOUNTS';
+			else if(state == "1")
+				table_description.innerHTML = 'ACTIVE ACCOUNTS';
+
+
+			row_select.disabled = false;
+			row_select.style.display = "inline-block";
+			select_all.disabled = false;
+			select_all.style.display = "inline-block";
+		}
 	}
 	else displayColumns();
 }
@@ -502,20 +546,22 @@ function displayColumns() {
 	var theaders = document.getElementById("admin-table-headers").children;
 	table = document.getElementById("admin-table-body").children;
 
-	theaders[0].style.display = (document.getElementById("fname-attr").checked)? "table-cell" : "none";
-	theaders[1].style.display = (document.getElementById("mname-attr").checked)? "table-cell" : "none";
-	theaders[2].style.display = (document.getElementById("lname-attr").checked)? "table-cell" : "none";
-	theaders[3].style.display = (document.getElementById("college-attr").checked)? "table-cell" : "none";
-	theaders[4].style.display = (document.getElementById("gender-attr").checked)? "table-cell" : "none";
-	theaders[5].style.display = (document.getElementById("age-attr").checked)? "table-cell" : "none";
+	if(table.children) {
+		theaders[0].style.display = (document.getElementById("fname-attr").checked)? "table-cell" : "none";
+		theaders[1].style.display = (document.getElementById("mname-attr").checked)? "table-cell" : "none";
+		theaders[2].style.display = (document.getElementById("lname-attr").checked)? "table-cell" : "none";
+		theaders[3].style.display = (document.getElementById("college-attr").checked)? "table-cell" : "none";
+		theaders[4].style.display = (document.getElementById("gender-attr").checked)? "table-cell" : "none";
+		theaders[5].style.display = (document.getElementById("age-attr").checked)? "table-cell" : "none";
 
-	for(var i = table.length - 1; i >= 0; --i) {
-		table[i].children[1].style.display = (document.getElementById("fname-attr").checked)? "table-cell" : "none";
-		table[i].children[2].style.display = (document.getElementById("mname-attr").checked)? "table-cell" : "none";
-		table[i].children[3].style.display = (document.getElementById("lname-attr").checked)? "table-cell" : "none";
-		table[i].children[4].style.display = (document.getElementById("college-attr").checked)? "table-cell" : "none";
-		table[i].children[5].style.display = (document.getElementById("gender-attr").checked)? "table-cell" : "none";
-		table[i].children[6].style.display = (document.getElementById("age-attr").checked)? "table-cell" : "none";
+		for(var i = table.length - 1; i >= 0; --i) {
+			table[i].children[1].style.display = (document.getElementById("fname-attr").checked)? "table-cell" : "none";
+			table[i].children[2].style.display = (document.getElementById("mname-attr").checked)? "table-cell" : "none";
+			table[i].children[3].style.display = (document.getElementById("lname-attr").checked)? "table-cell" : "none";
+			table[i].children[4].style.display = (document.getElementById("college-attr").checked)? "table-cell" : "none";
+			table[i].children[5].style.display = (document.getElementById("gender-attr").checked)? "table-cell" : "none";
+			table[i].children[6].style.display = (document.getElementById("age-attr").checked)? "table-cell" : "none";
+		}
 	}
 }
 
@@ -568,9 +614,9 @@ window.setInterval(function() {
 	http.onreadystatechange = function() {
 		if(this.readyState == 4 && this.status == 200) {
 			try {
-				var users = JSON.parse(this.responseText);
+				var info = JSON.parse(this.responseText);
 				var tbody = document.getElementById("active-users-body");
-				if(users.length == 0) {
+				if(info.length == 0) {
 					tbody.innerHTML = '<tr><td colspan="2" align="center">None</td></tr>';
 				}
 				else {
@@ -578,8 +624,8 @@ window.setInterval(function() {
 					for(var i = 0; i < users.length; ++i) {
 						tbody.innerHTML +=
 							'<tr>' +
-								'<td><a href="profile.php?user_id=' + users[i].id + '">' + users[i].f_name + ' ' + users[i].l_name + '</a></td>' +
-								'<td align="center">' + users[i].login_time + '</td>' +
+								'<td><a href="profile.php?user_id=' + info[i].id + '">' + info[i].f_name + ' ' + info[i].l_name + '</a></td>' +
+								'<td align="center">' + info[i].login_time + '</td>' +
 							'</tr>';
 					}
 				}

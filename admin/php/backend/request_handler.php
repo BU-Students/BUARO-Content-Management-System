@@ -337,9 +337,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			case "F-0":
 				$constraint = "";
 
-				if($_POST['state'] != "2")
-					$constraint = " AND state = ".$_POST['state'];
-
 				$sql =
 					"SELECT ".
 						"admin_id, ".
@@ -355,35 +352,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					"FROM admin, address, college ".
 					"WHERE ".
 						"admin.address = address.address_id AND ".
-						"college.college_id = admin.college".$constraint;
+						"college.college_id = admin.college";
 
 				$result = $conn->query($sql);
 
 				if($result && $result->num_rows > 0) {
-					$num_rows = $result->num_rows;
-					echo '{ "num_users": '.$num_rows.', "users": [ ';
-
-					$counter = $num_rows;
+					$resultObj = array();
 					while($row = $result->fetch_assoc()) {
-						$row['sex'] = ($row['sex'] == 0)? "Male" : "Female";
-						echo '{ '.
-							'"id": '.$row['admin_id'].', '.
-							'"college": "'.$row['label'].'", '.
-							'"f_name": "'.decode($row['first_name']).'", '.
-							'"m_name": "'.decode($row['middle_name']).'", '.
-							'"l_name": "'.decode($row['last_name']).'", '.
-							'"sex": "'.$row['sex'].'", '.
-							'"profile_img": "'.decode($row['profile_img']).'", '.
-							'"age": "'.$row['age'].'", '.
-							'"b_date": "'.$row['bdate'].'", '.
-							'"state": "'.$row['state'].'"'.
-						' }';
-
-						if(--$counter) echo ", ";
+						array_push($resultObj, $row);
 					}
-
-					echo ' ] }';
-
+					echo json_encode($resultObj);
 					$result->free();
 				}
 				else echo $conn->error;
