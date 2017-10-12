@@ -40,7 +40,6 @@ session_destroy();
 			<!-- There is a problem with button of type = submit -->
 			<button type="submit" id="submit" disabled>Log in</button>
 		</form>
-		<script type="text/javascript" src="../../Highcharts-5.0.14/highcharts.js"></script>
 		<script type="text/javascript" src="../js/login.js"></script>
 	</body>
 </html>

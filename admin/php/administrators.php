@@ -34,7 +34,6 @@ $sql =
 if(!$active_users = $conn->query($sql)) {
 	exit("Query:<br>".$sql."<br><br>Response:<br>".$conn->error);
 }
-// else exit(var_dump($active_users));
 
 ?>
 
@@ -92,6 +91,10 @@ if(!$active_users = $conn->query($sql)) {
 						<tbody id="admin-table-body"></tbody>
 					</table>
 				</div>
+				<nav aria-label="Page navigation" style="text-align:center">
+					<ul class="pagination" id="pagination">
+					</ul>
+				</nav>
 			</div>
 			<div id="right-side">
 				<div id="row-options-panel">
@@ -111,17 +114,7 @@ if(!$active_users = $conn->query($sql)) {
 							<span id="l-name"></span>
 						</div>
 						<span id="college"></span>
-<!--						<div id="basic-stat">
-							<div style="border-right: 1px solid #eee">
-								<div class="stat-label">Posts</div>
-								<div id="post-count">21</div>
-							</div>
-							<div>
-								<div class="stat-label">Views</div>
-								<div id="view-count">135</div>
-							</div>
-						</div>
--->					</div>
+					</div>
 					<div style="padding: 15px; text-align: center;">
 						<a id="profile-link">
 							<span>View profile</span>
@@ -149,7 +142,7 @@ if(!$active_users = $conn->query($sql)) {
 										while($user = $active_users->fetch_assoc()) {
 											echo
 											'<tr>'.
-												'<td>'.decode($user['first_name']).' '.decode($user['last_name']).'</td>'.
+												'<td><a href="profile.php?user_id='.$user['admin_id'].'">'.decode($user['first_name']).' '.decode($user['last_name']).'</a></td>'.
 												'<td align="center">'.date("h:i A", strtotime($user['last_login'])).'</td>'.
 											'</tr>';
 										}
@@ -193,7 +186,7 @@ if(!$active_users = $conn->query($sql)) {
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-success" data-dismiss="modal" onclick="displayTable()" id="" style="width: 70px">Ok</button>
+						<button type="button" class="btn btn-success" data-dismiss="modal" onclick="displayTable()" style="width: 70px">Ok</button>
 					</div>
 				</div>
 			</div>
