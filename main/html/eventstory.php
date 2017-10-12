@@ -11,9 +11,6 @@
 	<link rel="stylesheet" href="../css/w3.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/eventstory-carousel.css">
-	<link rel="stylesheet" type="text/css" href="../css/story.css">
 	<link rel="stylesheet" type="text/css" href="../css/eventstory-pagination.css">
 	<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
 	<script src="../../vendor/jQuery/jquery-3.2.1.min.js"></script>
@@ -35,9 +32,7 @@
 </style>
 <body>
 	<?php include_once "sidebar.php"; ?>
-
 	<div class="w3-overlay w3-hide-large" onclick="w3_close()" id="close"></div>
-
 	<div id="main">											<!--  T  H  E     M  A  I  N     B  O  D  Y  -->
 																<!-- T H E  C O N T E N T -->
 				<div id="content">
@@ -50,6 +45,7 @@
 				</div>
 			</footer>
 		</div>
+
 <script>
 function loadRecent() {
   var xhttp = new XMLHttpRequest();
@@ -146,25 +142,11 @@ function myFunc(id) {
 
 		});
 
-		$(".pagination-event").customPaginate({
-
-			itemsToPaginate : ".post-event",
-			activeClass : "active-class"
-
-
-		});
-
-	});
-})(jQuery)
-</script>
-<script type="text/javascript">
-	(function(){
-	$(document).ready(function(){
-
 		
 
 	});
 })(jQuery)
 </script>
+
 </body>
 </html>

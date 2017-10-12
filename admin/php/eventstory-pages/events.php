@@ -163,7 +163,8 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 						//Carousel
 						if($row['imglinks']!="" || $row['imglinks']!=NULL || !empty($row['imglinks'])){
 							echo '
-								<div class="container">
+								<center>
+								<div>
 								<div id="myCarousel-'.$row['post_id'].'" class="carousel slide" data-ride="carousel">
 								  <!-- Wrapper for slides -->
 								  <div class="carousel-inner">
@@ -214,6 +215,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 									  </a>
 									</div>
 									</div>
+									</center>
 								';
 						}
 						else{

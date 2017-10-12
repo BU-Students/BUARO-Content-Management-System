@@ -37,8 +37,7 @@
 </style>
 
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script  src="../js/jquery_pagination.js"></script>
+<script src="../js/jquery_pagination.js"></script>
 <div id="content2">												<!--  T  H  E     C  O  N  T  E  N  T  -->
 	<div class="top-b">
 		<ul class="breadcrumbs">
@@ -93,4 +92,18 @@
 				</div>
 				
 			</div>
+
+<script type="text/javascript">
+	(function(){
+	$(document).ready(function(){
+			$(".pagination-event").customPaginate({
+
+			itemsToPaginate : ".post-event",
+			activeClass : "active-class"
+
+
+		});
+	});
+})(jQuery)
+</script>
 			

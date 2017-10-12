@@ -94,9 +94,11 @@ function w3_close() {
 					}
 				?>
 				</div>
+				<center>
 				<div class="pagination">
 
 				</div>
+				</center></div>
 				</div>
 				
 			</div>
