@@ -318,11 +318,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				break;
 
 			case "E-1":
-				$sql = "SELECT admin_id FROM admin WHERE password = '".encrypt($_POST['password'])."' AND admin_id = ".$_SESSION['id'];
+				$sql = "SELECT admin_id FROM admin WHERE password = '".encrypt(encode($_POST['password']))."' AND admin_id = ".$_SESSION['id'];
 				if($result = $conn->query($sql)) {
 					if($result->num_rows == 1) {
 						$sql = "UPDATE admin SET ".(($_POST['to-change'] == "username")? "username" : "password").
-							" = '".encrypt($_POST['value'])."' WHERE admin_id = ".$_SESSION['id'];
+							" = '".encrypt(encode($_POST['value']))."' WHERE admin_id = ".$_SESSION['id'];
 						if($conn->query($sql))
 							echo "success";
 						else echo $conn->error;
@@ -336,9 +336,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 			case "F-0":
 				$constraint = "";
-
-				if($_POST['state'] != "2")
-					$constraint = " AND state = ".$_POST['state'];
 
 				$sql =
 					"SELECT ".
@@ -355,35 +352,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					"FROM admin, address, college ".
 					"WHERE ".
 						"admin.address = address.address_id AND ".
-						"college.college_id = admin.college".$constraint;
+						"college.college_id = admin.college";
 
 				$result = $conn->query($sql);
 
 				if($result && $result->num_rows > 0) {
-					$num_rows = $result->num_rows;
-					echo '{ "num_users": '.$num_rows.', "users": [ ';
-
-					$counter = $num_rows;
+					$resultObj = array();
 					while($row = $result->fetch_assoc()) {
-						$row['sex'] = ($row['sex'] == 0)? "Male" : "Female";
-						echo '{ '.
-							'"id": '.$row['admin_id'].', '.
-							'"college": "'.$row['label'].'", '.
-							'"f_name": "'.decode($row['first_name']).'", '.
-							'"m_name": "'.decode($row['middle_name']).'", '.
-							'"l_name": "'.decode($row['last_name']).'", '.
-							'"sex": "'.$row['sex'].'", '.
-							'"profile_img": "'.decode($row['profile_img']).'", '.
-							'"age": "'.$row['age'].'", '.
-							'"b_date": "'.$row['bdate'].'", '.
-							'"state": "'.$row['state'].'"'.
-						' }';
-
-						if(--$counter) echo ", ";
+						array_push($resultObj, $row);
 					}
-
-					echo ' ] }';
-
+					echo json_encode($resultObj);
 					$result->free();
 				}
 				else echo $conn->error;
@@ -565,7 +543,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 						echo $conn->error;
 					else {
 						while($row = $result->fetch_assoc()) {
-							if($row['feedemail'] == "") $row['feedemail'] = '<span style=\"color: #ccc\">Anonymous</span>';
+							if(empty($row['feedemail']))
+								$row['feedemail'] = '<span style=\"color: #ccc\">Anonymous</span>';
+							else
+								$row['feedemail'] = '<a href=\"mailto:'.$row['feedemail'].'\">'.$row['feedemail'].'</a>';
 							$json .=
 							'<tr>'.
 								'<td>'.$row['feedemail'].'</td>'.

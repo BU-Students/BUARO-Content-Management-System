@@ -77,12 +77,17 @@ input[type='number']::-webkit-inner-spin-button {
 
 select option { padding: 10px 0px; }
 
-button[type=submit] {
-	display: block;
-	margin: 30px auto;
-	border: 2px solid #72db72;
-	color: #5cb85c;
-	border-radius:30px;
+#buttons-container {
+	text-align: center;
+	padding: 30px 0px;
+	margin-bottom: 20px;
+}
+
+.button {
+	display: inline-block;
+	margin: 0px 30px;
+	border-radius: 30px;
+	width: 154px;
 	padding: 10px 25px;
 	background-color: transparent;
 	-webkit-transition: 0.1s linear;
@@ -91,8 +96,26 @@ button[type=submit] {
 	transition: 0.1s linear;
 }
 
-button[type=submit]:hover, button[type=submit]:focus {
+.go {
+	border: 2px solid #72db72;
+	color: #5cb85c;
+}
+
+.cancel {
+	border: 2px solid #aaa;
+	color: #777;
+	text-decoration: none !important;
+	cursor: pointer;
+}
+
+.go:hover, .go:focus {
 	background-color: #5cb85c;
+	border: 2px solid white;
+	color: white;
+}
+
+.cancel:hover, .cancel:focus {
+	background-color: #777;
 	border: 2px solid white;
 	color: white;
 }

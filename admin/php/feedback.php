@@ -2,6 +2,7 @@
 
 if(session_status() == PHP_SESSION_NONE)
 	session_start();
+
 //if user attemps to access this page without authentication
 if(!isset($_SESSION['id'])) {
 	$_SESSION['error_msg'] = "Please log in first to continue";
@@ -9,28 +10,21 @@ if(!isset($_SESSION['id'])) {
 	exit;
 }
 
+require_once "backend/connection.php";
+
 if(isset($_POST['search']))
 {
 	$valueToSearch = $_POST['valueToSearch'];
 	// search in all table columns
 	// using concat mysql function
 	$query = "SELECT * FROM feedback";
-	$search_result = filterTable($query);
+	$search_result = $conn->query($query);
     
 }
 else {
 	$query = "SELECT * FROM feedback";
-	$search_result = filterTable($query);
+	$search_result = $conn->query($query);
 	$totalCount = $search_result->num_rows;
-}
-
-// function to connect and execute the query
-function filterTable($query)
-{
-	require_once "backend/connection.php";
-	$filter_Result = mysqli_query($conn, $query);
-	$conn->close();
-	return $filter_Result;
 }
 
 ?>

@@ -66,12 +66,12 @@ if(!isset($_SESSION['id'])) {
 						</tr>
 						<tr>
 							<th>Enter Current Password:</th>
-							<td><input id="curr_pass1" class="inp" type="password" required></td>
+							<td><input id="curr_pass0" class="inp" type="password" required></td>
 						</tr>
 					</table>
 					<button class="btn" id="sub_change_user" type="submit">Submit</button>
 				</form>
-				<form onsubmit="changePass(); return false;">
+				<form id="form2" onsubmit="return change('password');">
 					<table class="profile-info">
 						<caption>CHANGE PASSWORD</caption>
 						<tr>
@@ -84,7 +84,7 @@ if(!isset($_SESSION['id'])) {
 						</tr>
 						<tr>
 						<th>Enter Current Password:</th>
-							<td><input id="curr_pass2" class="inp" type="password" required></td>
+							<td><input id="curr_pass1" class="inp" type="password" required></td>
 						</tr>
 						<hr>
 					</table>
