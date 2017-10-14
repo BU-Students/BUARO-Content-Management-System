@@ -52,6 +52,7 @@ function w3_close() {
     document.getElementById("main").style.marginLeft = 0;
     document.getElementById("sidebar").classList.remove("w3-animate-left");
 }
+
 </script>
 <div id="content2">												<!--  T  H  E     C  O  N  T  E  N  T  -->
 			<div class="top-b">
@@ -62,12 +63,20 @@ function w3_close() {
 				</ul>
 			</div>
 			<div class="w3-container w3-padding-jumbo">
+				<div id="story-cont"></div>
 				<?php
 					$parsedown = new Parsedown();
 					$getquery = "SELECT * FROM post WHERE post_type = 1 AND status = 'shown'" ;
 					$run = mysqli_query($con,$getquery);
 					$id = 0;
+					$showlimit = 4;
+					$flag = 1;
+					$pagenum = 0;
 					while($row = mysqli_fetch_array($run)){
+						if($flag==1){
+							$pagenum++;
+							echo '<div id="story-page-'.$pagenum.'" class="hidden">';
+						}
 						echo '<div class="post">';
 						$newstring = substr($parsedown->text($row['content']),0,250);
 						if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
@@ -91,12 +100,48 @@ function w3_close() {
 							';
 						$id++;
 						echo '</div>';
+					if($flag==$showlimit){
+						$flag=0;
+						echo '</div>';
 					}
+					$flag++;
+					}
+					if($flag!=1){
+						echo '</div>';
+					}
+
 				?>
 				</div>
-				<div class="pagination">
-
-				</div>
-				</div>
+				<center>
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						<?php
+							$count = 1;
+							echo '
+								<li>
+									<a href="#" aria-label="Previous" onclick="decrpge('.$pagenum.')" id="storypage-up" class="">
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</li>
+							';
+								
+									while($count <= $pagenum){
+									echo '
+										<li><a href="#" onclick="change('.$count.')">'.$count.'</a></li>	
+									';
+									$count++;
+								}
+							echo '
+								<li>
+									<a href="#" aria-label="Next"  onclick="incrpge('.$pagenum.')">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
+							';
+						?>
+					</ul>
+				</nav>
+				</center>
 				
 			</div>
+			<script type="text/javascript">document.getElementById("story-cont").innerHTML = document.getElementById("story-page-1").innerHTML;</script>

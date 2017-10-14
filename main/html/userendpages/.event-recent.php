@@ -37,9 +37,7 @@
 </style>
 
 <link rel="stylesheet" type="text/css" href="../css/breadcrumb.css">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script  src="../js/jquery_pagination.js"></script>
-<div id="content2">												<!--  T  H  E     C  O  N  T  E  N  T  -->
+<script src="../js/jquery_pagination.js"></script>										<!--  T  H  E     C  O  N  T  E  N  T  -->
 	<div class="top-b">
 		<ul class="breadcrumbs">
 			<a class="w3-padding-16 w3-opennav" href="javascript:void(0)" onclick="w3_open()" style="text-decoration:none;margin-left:40px;margin-right:10px;font-size:20px;">&#9776;</a>
@@ -48,14 +46,25 @@
 		</ul>
 	</div>
 			<div class="w3-container w3-padding-jumbo">
+				<div id="event-cont"></div>
 				<?php
 					$parsedown = new Parsedown();
 					$getquery = "SELECT * FROM post WHERE post_type = 2  AND status = 'shown'";
 					$getquery .= "ORDER BY eventdate DESC";
 					$run = mysqli_query($con,$getquery);
 					$id = 0;
+					$showlimit = 4;
+					$flag = 1;
+					$pagenum = 0;
 					$today = date("Y-m-d");
 					while($row = mysqli_fetch_array($run)){
+						if($flag==1){
+							$pagenum++;
+							if($pagenum==1)
+								echo '<div id="event-page-'.$pagenum.'" class="">';
+							else
+								echo '<div id="event-page-'.$pagenum.'" class="hidden">';
+						}
 						echo '<div class="post-event">';
 						$newstring = decode(substr($parsedown->text($row['content']),0,250));
 						if($row['eventdate'] < $today){
@@ -83,14 +92,46 @@
 						$id++;
 
 					}
+					if($flag==$showlimit){
+						$flag=0;
+						echo '</div>';
+					}
+					$flag++;
 					echo '</div>';
 					}
+					if($flag!=1){
+					echo '</div>';
+				}
 				?>
 				</div>
-				<div class="pagination-event">
-
-				</div>
-				</div>
-				
-			</div>
+				<center>
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						<?php
+								$count = 1;
+								echo '
+									<li>
+										<a href="#" aria-label="Previous"onclick="decrpge_event('.$pagenum.')">
+											<span aria-hidden="true">&laquo;</span>
+										</a>
+									</li>
+									';
+									while($count <= $pagenum){
+									echo '
+										<li><a href="#" onclick="changeevents('.$count.')">'.$count.'</a></li>	
+									';
+									$count++;
+								}
+								echo '
+									<li>
+									<a href="#" aria-label="Next" onclick="incrpge_event('.$pagenum.')">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
+								';
+										
+						?>
+					</ul>
+				</nav>
+				</center>
 			

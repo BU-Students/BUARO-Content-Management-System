@@ -177,6 +177,14 @@ tr.active td { background-color: #BBDEFB !important; }
 	border: 1px solid #aaa;
 }
 
+#pagination li {
+	cursor: pointer;
+}
+
+#pagination li:disabled {
+	cursor: auto;
+}
+
 @media only screen and (max-width: 767px) {
 	#left-side, #right-side {
 		width: 100%;
