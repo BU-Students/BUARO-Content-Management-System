@@ -159,11 +159,11 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 							</div>
 						</div>
 
-						<div class="col-md-7">';
+						<div class="col-md-7"><center>';
 						//Carousel
 						if($row['imglinks']!="" || $row['imglinks']!=NULL || !empty($row['imglinks'])){
 							echo '
-								<div class="container">
+								<div>
 								<div id="myCarousel-'.$row['post_id'].'" class="carousel slide" data-ride="carousel">
 								  <!-- Wrapper for slides -->
 								  <div class="carousel-inner">
@@ -187,7 +187,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 									if($q==1){
 										echo '
 											<div class="item active">
-												<center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'"></center>
+												<center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'"  style="height:100%;width:100%;"></center>
 											</div>
 										';
 										$q++;
@@ -195,7 +195,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 									else{
 										echo '
 											<div class="item">
-											  <center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'"></center>
+											  <center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'"  style="height:100%;width:100%;"></center>
 											</div>
 										';
 									}
@@ -218,7 +218,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 						}
 						else{
 							echo '
-									<div class="container">
+									<div>
 									<div id="emptyCarousel-'.$row['post_id'].'" class="carousel slide" data-ride="carousel">
 									  <!-- Indicators -->
 									  <ol class="carousel-indicators">
@@ -228,7 +228,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 									  <!-- Wrapper for slides -->
 									  <div class="carousel-inner">
 										<div class="item active">
-										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images"></center>
+										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images"  style="height:100%;width:100%;"></center>
 										</div>
 									  </div>
 
@@ -246,6 +246,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 							';
 						}		
 		echo'
+						</center>
 						</div>
 						</div>
 					</div>

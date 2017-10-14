@@ -3,7 +3,7 @@ var eventcurpage = 1;//Global variable to determine which page in story currentl
 var storycurpage = 1;//Global variable to determine which page in event currently in
 //For Stories
 function incrpge(max){
-	if(storycurpage==max){
+	if(storycurpage>=max){
 		console.log(storycurpage);
 	}
 	else{
@@ -13,7 +13,7 @@ function incrpge(max){
 	}
 }
 function decrpge(max){
-	if(storycurpage<1){
+	if(storycurpage<=1){
 		console.log("ehh");
 	}
 	else{
@@ -24,7 +24,7 @@ function decrpge(max){
 }
 //For events
 function incrpge_event(max){
-	if(eventcurpage==max){
+	if(eventcurpage>=max){
 		console.log("ehh1");
 	}
 	else{
