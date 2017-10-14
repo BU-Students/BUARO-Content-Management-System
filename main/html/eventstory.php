@@ -11,13 +11,27 @@
 	<link rel="stylesheet" href="../css/w3.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="../css/eventstory-pagination.css">
 	<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
 	<script src="../../vendor/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="../../vendor/Bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="userendpages/loadjs/loadContent.js"></script>
 	<script type="text/javascript" src="userendpages/loadjs/loadEvent.js"></script>
 	<script type="text/javascript" src="userendpages/loadjs/loadStory.js"></script>
+  <script type="text/javascript">
+    function change(intval){
+  var num = intval;
+  storycurpage = num;
+  document.getElementById("story-cont").innerHTML = document.getElementById("story-page-"+num).innerHTML;
+  document.getElementById("story-page-1").className="hidden";
+}
+function changeevents(intval){
+    var num = intval;
+    eventcurpage = num;
+    console.log(eventcurpage);
+    document.getElementById("event-cont").innerHTML = document.getElementById("event-page-"+num).innerHTML;
+    document.getElementById("event-page-1").className="hidden";
+}
+  </script>
 </head>
 <style>
 	@media (max-width: 768px){
@@ -75,78 +89,6 @@ function myFunc(id) {
     document.getElementById(id).previousElementSibling.classList.toggle("w3-theme");
 }
 </script>
-<script>
-	(function($){
-  
-  
-    $.fn.customPaginate = function(options){
-      var paginationContainer = this;
-      var itemsToPaginate;
-
-
-      var defaults = {
-        itemsPerPage : 5 
-      };
-      
-      var settings = {}; 
-      $.extend(settings, defaults,options);
-     
-      var itemsPerPage = settings.itemsPerPage ;
-
-      itemsToPaginate = $(settings.itemsToPaginate);
-      var numberOfPaginationLinks = Math.ceil((itemsToPaginate.length / itemsPerPage));
-      $("<ul></ul>").prependTo(paginationContainer);
-
-      for(var index = 0 ; index < numberOfPaginationLinks; index++){
-        paginationContainer.find("ul").append("<li>"+ (index + 1) +"</li>");
-
-      }
-
-      itemsToPaginate.filter(":gt(" + (itemsPerPage - 1) + ")" ).hide();
-
-      paginationContainer.find("ul li").first().addClass(settings.activeClass).end().on('click',function(){
-        
-        var $this = $(this);
-        
-        $this.addClass(settings.activeClass);
-        $this.siblings().removeClass(settings.activeClass);
-
-
-        var linkNumber = $this.text();
-        
-        var itemsToHide = itemsToPaginate.filter(":lt(" + ((linkNumber - 1) * itemsPerPage) + ")" );
-        $.merge(itemsToHide,itemsToPaginate.filter(":gt(" + ((linkNumber * itemsPerPage)  - 1 ) + ")" ));
-          itemsToHide.hide();
-
-        var itemsToShow = itemsToPaginate.not(itemsToHide);
-        itemsToShow.show();
-
-      });
-
-
-    }
-  
-
-
-}(jQuery));
-</script>
-<script type="text/javascript">
-	(function(){
-	$(document).ready(function(){
-
-		$(".pagination").customPaginate({
-
-			itemsToPaginate : ".post",
-			activeClass : "active-class"
-
-
-		});
-
-		
-
-	});
-})(jQuery)
-</script>
-
+<script type="text/javascript" src="userendpages/loadjs/loadPagination.js"></script>
 </body>
 </html>
