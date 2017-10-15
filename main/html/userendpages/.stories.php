@@ -46,13 +46,24 @@
 		</ul>
 	</div>
 			<div class="w3-container w3-padding-jumbo">
+				<div id="story-cont"></div>
 				<?php
 					echo '<div class="post">';
 					$parsedown = new Parsedown();
 					$getquery = "SELECT * FROM post WHERE post_type = 1 AND status = 'shown'" ;
 					$run = mysqli_query($con,$getquery);
 					$id = 0;
+					$showlimit = 4;
+					$flag = 1;
+					$pagenum = 0;
 					while($row = mysqli_fetch_array($run)){
+						if($flag==1){
+							$pagenum++;
+							if($pagenum==1)
+								echo '<div id="story-page-'.$pagenum.'" class="">';
+							else
+								echo '<div id="story-page-'.$pagenum.'" class="hidden">';
+						}
 						$newstring = substr($parsedown->text($row['content']),0,250);
 						if(!isset($row['imgbanner']) || $row['imgbanner']=="none" || $row['imgbanner']==""){
 							$row['imgbanner'] = "../../data/events-stories/noimage.jpg";
@@ -74,13 +85,48 @@
 						</div>
 							';
 						$id++;
+						if($flag==$showlimit){
+						$flag=0;
+						echo '</div>';
+					}
+					$flag++;
+					}
+					if($flag!=1){
+						echo '</div>';
 					}
 					echo '</div>';
 				?>
 				</div>
-				<div class="pagination">
-
-				</div>
+				<center>
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						<?php
+							$count = 1;
+							echo '
+								<li>
+									<a href="#" aria-label="Previous" onclick="decrpge('.$pagenum.')" id="storypage-up" class="">
+										<span aria-hidden="true">&laquo;</span>
+									</a>
+								</li>
+							';
+								
+									while($count <= $pagenum){
+									echo '
+										<li><a href="#" onclick="change('.$count.')">'.$count.'</a></li>	
+									';
+									$count++;
+								}
+							echo '
+								<li>
+									<a href="#" aria-label="Next"  onclick="incrpge('.$pagenum.')">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
+							';
+						?>
+					</ul>
+				</nav>
+				</center>
 				</div>
 				
-			</div>
+				

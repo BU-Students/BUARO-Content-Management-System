@@ -43,7 +43,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 					<img src="'.$row['imgbanner'].'" height="50" width="auto">
 					<div class="event-options-container">
 						<label><i>'.$event_type.'</i></label>
-						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-event-'.$row['post_id'].'"><span class="glyphicon glyphicon-pencil"></span></button>
+						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-event-'.$row['post_id'].'" onclick="loadEditor('.$row['post_id'].')"><span class="glyphicon glyphicon-pencil"></span></button>
 						<button type="button" class="'.$status.'" id="status-event-'.$row['post_id'].'" value="'.$row['status'].'" onclick="changeStatus_events('.$row['post_id'].',\''.$row['status'].'\')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
 					</div>
 					<div class="event-title">'.$row['title'].'</div>
@@ -153,17 +153,17 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 							 			<div class="collapse" id="collapse-'.$row['post_id'].'">
 											'.$stringdis.'
 										</div>
-										<b class="omoe_wa_mou_shindeiru" data-toggle="collapse" data-target="#collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="collapse-'.$row['post_id'].'">'.$read.'</b>
+										<b id="readmore-'.$row['post_id'].'" class="omoe_wa_mou_shindeiru" data-toggle="collapse" data-target="#collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="collapse-'.$row['post_id'].'" onclick="txtchange('.$row['post_id'].')">'.$read.'</b>
 							  		</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-md-7">';
+						<div class="col-md-7"><center>';
 						//Carousel
 						if($row['imglinks']!="" || $row['imglinks']!=NULL || !empty($row['imglinks'])){
 							echo '
-								<div class="container">
+								<div>
 								<div id="myCarousel-'.$row['post_id'].'" class="carousel slide" data-ride="carousel">
 								  <!-- Wrapper for slides -->
 								  <div class="carousel-inner">
@@ -187,7 +187,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 									if($q==1){
 										echo '
 											<div class="item active">
-												<center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'"></center>
+												<center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'"  style="height:100%;width:100%;"></center>
 											</div>
 										';
 										$q++;
@@ -195,7 +195,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 									else{
 										echo '
 											<div class="item">
-											  <center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'"></center>
+											  <center><img class="img-rounded" src="'.$links.'" alt="img-'.$links.'"  style="height:100%;width:100%;"></center>
 											</div>
 										';
 									}
@@ -218,7 +218,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 						}
 						else{
 							echo '
-									<div class="container">
+									<div>
 									<div id="emptyCarousel-'.$row['post_id'].'" class="carousel slide" data-ride="carousel">
 									  <!-- Indicators -->
 									  <ol class="carousel-indicators">
@@ -228,7 +228,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 									  <!-- Wrapper for slides -->
 									  <div class="carousel-inner">
 										<div class="item active">
-										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images"></center>
+										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images"  style="height:100%;width:100%;"></center>
 										</div>
 									  </div>
 
@@ -246,6 +246,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 							';
 						}		
 		echo'
+						</center>
 						</div>
 						</div>
 					</div>
@@ -322,7 +323,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 						</div>
 					  <div class="form-group">
 					  		Content:
-					    <textarea rows="20" class="form-control" rows="5" id="textarea2" name="content2">'.substr(($parser->text(decode($row['content']))),0).'</textarea>
+					    <textarea class="form-control" rows="5" id="textarea2-'.$row['post_id'].'" name="content2">'.decode($row['content']).'</textarea>
 					  </div>
 				</div>
 		      </div>

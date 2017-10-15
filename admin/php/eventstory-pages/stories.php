@@ -37,7 +37,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 				<div class="story-header">
 					<img src="'.$row['imgbanner'].'" height="50" width="auto">
 					<div class="story-options-container">
-						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-story-'.$row['post_id'].'"><span class="glyphicon glyphicon-pencil"></span></button>
+						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-story-'.$row['post_id'].'" onclick="loadEditor('.$row['post_id'].')"><span class="glyphicon glyphicon-pencil"></span></button>
 						<button type="button" class="'.$status.'" id="status-story-'.$row['post_id'].'" value="'.$row['status'].'" onclick="changeStatus('.$row['post_id'].')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
 					</div>
 					<div class="story-title">'.$row['title'].'</div>
@@ -73,7 +73,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 			$count = 1;
 			echo '
 				<li>
-					<a href="#" aria-label="Previous" onclick="decrpge('.$pagenum.')">
+					<a href="#" aria-label="Previous" onclick="decrpge('.$pagenum.')" id="storypage-up" class="">
 						<span aria-hidden="true">&laquo;</span>
 					</a>
 				</li>
@@ -114,6 +114,9 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 		}
 		if(strlen($row['content'])>1000){
 			$stringstrt = strpos($parser->text(decode($row['content'])),".");
+			if($stringstrt<100){
+				$stringstrt = strposX($parser->text(decode($row['content'])),".",3);
+			}
 			$stringstrt++;
 			$stringnow = substr($parser->text(decode($row['content'])),0,$stringstrt);
 			$stringdis = substr($parser->text(decode($row['content'])),$stringstrt);
@@ -147,17 +150,17 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 							 			<div class="collapse" id="story-collapse-'.$row['post_id'].'">
 											'.$stringdis.'
 										</div>
-										<b class="omoe_wa_mou_shindeiru" data-toggle="collapse" data-target="#story-collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="story-collapse-'.$row['post_id'].'">'.$read.'</b>
+										<b id="readmore-'.$row['post_id'].'" class="omoe_wa_mou_shindeiru" data-toggle="collapse" data-target="#story-collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="story-collapse-'.$row['post_id'].'" onclick="txtchange('.$row['post_id'].')">'.$read.'</b>
 							  		</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-md-7">';
+						<div class="col-md-7"><center>';
 						//Carousel
 						if($row['imglinks']!="" || $row['imglinks']!=NULL || !empty($row['imglinks'])){
 							echo '
-								<div class="container">
+								<div>
 								<div id="myCarousel-'.$row['post_id'].'" class="carousel slide" data-ride="carousel">
 								  <!-- Wrapper for slides -->
 								  <div class="carousel-inner">
@@ -181,7 +184,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 									if($q==1){
 										echo '
 											<div class="item active">
-												<img class="img-rounded" src="'.$links.'" alt="img-'.$links.'">
+												<img class="img-rounded" src="'.$links.'" alt="img-'.$links.'" style="height:100%;width:100%;">
 											</div>
 										';
 										$q++;
@@ -189,7 +192,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 									else{
 										echo '
 											<div class="item">
-											  <img class="img-rounded" src="'.$links.'" alt="img-'.$links.'">
+											  <img class="img-rounded" src="'.$links.'" alt="img-'.$links.'" style="height:100%;width:100%;">
 											</div>
 										';
 									}
@@ -213,7 +216,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 						}
 						else{
 							echo '
-									<div class="container">
+									<div>
 									<div id="emptyCarousel-'.$row['post_id'].'" class="carousel slide" data-ride="carousel" style="width: 600px; height: auto;">
 									  <!-- Indicators -->
 									  <ol class="carousel-indicators">
@@ -223,7 +226,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 									  <!-- Wrapper for slides -->
 									  <div class="carousel-inner">
 										<div class="item active">
-										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images"></center>
+										  <center><img src="../../data/events-stories/noslider.jpg" alt="no images" style="height:100%;width:100%;"></center>
 										</div>
 									  </div>
 
@@ -241,6 +244,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 							';
 						}				
 		echo'
+						</center>
 						</div>
 						</div>
 					</div>
@@ -318,7 +322,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 										<div id="dateEvent-'.$row['post_id'].'" class="hidden"><label for="event-date"><input type="date" name="event-date" id="event-date">Date of Event</label></div>
 									</div>
 									<div class="form-group">
-										Content: <textarea rows="20" class="form-control" rows="5" id="textarea2-'.$row['post_id'].'" name="content2">'.substr(($parser->text(decode($row['content']))),0).'</textarea>
+										Content: <textarea class="form-control" id="textarea2-'.$row['post_id'].'" name="content2">'.decode($row['content']).'</textarea>
 									</div>
 								</div>
 							</div>
