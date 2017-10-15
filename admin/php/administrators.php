@@ -71,7 +71,7 @@ if(!$active_users = $conn->query($sql)) {
 						<span class="glyphicon glyphicon-plus" style="margin-left: 5px;"></span>
 					</a>
 					<div class="input-group add-on" id="filter-container">
-						<input class="form-control" id="filter" onkeyup="filter(this)" type="text">
+						<input class="form-control" id="filter" onkeyup="filter(this)" type="text" placeholder="Filter accounts based on active column (First Name)">
 						<div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
 					</div>
 				</div>

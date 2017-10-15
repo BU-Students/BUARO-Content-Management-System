@@ -376,8 +376,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				$sql = substr($sql, 0, -2);
 				$sql .= ")";
 
-				if(!$conn->query($sql))
-					echo $conn->error;
+				if($conn->query($sql)) {
+					$sql =
+						"SELECT ".
+							"admin_id, ".
+							"first_name, ".
+							"middle_name, ".
+							"last_name, ".
+							"college.label, ".
+							"sex, ".
+							"bdate, ".
+							"profile_img, ".
+							"state, ".
+							"TIMESTAMPDIFF(YEAR, bdate, CURDATE()) AS age ".
+						"FROM admin, address, college ".
+						"WHERE ".
+							"admin.address = address.address_id AND ".
+							"college.college_id = admin.college";
+
+					if($result = $conn->query($sql)) {
+						$resultObj = array();
+						while($row = $result->fetch_assoc()) {
+							array_push($resultObj, $row);
+						}
+						echo json_encode($resultObj);
+						$result->free();
+					}
+					else echo $conn->error;
+				}
+				else echo $conn->error;
 
 				break;
 
@@ -537,20 +564,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 				case "J-1":
 					$count = $conn->query("SELECT COUNT(feedback_id) FROM feedback")->fetch_array()[0];
-					$sql = "SELECT * FROM feedback LIMIT ".$_POST['limit']." OFFSET ".$_POST['offset'];
+					$sql = "SELECT * FROM feedback ORDER BY feedback_id asc LIMIT ".$_POST['limit']." OFFSET ".$_POST['offset'] ;
 					$json = '{ "total_rows": '.$count.', "table_content": "';
 					if(!($result = $conn->query($sql)))
 						echo $conn->error;
 					else {
 						while($row = $result->fetch_assoc()) {
-							if(empty($row['feedemail']))
-								$row['feedemail'] = '<span style=\"color: #ccc\">Anonymous</span>';
-							else
-								$row['feedemail'] = '<a href=\"mailto:'.$row['feedemail'].'\">'.$row['feedemail'].'</a>';
+							if($row['feedemail'] == "") $row['feedemail'] = '<span style=\"color: #ccc\">Anonymous</span>';
 							$json .=
 							'<tr>'.
 								'<td>'.$row['feedemail'].'</td>'.
 								'<td>'.$row['feedmessage'].'</td>'.
+								'<td>'.$row['timestamp'].'</td>'.
+
 								'<td><a onclick=\"attemptDelete(this, '.$row['feedback_id'].')\" href=\"javascript:void(0)\">Delete</a></td>'.
 							'</tr>';
 						}
