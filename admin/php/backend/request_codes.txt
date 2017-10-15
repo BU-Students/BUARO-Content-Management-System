@@ -11,7 +11,7 @@
        E-0        | Fetch basic admin info                             | account.php         | account.js
        E-1        | Change username or password                        | account.php         | account.js
        F-0        | Fetch all admin information                        | administrators.php  | administrators.js
-       F-1        | Activate/Deactivate admin account                  | administrators.php  | administrators.js
+       F-1        | Activate/Deactivate admin accounts                 | administrators.php  | administrators.js
        F-2        | Update currently online users                      | administrators.php  | administrators.js
        G-0        | Get About article content                          | about.php           | about.js
        H-* -> Tanungin ang team 1

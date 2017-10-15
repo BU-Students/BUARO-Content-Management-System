@@ -45,26 +45,24 @@ var active_rows_num = 0;
 var state = "1";          //based on HTML values; 0 for inactive, 1 for active, and 2 for both
 var action;
 
-var curr_page = 1;        //first page starts at
+var curr_page = 1;        //page count starts at 1
 var row_limit = 10;       //the number of rows to display on the table
 
 function displayPage(pageNum) {
-	//set active pagination button
-	var pagination = document.getElementById("pagination")
-	pagination.children[curr_page].classList.remove("active");
-	curr_page = pageNum;
-	pagination.children[curr_page].classList.add("active");
+	//determine what user state will be displayed
+	if(state === "1")
+		info = JSON.parse(JSON.stringify(active_users));
+	else if(state === "0")
+		info = JSON.parse(JSON.stringify(inactive_users));
+	else info = JSON.parse(JSON.stringify(users));
 
-	//activate/deactivate pagination toggles if necessary
-	if(curr_page + 1 > Math.ceil(users.length / row_limit))
-		pagination.lastChild.classList.add("disabled");
-	else
-		pagination.lastChild.classList.remove("disabled");
+	if(pageNum < 0)
+		pageNum = 1;
+	else if(pageNum > Math.ceil(info.length / row_limit))
+		pageNum = Math.ceil(info.length / row_limit);
 
-	if(curr_page == 1)
-		pagination.firstChild.classList.add("disabled");
-	else
-		pagination.firstChild.classList.remove("disabled");
+	console.log(pageNum);
+	updatePaginationInterface(info, pageNum);
 
 	//begin the function's main purpose
 	var t_body = document.getElementById("admin-table-body");
@@ -72,12 +70,6 @@ function displayPage(pageNum) {
 
 	var row;
 	var info;
-
-	if(state === "1")
-		info = JSON.parse(JSON.stringify(active_users));
-	else if(state === "0")
-		info = JSON.parse(JSON.stringify(inactive_users));
-	else info = JSON.parse(JSON.stringify(users));
 
 	if(info.length > 0) {
 		var lim = pageNum * row_limit;
@@ -97,7 +89,8 @@ function displayPage(pageNum) {
 				"<td>" + ((info[i].sex == "0")? "Male" : "Female") + "</td>" +
 				"<td>" + info[i].age + "</td>" +
 				'<input type="hidden" value="' + info[i].profile_img + '" />' +
-				'<input type="hidden" value="' + info[i].state + '" />';
+				'<input type="hidden" value="' + info[i].state + '" />' +
+				'<input type="hidden" value="' + i + '" />';
 			t_body.insertBefore(row, t_body.childNodes[0]);
 
 			if(state === "2") {
@@ -106,12 +99,13 @@ function displayPage(pageNum) {
 		}
 
 		sortAdminTable(document.getElementById("admin-table-headers").children[0], 0);
+		displayColumns();
 	}
 	else {
 		document.getElementById("row-select-btn").style.display = "none";
 		document.getElementById("select-all-btn").style.display = "none";
 		document.getElementById("admin-table-body").innerHTML =
-			'<tr><td colspan="6" style="text-align: center;">No row to display</td></tr>';
+			'<tr><td colspan="6" style="text-align: center;">None</td></tr>';
 	}
 }
 
@@ -125,6 +119,38 @@ function nextPage() {
 	if(curr_page + 1 <= Math.ceil(users.length / row_limit)) {
 		displayPage(curr_page + 1);
 	}
+}
+
+function updatePaginationInterface(info, pageNum) {
+	var page_links = document.getElementById("pagination");
+	if(info.length > row_limit) {
+		page_links.innerHTML = '<li><a href="#" onclick="prevPage()"><span class="glyphicon glyphicon-chevron-left"></span></a></li>';
+		for(var i = 1, j = 1; j <= info.length; ++i, j += row_limit) {
+			page_links.innerHTML += '<li><a href="#" onclick="displayPage(' + i + ')">' + i + '</a></li>';
+		}
+		page_links.innerHTML += '<li><a onclick="nextPage()" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>';
+
+		pageNum = (pageNum * row_limit <= info.length)? pageNum : Math.ceil(info.length / row_limit);
+
+		//set active pagination button
+		var pagination = document.getElementById("pagination")
+		pagination.children[pageNum].classList.remove("active");
+		curr_page = pageNum;
+		console.log(curr_page);
+		pagination.children[curr_page].classList.add("active");
+
+		//activate/deactivate pagination toggles if necessary
+		if(curr_page + 1 > Math.ceil(info.length / row_limit))
+			pagination.lastChild.classList.add("disabled");
+		else
+			pagination.lastChild.classList.remove("disabled");
+
+		if(curr_page == 1)
+			pagination.firstChild.classList.add("disabled");
+		else
+			pagination.firstChild.classList.remove("disabled");
+	}
+	else page_links.innerHTML = "";
 }
 
 if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
@@ -147,6 +173,7 @@ if(xhr) {
 
 			for(var i = 0; i < users.length; ++i) {
 				var row = document.createElement("tr");
+				row.setAttribute("onclick", "clickedRowFunction(this)");
 				row.innerHTML =
 					'<input type="hidden" value="' + users[i].admin_id + '" />' +
 					"<td>" + users[i].first_name + "</td>" +
@@ -156,7 +183,8 @@ if(xhr) {
 					"<td>" + ((users[i].sex == "0")? "Male" : "Female") + "</td>" +
 					"<td>" + users[i].age + "</td>" +
 					'<input type="hidden" value="' + users[i].profile_img + '" />' +
-					'<input type="hidden" value="' + users[i].state + '" />';
+					'<input type="hidden" value="' + users[i].state + '" />' +
+					'<input type="hidden" value="' + i + '" />';
 				usersTable.appendChild(row);
 
 				if(users[i].state === "0")
@@ -164,13 +192,6 @@ if(xhr) {
 				else if(users[i].state === "1")
 					active_users.push(users[i]);
 			}
-
-			var page_links = document.getElementById("pagination");
-			page_links.innerHTML = '<li><a href="#" onclick="prevPage()"><span class="glyphicon glyphicon-chevron-left"></span></a></li>';
-			for(var i = 1, j = 1; j <= users.length; ++i, j += row_limit) {
-				page_links.innerHTML += '<li><a href="#" onclick="displayPage(' + i + ')">' + i + '</a></li>';
-			}
-			page_links.innerHTML += '<li><a onclick="nextPage()" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>';
 
 			displayPage(curr_page);
 		}
@@ -189,7 +210,7 @@ function sortAdminTable(header, n) {
 	for(var i = 0; i < theaders.length; ++i)
 		theaders[i].classList.remove("active");
 	header.classList.add("active");
-	document.getElementById("filter").placeholder = "Filter current page based on active column (" + header.innerHTML + ")";
+	document.getElementById("filter").placeholder = "Filter accounts based on active column (" + header.innerHTML + ")";
 
 	var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
 	table = document.getElementById("admin-table-body");
@@ -249,9 +270,12 @@ function sortAdminTable(header, n) {
 function filter(input) {
 	//if search query is empty
 	if(input.value == "") {
+		document.getElementById("pagination").style.display = "";
 		displayPage(curr_page);
 		return;
 	}
+
+	document.getElementById("pagination").style.display = "none";
 
 	//determine the column being searched for
 	var tab;
@@ -419,20 +443,26 @@ function activate_deactivate_accounts() {
 				var notif_img = document.getElementById("notif-img");
 				var notif_msg = document.getElementById("notif-content");
 
-				if(xhr.responseText == "") {
+				try {
+					users = JSON.parse(xhr.responseText);
+					inactive_users = [];
+					active_users = [];
+
+					for(var i = 0; i < users.length; ++i) {
+						if(users[i].state == 1)
+							active_users.push(users[i]);
+						else inactive_users.push(users[i]);
+					}
+
 					rows = document.getElementById("admin-table-body");
 					if(state == "2") {
 						for(var i = 0; i < rows.children.length; ++i) {
 							if(rows.children[i].classList.contains("active")) {
-								if(rows.children[i].children[8].value == "0") {
-									console.log(users);
-									console.log(rows.children);
+								if(action == 1) {
 									rows.children[i].className = "success";
 									rows.children[i].children[8].value = "1";
 								}
 								else {
-									console.log(users);
-									console.log(rows.children);
 									rows.children[i].className = "danger";
 									rows.children[i].children[8].value = "0";
 								}
@@ -440,11 +470,7 @@ function activate_deactivate_accounts() {
 						}
 					}
 					else {
-						for(var i = rows.children.length - 1; i >= 0; --i) {
-							if(rows.children[i].classList.contains("active")) {
-								rows.removeChild(rows.children[i]);
-							}
-						}
+						displayPage(curr_page);
 					}
 
 					if(action == 1) {
@@ -460,19 +486,21 @@ function activate_deactivate_accounts() {
 						document.getElementById("row-select-btn").style.display = "none";
 						document.getElementById("select-all-btn").style.display = "none";
 						document.getElementById("admin-table-body").innerHTML =
-							'<tr><td colspan="6" style="text-align: center;">No row to display</td></tr>';
+							'<tr><td colspan="6" style="text-align: center;">None</td></tr>';
 					}
 					else if(state !== "2") {
 						var btn = document.getElementById("row-select-btn");
 						btn.innerHTML = "Select Multiple Rows";
-						toggleSelectMode(btn);
+						selectMode = false;
+						btn.classList.remove("active");
 					}
 
 					active_rows_num = 0;
 					document.getElementById("row-options-panel").style.display = "none";
+					document.getElementById("user-info-panel").style.display = "none";
 				}
-				else {
-					console.log(xhr.responseText);
+				catch(e) {
+					console.log(e, xhr.responseText);
 					notif_img.src = "../img/error-icon.png";
 					notif_msg.innerHTML = "An error occured. No selected account was deactivated.";
 				}
@@ -499,6 +527,7 @@ function activate_deactivate_accounts() {
 }
 
 function displayTable() {
+	curr_page = 1;
 	var newState;
 	var states = document.getElementById("state-container").children;
 	for(var i = 0; i < states.length; ++i) {
@@ -520,10 +549,10 @@ function displayTable() {
 
 		if(state == "2") {
 			table_description.innerHTML = 'ACTIVE AND INACTIVE ACCOUNTS';
-			row_select.disabled = true;
+			row_select.style.display = "none";
 			row_select.classList.remove("active");
 			row_select.innerHTML = "Select Multiple Rows";
-			select_all.disabled = true;
+			select_all.style.display = "none";
 			selectMode = false;
 		}
 		else {
@@ -546,7 +575,7 @@ function displayColumns() {
 	var theaders = document.getElementById("admin-table-headers").children;
 	table = document.getElementById("admin-table-body").children;
 
-	if(table.children) {
+	if(table.length) {
 		theaders[0].style.display = (document.getElementById("fname-attr").checked)? "table-cell" : "none";
 		theaders[1].style.display = (document.getElementById("mname-attr").checked)? "table-cell" : "none";
 		theaders[2].style.display = (document.getElementById("lname-attr").checked)? "table-cell" : "none";
