@@ -37,7 +37,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 				<div class="story-header">
 					<img src="'.$row['imgbanner'].'" height="50" width="auto">
 					<div class="story-options-container">
-						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-story-'.$row['post_id'].'"><span class="glyphicon glyphicon-pencil"></span></button>
+						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-story-'.$row['post_id'].'" onclick="loadEditor('.$row['post_id'].')"><span class="glyphicon glyphicon-pencil"></span></button>
 						<button type="button" class="'.$status.'" id="status-story-'.$row['post_id'].'" value="'.$row['status'].'" onclick="changeStatus('.$row['post_id'].')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
 					</div>
 					<div class="story-title">'.$row['title'].'</div>
@@ -114,6 +114,9 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 		}
 		if(strlen($row['content'])>1000){
 			$stringstrt = strpos($parser->text(decode($row['content'])),".");
+			if($stringstrt<100){
+				$stringstrt = strposX($parser->text(decode($row['content'])),".",3);
+			}
 			$stringstrt++;
 			$stringnow = substr($parser->text(decode($row['content'])),0,$stringstrt);
 			$stringdis = substr($parser->text(decode($row['content'])),$stringstrt);
@@ -147,7 +150,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 							 			<div class="collapse" id="story-collapse-'.$row['post_id'].'">
 											'.$stringdis.'
 										</div>
-										<b class="omoe_wa_mou_shindeiru" data-toggle="collapse" data-target="#story-collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="story-collapse-'.$row['post_id'].'">'.$read.'</b>
+										<b id="readmore-'.$row['post_id'].'" class="omoe_wa_mou_shindeiru" data-toggle="collapse" data-target="#story-collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="story-collapse-'.$row['post_id'].'" onclick="txtchange('.$row['post_id'].')">'.$read.'</b>
 							  		</div>
 								</div>
 							</div>
@@ -319,7 +322,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 										<div id="dateEvent-'.$row['post_id'].'" class="hidden"><label for="event-date"><input type="date" name="event-date" id="event-date">Date of Event</label></div>
 									</div>
 									<div class="form-group">
-										Content: <textarea rows="20" class="form-control" rows="5" id="textarea2-'.$row['post_id'].'" name="content2">'.substr(($parser->text(decode($row['content']))),0).'</textarea>
+										Content: <textarea class="form-control" id="textarea2-'.$row['post_id'].'" name="content2">'.decode($row['content']).'</textarea>
 									</div>
 								</div>
 							</div>

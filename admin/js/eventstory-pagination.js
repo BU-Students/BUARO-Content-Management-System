@@ -43,3 +43,11 @@ function decrpge_event(max){
 		document.getElementById("event-cont").innerHTML = document.getElementById("event-page-"+eventcurpage).innerHTML;
 	}
 }
+function txtchange(val){
+				if(document.getElementById("readmore-"+val).innerHTML=="Click to read more..."){
+					document.getElementById("readmore-"+val).innerHTML="Click to read less";
+					console.log(val);
+				}
+				else
+					document.getElementById("readmore-"+val).innerHTML="Click to read more...";
+			}

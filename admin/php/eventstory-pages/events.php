@@ -43,7 +43,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 					<img src="'.$row['imgbanner'].'" height="50" width="auto">
 					<div class="event-options-container">
 						<label><i>'.$event_type.'</i></label>
-						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-event-'.$row['post_id'].'"><span class="glyphicon glyphicon-pencil"></span></button>
+						<button type="button" class="btn btn-default btn-s" data-toggle="modal" data-target="#edit-event-'.$row['post_id'].'" onclick="loadEditor('.$row['post_id'].')"><span class="glyphicon glyphicon-pencil"></span></button>
 						<button type="button" class="'.$status.'" id="status-event-'.$row['post_id'].'" value="'.$row['status'].'" onclick="changeStatus_events('.$row['post_id'].',\''.$row['status'].'\')"><span class="glyphicon glyphicon-eye-open" "></span> '.$row['status'].'</button>
 					</div>
 					<div class="event-title">'.$row['title'].'</div>
@@ -153,7 +153,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 							 			<div class="collapse" id="collapse-'.$row['post_id'].'">
 											'.$stringdis.'
 										</div>
-										<b class="omoe_wa_mou_shindeiru" data-toggle="collapse" data-target="#collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="collapse-'.$row['post_id'].'">'.$read.'</b>
+										<b id="readmore-'.$row['post_id'].'" class="omoe_wa_mou_shindeiru" data-toggle="collapse" data-target="#collapse-'.$row['post_id'].'" aria-expanded="false" aria-controls="collapse-'.$row['post_id'].'" onclick="txtchange('.$row['post_id'].')">'.$read.'</b>
 							  		</div>
 								</div>
 							</div>
@@ -323,7 +323,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 						</div>
 					  <div class="form-group">
 					  		Content:
-					    <textarea rows="20" class="form-control" rows="5" id="textarea2" name="content2">'.substr(($parser->text(decode($row['content']))),0).'</textarea>
+					    <textarea class="form-control" rows="5" id="textarea2-'.$row['post_id'].'" name="content2">'.decode($row['content']).'</textarea>
 					  </div>
 				</div>
 		      </div>
