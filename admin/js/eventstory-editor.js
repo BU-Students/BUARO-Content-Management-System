@@ -1,5 +1,11 @@
 document.getElementById("story-event-tab").classList.add("active");
-var simplemde1 = new SimpleMDE({ element: document.getElementById("textarea1")});
+$('textarea').each(function() {
+    var simplemde = new SimpleMDE({
+        element: this,
+        forceSync: true
+    });
+    simplemde.render(); 
+});
     
 //Changes the radio button appearance and text
 $('.dropdown-radio').find('input').change(function() {
@@ -49,23 +55,3 @@ function endis2(val){
        var num = val;
        document.getElementById("endis-"+num).disabled = true;
 }
-        var complete=[];
-        var counter=0;
-        function loadEditor(val){
-          var i;var q=0;
-          for(i=0;i<100;i++){
-            if(complete[i]==val){
-              i=100;
-              q++;
-            }
-            else
-              q=0;
-
-          }
-          if(q==0){
-            var simplemde2 = new SimpleMDE({ element: document.getElementById("textarea2-"+val)});
-            complete[counter] = val;
-            counter++;
-          }
-              
-        }
