@@ -330,10 +330,11 @@ CREATE TABLE `memorabilia` (
 --
 
 INSERT INTO `memorabilia` (`mem_id`, `admin_id`, `label`, `description`, `img_path`) VALUES
-(4, 1, 'kghhhjg', 'jgfhfh', '../../data/e-shop/default-profile-cover-photo.jpg'),
-(5, 1, 'Title here', 'Sample content', '../../data/e-shop/C:fakepathmugs.jpg'),
-(13, 1, 'adff', 'adfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfas', '../../data/e-shop/default-profile-cover-photo.jpg');
-
+(5, 1, 'Mugs', 'This porcelain, fully-insulated mug is the perfect way to personalize your morning brew. Printable with graphics, photos or text, this handled mug is a great way to make your cup as unique as your coffee (cream and sugar not included).', '../../data/e-shop/mugs.jpg'),
+(13, 1, 'T-Shirt', 'This premium t-shirt is as close to perfect as can be. It’s optimized for all types of print and will quickly become your favorite t-shirt. Soft, comfortable and durable, this is a definite must-own and a Spreadshirt recommended product.', '../../data/e-shop/tshirt.jpg'),
+(16, 1, 'Pullover', 'Soft and indulgent cotton twill makes this men\'s knit pullover sweatshirt the one you want.', '../../data/e-shop/pullover.jpg'),
+(17, 1, 'Diamond Ring', 'This exquisite diamond ring features seven diamonds hand-set in a unique and low-profile platinum setting.', '../../data/e-shop/diamond.jpg'),
+(18, 1, 'Leather Bag', 'Gucci Lilith leather top handle bag', '../../data/e-shop/leather.jpg');
 -- --------------------------------------------------------
 
 --
@@ -550,7 +551,7 @@ ALTER TABLE `graduates`
 -- AUTO_INCREMENT for table `memorabilia`
 --
 ALTER TABLE `memorabilia`
-  MODIFY `mem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `mem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `post`
 --
