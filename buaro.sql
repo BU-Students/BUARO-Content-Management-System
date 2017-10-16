@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2017 at 07:45 PM
+-- Generation Time: Oct 16, 2017 at 05:16 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -44,7 +44,14 @@ INSERT INTO `address` (`address_id`, `barangay`, `municipality`, `province`) VAL
 (2, 'B1', 'M1', 'P1'),
 (3, 'B2', 'M2', 'P2'),
 (4, 'B3', 'M3', 'P3'),
-(5, 'B4', 'M4', 'P4');
+(5, 'B4', 'M4', 'P4'),
+(6, 'B5', 'M5', 'P5'),
+(7, 'B6', 'M6', 'P6'),
+(8, 'B7', 'M7', 'P7'),
+(9, 'B8', 'M8', 'P8'),
+(10, 'B9', 'M9', 'P9'),
+(11, 'BA', 'MA', 'PA'),
+(12, 'BB', 'MB', 'PB');
 
 -- --------------------------------------------------------
 
@@ -77,10 +84,17 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`admin_id`, `admin_type`, `address`, `college`, `first_name`, `middle_name`, `last_name`, `sex`, `contact_no`, `bdate`, `email`, `username`, `password`, `profile_img`, `cover_photo`, `state`) VALUES
 (1, 1, 1, NULL, 'Fname0', 'Mname0', 'Lname0', 0, '09772044506', '1998-12-30', '0@example.com', 'e5d167367cda5a4b8239311ff2c17aad', '754ea1d0fb21a2ba706619100e60061c', NULL, NULL, 1),
-(12, 2, 2, 3, 'Fname1', 'Mnme1', 'Lname1', 0, NULL, '2017-09-04', NULL, '25706bea76c58351edefbb458f9e1062', '87f5e873e4cc3ebaed6f289303417020', NULL, NULL, 1),
-(13, 2, 3, 7, 'Fname2', 'Mname2', 'Lname2', 0, NULL, '2017-09-25', '2@example.com', 'eca4fe101390ff3d3babcf9a1245e546', 'ee262c7610a18ee3babfa4e36ade34a3', NULL, NULL, 1),
-(14, 2, 4, 2, 'Fname3', 'Mname3', 'Lname3', 1, '098765443210', '2017-08-16', NULL, 'd2d26a22184ec3f69c7f4016d6152c29', '1d7579089c1d958b219b0e3450472477', NULL, NULL, 1),
-(15, 2, 5, 7, 'Fname4', 'Mname4', 'Lname4', 1, '0987657862', '2017-09-04', NULL, '4a26b0788fd819cc890894b8c2f9162e', 'aeb5f991b117b589b2c5d664982a80ca', NULL, NULL, 1);
+(2, 2, 2, 3, 'Fname1', 'Mnme1', 'Lname1', 0, NULL, '2017-09-04', NULL, '25706bea76c58351edefbb458f9e1062', '87f5e873e4cc3ebaed6f289303417020', NULL, NULL, 1),
+(3, 2, 3, 7, 'Fname2', 'Mname2', 'Lname2', 0, NULL, '2017-09-25', '2@example.com', 'eca4fe101390ff3d3babcf9a1245e546', 'ee262c7610a18ee3babfa4e36ade34a3', NULL, NULL, 1),
+(4, 2, 4, 2, 'Fname3', 'Mname3', 'Lname3', 1, '098765443210', '2017-08-16', NULL, 'd2d26a22184ec3f69c7f4016d6152c29', '1d7579089c1d958b219b0e3450472477', NULL, NULL, 1),
+(5, 2, 5, 7, 'Fname4', 'Mname4', 'Lname4', 1, '0987657862', '2017-09-04', NULL, '4a26b0788fd819cc890894b8c2f9162e', 'aeb5f991b117b589b2c5d664982a80ca', NULL, NULL, 1),
+(6, 2, 6, 9, 'Fname5', 'Mname5', 'Lname5', 0, NULL, '2017-10-02', NULL, 'bf3019a2bb260de8da70fab088404687', 'd4bd58cee9529fbe69a9aa7db33bafd8', NULL, NULL, 1),
+(7, 2, 7, 3, 'Fname6', 'Mname6', 'Lname6', 0, NULL, '2017-10-10', NULL, '70c53369892c88b80384cb775ea449ba', 'cf024788de317a2ce50cd3f927d8bb7e', NULL, NULL, 1),
+(8, 2, 8, 6, 'Fname7', 'Mname7', 'Lname7', 0, NULL, '2017-10-08', NULL, '3b5a7bd58b39216ea341bb764bf1c073', 'd048a03678481b7a4dddd60721eaeb10', NULL, NULL, 1),
+(9, 2, 9, 8, 'Fname8', 'Mname8', 'Lname8', 0, NULL, '2017-10-26', NULL, 'c8a1f08efeb92ca3fab1837a0f8214a8', 'd89580c559dccc81ec4be5663313c4fd', NULL, NULL, 1),
+(10, 2, 10, 1, 'Fname9', 'Mname9', 'Lname9', 0, NULL, '2017-10-11', NULL, '95ab649f796a9dbdff35d314ed34c9f4', '0befa64e900876f0f5628689f8f2f647', NULL, NULL, 1),
+(11, 2, 11, 1, 'FnameA', 'MnameA', 'LnameA', 0, NULL, '2017-10-09', NULL, '25404554a4e5a0807bc946b907db98af', '81f41e5d97b945c3487a2df13e14e378', NULL, NULL, 1),
+(12, 2, 12, 1, 'FnameB', 'MnameB', 'LnameB', 0, NULL, '2017-10-26', NULL, 'b3faebf744ad2fd2e0d64b36a9d9d3b4', '150a05ec596ad344a1bea5b9e9bb87a3', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -100,11 +114,11 @@ CREATE TABLE `admin_activity` (
 --
 
 INSERT INTO `admin_activity` (`activity_id`, `admin_id`, `last_active`, `last_login`) VALUES
-(1, 1, '2017-10-09 17:44:38', '2017-10-09 15:29:05'),
-(2, 12, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
-(3, 13, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
-(4, 14, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
-(5, 15, '2017-10-09 15:28:05', '2017-10-09 15:28:05');
+(1, 1, '2017-10-16 15:16:03', '2017-10-16 14:43:26'),
+(2, 2, '2017-10-15 13:33:53', '2017-10-15 13:26:47'),
+(3, 3, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
+(4, 4, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
+(5, 5, '2017-10-09 15:28:05', '2017-10-09 15:28:05');
 
 -- --------------------------------------------------------
 
@@ -171,8 +185,8 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`c_id`, `mem_id`, `content`, `nick`, `timestamp`) VALUES
-(1, 13, 'Data', 'Franco', '2017-09-22 07:44:42'),
-(2, 13, 'Gusto Mo bang kumita? Contact 098273526321', 'Aim Global', '2017-10-05 01:16:43');
+(1, 13, 'Data', 'Franco', '2017-10-16 15:03:52'),
+(2, 13, 'Gusto Mo bang kumita? Contact 098273526321', 'Aim Global', '2017-10-16 15:03:50');
 
 -- --------------------------------------------------------
 
@@ -208,63 +222,63 @@ INSERT INTO `course` (`course_id`, `college_id`, `label`) VALUES
 CREATE TABLE `feedback` (
   `feedback_id` int(11) NOT NULL,
   `feedemail` varchar(255) DEFAULT NULL,
-  `feedmessage` text NOT NULL
+  `feedmessage` text NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `feedback`
 --
 
-INSERT INTO `feedback` (`feedback_id`, `feedemail`, `feedmessage`) VALUES
-(1, 'email@email.com', 'hope this works'),
-(2, 'tryemail@yahoo.com', 'Write something one more time...'),
-(61, NULL, 'AAA'),
-(62, NULL, 'AAA'),
-(63, NULL, 'AAA'),
-(64, NULL, 'AAA'),
-(65, NULL, 'AAA'),
-(66, NULL, 'AAA'),
-(67, NULL, 'AAA'),
-(68, NULL, 'AAA'),
-(69, NULL, 'AAA'),
-(70, NULL, 'AAA'),
-(71, NULL, 'Sample feedback'),
-(72, NULL, 'Sample feedback'),
-(73, NULL, 'Sample feedback'),
-(74, NULL, 'Sample feedback'),
-(75, NULL, 'Sample feedback'),
-(76, NULL, 'Sample feedback'),
-(77, NULL, 'Sample feedback'),
-(78, NULL, 'Sample feedback'),
-(79, NULL, 'Sample feedback'),
-(80, NULL, 'Sample feedback'),
-(81, NULL, 'Sample feedback'),
-(82, NULL, 'Sample feedback'),
-(83, NULL, 'Sample feedback'),
-(84, NULL, 'Sample feedback'),
-(85, NULL, 'Sample feedback'),
-(86, NULL, 'Sample feedback'),
-(87, NULL, 'Sample feedback'),
-(88, NULL, 'Sample feedback'),
-(89, NULL, 'Sample feedback'),
-(90, NULL, 'Sample feedback'),
-(91, NULL, 'Sample feedback'),
-(92, NULL, 'Sample feedback'),
-(93, NULL, 'Sample feedback'),
-(94, NULL, 'Sample feedback'),
-(95, NULL, 'Sample feedback'),
-(96, NULL, 'Sample feedback'),
-(97, NULL, 'Sample feedback'),
-(98, NULL, 'Sample feedback'),
-(99, NULL, 'Sample feedback'),
-(100, NULL, 'Sample feedback'),
-(101, NULL, 'Sample feedback'),
-(102, NULL, 'Sample feedback'),
-(103, NULL, 'Sample feedback'),
-(104, NULL, 'Sample feedback'),
-(105, NULL, 'Sample feedback'),
-(106, NULL, 'Sample feedback'),
-(107, NULL, 'Sample feedback');
+INSERT INTO `feedback` (`feedback_id`, `feedemail`, `feedmessage`, `timestamp`) VALUES
+(2, 'tryemail@yahoo.com', 'Write something one more time...', '2017-10-13 02:01:24'),
+(61, NULL, 'AAA', '2017-10-13 02:01:24'),
+(62, NULL, 'AAA', '2017-10-13 02:01:24'),
+(63, NULL, 'AAA', '2017-10-13 02:01:24'),
+(64, NULL, 'AAA', '2017-10-13 02:01:24'),
+(65, NULL, 'AAA', '2017-10-13 02:01:24'),
+(66, NULL, 'AAA', '2017-10-13 02:01:24'),
+(67, NULL, 'AAA', '2017-10-13 02:01:24'),
+(68, NULL, 'AAA', '2017-10-13 02:01:24'),
+(69, NULL, 'AAA', '2017-10-13 02:01:24'),
+(70, NULL, 'AAA', '2017-10-13 02:01:24'),
+(71, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(72, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(73, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(74, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(75, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(76, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(77, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(78, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(79, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(80, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(81, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(82, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(83, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(84, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(85, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(86, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(87, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(88, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(89, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(90, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(91, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(92, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(93, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(94, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(95, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(96, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(97, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(98, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(99, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(100, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(101, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(102, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(103, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(104, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(105, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(106, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(107, NULL, 'Sample feedback', '2017-10-13 02:01:24');
 
 -- --------------------------------------------------------
 
@@ -309,8 +323,9 @@ CREATE TABLE `memorabilia` (
 --
 
 INSERT INTO `memorabilia` (`mem_id`, `admin_id`, `label`, `description`, `img_path`) VALUES
-(13, 1, 'adff', 'adfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfas', '../../data/e-shop/default-profile-cover-photo.jpg'),
-(14, 1, 'kghhhjg', 'jgfhfh', '../../data/e-shop/default-profile-cover-photo.jpg');
+(4, 1, 'kghhhjg', 'jgfhfh', '../../data/e-shop/default-profile-cover-photo.jpg'),
+(5, 1, 'Title here', 'Sample content', '../../data/e-shop/C:fakepathmugs.jpg'),
+(13, 1, 'adff', 'adfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfas', '../../data/e-shop/default-profile-cover-photo.jpg');
 
 -- --------------------------------------------------------
 
@@ -355,12 +370,12 @@ INSERT INTO `post` (`post_id`, `admin_id`, `post_type`, `imgbanner`, `imglinks`,
 INSERT INTO `post` (`post_id`, `admin_id`, `post_type`, `imgbanner`, `imglinks`, `title`, `content`, `status`, `eventdate`, `view_count`, `unique_visitors`, `timestamp`) VALUES
 (48, 1, 1, '../../data/events-stories/7178', '', 'Hon. ALFREDO A. GARBIN JR.', 'Hon. ALFREDO ABAROA GARBIN JR, completed a Local Development Management Course at the Asian Institute of Management in 2008. â€œPidoâ€ to his friends, graduated from the Bicol University College of Arts and Sciences, now the Bicol University College of Business Economics and Management with a degree in Bachelor of Science in Business Administration, in 1997, major in Management. It was his grandfather, Mr. Mariano Abaroa who motivated and encouraged him to take Law. His grandfather passed away while he was a freshman in the College of Law. It was during this tearful moment of his life that made him pursue with more vigor and passion his dream of becoming a lawyer. Despite his predicament, he never gave up trying to help support his family. He worked part-time in the supply section of the Department of Health Regional Office. Determined and more serious about achieving his goals, he attained high grades.\r&lt;br/&gt;\r&lt;br/&gt;For the next two years, he juggled his time carrying heavy boxes of medical supplies to the adjacent provincial hospital at daytime and studying the intricacies of the provisions of the laws at night. While preparing for the bar examinations in 2001, Atty. Garbin applied and was accepted as the legal assistant in the Aquende Law Office. It was during this time that his interest and admiration about law even became stronger.\r&lt;br/&gt;GOD looked favorably to him in 2002. It was a day that marked a special year and the turning point in the young ALFREDO GARBIN Jr in his quest for truth, excellence and justice as he passed the BAR examinations with an average score of 81.4%. Moreover, he was accepted as a managing partner of a successful law firm known for its competence, credibility and integrity, finally fulfilling his grandfatherÃ¢â‚¬â„¢s dream for him. Furthermore, it was in this year when he became the youngest president of the National Movement of Young Legislators- Albay Chapter and Junior Chamber International, Legazpi City Chapter.\r&lt;br/&gt;Recognized for his humanitarian work and civic litigations, he was visited by the City Mayor, hence, the start of his political battle that changed the course of his life journey. The following years showed the epic performance of Atty. Garbin as a legislator and civic leader, working and hoping to ultimately transform the moral and social fiber in the community he serves.\r&lt;br/&gt;\r&lt;br/&gt;At present, Atty. Garbin is a Member in the House of Representatives and serves as Deputy Minority Leader and an ex officio member of all standing committees in the 17th Congress. The latest of the awards received included the Icon Award, given by the National Movement of Young Legislators in 2017.He, too, is a participant to several international studies/trainings/workshops. He attended the Leaders in Development Program at Harvard Kennedy School, Cambridge, Massachusettes, SA in 2017; Internationale Tourismus-Borse (ITB) in Berlin, Germany in 2017; Australian Political Exchange Program, Sydney, Canberra and Melbourne in 2012, to name a few.\r&lt;br/&gt;As one of the representative of the AKO BICOL Partylist, he is pursuing the organizationÃ¢â‚¬â„¢s agenda of supporting residents of the Bicol Region, people born of Bicolano parents, or those simply interested in the promotion of the welfare and interest of the region and its people, collectively known as Bicolanos.\r&lt;br/&gt;Atty. ALFREDO A. GARBIN, a leader, living and bringing the ideals of the Bicol University, a true pride of the BU community.\r&lt;br/&gt;\r&lt;br/&gt;\r&lt;br/&gt;', 'shown', '0000-00-00', 0, 0, '2017-09-25 04:25:00'),
 (49, 1, 1, '../../data/events-stories/30350', NULL, 'HON. CHRISTOPHER S. CO', 'Hon. CHRISTOPHER S. CO graduated from the Bicol University High School now the Bicol University Integrated Laboratory School. He came from a simple life with big dreams. Through his strong faith, hardwork, determination, and dedication to his craft, he was able to rise above this simple life. At this point, he strongly commits with an unwavering devotion and personal vow to help others by continuously inspiring people and help them in his own little ways.\r&lt;br/&gt;\r&lt;br/&gt;He is a businessman by profession engaging in the fields of construction, tourism, agriculture, and food industry. Through the years, he led his companies in every challenge that comes along the way without forgetting his advocacies in public service. He offered himself to the people and he is known for character and integrity.\r&lt;br/&gt;As a public servant, he led a good and respectable life grounded in humility. He spearheaded various programs that have shaped the people as empowered members of a community, where they can contribute to regional and national development. In all his personal and professional endeavors, the welfare of the people has always been his priority.\r&lt;br/&gt;Cong. CoÃ¢â‚¬â„¢s service record in the government started as a representative of the AKO BICOL PARTYLIST in 2010 to 2013. It continued up to the present, which means that he is now in his third term.\r&lt;br/&gt;As a Member of 15th Congress, he was a member of various committees. These were the following:\r&lt;br/&gt;ï‚§  Committee on Bicol Recovery and Economic Development\r&lt;br/&gt;ï‚§  Committee on Higher and Technical Education\r&lt;br/&gt;ï‚§ Committee on Information and Communications Technology\r&lt;br/&gt;ï‚§  Committee on Millennium Development Goals\r&lt;br/&gt;ï‚§ Committee on People&apos;s participation\r&lt;br/&gt;ï‚§  Committee on Science and Technology\r&lt;br/&gt;ï‚§ Committee on Social Services\r&lt;br/&gt;\r&lt;br/&gt;On the other hand, his committee membership during the 16th Congress included the following:\r&lt;br/&gt;ï‚§  Committee on Civil Service and Professional Regulation\r&lt;br/&gt;ï‚§  Committee on Health\r&lt;br/&gt;ï‚§ Committee on Information and Communication Technology\r&lt;br/&gt;ï‚§ Committee on Inter parliamentary Relations and Diplomacy\r&lt;br/&gt;ï‚§  Committee on Cooperatives Development\r&lt;br/&gt;ï‚§ Special Committee on Globalization and WTO\r&lt;br/&gt;ï‚§  Special Committee on Bicol Recovery and economic Development\r&lt;br/&gt;At present in the 17th Congress, Cong. Co chairs the Climate Change Committee and still a House Committee Member of the following:\r&lt;br/&gt;Aquaculture And Fisheries Resources\r&lt;br/&gt;Banks And Financial Intermediaries\r&lt;br/&gt;Bicol Recovery And Economic Development\r&lt;br/&gt;Public Works And Highways\r&lt;br/&gt;Revision Of Laws\r&lt;br/&gt;Rural Development\r&lt;br/&gt;Small Business &amp; Entrepreneurship Development\r&lt;br/&gt;\r&lt;br/&gt;\r&lt;br/&gt;As chairman of the Climate Change Committee, he has to take the challenge toformulate policies for implementing activities and projects which will address the issues on climate change. His future projects will focus on sustainable development answering the call of the changing environment.\r&lt;br/&gt;As Congressman, he has authored and co-authored a total of 658 measures in Congress that made him the third most prolific legislator. Moreover, through his efforts, thousands of scholars have enjoyed free tertiary education. Through several collaborations that he personally initiated with the Technical and Educational Skills Development Authority (TESDA), a big number of students, too, have graduated with competencies that increased their chances of getting employment through technical trainings. It was also though him that a building for Persons with Disability (PWD) in Naga, Camarines Sur was constructed to primarily cater to the needs of the PWDs whose sector is under represented in the communities, thus creating a centralized system for all their concerns and requests.\r&lt;br/&gt;\r&lt;br/&gt;Cong. Co is also a strong advocate of employment and livelihood opportunities for the people. He continuously create more jobs and /or provide livelihood through distribution of various supplies and equipment like farming and fishing implements.\r&lt;br/&gt;Congressman CHRISTOPHER S. CO, a leader, a public servant, an entrepreneur, an environmentalist, in every inch exemplifying a true friend, a KAPAMILYA, KAPUSO, KAPATID, and so much more. We are happy to be part of your journey.\r&lt;br/&gt;\r&lt;br/&gt;\r&lt;br/&gt;', 'shown', '0000-00-00', 0, 0, '2017-09-25 04:26:40'),
-(53, 12, 6, NULL, NULL, 'Project Title', 'Description goes here..', 'shown', '0000-00-00', 0, 0, '2017-09-19 22:12:13'),
-(54, 13, 6, NULL, NULL, 'PROJECT TITLE', 'Description here', 'shown', '0000-00-00', 0, 0, '2017-09-19 22:45:53'),
-(55, 14, 6, NULL, NULL, 'A school for children in Kenya', 'Education is the basis of all change in society - therefore school plays a vital role for the development of third world countries. The school system in Kenya is not ideal in this respect - it lacks proper funding; classes are huge and teachers underpaid. Attending a primary state school is free in principle - however, additional costs make it difficult for families to afford school for all of their children; especially if those children are needed for providing financial support to the family by their labour. &lt;br/&gt;&lt;br/&gt;In 2007 we decided to buy land in Kilifi, Kenya, to build a school. We officially registered our school in Kenya and pay all running costs (teachers, food, books, school uniforms, medical treatment) via donations. &lt;br/&gt;&lt;br/&gt;By now, 400 children are attending our school from Kindergarten up the the 4th grade of primary school. We have built school buildings with classrooms for each class, a hall and a toilet building. Still we are planning to extend those buildings - our school will be growing until we offer education up to the 8th grade. Each year we welcome a new class of pupils at our school and hope to provide them with an education which will be their start into a better life.', 'shown', '0000-00-00', 0, 0, '2017-09-20 04:05:34'),
+(53, 2, 6, NULL, NULL, 'Project Title', 'Description goes here..', 'shown', '0000-00-00', 0, 0, '2017-09-19 22:12:13'),
+(54, 3, 6, NULL, NULL, 'PROJECT TITLE', 'Description here', 'shown', '0000-00-00', 0, 0, '2017-09-19 22:45:53'),
+(55, 4, 6, NULL, NULL, 'A school for children in Kenya', 'Education is the basis of all change in society - therefore school plays a vital role for the development of third world countries. The school system in Kenya is not ideal in this respect - it lacks proper funding; classes are huge and teachers underpaid. Attending a primary state school is free in principle - however, additional costs make it difficult for families to afford school for all of their children; especially if those children are needed for providing financial support to the family by their labour. &lt;br/&gt;&lt;br/&gt;In 2007 we decided to buy land in Kilifi, Kenya, to build a school. We officially registered our school in Kenya and pay all running costs (teachers, food, books, school uniforms, medical treatment) via donations. &lt;br/&gt;&lt;br/&gt;By now, 400 children are attending our school from Kindergarten up the the 4th grade of primary school. We have built school buildings with classrooms for each class, a hall and a toilet building. Still we are planning to extend those buildings - our school will be growing until we offer education up to the 8th grade. Each year we welcome a new class of pupils at our school and hope to provide them with an education which will be their start into a better life.', 'shown', '0000-00-00', 0, 0, '2017-09-20 04:05:34'),
 (56, 1, 4, NULL, NULL, 'ABOUT BU Alumni Relations Office', '#### **The Bicol University Alumni Relations Office serves as the line between the alumni and the BU Community. It seeks to:**\n1. Invite wide alumni participation and contribution to the development of the esucation gaols of Bicol University.\n2. Recognize the meritorious services and achivemens of the alumni, and\n3. Provide leadership in coordinating, planning, implementing and monitoring of the development programs of the alumni associations.\n4. Plan and implement Alumni Continuing Education and other activities designed for the continuing professional growth of the Alumni.\n5. Coordinate the organization of an alumni fund and other source of support funds.\n\n#### **Objectives:**\nTo maintain and strengthen a productive partnership and to encourage and facilitate professional and social linkage between Bicol University and its Alumni.\n\n#### **ARO Services for Alumni:**\n* Develop and maintain an Alumni Database of Alumni Records\n* Recognize Alumni achievements\n* Collects and Disseminates News/Information\n* Assits the Unit/College Alumni Associations in Fund Campaigns, Homecomnings ', 'shown', NULL, 0, 0, '2017-09-20 23:49:51'),
 (57, 1, 5, NULL, NULL, 'CONTACT US', 'BUREPC Building&lt;br/&gt;Bicol University&lt;br/&gt;Legazpi City, Philippines&lt;br/&gt;&lt;br/&gt;**Email**: bualumnirelations@bicol-u.edu.ph&lt;br/&gt;**Tel. No.**(052) 480-01-79/(052) 483-45-88&lt;br/&gt;**Facebook Page**: http://wwww.facebook.com/BUAlumniRelations', 'shown', NULL, 0, 0, '2017-09-21 03:05:11'),
-(58, 13, 1, '', '../../data/events-stories/7595817-10-05/10397763233f5974b6af7a498a9efb9188022e1a027c223b1fc381aae357a1392afc9fe059.png;../../data/events-stories/7595817-10-05/9386575468fdf1d8a51fc25f3e6e29a64b8b5b377d345a56fb7d8a9d20591a23a6a8cfd05.jpg;../../data/events-stories/7595817-10-05/4881231009c9ecc60a48bb21a7e15cfbd2cf31a87d9cca4e7d71634da0dbf18d801b974af.jpg', 'Story', 'Content', 'shown', NULL, 0, 0, '2017-10-05 02:10:35');
+(58, 3, 1, '', '../../data/events-stories/7595817-10-05/10397763233f5974b6af7a498a9efb9188022e1a027c223b1fc381aae357a1392afc9fe059.png;../../data/events-stories/7595817-10-05/9386575468fdf1d8a51fc25f3e6e29a64b8b5b377d345a56fb7d8a9d20591a23a6a8cfd05.jpg;../../data/events-stories/7595817-10-05/4881231009c9ecc60a48bb21a7e15cfbd2cf31a87d9cca4e7d71634da0dbf18d801b974af.jpg', 'Story', 'Content', 'shown', NULL, 0, 0, '2017-10-05 02:10:35');
 
 -- --------------------------------------------------------
 
@@ -483,12 +498,12 @@ ALTER TABLE `post_type`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `admin_activity`
 --
@@ -528,7 +543,7 @@ ALTER TABLE `graduates`
 -- AUTO_INCREMENT for table `memorabilia`
 --
 ALTER TABLE `memorabilia`
-  MODIFY `mem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `mem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `post`
 --
@@ -548,8 +563,7 @@ ALTER TABLE `post_type`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`address`) REFERENCES `address` (`address_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`college`) REFERENCES `college` (`college_id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `admin_ibfk_3` FOREIGN KEY (`admin_type`) REFERENCES `admin_type` (`admin_type_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`college`) REFERENCES `college` (`college_id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `admin_activity`
@@ -561,7 +575,7 @@ ALTER TABLE `admin_activity`
 -- Constraints for table `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`mem_id`) REFERENCES `memorabilia` (`mem_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`mem_id`) REFERENCES `memorabilia` (`mem_id`) ON DELETE NO ACTION;
 
 --
 -- Constraints for table `course`
@@ -585,8 +599,7 @@ ALTER TABLE `memorabilia`
 -- Constraints for table `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`) ON DELETE NO ACTION,
-  ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`) ON DELETE NO ACTION;
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`) ON DELETE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
