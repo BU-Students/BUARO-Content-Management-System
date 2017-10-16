@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Oct 16, 2017 at 06:53 PM
+=======
+-- Generation Time: Oct 16, 2017 at 06:27 PM
+>>>>>>> 16375a4be620c540796d14b3825b39b4fca2e1d7
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -40,18 +44,18 @@ CREATE TABLE `address` (
 --
 
 INSERT INTO `address` (`address_id`, `barangay`, `municipality`, `province`) VALUES
-(1, 'B0', 'M0', 'P0'),
-(2, 'B1', 'M1', 'P1'),
-(3, 'B2', 'M2', 'P2'),
-(4, 'B3', 'M3', 'P3'),
-(5, 'B4', 'M4', 'P4'),
-(6, 'B5', 'M5', 'P5'),
-(7, 'B6', 'M6', 'P6'),
-(8, 'B7', 'M7', 'P7'),
-(9, 'B8', 'M8', 'P8'),
-(10, 'B9', 'M9', 'P9'),
-(11, 'BA', 'MA', 'PA'),
-(12, 'BB', 'MB', 'PB');
+(1, 'Bagumbayan', 'Daraga', 'Albay'),
+(2, 'Camalig', 'Daraga', 'Albay'),
+(3, 'Sagpon', 'Daraga', 'Albay'),
+(4, 'Manito', 'Legazpi', 'Albay'),
+(5, 'Arimbay', 'Legazpi', 'Albay'),
+(6, 'Bulusan', 'Libon', 'Albay'),
+(7, 'Bascaran', 'Daraga', 'Albay'),
+(8, 'Puro', 'Legazpi', 'Albay'),
+(9, 'Tula-Tula', 'Legazpi', 'Albay'),
+(10, 'Cadawag', 'Oas', 'Albay'),
+(11, 'Rawis', 'Libon', 'Albay'),
+(12, 'Bitano', 'Legazpi', 'Albay');
 
 -- --------------------------------------------------------
 
@@ -83,18 +87,18 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_type`, `address`, `college`, `first_name`, `middle_name`, `last_name`, `sex`, `contact_no`, `bdate`, `email`, `username`, `password`, `profile_img`, `cover_photo`, `state`) VALUES
-(1, 1, 1, NULL, 'Fname0', 'Mname0', 'Lname0', 0, '09772044506', '1998-12-30', '0@example.com', 'e5d167367cda5a4b8239311ff2c17aad', '754ea1d0fb21a2ba706619100e60061c', NULL, NULL, 1),
-(2, 2, 2, 3, 'Fname1', 'Mnme1', 'Lname1', 0, NULL, '2017-09-04', NULL, '25706bea76c58351edefbb458f9e1062', '87f5e873e4cc3ebaed6f289303417020', NULL, NULL, 1),
-(3, 2, 3, 7, 'Fname2', 'Mname2', 'Lname2', 0, NULL, '2017-09-25', '2@example.com', 'eca4fe101390ff3d3babcf9a1245e546', 'ee262c7610a18ee3babfa4e36ade34a3', NULL, NULL, 1),
-(4, 2, 4, 2, 'Fname3', 'Mname3', 'Lname3', 1, '098765443210', '2017-08-16', NULL, 'd2d26a22184ec3f69c7f4016d6152c29', '1d7579089c1d958b219b0e3450472477', NULL, NULL, 1),
-(5, 2, 5, 7, 'Fname4', 'Mname4', 'Lname4', 1, '0987657862', '2017-09-04', NULL, '4a26b0788fd819cc890894b8c2f9162e', 'aeb5f991b117b589b2c5d664982a80ca', NULL, NULL, 1),
-(6, 2, 6, 9, 'Fname5', 'Mname5', 'Lname5', 0, NULL, '2017-10-02', NULL, 'bf3019a2bb260de8da70fab088404687', 'd4bd58cee9529fbe69a9aa7db33bafd8', NULL, NULL, 1),
-(7, 2, 7, 3, 'Fname6', 'Mname6', 'Lname6', 0, NULL, '2017-10-10', NULL, '70c53369892c88b80384cb775ea449ba', 'cf024788de317a2ce50cd3f927d8bb7e', NULL, NULL, 1),
-(8, 2, 8, 6, 'Fname7', 'Mname7', 'Lname7', 0, NULL, '2017-10-08', NULL, '3b5a7bd58b39216ea341bb764bf1c073', 'd048a03678481b7a4dddd60721eaeb10', NULL, NULL, 1),
-(9, 2, 9, 8, 'Fname8', 'Mname8', 'Lname8', 0, NULL, '2017-10-26', NULL, 'c8a1f08efeb92ca3fab1837a0f8214a8', 'd89580c559dccc81ec4be5663313c4fd', NULL, NULL, 1),
-(10, 2, 10, 1, 'Fname9', 'Mname9', 'Lname9', 0, NULL, '2017-10-11', NULL, '95ab649f796a9dbdff35d314ed34c9f4', '0befa64e900876f0f5628689f8f2f647', NULL, NULL, 1),
-(11, 2, 11, 1, 'FnameA', 'MnameA', 'LnameA', 0, NULL, '2017-10-09', NULL, '25404554a4e5a0807bc946b907db98af', '81f41e5d97b945c3487a2df13e14e378', NULL, NULL, 1),
-(12, 2, 12, 1, 'FnameB', 'MnameB', 'LnameB', 0, NULL, '2017-10-26', NULL, 'b3faebf744ad2fd2e0d64b36a9d9d3b4', '150a05ec596ad344a1bea5b9e9bb87a3', NULL, NULL, 1);
+(1, 1, 1, NULL, 'Talya', 'Crain', 'Scragg', 1, '9086178741', '1993-08-14', 'talya.scragg@example.com', 'e5d167367cda5a4b8239311ff2c17aad', '754ea1d0fb21a2ba706619100e60061c', NULL, NULL, 1),
+(2, 2, 2, 3, 'Willy', 'Pawelke', 'Bril', 0, '9959501243', '0000-00-00', 'wbril0@paypal.com', '25706bea76c58351edefbb458f9e1062', '87f5e873e4cc3ebaed6f289303417020', NULL, NULL, 1),
+(3, 2, 3, 7, 'Elias', 'Attle', 'Denes', 0, '9201557519', '1991-10-06', 'edenes1@bloomberg.com', 'eca4fe101390ff3d3babcf9a1245e546', 'ee262c7610a18ee3babfa4e36ade34a3', NULL, NULL, 1),
+(4, 2, 4, 2, 'Marlie', 'Father', 'Hansom', 1, '9917212771', '1990-11-20', 'mhansom2@wordpress.org', 'd2d26a22184ec3f69c7f4016d6152c29', '1d7579089c1d958b219b0e3450472477', NULL, NULL, 1),
+(5, 2, 5, 7, 'Michail', 'McCue', 'Rhymes', 0, '9566815074', '1981-05-23', NULL, '4a26b0788fd819cc890894b8c2f9162e', 'aeb5f991b117b589b2c5d664982a80ca', NULL, NULL, 1),
+(6, 2, 6, 9, 'Laraine', 'McOrkil', 'Hugin', 1, NULL, '1994-05-22', 'lhugin4@utexas.edu', 'bf3019a2bb260de8da70fab088404687', 'd4bd58cee9529fbe69a9aa7db33bafd8', NULL, NULL, 0),
+(7, 2, 7, 3, 'Jilleen', 'Banghe', 'Tortoishell', 1, '9879787418', '1986-10-18', 'jtortoishell5@multiply.com', '70c53369892c88b80384cb775ea449ba', 'cf024788de317a2ce50cd3f927d8bb7e', NULL, NULL, 1),
+(8, 2, 8, 6, 'Chelsie', 'Learoyd', 'Timblett', 1, '9459305726', '1993-05-18', NULL, '3b5a7bd58b39216ea341bb764bf1c073', 'd048a03678481b7a4dddd60721eaeb10', NULL, NULL, 1),
+(9, 2, 9, 8, 'Kayleen', 'Brockley', 'Klus', 1, NULL, '1985-02-28', 'gklus7@google.com.br', 'c8a1f08efeb92ca3fab1837a0f8214a8', 'd89580c559dccc81ec4be5663313c4fd', NULL, NULL, 1),
+(10, 2, 10, 1, 'Deva', 'Lardeur', 'Hulance', 1, '9225867150', '1983-05-13', 'dhulance8@miibeian.gov.cn', '95ab649f796a9dbdff35d314ed34c9f4', '0befa64e900876f0f5628689f8f2f647', NULL, NULL, 1),
+(11, 2, 11, 1, 'Genny', 'Risso', 'Chippin', 1, '9543021062', '1983-05-08', 'gchippin9@epa.gov', '25404554a4e5a0807bc946b907db98af', '81f41e5d97b945c3487a2df13e14e378', NULL, NULL, 1),
+(12, 2, 12, 1, 'Marin', 'Mayhew', 'Ringsell', 0, '9919188530', '1990-08-19', 'mringsella@bigcartel.com', 'b3faebf744ad2fd2e0d64b36a9d9d3b4', '150a05ec596ad344a1bea5b9e9bb87a3', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -105,8 +109,8 @@ INSERT INTO `admin` (`admin_id`, `admin_type`, `address`, `college`, `first_name
 CREATE TABLE `admin_activity` (
   `activity_id` int(11) NOT NULL,
   `admin_id` int(11) NOT NULL,
-  `last_active` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `last_active` timestamp NULL DEFAULT NULL,
+  `last_login` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -114,11 +118,18 @@ CREATE TABLE `admin_activity` (
 --
 
 INSERT INTO `admin_activity` (`activity_id`, `admin_id`, `last_active`, `last_login`) VALUES
-(1, 1, '2017-10-16 15:16:03', '2017-10-16 14:43:26'),
+(1, 1, '2017-10-16 16:27:00', '2017-10-16 16:13:11'),
 (2, 2, '2017-10-15 13:33:53', '2017-10-15 13:26:47'),
 (3, 3, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
-(4, 4, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
-(5, 5, '2017-10-09 15:28:05', '2017-10-09 15:28:05');
+(4, 4, '2017-10-16 16:13:04', '2017-10-16 16:13:03'),
+(5, 5, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
+(6, 6, '2017-10-16 16:06:52', '2017-10-16 16:06:52'),
+(7, 7, '2017-10-16 16:06:52', '2017-10-16 16:06:52'),
+(8, 8, '2017-10-16 16:06:52', '2017-10-16 16:06:52'),
+(9, 9, '2017-10-16 16:06:52', '2017-10-16 16:06:52'),
+(10, 10, '2017-10-16 16:06:52', '2017-10-16 16:06:52'),
+(11, 11, '2017-10-16 16:06:52', '2017-10-16 16:06:52'),
+(12, 12, '2017-10-16 16:06:52', '2017-10-16 16:06:52');
 
 -- --------------------------------------------------------
 
@@ -510,7 +521,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `admin_activity`
 --
 ALTER TABLE `admin_activity`
-  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `admin_type`
 --
