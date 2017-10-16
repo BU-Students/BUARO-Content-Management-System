@@ -3,13 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Oct 16, 2017 at 06:53 PM
-=======
--- Generation Time: Oct 16, 2017 at 06:27 PM
->>>>>>> 16375a4be620c540796d14b3825b39b4fca2e1d7
+-- Generation Time: Oct 16, 2017 at 09:05 PM
 -- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -87,18 +83,18 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_type`, `address`, `college`, `first_name`, `middle_name`, `last_name`, `sex`, `contact_no`, `bdate`, `email`, `username`, `password`, `profile_img`, `cover_photo`, `state`) VALUES
-(1, 1, 1, NULL, 'Talya', 'Crain', 'Scragg', 1, '9086178741', '1993-08-14', 'talya.scragg@example.com', 'e5d167367cda5a4b8239311ff2c17aad', '754ea1d0fb21a2ba706619100e60061c', NULL, NULL, 1),
-(2, 2, 2, 3, 'Willy', 'Pawelke', 'Bril', 0, '9959501243', '0000-00-00', 'wbril0@paypal.com', '25706bea76c58351edefbb458f9e1062', '87f5e873e4cc3ebaed6f289303417020', NULL, NULL, 1),
-(3, 2, 3, 7, 'Elias', 'Attle', 'Denes', 0, '9201557519', '1991-10-06', 'edenes1@bloomberg.com', 'eca4fe101390ff3d3babcf9a1245e546', 'ee262c7610a18ee3babfa4e36ade34a3', NULL, NULL, 1),
-(4, 2, 4, 2, 'Marlie', 'Father', 'Hansom', 1, '9917212771', '1990-11-20', 'mhansom2@wordpress.org', 'd2d26a22184ec3f69c7f4016d6152c29', '1d7579089c1d958b219b0e3450472477', NULL, NULL, 1),
-(5, 2, 5, 7, 'Michail', 'McCue', 'Rhymes', 0, '9566815074', '1981-05-23', NULL, '4a26b0788fd819cc890894b8c2f9162e', 'aeb5f991b117b589b2c5d664982a80ca', NULL, NULL, 1),
+(1, 1, 1, NULL, 'Talya', 'Crain', 'Scragg', 1, '9086178741', '1993-08-14', 'talya.scragg@example.com', 'e5d167367cda5a4b8239311ff2c17aad', '754ea1d0fb21a2ba706619100e60061c', 'Talya.jpg', 'Talya.jpg', 1),
+(2, 2, 2, 3, 'Willy', 'Pawelke', 'Bril', 0, '9959501243', '1990-10-09', 'wbril0@paypal.com', '25706bea76c58351edefbb458f9e1062', '87f5e873e4cc3ebaed6f289303417020', 'Willy.jpg', 'Willy.jpg', 1),
+(3, 2, 3, 7, 'Elias', 'Attle', 'Denes', 0, '9201557519', '1991-10-06', 'edenes1@bloomberg.com', 'eca4fe101390ff3d3babcf9a1245e546', 'ee262c7610a18ee3babfa4e36ade34a3', 'Elias.jpg', 'Elias.jpg', 1),
+(4, 2, 4, 2, 'Marlie', 'Father', 'Hansom', 1, '9917212771', '1990-11-20', 'mhansom2@wordpress.org', 'd2d26a22184ec3f69c7f4016d6152c29', '1d7579089c1d958b219b0e3450472477', NULL, 'Marlie.jpg', 1),
+(5, 2, 5, 7, 'Michail', 'McCue', 'Rhymes', 0, '9566815074', '1981-05-23', NULL, '4a26b0788fd819cc890894b8c2f9162e', 'aeb5f991b117b589b2c5d664982a80ca', 'Michail.jpg', 'Michail.jpg', 1),
 (6, 2, 6, 9, 'Laraine', 'McOrkil', 'Hugin', 1, NULL, '1994-05-22', 'lhugin4@utexas.edu', 'bf3019a2bb260de8da70fab088404687', 'd4bd58cee9529fbe69a9aa7db33bafd8', NULL, NULL, 0),
-(7, 2, 7, 3, 'Jilleen', 'Banghe', 'Tortoishell', 1, '9879787418', '1986-10-18', 'jtortoishell5@multiply.com', '70c53369892c88b80384cb775ea449ba', 'cf024788de317a2ce50cd3f927d8bb7e', NULL, NULL, 1),
-(8, 2, 8, 6, 'Chelsie', 'Learoyd', 'Timblett', 1, '9459305726', '1993-05-18', NULL, '3b5a7bd58b39216ea341bb764bf1c073', 'd048a03678481b7a4dddd60721eaeb10', NULL, NULL, 1),
-(9, 2, 9, 8, 'Kayleen', 'Brockley', 'Klus', 1, NULL, '1985-02-28', 'gklus7@google.com.br', 'c8a1f08efeb92ca3fab1837a0f8214a8', 'd89580c559dccc81ec4be5663313c4fd', NULL, NULL, 1),
+(7, 2, 7, 3, 'Jilleen', 'Banghe', 'Tortoishell', 1, '9879787418', '1986-10-18', 'jtortoishell5@multiply.com', '70c53369892c88b80384cb775ea449ba', 'cf024788de317a2ce50cd3f927d8bb7e', 'Jilleen.jpg', 'Jilleen.png', 1),
+(8, 2, 8, 6, 'Chelsie', 'Learoyd', 'Timblett', 1, '9459305726', '1993-05-18', NULL, '3b5a7bd58b39216ea341bb764bf1c073', 'd048a03678481b7a4dddd60721eaeb10', 'Chelsie.jpg', 'Chelsie.jpg', 1),
+(9, 2, 9, 8, 'Kayleen', 'Brockley', 'Klus', 1, NULL, '1985-02-28', 'gklus7@google.com.br', 'c8a1f08efeb92ca3fab1837a0f8214a8', 'd89580c559dccc81ec4be5663313c4fd', 'Kayleen.jpeg', 'Kayleen.png', 1),
 (10, 2, 10, 1, 'Deva', 'Lardeur', 'Hulance', 1, '9225867150', '1983-05-13', 'dhulance8@miibeian.gov.cn', '95ab649f796a9dbdff35d314ed34c9f4', '0befa64e900876f0f5628689f8f2f647', NULL, NULL, 1),
-(11, 2, 11, 1, 'Genny', 'Risso', 'Chippin', 1, '9543021062', '1983-05-08', 'gchippin9@epa.gov', '25404554a4e5a0807bc946b907db98af', '81f41e5d97b945c3487a2df13e14e378', NULL, NULL, 1),
-(12, 2, 12, 1, 'Marin', 'Mayhew', 'Ringsell', 0, '9919188530', '1990-08-19', 'mringsella@bigcartel.com', 'b3faebf744ad2fd2e0d64b36a9d9d3b4', '150a05ec596ad344a1bea5b9e9bb87a3', NULL, NULL, 1);
+(11, 2, 11, 1, 'Genny', 'Risso', 'Chippin', 1, '9543021062', '1983-05-08', 'gchippin9@epa.gov', '25404554a4e5a0807bc946b907db98af', '81f41e5d97b945c3487a2df13e14e378', NULL, 'Genny.jpg', 1),
+(12, 2, 12, 1, 'Marin', 'Mayhew', 'Ringsell', 0, '9919188530', '1990-08-19', 'mringsella@bigcartel.com', 'b3faebf744ad2fd2e0d64b36a9d9d3b4', '150a05ec596ad344a1bea5b9e9bb87a3', 'Marin.jpg', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -118,11 +114,11 @@ CREATE TABLE `admin_activity` (
 --
 
 INSERT INTO `admin_activity` (`activity_id`, `admin_id`, `last_active`, `last_login`) VALUES
-(1, 1, '2017-10-16 16:27:00', '2017-10-16 16:13:11'),
-(2, 2, '2017-10-15 13:33:53', '2017-10-15 13:26:47'),
-(3, 3, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
-(4, 4, '2017-10-16 16:13:04', '2017-10-16 16:13:03'),
-(5, 5, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
+(1, 1, '2017-10-16 19:05:19', '2017-10-16 18:04:09'),
+(2, 2, '2017-10-16 17:41:16', '2017-10-16 17:41:14'),
+(3, 3, '2017-10-16 18:03:04', '2017-10-16 18:03:03'),
+(4, 4, '2017-10-16 18:02:46', '2017-10-16 18:02:45'),
+(5, 5, '2017-10-16 17:40:25', '2017-10-16 17:39:52'),
 (6, 6, '2017-10-16 16:06:52', '2017-10-16 16:06:52'),
 (7, 7, '2017-10-16 16:06:52', '2017-10-16 16:06:52'),
 (8, 8, '2017-10-16 16:06:52', '2017-10-16 16:06:52'),
@@ -335,11 +331,10 @@ CREATE TABLE `memorabilia` (
 
 INSERT INTO `memorabilia` (`mem_id`, `admin_id`, `label`, `description`, `img_path`) VALUES
 (5, 1, 'Mugs', 'This porcelain, fully-insulated mug is the perfect way to personalize your morning brew. Printable with graphics, photos or text, this handled mug is a great way to make your cup as unique as your coffee (cream and sugar not included).', '../../data/e-shop/mugs.jpg'),
-(13, 1, 'T-Shirt', 'This premium t-shirt is as close to perfect as can be. Itâ€™s optimized for all types of print and will quickly become your favorite t-shirt. Soft, comfortable and durable, this is a definite must-own and a Spreadshirt recommended product.', '../../data/e-shop/tshirt.jpg'),
+(13, 1, 'T-Shirt', 'This premium t-shirt is as close to perfect as can be. It’s optimized for all types of print and will quickly become your favorite t-shirt. Soft, comfortable and durable, this is a definite must-own and a Spreadshirt recommended product.', '../../data/e-shop/tshirt.jpg'),
 (16, 1, 'Pullover', 'Soft and indulgent cotton twill makes this men\'s knit pullover sweatshirt the one you want.', '../../data/e-shop/pullover.jpg'),
 (17, 1, 'Diamond Ring', 'This exquisite diamond ring features seven diamonds hand-set in a unique and low-profile platinum setting.', '../../data/e-shop/diamond.jpg'),
 (18, 1, 'Leather Bag', 'Gucci Lilith leather top handle bag', '../../data/e-shop/leather.jpg');
-
 -- --------------------------------------------------------
 
 --
