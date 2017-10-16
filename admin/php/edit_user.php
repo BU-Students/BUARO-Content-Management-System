@@ -82,8 +82,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
 		if(!$result_1 = $conn->query($query_1))
 			exit($conn->error);
-		if(!$result_2 = $conn->query($query_2))
-			exit($conn->error);
+		if(!$result_2 = $conn->query($query_2)) {
+			exit("It seems that password has already been taken");
+		}
 		if($conn->affected_rows == 0 && $conn->affected_rows == 0)
 			$hash = "nochanges";
 		else $hash = "modified";

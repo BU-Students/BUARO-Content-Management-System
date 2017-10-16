@@ -106,23 +106,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				break;
 
 			case "C-0":
-				$user_id;
-				if(isset($_POST['user-id']))
-					$user_id = $_POST['user-id'];
-				else $user_id = $_SESSION['id'];
+				if(isset($_POST['user-id']) || $_SESSION['admin-type'] != PARENT_ADMIN) {
+					$user = isset($_POST['user-id'])? $_POST['user-id'] : $_SESSION['id'];
 
-				if($_SESSION['admin-type'] == PARENT_ADMIN) {
-					$sql = "SELECT ".
-								"first_name, middle_name, last_name, username, sex, bdate, TIMESTAMPDIFF(YEAR, bdate, CURDATE()) AS age, contact_no, barangay, ".
-								"municipality, province, profile_img, cover_photo, email, COUNT(post_id) AS post_count, SUM(view_count) AS view_count ".
-							"FROM ".
-								"address, admin, post ".
-							"WHERE ".
-								"address.address_id = admin.address AND ".
-								"post.admin_id = admin.admin_id AND ".
-								"admin.admin_id = ".$user_id;
-				}
-				else {
 					$sql = "SELECT ".
 								"first_name, middle_name, last_name, username, sex, bdate, TIMESTAMPDIFF(YEAR, bdate, CURDATE()) AS age, contact_no, barangay, ".
 								"municipality, province, profile_img, cover_photo, email, COUNT(post_id) AS post_count, SUM(view_count) AS view_count, college.label ".
@@ -132,13 +118,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 								"address.address_id = admin.address AND ".
 								"post.admin_id = admin.admin_id AND ".
 								"admin.college = college.college_id AND ".
-								"admin.admin_id = ".$user_id;
+								"admin.admin_id = ".$user;
+				}
+				else if($_SESSION['admin-type'] == PARENT_ADMIN) {
+					$sql = "SELECT ".
+								"first_name, middle_name, last_name, username, sex, bdate, TIMESTAMPDIFF(YEAR, bdate, CURDATE()) AS age, contact_no, barangay, ".
+								"municipality, province, profile_img, cover_photo, email, COUNT(post_id) AS post_count, SUM(view_count) AS view_count ".
+							"FROM ".
+								"address, admin, post ".
+							"WHERE ".
+								"address.address_id = admin.address AND ".
+								"post.admin_id = admin.admin_id AND ".
+								"admin.admin_id = ".$_SESSION['admin-type'];
 				}
 
 				if(($result = $conn->query($sql)) && $result->num_rows == 1) {
 					$row = $result->fetch_assoc();
 
-					//since MySQL weirdly returns a row with NULL values when trying to failing to find the requested ID instead of returning a boolean (false)
+					//since MySQL weirdly returns a row with NULL values when failing to find the requested ID instead of a boolean (false)
 					if($row['first_name'] != NULL) {
 						$row['sex'] = ($row['sex'] == 0)? "Male" : "Female";
 						if(empty($row['post_count'])) $row['post_count'] = 0;

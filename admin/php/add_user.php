@@ -70,19 +70,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 	 * if at least one is unsuccesful, delete all inserted
 	 * rows
 	 */
-	if(!$conn->query($query_1))
-		exit($conn->error);
+	if(!$conn->query($query_1)) {
+		exit("Query 1: ".$conn->error);
+	}
 
 	if(!$conn->query($query_2)) {
 		$error = $conn->error;
 		$conn->query("DELETE FROM address ORDER BY address_id DESC LIMIT 1");
 		exit("Query 2: ".$error);
-	}
-
-	if(!$conn->query($query_3)) {
-		$error = $conn->error;
-		$conn->query("DELETE FROM address ORDER BY address_id DESC LIMIT 1");
-		exit("Query 3: ".$error);
 	}
 
 	unset($_POST);
@@ -225,7 +220,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 					</table>
 				</div>
 				<div id="buttons-container">
-					<button type="submit" class="button go">Update Account</button>
+					<button type="submit" class="button go">Save</button>
 					<a class="button cancel" href="administrators.php#canceled">Cancel</a>
 				</div>
 			</form>

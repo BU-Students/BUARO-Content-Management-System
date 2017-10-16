@@ -337,7 +337,7 @@ function viewUserInfo(row) {
 	document.getElementById("m-name").innerHTML = row.children[2].innerHTML.charAt(0) + '.';
 	document.getElementById("l-name").innerHTML = row.children[3].innerHTML;
 	document.getElementById("college").innerHTML = abbreviateCollege(row.children[4].innerHTML) + " Alumni Coordinator";
-	document.getElementById("profile-img").src = (row.children[7].value == "null")? "../img/default-profile-img.png" : row.children[7].value;
+	document.getElementById("profile-img").src = (row.children[7].value == "null")? "../img/default-profile-img.png" : "../../data/admin/profile-image/" + row.children[7].value;
 	document.getElementById("profile-link").href = "profile.php?user_id=" + row.children[0].value;
 	document.getElementById("user-info-panel").style.display = "block";
 	document.getElementById("edit-account").style.display = "inline";

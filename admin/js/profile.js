@@ -25,7 +25,6 @@ var appendParam = "";
 
 if(urlParam != undefined && typeof urlParam.user_id != "undefined") {
 	var url_id = urlParam.user_id[0];
-	console.log(urlParam);
 	appendParam = "&user-id=" + url_id;
 	document.getElementById("editButton").parentNode.removeChild(document.getElementById("editButton"));
 	document.getElementById("profile-options").innerHTML =
@@ -60,6 +59,7 @@ if(xhr) {
 					'</div>';
 			}
 			else {
+				console.log(xhr.responseText);
 				user_info = JSON.parse(xhr.responseText);
 				document.getElementById("f-name").innerHTML = user_info.f_name;
 				document.getElementById("m-name").innerHTML = user_info.m_name;
@@ -69,7 +69,7 @@ if(xhr) {
 				document.getElementById("view-count").innerHTML = user_info.view_count;
 				document.getElementById("age").innerHTML = user_info.age + " years old";
 				document.getElementById("sex").innerHTML = user_info.sex;
-				document.getElementById("profile-img").src = (user_info.profile_img == "")? "../img/default-profile-img.png" : user_info.profile_img;
+				document.getElementById("profile-img").src = (user_info.profile_img == "")? "../img/default-profile-img.png" : "../../data/admin/profile-image/" + user_info.profile_img;
 
 				document.getElementById("b-date-display").innerHTML = user_info.formatted_bdate;
 				document.getElementById("b-date").value = user_info.raw_bdate;
@@ -108,7 +108,7 @@ if(xhr) {
 				}
 
 				var coverPhoto = document.getElementById("cover-photo-img");
-				var photoURL = (user_info.cover_photo == "")? "../img/default-profile-cover-photo.jpg" : user_info.cover_photo;
+				var photoURL = (user_info.cover_photo == "")? "../img/default-profile-cover-photo.jpg" : "../../data/admin/cover-photo/" + user_info.cover_photo;
 
 				coverPhoto.src = photoURL;
 				if(coverPhoto.addEventListener) {
