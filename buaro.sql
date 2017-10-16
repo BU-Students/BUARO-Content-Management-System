@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2017 at 07:45 PM
+-- Generation Time: Oct 16, 2017 at 04:07 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -44,7 +44,31 @@ INSERT INTO `address` (`address_id`, `barangay`, `municipality`, `province`) VAL
 (2, 'B1', 'M1', 'P1'),
 (3, 'B2', 'M2', 'P2'),
 (4, 'B3', 'M3', 'P3'),
-(5, 'B4', 'M4', 'P4');
+(5, 'B4', 'M4', 'P4'),
+(6, 'B6', 'M6', 'P6'),
+(7, 'B7', 'M7', 'P7'),
+(8, 'B8', 'M8', 'P8'),
+(9, 'B9', 'M9', 'P9'),
+(10, 'B10', 'M10', 'P10'),
+(11, 'B11', 'M11', 'P11'),
+(12, 'B12', 'M12', 'P12'),
+(13, 'B13', 'M13', 'P13'),
+(14, 'B14', 'M14', 'P14'),
+(15, 'B15', 'M15', 'P15'),
+(16, 'B16', 'M16', 'P16'),
+(17, 'B17', 'M17', 'P17'),
+(18, 'B18', 'M18', 'P18'),
+(19, 'B19', 'M19', 'P19'),
+(20, 'B20', 'M20', 'P20'),
+(21, 'B21', 'M21', 'P21'),
+(22, 'B22', 'M22', 'P22'),
+(23, 'B23', 'M23', 'P23'),
+(24, 'B24', 'M24', 'P24'),
+(25, 'B25', 'M25', 'P25'),
+(26, 'B26', 'M26', 'P26'),
+(27, 'B27', 'M27', 'P27'),
+(28, 'B28', 'M28', 'P28'),
+(29, 'B29', 'M29', 'P29');
 
 -- --------------------------------------------------------
 
@@ -80,7 +104,31 @@ INSERT INTO `admin` (`admin_id`, `admin_type`, `address`, `college`, `first_name
 (12, 2, 2, 3, 'Fname1', 'Mnme1', 'Lname1', 0, NULL, '2017-09-04', NULL, '25706bea76c58351edefbb458f9e1062', '87f5e873e4cc3ebaed6f289303417020', NULL, NULL, 1),
 (13, 2, 3, 7, 'Fname2', 'Mname2', 'Lname2', 0, NULL, '2017-09-25', '2@example.com', 'eca4fe101390ff3d3babcf9a1245e546', 'ee262c7610a18ee3babfa4e36ade34a3', NULL, NULL, 1),
 (14, 2, 4, 2, 'Fname3', 'Mname3', 'Lname3', 1, '098765443210', '2017-08-16', NULL, 'd2d26a22184ec3f69c7f4016d6152c29', '1d7579089c1d958b219b0e3450472477', NULL, NULL, 1),
-(15, 2, 5, 7, 'Fname4', 'Mname4', 'Lname4', 1, '0987657862', '2017-09-04', NULL, '4a26b0788fd819cc890894b8c2f9162e', 'aeb5f991b117b589b2c5d664982a80ca', NULL, NULL, 1);
+(15, 2, 5, 7, 'Fname4', 'Mname4', 'Lname4', 1, '0987657862', '2017-09-04', NULL, '4a26b0788fd819cc890894b8c2f9162e', 'aeb5f991b117b589b2c5d664982a80ca', NULL, NULL, 1),
+(16, 2, 18, 7, 'Fname6', 'Mname6', 'Lname6', 1, NULL, '2017-10-13', NULL, 'user6', '66666666', NULL, NULL, 1),
+(17, 2, 18, 7, 'Fname7', 'Mname7', 'Lname7', 1, NULL, '2017-10-13', NULL, 'user7', '77777777', NULL, NULL, 1),
+(18, 2, 18, 7, 'Fname8', 'Mname8', 'Lname8', 1, NULL, '2017-10-13', NULL, 'user8', '88888888', NULL, NULL, 1),
+(19, 2, 18, 7, 'Fname9', 'Mname9', 'Lname9', 1, NULL, '2017-10-13', NULL, 'user9', '99999999', NULL, NULL, 1),
+(20, 2, 18, 7, 'Fname10', 'Mname10', 'Lname10', 1, NULL, '2017-10-13', NULL, 'user10', 'aaaaaaaa', NULL, NULL, 1),
+(21, 2, 18, 7, 'Fname11', 'Mname11', 'Lname11', 1, NULL, '2017-10-13', NULL, 'user11', 'bbbbbbbb', NULL, NULL, 1),
+(22, 2, 18, 7, 'Fname12', 'Mname12', 'Lname12', 1, NULL, '2017-10-13', NULL, 'user12', 'cccccccc', NULL, NULL, 0),
+(23, 2, 18, 7, 'Fname13', 'Mname13', 'Lname13', 1, NULL, '2017-10-13', NULL, 'user13', 'dddddddd', NULL, NULL, 0),
+(24, 2, 18, 7, 'Fname14', 'Mname14', 'Lname14', 1, NULL, '2017-10-13', NULL, 'user14', 'eeeeeeee', NULL, NULL, 0),
+(25, 2, 18, 7, 'Fname15', 'Mname15', 'Lname15', 1, NULL, '2017-10-13', NULL, 'user15', 'ffffffff', NULL, NULL, 0),
+(26, 2, 18, 7, 'Fname16', 'Mname16', 'Lname16', 1, NULL, '2017-10-13', NULL, 'user16', 'gggggggg', NULL, NULL, 0),
+(27, 2, 18, 7, 'Fname17', 'Mname17', 'Lname17', 1, NULL, '2017-10-13', NULL, 'user17', 'hhhhhhhh', NULL, NULL, 0),
+(28, 2, 18, 7, 'Fname18', 'Mname18', 'Lname18', 1, NULL, '2017-10-13', NULL, 'user18', 'iiiiiiii', NULL, NULL, 1),
+(29, 2, 18, 7, 'Fname19', 'Mname19', 'Lname19', 1, NULL, '2017-10-13', NULL, 'user19', 'jjjjjjjj', NULL, NULL, 1),
+(30, 2, 18, 7, 'Fname20', 'Mname20', 'Lname20', 1, NULL, '2017-10-13', NULL, 'user20', 'kkkkkkkk', NULL, NULL, 1),
+(31, 2, 18, 7, 'Fname21', 'Mname20', 'Lname21', 1, NULL, '2017-10-13', NULL, 'user21', 'llllllll', NULL, NULL, 1),
+(32, 2, 18, 7, 'Fname22', 'Mname20', 'Lname22', 1, NULL, '2017-10-13', NULL, 'user22', 'mmmmmmmm', NULL, NULL, 0),
+(33, 2, 18, 7, 'Fname23', 'Mname20', 'Lname23', 1, NULL, '2017-10-13', NULL, 'user23', 'nnnnnnnn', NULL, NULL, 0),
+(34, 2, 18, 7, 'Fname24', 'Mname20', 'Lname24', 1, NULL, '2017-10-13', NULL, 'user24', 'oooooooo', NULL, NULL, 0),
+(35, 2, 18, 7, 'Fname25', 'Mname20', 'Lname25', 1, NULL, '2017-10-13', NULL, 'user25', 'pppppppp', NULL, NULL, 0),
+(36, 2, 18, 7, 'Fname26', 'Mname20', 'Lname26', 1, NULL, '2017-10-13', NULL, 'user26', 'qqqqqqqq', NULL, NULL, 0),
+(37, 2, 18, 7, 'Fname27', 'Mname20', 'Lname27', 1, NULL, '2017-10-13', NULL, 'user27', 'rrrrrrrr', NULL, NULL, 0),
+(38, 2, 18, 7, 'Fname28', 'Mname20', 'Lname28', 1, NULL, '2017-10-13', NULL, 'user28', 'ssssssss', NULL, NULL, 0),
+(39, 2, 18, 7, 'Fname29', 'Mname20', 'Lname29', 1, NULL, '2017-10-13', NULL, 'user29', 'tttttttt', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -100,11 +148,35 @@ CREATE TABLE `admin_activity` (
 --
 
 INSERT INTO `admin_activity` (`activity_id`, `admin_id`, `last_active`, `last_login`) VALUES
-(1, 1, '2017-10-09 17:44:38', '2017-10-09 15:29:05'),
-(2, 12, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
+(1, 1, '2017-10-15 13:47:31', '2017-10-15 13:34:13'),
+(2, 12, '2017-10-15 13:33:53', '2017-10-15 13:26:47'),
 (3, 13, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
 (4, 14, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
-(5, 15, '2017-10-09 15:28:05', '2017-10-09 15:28:05');
+(5, 15, '2017-10-09 15:28:05', '2017-10-09 15:28:05'),
+(6, 16, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(7, 17, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(8, 18, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(9, 19, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(10, 20, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(11, 21, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(12, 22, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(13, 23, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(14, 24, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(15, 25, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(16, 26, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(17, 27, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(18, 28, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(19, 29, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(20, 30, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(21, 31, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(22, 32, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(23, 33, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(24, 34, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(25, 35, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(26, 36, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(27, 37, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(28, 38, '2017-10-12 22:40:22', '2017-10-12 22:40:22'),
+(29, 39, '2017-10-12 22:40:22', '2017-10-12 22:40:22');
 
 -- --------------------------------------------------------
 
@@ -208,63 +280,63 @@ INSERT INTO `course` (`course_id`, `college_id`, `label`) VALUES
 CREATE TABLE `feedback` (
   `feedback_id` int(11) NOT NULL,
   `feedemail` varchar(255) DEFAULT NULL,
-  `feedmessage` text NOT NULL
+  `feedmessage` text NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `feedback`
 --
 
-INSERT INTO `feedback` (`feedback_id`, `feedemail`, `feedmessage`) VALUES
-(1, 'email@email.com', 'hope this works'),
-(2, 'tryemail@yahoo.com', 'Write something one more time...'),
-(61, NULL, 'AAA'),
-(62, NULL, 'AAA'),
-(63, NULL, 'AAA'),
-(64, NULL, 'AAA'),
-(65, NULL, 'AAA'),
-(66, NULL, 'AAA'),
-(67, NULL, 'AAA'),
-(68, NULL, 'AAA'),
-(69, NULL, 'AAA'),
-(70, NULL, 'AAA'),
-(71, NULL, 'Sample feedback'),
-(72, NULL, 'Sample feedback'),
-(73, NULL, 'Sample feedback'),
-(74, NULL, 'Sample feedback'),
-(75, NULL, 'Sample feedback'),
-(76, NULL, 'Sample feedback'),
-(77, NULL, 'Sample feedback'),
-(78, NULL, 'Sample feedback'),
-(79, NULL, 'Sample feedback'),
-(80, NULL, 'Sample feedback'),
-(81, NULL, 'Sample feedback'),
-(82, NULL, 'Sample feedback'),
-(83, NULL, 'Sample feedback'),
-(84, NULL, 'Sample feedback'),
-(85, NULL, 'Sample feedback'),
-(86, NULL, 'Sample feedback'),
-(87, NULL, 'Sample feedback'),
-(88, NULL, 'Sample feedback'),
-(89, NULL, 'Sample feedback'),
-(90, NULL, 'Sample feedback'),
-(91, NULL, 'Sample feedback'),
-(92, NULL, 'Sample feedback'),
-(93, NULL, 'Sample feedback'),
-(94, NULL, 'Sample feedback'),
-(95, NULL, 'Sample feedback'),
-(96, NULL, 'Sample feedback'),
-(97, NULL, 'Sample feedback'),
-(98, NULL, 'Sample feedback'),
-(99, NULL, 'Sample feedback'),
-(100, NULL, 'Sample feedback'),
-(101, NULL, 'Sample feedback'),
-(102, NULL, 'Sample feedback'),
-(103, NULL, 'Sample feedback'),
-(104, NULL, 'Sample feedback'),
-(105, NULL, 'Sample feedback'),
-(106, NULL, 'Sample feedback'),
-(107, NULL, 'Sample feedback');
+INSERT INTO `feedback` (`feedback_id`, `feedemail`, `feedmessage`, `timestamp`) VALUES
+(2, 'tryemail@yahoo.com', 'Write something one more time...', '2017-10-13 02:01:24'),
+(61, NULL, 'AAA', '2017-10-13 02:01:24'),
+(62, NULL, 'AAA', '2017-10-13 02:01:24'),
+(63, NULL, 'AAA', '2017-10-13 02:01:24'),
+(64, NULL, 'AAA', '2017-10-13 02:01:24'),
+(65, NULL, 'AAA', '2017-10-13 02:01:24'),
+(66, NULL, 'AAA', '2017-10-13 02:01:24'),
+(67, NULL, 'AAA', '2017-10-13 02:01:24'),
+(68, NULL, 'AAA', '2017-10-13 02:01:24'),
+(69, NULL, 'AAA', '2017-10-13 02:01:24'),
+(70, NULL, 'AAA', '2017-10-13 02:01:24'),
+(71, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(72, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(73, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(74, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(75, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(76, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(77, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(78, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(79, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(80, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(81, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(82, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(83, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(84, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(85, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(86, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(87, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(88, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(89, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(90, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(91, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(92, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(93, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(94, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(95, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(96, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(97, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(98, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(99, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(100, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(101, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(102, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(103, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(104, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(105, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(106, NULL, 'Sample feedback', '2017-10-13 02:01:24'),
+(107, NULL, 'Sample feedback', '2017-10-13 02:01:24');
 
 -- --------------------------------------------------------
 
@@ -310,7 +382,8 @@ CREATE TABLE `memorabilia` (
 
 INSERT INTO `memorabilia` (`mem_id`, `admin_id`, `label`, `description`, `img_path`) VALUES
 (13, 1, 'adff', 'adfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfas', '../../data/e-shop/default-profile-cover-photo.jpg'),
-(14, 1, 'kghhhjg', 'jgfhfh', '../../data/e-shop/default-profile-cover-photo.jpg');
+(14, 1, 'kghhhjg', 'jgfhfh', '../../data/e-shop/default-profile-cover-photo.jpg'),
+(15, 1, 'Title here', 'Sample content', '../../data/e-shop/C:fakepathmugs.jpg');
 
 -- --------------------------------------------------------
 
@@ -483,17 +556,17 @@ ALTER TABLE `post_type`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `admin_activity`
 --
 ALTER TABLE `admin_activity`
-  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `admin_type`
 --
@@ -528,7 +601,7 @@ ALTER TABLE `graduates`
 -- AUTO_INCREMENT for table `memorabilia`
 --
 ALTER TABLE `memorabilia`
-  MODIFY `mem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `mem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `post`
 --
