@@ -330,6 +330,9 @@ CREATE TABLE `memorabilia` (
 --
 
 INSERT INTO `memorabilia` (`mem_id`, `admin_id`, `label`, `description`, `img_path`) VALUES
+(4, 1, 'kghhhjg', 'jgfhfh', '../../data/e-shop/default-profile-cover-photo.jpg'),
+(5, 1, 'Title here', 'Sample content', '../../data/e-shop/C:fakepathmugs.jpg'),
+(13, 1, 'adff', 'adfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfasadfas', '../../data/e-shop/default-profile-cover-photo.jpg');
 
 -- --------------------------------------------------------
 
