@@ -120,7 +120,6 @@
 						}				
 					?>
 					<center><h1 class="title"><?php echo $fetch['title']; ?></h1><br></center>
-					<center><img style="width: 700px;"  src="../admin/img/<?php echo $fetch['imgbanner'] ?>" ></center>
 					<h5 style = "padding:20px;"><?php
 						$parsedown = new Parsedown(); 
 						echo decode($parsedown->text($fetch['content']));?></h5>
