@@ -1,7 +1,5 @@
 <?php
 
-require_once "backend/connection.php";
-
 if(session_status() == PHP_SESSION_NONE)
 	session_start();
 //if user attemps to access this page without authentication
@@ -21,9 +19,9 @@ if(isset($_POST['search']))
     
 }
 else {
+	require_once "backend/connection.php";
 	$query = "SELECT * FROM feedback";
-	if(!($search_result = mysqli_query($conn, $query)))
-		mysli_error($conn);
+	$search_result = mysqli_query($conn, $query);
 	$totalCount = $search_result->num_rows;
 }
 
@@ -37,13 +35,16 @@ else {
 		<link href="jqueryui/jquery-ui.css" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="../../vendor/Bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
 		<link rel="stylesheet" href="../css/sidebar.css" />
 		<link rel="stylesheet" href="../css/topbar.css" />
 		<link rel="stylesheet" href="../css/stories.css" />
 		<link rel="stylesheet" href="../css/modal.css" />
 		<link rel="stylesheet" href="../css/notif.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  
+		<link rel="stylesheet" href="../../vendor/bootstrap-3.3.6/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../vendor/jquery-ui-1.11.4/jquery-ui.css">
+
+
 
 	</head>
 
@@ -116,15 +117,16 @@ else {
 		<script src="../js/sidebar.js"></script>
 		<script src="../js/notif.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
+		<script src="../../vendor/jquery-ui-1.10.3/ui/jquery-ui.js"></script>
+	
 	</body>
 </html>
 
 <!-- this is for the date range -->
  <script>  
       $(document).ready(function(){  
-           $.datepicker.setDefaults({
-                dateFormat: 'yy-mm-dd'
+           $.datepicker.setDefaults({  
+                dateFormat: 'yy-mm-dd'   
            });  
            $(function(){  
                 $("#from_date").datepicker();  
@@ -144,8 +146,8 @@ else {
                                $('#feedback_table').html(data);  
                           }  
                      });  
-                }
-                else
+                }  
+                else  
                 {  
                      alert("Please Select Date");  
                 }  

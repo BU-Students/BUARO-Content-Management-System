@@ -41,7 +41,7 @@ var inactive_users = [];  //all active user accounts
 
 var usersTable = document.createElement("table"); //a table version of `users` object for filtering purposes
 
-var active_rows_num = 0;
+var active_rows_num = 0;  //for counting the number of rows currently selected
 var state = "1";          //based on HTML values; 0 for inactive, 1 for active, and 2 for both
 var action;
 

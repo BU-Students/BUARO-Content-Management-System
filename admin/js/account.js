@@ -13,6 +13,7 @@ if(xhr) {
 			document.getElementById("m-name").innerHTML = user.m_name;
 			document.getElementById("l-name").innerHTML = user.l_name;
 			document.getElementById("college").innerHTML = (user.college == "") ? "Parent admin" : user.college + " Alumni Admin";
+			document.getElementById("profile-img").src = (user.profile_img == "") ? "../img/default-profile-img.png" : "../../data/admin/profile-image/" + user.profile_img;
 			document.getElementById("story-count").innerHTML = user.post_count;
 			document.getElementById("view-count").innerHTML = user.view_count;
 		}

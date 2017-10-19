@@ -7,9 +7,9 @@ include '../backend/connection.php';
 include '../backend/input_handler.php';
 require_once "../../../vendor/Parsedown/Parsedown.php";
 	if($_SESSION['admin-type']==1)
-		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND post_type=2";
+		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND post_type=2";
 	else	
-		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND college=".$_SESSION['college']." AND post_type=2";
+		$sql = "SELECT * FROM POST WHERE admin_id=".$_SESSION['id']." AND post_type=2";
 	$sql .= " ORDER BY eventdate DESC";
 	$result = $conn->query($sql);
 	$parser = new Parsedown();
@@ -107,9 +107,9 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 <!--For the events modal, each events get their own modal-->
 <?php
 	if($_SESSION['admin-type']==1)
-		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND post_type=2";
+		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND post_type=2";
 	else	
-		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND college=".$_SESSION['college']." AND post_type=2";
+		$sql = "SELECT * FROM POST WHERE admin_id=".$_SESSION['id']." AND post_type=2";
 	$sql .= " ORDER BY eventdate DESC";
 	$result = $conn->query($sql);
 	$parser = new Parsedown();
@@ -129,7 +129,6 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 			$stringstrt = 0;
 			$stringnow = substr($parser->text(decode($row['content'])),0);
 			$read="";
-			$stringdis = "";
 		}
 		echo '
 			<div class="modal fade" id="expanded-event-'.$row['post_id'].'" role="dialog" tabindex="-1">
@@ -265,9 +264,9 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 <!--Each of the events gets their own edit modal-->
 <?php
 	if($_SESSION['admin-type']==1)
-		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND post_type=2";
+		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id  AND post_type=2";
 	else	
-		$sql = "SELECT * FROM POST,admin WHERE post.admin_id=admin.admin_id AND admin_type=".$_SESSION['admin-type']." AND college=".$_SESSION['college']." AND post_type=2";
+		$sql = "SELECT * FROM POST WHERE admin_id=".$_SESSION['id']." AND post_type=2";
 	$sql .= " ORDER BY timestamp DESC";
 	$result = $conn->query($sql);
 	$parser = new Parsedown();
