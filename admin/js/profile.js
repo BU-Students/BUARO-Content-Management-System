@@ -60,86 +60,98 @@ if(xhr) {
 			}
 			else {
 				console.log(xhr.responseText);
-				user_info = JSON.parse(xhr.responseText);
-				document.getElementById("f-name").innerHTML = user_info.f_name;
-				document.getElementById("m-name").innerHTML = user_info.m_name;
-				document.getElementById("l-name").innerHTML = user_info.l_name;
-				document.getElementById("college").innerHTML = (user_info.college == "")? "Parent Administrator" : user_info.college + " Alumni Coordinator";
-				document.getElementById("story-count").innerHTML = user_info.post_count;
-				document.getElementById("view-count").innerHTML = user_info.view_count;
-				document.getElementById("age").innerHTML = user_info.age + " years old";
-				document.getElementById("sex").innerHTML = user_info.sex;
-				document.getElementById("profile-img").src = (user_info.profile_img == "")? "../img/default-profile-img.png" : "../../data/admin/profile-image/" + user_info.profile_img;
+				try {
+					user_info = JSON.parse(xhr.responseText);
+					document.getElementById("f-name").innerHTML = user_info.f_name;
+					document.getElementById("m-name").innerHTML = user_info.m_name;
+					document.getElementById("l-name").innerHTML = user_info.l_name;
+					document.getElementById("college").innerHTML = (user_info.college == "")? "Parent Administrator" : user_info.college + " Alumni Coordinator";
+					document.getElementById("story-count").innerHTML = user_info.post_count;
+					document.getElementById("view-count").innerHTML = user_info.view_count;
+					document.getElementById("age").innerHTML = user_info.age + " years old";
+					document.getElementById("sex").innerHTML = user_info.sex;
+					document.getElementById("profile-img").src = (user_info.profile_img == "")? "../img/default-profile-img.png" : "../../data/admin/profile-image/" + user_info.profile_img;
 
-				document.getElementById("b-date-display").innerHTML = user_info.formatted_bdate;
-				document.getElementById("b-date").value = user_info.raw_bdate;
+					document.getElementById("b-date-display").innerHTML = user_info.formatted_bdate;
+					document.getElementById("b-date").value = user_info.raw_bdate;
 
-				var address_link = document.getElementById("address-link");
-				if(user_info.barangay == user_info.municipality && user_info.municipality == user_info.province && user_info.province == "") {
-					address_link.innerHTML = "Not available";
-					address_link.style.pointerEvents = "none";
-					address_link.style.color = "#555";
+					var address_link = document.getElementById("address-link");
+					if(user_info.barangay == user_info.municipality && user_info.municipality == user_info.province && user_info.province == "") {
+						address_link.innerHTML = "Not available";
+						address_link.style.pointerEvents = "none";
+						address_link.style.color = "#555";
+					}
+					else {
+						address_link.href = "https://www.google.com.ph/search?q=" + user_info.barangay + "%2C+" + user_info.municipality + "%2C+" + user_info.province;
+						address_link.innerHTML = user_info.barangay + ", " + user_info.municipality + ", " + user_info.province;
+					}
+
+					var contact_no_link = document.getElementById("contact-no-link");
+					if(user_info.contact_no != "") {
+						contact_no_link.href = "tel: " + user_info.contact_no;
+						contact_no_link.innerHTML = user_info.contact_no;
+					}
+					else {
+						contact_no_link.innerHTML = "None";
+						contact_no_link.style.pointerEvents = "none";
+						contact_no_link.style.color = "#555";
+					}
+
+					var email_link = document.getElementById("email-link");
+					if(user_info.email != "") {
+						email_link.href = "mailto: " + user_info.email;
+						email_link.innerHTML = user_info.email;
+					}
+					else {
+						email_link.innerHTML = "None";
+						email_link.style.pointerEvents = "none";
+						email_link.style.color = "#555";
+					}
+
+					var coverPhoto = document.getElementById("cover-photo-img");
+					var photoURL = (user_info.cover_photo == "")? "../img/default-profile-cover-photo.jpg" : "../../data/admin/cover-photo/" + user_info.cover_photo;
+
+					coverPhoto.src = photoURL;
+					if(coverPhoto.addEventListener) {
+						coverPhoto.addEventListener("load", function() {
+							document.getElementById("left-side").classList.add("fade-up");
+							document.getElementById("right-side").classList.add("fade-down");
+
+							if(coverPhoto.height > 300) {
+								window.setTimeout(function() {
+									$("#right-side").animate({ scrollTop: (coverPhoto.height - 300) + "px" }, 1200);
+								}, 500);
+							}
+						});
+					}
+					else {
+						coverPhoto.attachEvent("onload", function() {
+							document.getElementById("left-side").classList.add("fade-up");
+							document.getElementById("right-side").classList.add("fade-down");
+
+							if(coverPhoto.height > 300) {
+								window.setTimeout(function() {
+									$("#right-side").animate({ scrollTop: (coverPhoto.height - 300) + "px" }, 1200);
+								}, 500);
+							}
+						});
+					}
+
+					setTimeout(function() {
+						document.getElementById("left-side").style.opacity = 1;
+						document.getElementById("right-side").style.opacity = 1;
+					}, 2000);
 				}
-				else {
-					address_link.href = "https://www.google.com.ph/search?q=" + user_info.barangay + "%2C+" + user_info.municipality + "%2C+" + user_info.province;
-					address_link.innerHTML = user_info.barangay + ", " + user_info.municipality + ", " + user_info.province;
+				catch(e) {
+					document.getElementById("content-wrapper").innerHTML =
+						'<div id="broken-link-backdrop">' +
+						'<img src="../img/broken-page.png" />' +
+						'<label>The link is either invalid or expired</label><br>' +
+						'<a href="administrators.php">' +
+						'<h5>Want to visit your own profile?<span class="glyphicon glyphicon-chevron-right"></span></h5>' +
+						'</a>' +
+						'</div>';
 				}
-
-				var contact_no_link = document.getElementById("contact-no-link");
-				if(user_info.contact_no != "") {
-					contact_no_link.href = "tel: " + user_info.contact_no;
-					contact_no_link.innerHTML = user_info.contact_no;
-				}
-				else {
-					contact_no_link.innerHTML = "None";
-					contact_no_link.style.pointerEvents = "none";
-					contact_no_link.style.color = "#555";
-				}
-
-				var email_link = document.getElementById("email-link");
-				if(user_info.email != "") {
-					email_link.href = "mailto: " + user_info.email;
-					email_link.innerHTML = user_info.email;
-				}
-				else {
-					email_link.innerHTML = "None";
-					email_link.style.pointerEvents = "none";
-					email_link.style.color = "#555";
-				}
-
-				var coverPhoto = document.getElementById("cover-photo-img");
-				var photoURL = (user_info.cover_photo == "")? "../img/default-profile-cover-photo.jpg" : "../../data/admin/cover-photo/" + user_info.cover_photo;
-
-				coverPhoto.src = photoURL;
-				if(coverPhoto.addEventListener) {
-					coverPhoto.addEventListener("load", function() {
-						document.getElementById("left-side").classList.add("fade-up");
-						document.getElementById("right-side").classList.add("fade-down");
-
-						if(coverPhoto.height > 300) {
-							window.setTimeout(function() {
-								$("#right-side").animate({ scrollTop: (coverPhoto.height - 300) + "px" }, 1200);
-							}, 500);
-						}
-					});
-				}
-				else {
-					coverPhoto.attachEvent("onload", function() {
-						document.getElementById("left-side").classList.add("fade-up");
-						document.getElementById("right-side").classList.add("fade-down");
-
-						if(coverPhoto.height > 300) {
-							window.setTimeout(function() {
-								$("#right-side").animate({ scrollTop: (coverPhoto.height - 300) + "px" }, 1200);
-							}, 500);
-						}
-					});
-				}
-
-				setTimeout(function() {
-					document.getElementById("left-side").style.opacity = 1;
-					document.getElementById("right-side").style.opacity = 1;
-				}, 2000);
 			}
 		}
 	}

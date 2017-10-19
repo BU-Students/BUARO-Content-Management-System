@@ -16,6 +16,7 @@
 	margin: 10px auto 0px auto;
 	width: 150px;
 	height: 150px;
+	border-radius: 50%;
 }
 
 #name {

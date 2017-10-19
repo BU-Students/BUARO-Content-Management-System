@@ -35,7 +35,7 @@ if(!isset($_SESSION['id'])) {
 
 		<div id="content-wrapper">
 			<div id="left-side" class="fade-up">
-				<img id="profile-img" src="../img/default-profile-img.png" />
+				<img id="profile-img" />
 				<div style="padding: 20px;">
 					<div id="name">
 						<span id="f-name"></span>
