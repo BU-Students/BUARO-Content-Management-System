@@ -129,6 +129,7 @@ require_once "../../../vendor/Parsedown/Parsedown.php";
 			$stringstrt = 0;
 			$stringnow = substr($parser->text(decode($row['content'])),0);
 			$read="";
+			$stringdis = "";
 		}
 		echo '
 			<div class="modal fade" id="expanded-event-'.$row['post_id'].'" role="dialog" tabindex="-1">
