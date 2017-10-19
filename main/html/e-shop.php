@@ -142,6 +142,12 @@
 																		<td><input class="w3-input" placeholder="Enter Your Name" type="text" name="nickname" style="width: 100%; border-radius: 5px; border: 1px solid #ccc;" required></td>
 																	</tr>
 																	<tr>
+																		<td><h4 style="float: left;">Email: </h4></td>
+																	</tr>
+																	<tr>
+																		<td><input class="w3-input" placeholder="Enter Your Email" type="email" name="email" style="width: 100%; border-radius: 5px; border: 1px solid #ccc;" required></td>
+																	</tr>
+																	<tr>
 																		<td><h4 style="float: left;">Comment: </h4></td>
 																	</tr>
 																	<tr>
