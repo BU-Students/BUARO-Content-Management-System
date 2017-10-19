@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2017 at 09:05 PM
+-- Generation Time: Oct 19, 2017 at 03:54 PM
 -- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -182,18 +182,11 @@ INSERT INTO `college` (`college_id`, `label`) VALUES
 CREATE TABLE `comments` (
   `c_id` int(11) NOT NULL,
   `mem_id` int(11) NOT NULL,
+  `email` varchar(150) NOT NULL,
   `content` text NOT NULL,
   `nick` varchar(50) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`c_id`, `mem_id`, `content`, `nick`, `timestamp`) VALUES
-(1, 13, 'Data', 'Franco', '2017-10-16 15:03:52'),
-(2, 13, 'Gusto Mo bang kumita? Contact 098273526321', 'Aim Global', '2017-10-16 15:03:50');
 
 -- --------------------------------------------------------
 
@@ -331,10 +324,11 @@ CREATE TABLE `memorabilia` (
 
 INSERT INTO `memorabilia` (`mem_id`, `admin_id`, `label`, `description`, `img_path`) VALUES
 (5, 1, 'Mugs', 'This porcelain, fully-insulated mug is the perfect way to personalize your morning brew. Printable with graphics, photos or text, this handled mug is a great way to make your cup as unique as your coffee (cream and sugar not included).', '../../data/e-shop/mugs.jpg'),
-(13, 1, 'T-Shirt', 'This premium t-shirt is as close to perfect as can be. It’s optimized for all types of print and will quickly become your favorite t-shirt. Soft, comfortable and durable, this is a definite must-own and a Spreadshirt recommended product.', '../../data/e-shop/tshirt.jpg'),
+(13, 1, 'T-Shirt', 'This premium t-shirt is as close to perfect as can be. It?s optimized for all types of print and will quickly become your favorite t-shirt. Soft, comfortable and durable, this is a definite must-own and a Spreadshirt recommended product.', '../../data/e-shop/tshirt.jpg'),
 (16, 1, 'Pullover', 'Soft and indulgent cotton twill makes this men\'s knit pullover sweatshirt the one you want.', '../../data/e-shop/pullover.jpg'),
 (17, 1, 'Diamond Ring', 'This exquisite diamond ring features seven diamonds hand-set in a unique and low-profile platinum setting.', '../../data/e-shop/diamond.jpg'),
 (18, 1, 'Leather Bag', 'Gucci Lilith leather top handle bag', '../../data/e-shop/leather.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -531,7 +525,7 @@ ALTER TABLE `college`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `course`
 --
