@@ -50,6 +50,6 @@ Don Asaytuno\
 Kieron Gonzales\
 Loyd Yanzon\
 Aubrey Segovia\
-Angelo Duran\
+Angelo Duran
 
-\And many more....
+And many more....
