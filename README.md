@@ -32,24 +32,24 @@ Link to 3rd Party frameworks used:
 
 ---
 
-Credits:
--[Christian Collamar](https://github.com/C-Collamar)
--[Glenn Perez] (https://github.com/singleparadox)
--[Austin Zuñiga] (https://github.com/AustinZuniga)
--[Alejandre Papina] (https://github.com/crossnoire)
--[Mark Ludovice] (https://github.com/MarkLudovice)
--[Jaako Andes] (https://github.com/jaakofalltrade)
--[Bryan Bismonte] (https://github.com/ncbry)
--[Francisco Ifurung] (https://github.com/lancaster215)
--Steven Ramos
--Elijah Barba
--Jirt John Duran
--Maria Teressa Vibar
--Lara Melissa Tito
--Don Asaytuno
--Kieron Gonzales
--Loyd Yanzon
--Aubrey Segovia
--Angelo Duran
+Credits:\
+[Christian Collamar](https://github.com/C-Collamar)\
+[Glenn Perez](https://github.com/singleparadox)\
+[Austin Zuñiga](https://github.com/AustinZuniga)\
+[Alejandre Papina](https://github.com/crossnoire)\
+[Mark Ludovice](https://github.com/MarkLudovice)\
+[Jaako Andes](https://github.com/jaakofalltrade)\
+[Bryan Bismonte](https://github.com/ncbry)\
+[Francisco Ifurung](https://github.com/lancaster215)\
+Steven Ramos\
+Elijah Barba\
+Jirt John Duran\
+Maria Teressa Vibar\
+Lara Melissa Tito\
+Don Asaytuno\
+Kieron Gonzales\
+Loyd Yanzon\
+Aubrey Segovia\
+Angelo Duran\
 
-And many more....
+\And many more....
